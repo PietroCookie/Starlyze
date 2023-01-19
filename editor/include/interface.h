@@ -6,6 +6,7 @@
 #include "window.h"
 #include "colors.h"
 #include "paint_tools.h"
+#include "map_level.h"
 
 /**
  * @brief Structure représentant l'interface demandée
@@ -17,6 +18,7 @@ typedef struct
 	window_t* win_level; // La fenêtre du level
 	window_t* win_tools; // La fenêtre d'outil
 
+	map_level_t map_level;
 	paint_tool_t paint_tool;
 } interface_t;
 

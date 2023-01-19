@@ -4,6 +4,7 @@
 
 #include "colors.h"
 #include "sprite.h"
+#include "element_map.h"
 
 int select_paint_tool(window_t* win_tools, paint_tool_t* tool, int id_tool){
 	if(id_tool >= 0 && id_tool < 13)
@@ -17,54 +18,114 @@ int select_paint_tool(window_t* win_tools, paint_tool_t* tool, int id_tool){
 	return tool->id_tool;
 }
 
-void action_tool(window_t* win_level, window_t* win_infos, paint_tool_t tool, int posX, int posY){
+void action_tool(map_level_t* map_level, window_t* win_level, window_t* win_infos, paint_tool_t tool, int posX, int posY){
+	element_map_t* element_map;
+	element_map = malloc(sizeof(element_map_t));
+	element_map->posX = posX;
+	element_map->posY = posY;
+
 	switch (tool.id_tool)
 	{
-		case 1:
+		case 0:
+			element_map = search_element_with_position_map(*map_level, posX, posY);
+			// if(element_map != NULL)
+			window_printw(win_infos, "\nBonjour");
+			window_refresh(win_infos);
+			break;
+
+		case SPRITE_BLOCK:
+			element_map->id_sprite = SPRITE_BLOCK;
+			element_map->width = 1;
+			element_map->heigt = 1;
+			add_element_map(map_level, *element_map);
 			paint_block(win_level, posX, posY);
 			break;
 
-		case 2:
+		case SPRITE_LADDER:
+			element_map->id_sprite = SPRITE_LADDER;
+			element_map->width = 3;
+			element_map->heigt = 1;
+			add_element_map(map_level, *element_map);
 			paint_ladder(win_level, posX, posY);
 			break;
 
-		case 3:
+		case SPRITE_TRAP:
+			element_map->id_sprite = SPRITE_TRAP;
+			element_map->width = 1;
+			element_map->heigt = 1;
+			add_element_map(map_level, *element_map);
 			paint_trap(win_level, posX, posY);
 			break;
 
-		case 4:
+		case SPRITE_GATE:
+			element_map->id_sprite = SPRITE_GATE;
+			element_map->width = 1;
+			element_map->heigt = 4;
+			add_element_map(map_level, *element_map);
 			paint_gate(win_level, posX, posY, MAGENTA);
 			break;
 
-		case 5:
+		case SPRITE_KEY:
+			element_map->id_sprite = SPRITE_KEY;
+			element_map->width = 1;
+			element_map->heigt = 2;
+			add_element_map(map_level, *element_map);
 			paint_key(win_level, posX, posY);
 			break;
 
-		case 6:
+		case SPRITE_DOOR:
+			element_map->id_sprite = SPRITE_DOOR;
+			element_map->width = 3;
+			element_map->heigt = 4;
+			add_element_map(map_level, *element_map);
 			paint_door(win_level, posX, posY);
 			break;
 
-		case 7:
+		case SPRITE_EXIT:
+			element_map->id_sprite = SPRITE_EXIT;
+			element_map->width = 3;
+			element_map->heigt = 4;
+			add_element_map(map_level, *element_map);
 			paint_exit(win_level, posX, posY);
 			break;
 
-		case 8:
+		case SPRITE_START:
+			element_map->id_sprite = SPRITE_START;
+			element_map->width = 3;
+			element_map->heigt = 4;
+			add_element_map(map_level, *element_map);
 			paint_start(win_level, posX, posY);
 			break;
 
-		case 9:
+		case SPRITE_ROBOT:
+			element_map->id_sprite = SPRITE_ROBOT;
+			element_map->width = 3;
+			element_map->heigt = 4;
+			add_element_map(map_level, *element_map);
 			paint_robot(win_level, posX, posY);
 			break;
 
-		case 10:
+		case SPRITE_PROBE:
+			element_map->id_sprite = SPRITE_PROBE;
+			element_map->width = 3;
+			element_map->heigt = 2;
+			add_element_map(map_level, *element_map);
 			paint_probe(win_level, posX, posY);
 			break;
 
-		case 11:
+		case SPRITE_LIFE:
+			element_map->id_sprite = SPRITE_LIFE;
+			element_map->width = 1;
+			element_map->heigt = 1;
+			add_element_map(map_level, *element_map);
 			paint_heart(win_level, posX, posY);
 			break;
 
-		case 12:
+		case SPRITE_BOMB:
+			element_map->id_sprite = SPRITE_BOMB;
+			element_map->width = 1;
+			element_map->heigt = 1;
+			add_element_map(map_level, *element_map);
 			paint_bomb(win_level, posX, posY);
 			break;
 		
@@ -73,6 +134,8 @@ void action_tool(window_t* win_level, window_t* win_infos, paint_tool_t tool, in
 			window_refresh(win_infos);
 			break;
 	}
+
+	free(element_map);
 }
 
 char* select_name_tool(int id_tool){
@@ -84,51 +147,51 @@ char* select_name_tool(int id_tool){
 			name_tool = "Delete";
 			break;
 
-		case 1:
+		case SPRITE_BLOCK:
 			name_tool = "Block";
 			break;
 
-		case 2:
+		case SPRITE_LADDER:
 			name_tool = "Ladder";
 			break;
 
-		case 3:
+		case SPRITE_TRAP:
 			name_tool = "Trap";
 			break;
 
-		case 4:
+		case SPRITE_GATE:
 			name_tool = "Gate";
 			break;
 
-		case 5:
+		case SPRITE_KEY:
 			name_tool = "Key";
 			break;
 
-		case 6:
+		case SPRITE_DOOR:
 			name_tool = "Door";
 			break;
 
-		case 7:
+		case SPRITE_EXIT:
 			name_tool = "Exit";
 			break;
 
-		case 8:
+		case SPRITE_START:
 			name_tool = "Start";
 			break;
 
-		case 9:
+		case SPRITE_ROBOT:
 			name_tool = "Robot";
 			break;
 
-		case 10:
+		case SPRITE_PROBE:
 			name_tool = "Probe";
 			break;
 
-		case 11:
+		case SPRITE_LIFE:
 			name_tool = "Life";
 			break;
 
-		case 12:
+		case SPRITE_BOMB:
 			name_tool = "Bomb";
 			break;
 		

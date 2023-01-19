@@ -37,6 +37,7 @@ interface_t* interface_create(){
 	window_refresh(result->win_infos);
 
 	result->paint_tool.id_tool = -1;
+	initialize_map_level(&result->map_level);
 
 	return result;
 }
@@ -64,7 +65,7 @@ void interface_actions(interface_t* interface, int c){
 		}
 
 		if(window_getcoordinates(interface->win_level, mouseX, mouseY, &posX, &posY)){
-			action_tool(interface->win_level, interface->win_infos, interface->paint_tool, posX, posY);
+			action_tool(&interface->map_level, interface->win_level, interface->win_infos, interface->paint_tool, posX, posY);
 		}
 	}
 }

@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"*.prolog": "plaintext",
+		"paint_tools.h": "c"
+	}
+}

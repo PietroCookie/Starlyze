@@ -78,7 +78,7 @@ void initialise_win_level(interface_t* interface){
 		paint_block(interface->win_level, i, 0);
 		paint_block(interface->win_level, i, 19);
 	}
-	for (i = 0; i < 19; i++)
+	for (i = 1; i < 19; i++)
 	{
 		paint_block(interface->win_level, 0, i);
 		paint_block(interface->win_level, 59, i);

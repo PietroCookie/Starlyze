@@ -2,6 +2,7 @@
 #define __CELLULE_H__
 
 #include "element_map.h"
+#include "game_level.h"
 
 struct SCellule
 {

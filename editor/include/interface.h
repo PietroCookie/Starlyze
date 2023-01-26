@@ -6,7 +6,6 @@
 #include "window.h"
 #include "colors.h"
 #include "paint_tools.h"
-#include "map_level.h"
 
 /**
  * @brief Structure représentant l'interface demandée

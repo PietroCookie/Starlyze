@@ -4,7 +4,7 @@
 
 #include "colors.h"
 #include "sprite.h"
-#include "element_map.h"
+#include "game_level.h"
 
 int select_paint_tool(window_t* win_tools, paint_tool_t* tool, int id_tool){
 	if(id_tool >= 0 && id_tool < 13)

@@ -5,7 +5,7 @@
 
 #include "functions.h"
 
-void initialize_game_level(game_level_t* game_level, int width, int height){
+void initialise_game_level(game_level_t* game_level, int width, int height){
 	int i, j;
 
 	game_level->width = width;
@@ -17,7 +17,7 @@ void initialize_game_level(game_level_t* game_level, int width, int height){
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; i < width; i++)
+	for (i = 0; i < height; i++)
 	{
 		if((game_level->elements_map[i] = malloc(width * sizeof(element_map_t*))) == NULL){
 			ncurses_stop();
@@ -25,7 +25,7 @@ void initialize_game_level(game_level_t* game_level, int width, int height){
 			exit(EXIT_FAILURE);
 		}
 
-		for (j = 0; j < height; j++)
+		for (j = 0; j < width; j++)
 		{
 			game_level->elements_map[i][j] = NULL;
 		}
@@ -33,16 +33,10 @@ void initialize_game_level(game_level_t* game_level, int width, int height){
 }
 
 void delete_game_level(game_level_t* game_level){
-	int i, j;
+	int i;
 
-	for (i = 0; i < game_level->width; i++)
+	for (i = 0; i < game_level->height; i++)
 	{
-		for (j = 0; j < game_level->height; j++)
-		{
-			if(game_level->elements_map[i][j] == NULL){
-				free(game_level->elements_map[i][j]);
-			}
-		}
 		free(game_level->elements_map[i]);
 	}
 	
@@ -60,7 +54,6 @@ void add_element_map_in_case(game_level_t* game_level, element_map_t* element){
 		for (j = element->posY; j < (element->posY + element->width); j++)
 		{
 			if(game_level->elements_map[i][j] != NULL){
-				printf("Suppression case %d %d\n", i ,j);
 				delete_element_map_in_case(game_level, i, j);
 			}
 		}
@@ -92,7 +85,6 @@ void delete_element_map_in_case(game_level_t* game_level, int posX, int posY){
 		for (j = element_delete->posY; j < (element_delete->posY + element_delete->width); j++)
 		{
 			game_level->elements_map[i][j] = NULL;
-			printf("Bonjour %d %d\n", i, j);
 		}
 	}
 }

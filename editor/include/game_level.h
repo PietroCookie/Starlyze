@@ -21,7 +21,7 @@ typedef struct
 } game_level_t;
 
 
-void initialize_game_level(game_level_t* game_level, int width, int height);
+void initialise_game_level(game_level_t* game_level, int width, int height);
 
 void delete_game_level(game_level_t* game_level);
 

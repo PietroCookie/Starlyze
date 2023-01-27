@@ -7,7 +7,6 @@
 #include "game_level.h"
 #include <stdio.h>
 
-
 int main(int argc, char const *argv[])
 {
 	int ch;

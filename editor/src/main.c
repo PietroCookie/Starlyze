@@ -3,8 +3,6 @@
 #include "functions.h"
 #include "interface.h"
 
-#include "map_level.h"
-#include "game_level.h"
 #include <stdio.h>
 
 int main(int argc, char const *argv[])

@@ -11,21 +11,21 @@ void initialise_game_level(game_level_t* game_level, int width, int height){
 	game_level->width = width;
 	game_level->height = height;
 
-	if((game_level->elements_map = malloc(height * sizeof(element_map_t**))) == NULL){
+	if((game_level->elements_map = malloc(width * sizeof(element_map_t**))) == NULL){
 		ncurses_stop();
 		perror("Error allocating width elements of game");
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; i < height; i++)
+	for (i = 0; i < width; i++)
 	{
-		if((game_level->elements_map[i] = malloc(width * sizeof(element_map_t*))) == NULL){
+		if((game_level->elements_map[i] = malloc(height * sizeof(element_map_t*))) == NULL){
 			ncurses_stop();
 			perror("Error allocating height elements of game");
 			exit(EXIT_FAILURE);
 		}
 
-		for (j = 0; j < width; j++)
+		for (j = 0; j < height; j++)
 		{
 			game_level->elements_map[i][j] = NULL;
 		}
@@ -33,10 +33,14 @@ void initialise_game_level(game_level_t* game_level, int width, int height){
 }
 
 void delete_game_level(game_level_t* game_level){
-	int i;
+	int i, j;
 
-	for (i = 0; i < game_level->height; i++)
+	for (i = 0; i < game_level->width; i++)
 	{
+		for (j = 0; j < game_level->height; j++)
+		{
+			delete_element_map_in_case(game_level, i, j);
+		}
 		free(game_level->elements_map[i]);
 	}
 	
@@ -49,9 +53,9 @@ void delete_game_level(game_level_t* game_level){
 void add_element_map_in_case(game_level_t* game_level, element_map_t* element){
 	int i, j;
 
-	for (i = element->posX; i < (element->posX + element->height); i++)
+	for (i = element->posX; i < (element->posX + element->width); i++)
 	{
-		for (j = element->posY; j < (element->posY + element->width); j++)
+		for (j = element->posY; j < (element->posY + element->height); j++)
 		{
 			if(game_level->elements_map[i][j] != NULL){
 				delete_element_map_in_case(game_level, i, j);
@@ -59,9 +63,9 @@ void add_element_map_in_case(game_level_t* game_level, element_map_t* element){
 		}
 	}
 
-	for (i = element->posX; i < (element->posX + element->height); i++)
+	for (i = element->posX; i < (element->posX + element->width); i++)
 	{
-		for (j = element->posY; j < (element->posY + element->width); j++)
+		for (j = element->posY; j < (element->posY + element->height); j++)
 		{
 			game_level->elements_map[i][j] = element;
 		}
@@ -80,11 +84,14 @@ void delete_element_map_in_case(game_level_t* game_level, int posX, int posY){
 		return;
 	}
 
-	for (i = element_delete->posX; i < (element_delete->posX + element_delete->height); i++)
+	for (i = element_delete->posX; i < (element_delete->posX + element_delete->width); i++)
 	{
-		for (j = element_delete->posY; j < (element_delete->posY + element_delete->width); j++)
+		for (j = element_delete->posY; j < (element_delete->posY + element_delete->height); j++)
 		{
 			game_level->elements_map[i][j] = NULL;
+			// free(game_level->elements_map[i][j]);
 		}
 	}
+
+	free(element_delete);
 }

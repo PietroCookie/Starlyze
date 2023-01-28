@@ -24,11 +24,11 @@ interface_t* interface_create(){
 		exit(EXIT_FAILURE);
 	}
 
-	result->win_level = window_create(0, 0, 62, 22, "Level", FALSE);
+	result->win_level = window_create(0, 0, DEFAULT_WIDTH_INTERFACE_GAME, DEFAULT_HEIGHT_INTERFACE_GAME, "Level", FALSE);
 	initialise_win_level(result);
 	window_refresh(result->win_level);
 
-	result->win_tools = window_create(62, 0, 15, 22, "Tools", TRUE);
+	result->win_tools = window_create(DEFAULT_WIDTH_INTERFACE_GAME, 0, 15, DEFAULT_HEIGHT_INTERFACE_GAME, "Tools", TRUE);
 	initialise_win_tools(result);
 	window_refresh(result->win_tools);
 
@@ -37,13 +37,18 @@ interface_t* interface_create(){
 	window_refresh(result->win_infos);
 
 	result->paint_tool.id_tool = -1;
-	initialize_map_level(&result->map_level);
+	initialise_game_level(&result->game_level, DEFAULT_WIDTH_INTERFACE_GAME-2, DEFAULT_HEIGHT_INTERFACE_GAME-2);
 
 	return result;
 }
 
 void interface_delete(interface_t **interface) {
     window_delete(&(*interface)->win_infos);
+	window_delete(&(*interface)->win_level);
+	window_delete(&(*interface)->win_tools);
+	
+	delete_game_level(&(*interface)->game_level);
+
     free(*interface);
     interface = NULL;
 }
@@ -65,25 +70,32 @@ void interface_actions(interface_t* interface, int c){
 		}
 
 		if(window_getcoordinates(interface->win_level, mouseX, mouseY, &posX, &posY)){
-			action_tool(&interface->map_level, interface->win_level, interface->win_infos, interface->paint_tool, posX, posY);
+			action_tool(&interface->game_level, interface->win_infos, interface->paint_tool, posX, posY);
+			refresh_win_level(interface);
 		}
 	}
 }
 
 void initialise_win_level(interface_t* interface){
-	int i;
+	// int i;
+	// element_map_t* element_block;
+	// element_block.width = 1;
+	// element_block.height = 1;
+	// element_block.id_sprite = SPRITE_BLOCK;
 
-	for (i = 0; i < 60; i++)
-	{
-		paint_block(interface->win_level, i, 0);
-		paint_block(interface->win_level, i, 19);
-	}
-	for (i = 1; i < 19; i++)
-	{
-		paint_block(interface->win_level, 0, i);
-		paint_block(interface->win_level, 59, i);
-	}
-	
+	// for (i = 0; i < 60; i++)
+	// {
+	// 	element_block.posX = i;
+	// 	element_block.posY = 0;
+	// 	add_element_map_in_case(&interface->game_level, &element_block);
+	// 	paint_block(interface->win_level, i, 0);
+	// 	paint_block(interface->win_level, i, 19);
+	// }
+	// for (i = 1; i < 19; i++)
+	// {
+	// 	paint_block(interface->win_level, 0, i);
+	// 	paint_block(interface->win_level, 59, i);
+	// }
 }
 
 void initialise_win_tools(interface_t* interface){
@@ -101,4 +113,82 @@ void initialise_win_tools(interface_t* interface){
 	window_mvprintw_col(interface->win_tools, posY, posX+3, RED, "DELETE");
 
 	window_refresh(interface->win_tools);
+}
+
+void refresh_win_level(interface_t* interface){
+	int i, j;
+	element_map_t* element_select;
+
+	for (i = 0; i < interface->game_level.width; i++)
+	{
+		for (j = 0; j < interface->game_level.height; j++)
+		{
+			window_mvaddch_col(interface->win_level, j, i, COLOR_BLACK, ' ');
+		}
+	}
+	
+	for (i = 0; i < interface->game_level.width; i++)
+	{
+		for (j = 0; j < interface->game_level.height; j++)
+		{
+			element_select = interface->game_level.elements_map[i][j];
+			if(element_select != NULL && element_select->posX == i && element_select->posY == j){
+				switch (element_select->id_sprite)
+				{
+					case SPRITE_BLOCK:
+						paint_block(interface->win_level, element_select->posX, element_select->posY);
+						break;
+					
+					case SPRITE_LADDER:
+						paint_ladder(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					case SPRITE_TRAP:
+						paint_trap(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					case SPRITE_GATE:
+						paint_gate(interface->win_level, element_select->posX, element_select->posY, MAGENTA);
+						break;
+
+					case SPRITE_KEY:
+						paint_key(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					case SPRITE_DOOR:
+						paint_door(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					case SPRITE_EXIT:
+						paint_exit(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					case SPRITE_START:
+						paint_start(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					case SPRITE_ROBOT:
+						paint_robot(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					case SPRITE_PROBE:
+						paint_probe(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					case SPRITE_LIFE:
+						paint_heart(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					case SPRITE_BOMB:
+						paint_bomb(interface->win_level, element_select->posX, element_select->posY);
+						break;
+
+					default:
+						break;
+				}
+			}
+		}
+	}
+	
+	window_refresh(interface->win_level);
 }

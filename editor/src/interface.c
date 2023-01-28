@@ -24,6 +24,9 @@ interface_t* interface_create(){
 		exit(EXIT_FAILURE);
 	}
 
+	result->paint_tool.id_tool = 0;
+	initialise_game_level(&result->game_level, DEFAULT_WIDTH_INTERFACE_GAME-2, DEFAULT_HEIGHT_INTERFACE_GAME-2);
+
 	result->win_level = window_create(0, 0, DEFAULT_WIDTH_INTERFACE_GAME, DEFAULT_HEIGHT_INTERFACE_GAME, "Level", FALSE);
 	initialise_win_level(result);
 	window_refresh(result->win_level);
@@ -35,9 +38,6 @@ interface_t* interface_create(){
 	result->win_infos = window_create(0, 22, 77, 5, "Informations", TRUE);
 	window_printw_col(result->win_infos, RED, "Press 'Q' to exit");
 	window_refresh(result->win_infos);
-
-	result->paint_tool.id_tool = -1;
-	initialise_game_level(&result->game_level, DEFAULT_WIDTH_INTERFACE_GAME-2, DEFAULT_HEIGHT_INTERFACE_GAME-2);
 
 	return result;
 }
@@ -77,25 +77,64 @@ void interface_actions(interface_t* interface, int c){
 }
 
 void initialise_win_level(interface_t* interface){
-	// int i;
-	// element_map_t* element_block;
-	// element_block.width = 1;
-	// element_block.height = 1;
-	// element_block.id_sprite = SPRITE_BLOCK;
+	int i;
+	element_map_t* element_block;
 
-	// for (i = 0; i < 60; i++)
-	// {
-	// 	element_block.posX = i;
-	// 	element_block.posY = 0;
-	// 	add_element_map_in_case(&interface->game_level, &element_block);
-	// 	paint_block(interface->win_level, i, 0);
-	// 	paint_block(interface->win_level, i, 19);
-	// }
-	// for (i = 1; i < 19; i++)
-	// {
-	// 	paint_block(interface->win_level, 0, i);
-	// 	paint_block(interface->win_level, 59, i);
-	// }
+	for (i = 0; i < interface->game_level.width; i++)
+	{
+		if((element_block = malloc(sizeof(element_map_t))) == NULL){
+			ncurses_stop();
+			perror("Error allocating memory intialise_win_level");
+			exit(EXIT_FAILURE);
+		}
+		element_block->width = 1;
+		element_block->height = 1;
+		element_block->id_sprite = SPRITE_BLOCK;
+		element_block->posX = i;
+		element_block->posY = 0;
+		add_element_map_in_case(&interface->game_level, element_block);
+
+		if((element_block = malloc(sizeof(element_map_t))) == NULL){
+			ncurses_stop();
+			perror("Error allocating memory intialise_win_level");
+			exit(EXIT_FAILURE);
+		}
+		element_block->width = 1;
+		element_block->height = 1;
+		element_block->id_sprite = SPRITE_BLOCK;
+		element_block->posX = i;
+		element_block->posY = interface->game_level.height-1;
+		add_element_map_in_case(&interface->game_level, element_block);
+	}
+	
+	for (i = 1; i < interface->game_level.height; i++)
+	{
+		if((element_block = malloc(sizeof(element_map_t))) == NULL){
+			ncurses_stop();
+			perror("Error allocating memory intialise_win_level");
+			exit(EXIT_FAILURE);
+		}
+		element_block->width = 1;
+		element_block->height = 1;
+		element_block->id_sprite = SPRITE_BLOCK;
+		element_block->posX = 0;
+		element_block->posY = i;
+		add_element_map_in_case(&interface->game_level, element_block);
+
+		if((element_block = malloc(sizeof(element_map_t))) == NULL){
+			ncurses_stop();
+			perror("Error allocating memory intialise_win_level");
+			exit(EXIT_FAILURE);
+		}
+		element_block->width = 1;
+		element_block->height = 1;
+		element_block->id_sprite = SPRITE_BLOCK;
+		element_block->posX = interface->game_level.width-1;
+		element_block->posY = i;
+		add_element_map_in_case(&interface->game_level, element_block);
+	}
+
+	refresh_win_level(interface);
 }
 
 void initialise_win_tools(interface_t* interface){

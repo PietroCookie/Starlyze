@@ -89,7 +89,6 @@ void delete_element_map_in_case(game_level_t* game_level, int posX, int posY){
 		for (j = element_delete->posY; j < (element_delete->posY + element_delete->height); j++)
 		{
 			game_level->elements_map[i][j] = NULL;
-			// free(game_level->elements_map[i][j]);
 		}
 	}
 

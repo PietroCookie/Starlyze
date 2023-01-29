@@ -4,12 +4,14 @@
 #include <stdlib.h>
 
 #include "functions.h"
+#include "sprite.h"
 
 void initialise_game_level(game_level_t* game_level, int width, int height){
 	int i, j;
 
 	game_level->width = width;
 	game_level->height = height;
+	game_level->nb_elements = 0;
 
 	if((game_level->elements_map = malloc(width * sizeof(element_map_t**))) == NULL){
 		ncurses_stop();
@@ -29,6 +31,65 @@ void initialise_game_level(game_level_t* game_level, int width, int height){
 		{
 			game_level->elements_map[i][j] = NULL;
 		}
+	}
+}
+
+void add_border_game_level(game_level_t* game_level){
+	int i;
+	element_map_t* element_block;
+
+	for (i = 0; i < game_level->width; i++)
+	{
+		if((element_block = malloc(sizeof(element_map_t))) == NULL){
+			ncurses_stop();
+			perror("Error allocating memory intialise_win_level");
+			exit(EXIT_FAILURE);
+		}
+		element_block->width = 1;
+		element_block->height = 1;
+		element_block->id_sprite = SPRITE_BLOCK;
+		element_block->posX = i;
+		element_block->posY = 0;
+		add_element_map_in_case(game_level, element_block);
+
+		if((element_block = malloc(sizeof(element_map_t))) == NULL){
+			ncurses_stop();
+			perror("Error allocating memory intialise_win_level");
+			exit(EXIT_FAILURE);
+		}
+		element_block->width = 1;
+		element_block->height = 1;
+		element_block->id_sprite = SPRITE_BLOCK;
+		element_block->posX = i;
+		element_block->posY = game_level->height-1;
+		add_element_map_in_case(game_level, element_block);
+	}
+	
+	for (i = 1; i < game_level->height; i++)
+	{
+		if((element_block = malloc(sizeof(element_map_t))) == NULL){
+			ncurses_stop();
+			perror("Error allocating memory intialise_win_level");
+			exit(EXIT_FAILURE);
+		}
+		element_block->width = 1;
+		element_block->height = 1;
+		element_block->id_sprite = SPRITE_BLOCK;
+		element_block->posX = 0;
+		element_block->posY = i;
+		add_element_map_in_case(game_level, element_block);
+
+		if((element_block = malloc(sizeof(element_map_t))) == NULL){
+			ncurses_stop();
+			perror("Error allocating memory intialise_win_level");
+			exit(EXIT_FAILURE);
+		}
+		element_block->width = 1;
+		element_block->height = 1;
+		element_block->id_sprite = SPRITE_BLOCK;
+		element_block->posX = game_level->width-1;
+		element_block->posY = i;
+		add_element_map_in_case(game_level, element_block);
 	}
 }
 
@@ -70,6 +131,8 @@ void add_element_map_in_case(game_level_t* game_level, element_map_t* element){
 			game_level->elements_map[i][j] = element;
 		}
 	}
+
+	game_level->nb_elements++;
 }
 
 element_map_t* element_map_in_case(game_level_t game_level, int posX, int posY){
@@ -91,6 +154,8 @@ void delete_element_map_in_case(game_level_t* game_level, int posX, int posY){
 			game_level->elements_map[i][j] = NULL;
 		}
 	}
+
+	game_level->nb_elements--;
 
 	free(element_delete);
 }

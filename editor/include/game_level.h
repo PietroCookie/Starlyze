@@ -17,11 +17,14 @@ typedef struct
 {
 	int width;
 	int height;
+	int nb_elements;
 	element_map_t*** elements_map;
 } game_level_t;
 
 
 void initialise_game_level(game_level_t* game_level, int width, int height);
+
+void add_border_game_level(game_level_t* game_level);
 
 void delete_game_level(game_level_t* game_level);
 

@@ -303,5 +303,4 @@ void write_game_level_in_file(int fd, game_level_t game_level){
 		}
 		
 	}
-	
 }

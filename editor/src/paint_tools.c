@@ -19,111 +19,84 @@ int select_paint_tool(window_t* win_tools, paint_tool_t* tool, int id_tool){
 }
 
 void action_tool(game_level_t* game_level, window_t* win_infos, paint_tool_t tool, int posX, int posY){
+	int sprite_validate = 1;
 	element_map_t* element_map;
 	if((element_map = malloc(sizeof(element_map_t))) == NULL){
 		ncurses_stop();
 		perror("Error allocating memory");
 		exit(EXIT_FAILURE);
 	}
-	element_map->posX = posX;
-	element_map->posY = posY;
 
 	switch (tool.id_tool)
 	{
 		case 0:
 			delete_element_map_in_case(game_level, posX, posY);
 			free(element_map);
+			sprite_validate = 0;
 			break;
 
 		case SPRITE_BLOCK:
 			element_map->id_sprite = SPRITE_BLOCK;
-			element_map->width = 1;
-			element_map->height = 1;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_LADDER:
 			element_map->id_sprite = SPRITE_LADDER;
-			element_map->width = 3;
-			element_map->height = 1;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_TRAP:
 			element_map->id_sprite = SPRITE_TRAP;
-			element_map->width = 1;
-			element_map->height = 1;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_GATE:
 			element_map->id_sprite = SPRITE_GATE;
-			element_map->width = 1;
-			element_map->height = 4;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_KEY:
 			element_map->id_sprite = SPRITE_KEY;
-			element_map->width = 1;
-			element_map->height = 2;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_DOOR:
 			element_map->id_sprite = SPRITE_DOOR;
-			element_map->width = 3;
-			element_map->height = 4;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_EXIT:
 			element_map->id_sprite = SPRITE_EXIT;
-			element_map->width = 3;
-			element_map->height = 4;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_START:
 			element_map->id_sprite = SPRITE_START;
-			element_map->width = 3;
-			element_map->height = 4;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_ROBOT:
 			element_map->id_sprite = SPRITE_ROBOT;
-			element_map->width = 3;
-			element_map->height = 4;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_PROBE:
 			element_map->id_sprite = SPRITE_PROBE;
-			element_map->width = 3;
-			element_map->height = 2;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_LIFE:
 			element_map->id_sprite = SPRITE_LIFE;
-			element_map->width = 1;
-			element_map->height = 1;
-			add_element_map_in_case(game_level, element_map);
 			break;
 
 		case SPRITE_BOMB:
 			element_map->id_sprite = SPRITE_BOMB;
-			element_map->width = 1;
-			element_map->height = 1;
-			add_element_map_in_case(game_level, element_map);
 			break;
 		
 		default:
 			free(element_map);
 			window_printw(win_infos, "\nL'outil souhaite n'existe pas");
 			window_refresh(win_infos);
+			sprite_validate = 0;
 			break;
+	}
+
+	if(sprite_validate){
+		element_map->posX = posX;
+		element_map->posY = posY;
+		element_map->width = width_sprite(element_map->id_sprite);
+		element_map->height = height_sprite(element_map->height);
+		add_element_map_in_case(game_level, element_map);
 	}
 }
 

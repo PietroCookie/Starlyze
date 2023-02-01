@@ -85,3 +85,125 @@ void paint_heart(window_t* window, int posX, int posY){
 void paint_bomb(window_t* window, int posX, int posY){
 	window_mvaddch_col(window, posY, posX, WHITE, 'o');
 }
+
+int width_sprite(int id_sprite){
+	int width;
+
+	switch (id_sprite)
+	{
+		case SPRITE_BLOCK:
+			width = 1;
+			break;
+
+		case SPRITE_LADDER:
+			width = 3;
+			break;
+
+		case SPRITE_TRAP:
+			width = 1;
+			break;
+
+		case SPRITE_GATE:
+			width = 1;
+			break;
+
+		case SPRITE_KEY:
+			width = 1;
+			break;
+
+		case SPRITE_DOOR:
+			width = 3;
+			break;
+
+		case SPRITE_EXIT:
+			width = 3;
+			break;
+
+		case SPRITE_START:
+			width = 3;
+			break;
+
+		case SPRITE_ROBOT:
+			width = 3;
+			break;
+
+		case SPRITE_PROBE:
+			width = 3;
+			break;
+
+		case SPRITE_LIFE:
+			width = 1;
+			break;
+
+		case SPRITE_BOMB:
+			width = 1;
+			break;
+
+		default:
+			width = -1;
+			break;
+	}
+
+	return width;
+}
+
+int height_sprite(int id_sprite){
+	int width;
+
+	switch (id_sprite)
+	{
+		case SPRITE_BLOCK:
+			width = 1;
+			break;
+
+		case SPRITE_LADDER:
+			width = 1;
+			break;
+
+		case SPRITE_TRAP:
+			width = 1;
+			break;
+
+		case SPRITE_GATE:
+			width = 4;
+			break;
+
+		case SPRITE_KEY:
+			width = 2;
+			break;
+
+		case SPRITE_DOOR:
+			width = 4;
+			break;
+
+		case SPRITE_EXIT:
+			width = 4;
+			break;
+
+		case SPRITE_START:
+			width = 4;
+			break;
+
+		case SPRITE_ROBOT:
+			width = 4;
+			break;
+
+		case SPRITE_PROBE:
+			width = 2;
+			break;
+
+		case SPRITE_LIFE:
+			width = 1;
+			break;
+
+		case SPRITE_BOMB:
+			width = 1;
+			break;
+
+		default:
+			width = -1;
+			break;
+	}
+
+	return width;
+}

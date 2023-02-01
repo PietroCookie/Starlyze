@@ -19,7 +19,9 @@ void open_file_game_level(const char* name_file, file_game_level_t* file_game_le
 
 void delete_file_game_level(file_game_level_t* file_game_level);
 
-void save_in_file_game_level(file_game_level_t* file_game_level, game_level_t game_level);
+void save_modification_game_level(file_game_level_t* file_game_level, game_level_t game_level, int posX, int posY);
+
+void first_save_game_level(file_game_level_t* file_game_level, game_level_t game_level);
 
 void delete_in_file_game_level(file_game_level_t* file_game_level);
 
@@ -31,6 +33,6 @@ size_t calculate_necessary_size_save_game_level(game_level_t game_level);
 
 void read_game_level_in_file(int fd, off_t position, game_level_t* game_level);
 
-void write_game_level_in_file(int fd, game_level_t game_level);
+void write_game_level_in_file(int fd, off_t position, game_level_t game_level);
 
 #endif

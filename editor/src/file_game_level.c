@@ -6,6 +6,7 @@
 #include <errno.h>
 
 #include "functions.h"
+#include "sprite.h"
 
 void open_file_game_level(const char* name_file, file_game_level_t* file_game_level){
 	int file_exist = 1;
@@ -48,40 +49,81 @@ void delete_file_game_level(file_game_level_t* file_game_level){
 	}
 }
 
-void save_in_file_game_level(file_game_level_t* file_game_level, game_level_t game_level){
-	off_t position;
-	size_t size;
-	int index_table = file_game_level->current_level_index_address_table + 1;
-
-	size = calculate_necessary_size_save_game_level(game_level);
-
-	if((position = search_position_free(file_game_level, size)) == -1){
-		// TODO : pas de place dispo
-	}
+void save_modification_game_level(file_game_level_t* file_game_level, game_level_t game_level, int posX, int posY){
+	int write_id_sprite = -1;
+	off_t position = file_game_level->address_table.table[file_game_level->current_level_index_address_table].position;
+	
+	position += 2 * sizeof(int) + posX * game_level.width * sizeof(int) + posY * sizeof(int);
 
 	if(lseek(file_game_level->fd, position, SEEK_SET) == -1){
 		ncurses_stop();
-		perror("Error with lseek in save_in_file_game_level");
+		perror("Error with lseek in save_modification_game_level");
 		exit(EXIT_FAILURE);
 	}
 
-	size = calculate_necessary_size_save_game_level(game_level);
+	if(game_level.elements_map[posX][posY] != NULL){
+		write_id_sprite = game_level.elements_map[posX][posY]->id_sprite;
+	}
 
-	// while (file_game_level->address_table.table[index_table].position != -1)
-	// {
-		
-	// }
-	
-	if(file_game_level->address_table.table[index_table].position != -1)
-
-	file_game_level->address_table.table[index_table].position = position;
-	file_game_level->address_table.table[index_table].size = size;
-
-	write_game_level_in_file(file_game_level->fd, game_level);
+	if(write(file_game_level->fd, &write_id_sprite, SEEK_SET) == -1){
+		ncurses_stop();
+		perror("Error write modification game level in save_modification_game_level");
+		exit(EXIT_FAILURE);
+	}
 }
 
+void first_save_game_level(file_game_level_t* file_game_level, game_level_t game_level){
+	off_t position_save;
+	size_t size_necessary;
+	address_table_t new_address_table;
 
+	file_game_level->current_level_index_address_table++;
 
+	if(file_game_level->current_level_index_address_table >= DEFAULT_SIZE_ADDRESS_TABLE-1){
+		initialize_address_table(&new_address_table);
+		size_necessary = calculate_necessary_size(new_address_table);
+		if((position_save = search_position_free(file_game_level, size_necessary)) == -1){
+			if((position_save = lseek(file_game_level->fd, 0, SEEK_END)) == -1){
+				ncurses_stop();
+				perror("Error with lseek in first_save_game_level");
+				exit(EXIT_FAILURE);
+			}
+		}
+		file_game_level->address_table.table[DEFAULT_SIZE_ADDRESS_TABLE-1].position = position_save;
+		file_game_level->address_table.table[DEFAULT_SIZE_ADDRESS_TABLE-1].size = size_necessary;
+		save_address_table_file(file_game_level->fd, file_game_level->address_table.position, &file_game_level->address_table);
+		new_address_table.table[0].position = file_game_level->address_table.position;
+		new_address_table.table[0].size = calculate_necessary_size(file_game_level->address_table);
+		file_game_level->address_table = new_address_table;
+		save_address_table_file(file_game_level->fd, position_save, &file_game_level->address_table);
+		file_game_level->current_level_index_address_table = 1;
+	}
+
+	size_necessary = calculate_necessary_size_save_game_level(game_level);
+
+	if((position_save = search_position_free(file_game_level, size_necessary)) == -1){
+		if((position_save = lseek(file_game_level->fd, 0, SEEK_END)) == -1){
+			ncurses_stop();
+			perror("Error with lseek in first_save_game_level");
+			exit(EXIT_FAILURE);
+		}
+	}else{
+		if(lseek(file_game_level->fd, position_save, SEEK_SET) == -1){
+			ncurses_stop();
+			perror("Error with lseek in first_save_game_level");
+			exit(EXIT_FAILURE);
+		}
+	}
+
+	write_game_level_in_file(file_game_level->fd, position_save, game_level);
+	file_game_level->address_table.table[file_game_level->current_level_index_address_table].position = position_save;
+	file_game_level->address_table.table[file_game_level->current_level_index_address_table].size = size_necessary;
+	save_address_table_file(file_game_level->fd, file_game_level->address_table.position, &file_game_level->address_table);
+}
+
+void delete_in_file_game_level(file_game_level_t* file_game_level){
+	
+}
 
 void load_level(file_game_level_t* file_game_level, game_level_t* game_level, int next){
 	int width, height, i;
@@ -98,13 +140,17 @@ void load_level(file_game_level_t* file_game_level, game_level_t* game_level, in
 		file_game_level->current_level_index_address_table--;
 	}
 
-	if(file_game_level->current_level_index_address_table < 0){
-		// TODO : Lire table d'adresse précédente et se placer à la fin de celle-ci
-		file_game_level->current_level_index_address_table = DEFAULT_SIZE_ADDRESS_TABLE-2;
+	if(file_game_level->current_level_index_address_table <= 0){
+		if(file_game_level->address_table.table[0].position != -1){
+			read_address_table_file(file_game_level->fd, file_game_level->address_table.table[0].position, &file_game_level->address_table);
+			file_game_level->current_level_index_address_table = DEFAULT_SIZE_ADDRESS_TABLE-2;
+		}else{
+			file_game_level->current_level_index_address_table = 1;
+		}
 	}else if(file_game_level->current_level_index_address_table >= DEFAULT_SIZE_ADDRESS_TABLE-1){
 		if(file_game_level->address_table.table[DEFAULT_SIZE_ADDRESS_TABLE-1].position != -1){
 			read_address_table_file(file_game_level->fd, file_game_level->address_table.table[DEFAULT_SIZE_ADDRESS_TABLE-1].position, &file_game_level->address_table);
-			file_game_level->current_level_index_address_table = 0;
+			file_game_level->current_level_index_address_table = 1;
 		}else{
 			initialize_address_table(&address_table_new);
 			size = calculate_necessary_size(address_table_new);
@@ -119,8 +165,11 @@ void load_level(file_game_level_t* file_game_level, game_level_t* game_level, in
 			file_game_level->address_table.table[DEFAULT_SIZE_ADDRESS_TABLE-1].position = position;
 			file_game_level->address_table.table[DEFAULT_SIZE_ADDRESS_TABLE-1].size = size;
 			save_address_table_file(file_game_level->fd, file_game_level->address_table.position, &file_game_level->address_table);
+			address_table_new.table[0].position = file_game_level->address_table.position;
+			address_table_new.table[0].size = calculate_necessary_size(file_game_level->address_table);
 			file_game_level->address_table = address_table_new;
 			save_address_table_file(file_game_level->fd, position, &file_game_level->address_table);
+			file_game_level->current_level_index_address_table = 1;
 		}
 	}
 	
@@ -159,92 +208,69 @@ int search_position_free(file_game_level_t* file_game_level, size_t size_necessa
 }
 
 size_t calculate_necessary_size_save_game_level(game_level_t game_level){
-	size_t size = 3 * sizeof(int);
-	int i;
-
-	for (i = 0; i < game_level.nb_elements; i++)
-	{
-		size += 5 * sizeof(int);
-	}
+	size_t size = 2 * sizeof(int) + game_level.width * game_level.height * sizeof(int);
 
 	return size;
 }
 
 void read_game_level_in_file(int fd, off_t position, game_level_t* game_level){
-	int width, height, i;
+	int width, height, i, j, id_sprite_read;
 	element_map_t* element_read;
 
-	if(lseek(fd, position, SEEK_SET)){
+	if(lseek(fd, position, SEEK_SET) == -1){
 		ncurses_stop();
 		perror("Error with lseek in read_game_level_in_file");
 		exit(EXIT_FAILURE);
 	}
 
-	if(read(fd, &width, sizeof(int))){
+	if(read(fd, &width, sizeof(int)) == -1){
 		ncurses_stop();
-		perror("Error read width game_level in load_level");
+		perror("Error read width game_level in read_game_level_in_file");
 		exit(EXIT_FAILURE);
 	}
 
-	if(read(fd, &height, sizeof(int))){
+	if(read(fd, &height, sizeof(int)) == -1){
 		ncurses_stop();
-		perror("Error read height  game_level in load_level");
+		perror("Error read height  game_level in read_game_level_in_file");
 		exit(EXIT_FAILURE);
 	}
 
 	initialise_game_level(game_level, width, height);
 
-	if(read(fd, &game_level->nb_elements, sizeof(int))){
-		ncurses_stop();
-		perror("Error read number elements of game_level in load_level");
-		exit(EXIT_FAILURE);
-	}
-
-	for (i = 0; i < game_level->nb_elements; i++)
-	{
-		if((element_read = malloc(sizeof(element_map_t))) == NULL){
-			ncurses_stop();
-			perror("Error allocating memory element_read in load_level");
-			exit(EXIT_FAILURE);
+	for(i = 0; i < game_level->width; i++){
+		for (j = 0; j < game_level->height; j++)
+		{
+			if(read(fd, &id_sprite_read, sizeof(int)) == -1){
+				ncurses_stop();
+				perror("Error read id_sprite of element in read_game_level_in_file");
+				exit(EXIT_FAILURE);
+			}
+			if(id_sprite_read != -1){
+				if((element_read = malloc(sizeof(element_map_t))) == NULL){
+					ncurses_stop();
+					perror("Error allocating memory for element_read in read_game_level_in_file");
+					exit(EXIT_FAILURE);
+				}
+				element_read->id_sprite = id_sprite_read;
+				element_read->posX = i;
+				element_read->posY = j;
+				element_read->width = width_sprite(id_sprite_read);
+				element_read->height = height_sprite(id_sprite_read);
+				add_element_map_in_case(game_level, element_read);
+			}
 		}
-
-		if(read(fd, &element_read->posX, sizeof(int))){
-			ncurses_stop();
-			perror("Error read posX element of game_level in load_level");
-			exit(EXIT_FAILURE);
-		}
-
-		if(read(fd, &element_read->posY, sizeof(int))){
-			ncurses_stop();
-			perror("Error read posY element of game_level in load_level");
-			exit(EXIT_FAILURE);
-		}
-
-		if(read(fd, &element_read->width, sizeof(int))){
-			ncurses_stop();
-			perror("Error read width element of game_level in load_level");
-			exit(EXIT_FAILURE);
-		}
-
-		if(read(fd, &element_read->height, sizeof(int))){
-			ncurses_stop();
-			perror("Error read height element of game_level in load_level");
-			exit(EXIT_FAILURE);
-		}
-
-		if(read(fd, &element_read->id_sprite, sizeof(int))){
-			ncurses_stop();
-			perror("Error read id_sprite element of game_level in load_level");
-			exit(EXIT_FAILURE);
-		}
-
-		add_element_map_in_case(game_level, element_read);
 	}
 }
 
-void write_game_level_in_file(int fd, game_level_t game_level){
+void write_game_level_in_file(int fd, off_t position, game_level_t game_level){
 	int i, j;
 	element_map_t* element;
+
+	if(lseek(fd, position, SEEK_SET) == -1){
+		ncurses_stop();
+		perror("Error with lseek in first_save_game_level");
+		exit(EXIT_FAILURE);
+	}
 
 	if(write(fd, &game_level.width, sizeof(int)) == -1){
 		ncurses_stop();
@@ -258,49 +284,22 @@ void write_game_level_in_file(int fd, game_level_t game_level){
 		exit(EXIT_FAILURE);
 	}
 
-	if(write(fd, &game_level.nb_elements, sizeof(int))){
-		ncurses_stop();
-		perror("Error write number of elements in game_level");
-		exit(EXIT_FAILURE);
-	}
-
-	for (i = 0; i < game_level.width; i++)
-	{
+	for(i = 0; i < game_level.width; i++){
 		for (j = 0; j < game_level.height; j++)
 		{
-			element = game_level.elements_map[i][j];
-			if(element != NULL && element->posX == i && element->posY == j){
-				if(write(fd, &element->posX, sizeof(int))){
+			if((element = game_level.elements_map[i][j]) != NULL && element->posX == i && element->posY == j)	{
+				if(write(fd, &element->id_sprite, sizeof(int)) == -1){
 					ncurses_stop();
-					perror("Error write posX of element in game_level");
+					perror("Error write id_sprite in write_game_level_in_file");
 					exit(EXIT_FAILURE);
 				}
-
-				if(write(fd, &element->posY, sizeof(int))){
+			}else{
+				if(write(fd, -1, sizeof(int)) == -1){
 					ncurses_stop();
-					perror("Error write posY of element in game_level");
-					exit(EXIT_FAILURE);
-				}
-
-				if(write(fd, &element->width, sizeof(int))){
-					ncurses_stop();
-					perror("Error write width of element in game_level");
-					exit(EXIT_FAILURE);
-				}
-
-				if(write(fd, &element->height, sizeof(int))){
-					ncurses_stop();
-					perror("Error write height of element in game_level");
-					exit(EXIT_FAILURE);
-				}
-
-				if(write(fd, &element->id_sprite, sizeof(int))){
-					ncurses_stop();
-					perror("Error write id_sprite of element in game_level");
+					perror("Error write case in write_game_level_in_file");
 					exit(EXIT_FAILURE);
 				}
 			}
 		}
-		
 	}
 }

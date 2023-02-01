@@ -40,4 +40,8 @@ void paint_heart(window_t* window, int posX, int posY);
 
 void paint_bomb(window_t* window, int posX, int posY);
 
+int width_sprite(int id_sprite);
+
+int height_sprite(int id_sprite);
+
 #endif

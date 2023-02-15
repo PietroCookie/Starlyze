@@ -11,6 +11,11 @@ int main(int argc, char const *argv[])
 	interface_t* interface;
 	bool quit = FALSE;
 
+	if(argc != 2){
+		fprintf(stderr, "Missing parameters : name of game file\n");
+		exit(EXIT_FAILURE);
+	}
+
 	// ncurses initialisation
     setlocale(LC_ALL, "");
 	ncurses_init();
@@ -20,7 +25,7 @@ int main(int argc, char const *argv[])
 	clear();
 	refresh();
 
-	interface = interface_create("test.bin");
+	interface = interface_create(argv[1]);
 
 	// Main loop
 	while (quit == FALSE)

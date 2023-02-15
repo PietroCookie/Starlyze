@@ -31,12 +31,16 @@ void initialise_game_level(game_level_t* game_level, int width, int height){
 
 void delete_game_level(game_level_t* game_level){
 	int i, j;
+	element_game_level_t* element_delete;
 
 	for (i = 0; i < game_level->width; i++)
 	{
 		for (j = 0; j < game_level->height; j++)
 		{
-			delete_element_map_in_case(game_level, i, j);
+			if((element_delete = game_level->elements_map[i][j]) != NULL){
+				delete_element_map_in_case(game_level, i, j);
+				free(element_delete);
+			}
 		}
 		free(game_level->elements_map[i]);
 	}
@@ -84,8 +88,6 @@ void delete_element_map_in_case(game_level_t* game_level, int posX, int posY){
 			game_level->elements_map[i][j] = NULL;
 		}
 	}
-
-	free(element_delete);
 }
 
 size_t necessary_size_game_level(game_level_t game_level){

@@ -152,3 +152,87 @@ void read_sprite_in_file_descriptor(int file_descriptor, sprite_t* sprite){
 		exit(EXIT_FAILURE);
 	}
 }
+
+
+void paint_block(window_t* window, int posX, int posY){
+	window_mvaddch_col(window, posY, posX, FD_CYAN, ' ');
+}
+
+void paint_ladder(window_t* window, int posX, int posY){
+	window_mvaddch_col(window, posY, posX, YELLOW, ACS_LTEE);
+	window_mvaddch_col(window, posY, ++posX, YELLOW, ACS_HLINE);
+	window_mvaddch_col(window, posY, ++posX, YELLOW, ACS_RTEE);
+}
+
+void paint_trap(window_t* window, int posX, int posY){
+	window_mvaddch_col(window, posY, posX, FD_CYAN, '#');
+}
+
+void paint_key(window_t* window, int posX, int posY){
+	window_mvaddch_col(window, posY, posX, FD_MAGENTA, ' ');
+	window_mvaddch_col(window, ++posY, posX, MAGENTA, ACS_LLCORNER);
+}
+
+void paint_gate(window_t* window, int posX, int posY, unsigned int color){
+	window_mvaddch_col(window, posY, posX, color, ACS_PLUS);
+	window_mvaddch_col(window, ++posY, posX, color, ACS_PLUS);
+	window_mvaddch_col(window, ++posY, posX, color, ACS_PLUS);
+	window_mvaddch_col(window, ++posY, posX, color, ACS_PLUS);
+}
+
+void paint_door(window_t* window, int posX, int posY){
+	int i, j;
+	for (i = 0; i < 4; i++)
+		for (j = 0; j < 3; j++)
+			window_mvaddch_col(window, i+posY, j+posX, FD_GREEN, ' ');
+}
+
+void paint_exit(window_t* window, int posX, int posY){
+	int i, j;
+	for (i = 0; i < 4; i++)
+		for (j = 0; j < 3; j++)
+			window_mvaddch_col(window, i+posY, j+posX, FD_YELLOW, ' ');
+}
+
+void paint_start(window_t* window, int posX, int posY){
+	int i, j;
+	for (i = 0; i < 4; i++)
+		for (j = 0; j < 3; j++)
+			window_mvaddch_col(window, i+posY, j+posX, FD_MAGENTA, ' ');
+}
+
+void paint_robot(window_t* window, int posX, int posY){
+	window_mvaddch(window, posY, posX, ACS_ULCORNER);
+	window_mvaddch(window, posY, ++posX, ACS_BTEE);
+	window_mvaddch(window, posY, ++posX, ACS_URCORNER);
+	posX -= 2;
+	window_mvaddch(window, ++posY, posX, ACS_LLCORNER);
+	window_mvaddch(window, posY, ++posX, ACS_LTEE);
+	window_mvaddch(window, posY, ++posX, ACS_LRCORNER);
+	posX -= 2;
+	window_mvaddch(window, ++posY, posX, ACS_HLINE);
+	window_mvaddch(window, posY, ++posX, ACS_PLUS);
+	window_mvaddch(window, posY, ++posX, ACS_HLINE);
+	posX -= 2;
+	window_mvaddch(window, ++posY, posX, ACS_ULCORNER);
+	window_mvaddch(window, posY, ++posX, ACS_BTEE);
+	window_mvaddch(window, posY, ++posX, ACS_URCORNER);
+}
+
+void paint_probe(window_t* window, int posX, int posY){
+	window_mvaddch(window, posY, posX, ACS_LTEE);
+	window_mvaddch(window, posY, ++posX, ACS_HLINE);
+	window_mvaddch(window, posY, ++posX, ACS_RTEE);
+	posX -= 2;
+	window_mvaddch(window, ++posY, posX, ACS_LLCORNER);
+	window_mvaddch(window, posY, ++posX, ACS_HLINE);
+	window_mvaddch(window, posY, ++posX, ACS_LRCORNER);
+}
+
+void paint_heart(window_t* window, int posX, int posY){
+	window_mvaddch_col(window, posY, posX, RED, 'V');
+}
+
+void paint_bomb(window_t* window, int posX, int posY){
+	window_mvaddch_col(window, posY, posX, WHITE, 'o');
+}

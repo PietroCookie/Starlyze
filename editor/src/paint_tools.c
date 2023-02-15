@@ -33,8 +33,11 @@ void action_tool(file_game_level_t* file_game_level, game_level_t* game_level, w
 	switch (tool.id_tool)
 	{
 		case 0:
-			delete_element_map_in_case(game_level, posX, posY);
-			save_modification_game_level(file_game_level, *game_level, posX, posY);
+			if((element_delete = game_level->elements_map[posX][posY]) != NULL){
+				delete_element_map_in_case(game_level, posX, posY);
+				save_modification_game_level(file_game_level, *game_level, element_delete->posX, element_delete->posY);
+				free(element_delete);
+			}
 			free(element_map);
 			sprite_validate = 0;
 			break;
@@ -96,21 +99,23 @@ void action_tool(file_game_level_t* file_game_level, game_level_t* game_level, w
 	}
 
 	if(sprite_validate){
+		element_map->posX = posX;
+		element_map->posY = posY;
+		element_map->width = width_sprite(element_map->sprite.type);
+		element_map->height = height_sprite(element_map->sprite.type);
+
 		for (i = element_map->posX; i < (element_map->posX + element_map->width); i++)
 		{
-			for (j = element_map->posY; j < element_map->height; j++)
+			for (j = element_map->posY; j < (element_map->posY + element_map->height); j++)
 			{
 				if((element_delete = game_level->elements_map[i][j]) != NULL){
 					delete_element_map_in_case(game_level, i, j);
 					save_modification_game_level(file_game_level, *game_level, element_delete->posX, element_delete->posY);
+					free(element_delete);
 				}
 			}
 		}
 
-		element_map->posX = posX;
-		element_map->posY = posY;
-		element_map->width = width_sprite(element_map->sprite.type);
-		element_map->height = height_sprite(element_map->height);
 		add_element_map_in_case(game_level, element_map);
 		
 		save_modification_game_level(file_game_level, *game_level, posX, posY);

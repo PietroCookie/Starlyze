@@ -3,6 +3,9 @@
 
 #include <stdlib.h>
 
+#include "window.h"
+#include "colors.h"
+
 typedef enum {
 	SPRITE_BLOCK = 1,
 	SPRITE_LADDER = 2,
@@ -33,5 +36,30 @@ size_t necessary_size_sprite();
 void write_sprite_in_file_descriptor(int file_descriptor, sprite_t sprite);
 
 void read_sprite_in_file_descriptor(int file_descriptor, sprite_t* sprite);
+
+
+void paint_block(window_t* window, int posX, int posY);
+
+void paint_ladder(window_t* window, int posX, int posY);
+
+void paint_trap(window_t* window, int posX, int posY);
+
+void paint_key(window_t* window, int posX, int posY);
+
+void paint_gate(window_t* window, int posX, int posY, unsigned int color);
+
+void paint_door(window_t* window, int posX, int posY);
+
+void paint_exit(window_t* window, int posX, int posY);
+
+void paint_start(window_t* window, int posX, int posY);
+
+void paint_robot(window_t* window, int posX, int posY);
+
+void paint_probe(window_t* window, int posX, int posY);
+
+void paint_heart(window_t* window, int posX, int posY);
+
+void paint_bomb(window_t* window, int posX, int posY);
 
 #endif

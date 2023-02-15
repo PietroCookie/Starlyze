@@ -55,7 +55,7 @@ void interface_delete(interface_t** interface);
  */
 void interface_actions(interface_t* interface, int c);
 
-void initialise_win_tools(interface_t* interface);
+void refresh_win_tools(interface_t* interface);
 
 void refresh_win_level(interface_t* interface);
 

@@ -1,37 +1,36 @@
 #ifndef __GAME_LEVEL_H__
 #define __GAME_LEVEL_H__
 
+#include <stdlib.h>
+
+#include "element_game_level.h"
+
 #define DEFAULT_WIDTH_LEVEL_GAME 60
 #define DEFAULT_HEIGHT_LEVEL_GAME 20
 
 typedef struct
 {
-	int posX;
-	int posY;
 	int width;
 	int height;
-	int id_sprite;
-} element_map_t;
-
-typedef struct
-{
-	int width;
-	int height;
-	int nb_elements;
-	element_map_t*** elements_map;
+	element_game_level_t*** elements_map;
 } game_level_t;
 
 
 void initialise_game_level(game_level_t* game_level, int width, int height);
 
-void add_border_game_level(game_level_t* game_level);
-
 void delete_game_level(game_level_t* game_level);
 
-void add_element_map_in_case(game_level_t* game_level, element_map_t* element);
-
-element_map_t* element_map_in_case(game_level_t game_level, int posX, int posY);
+void add_element_map_in_case(game_level_t* game_level, element_game_level_t* element);
 
 void delete_element_map_in_case(game_level_t* game_level, int posX, int posY);
+
+
+size_t necessary_size_game_level(game_level_t game_level);
+
+void save_modification_game_level_in_file_descriptor(int file_descriptor, off_t position, game_level_t game_level, int posX, int posY);
+
+void write_game_level_in_file_descriptor(int file_descriptor, game_level_t game_level);
+
+void read_game_level_in_file_descriptor(int file_descriptor, game_level_t* game_level);
 
 #endif

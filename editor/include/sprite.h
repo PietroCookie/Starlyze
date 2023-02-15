@@ -1,47 +1,37 @@
 #ifndef __SPRITE_H__
 #define __SPRITE_H__
 
-#include "window.h"
+#include <stdlib.h>
 
-#define SPRITE_BLOCK 1
-#define SPRITE_LADDER 2
-#define SPRITE_TRAP 3
-#define SPRITE_GATE 4
-#define SPRITE_KEY 5
-#define SPRITE_DOOR 6
-#define SPRITE_EXIT 7
-#define SPRITE_START 8
-#define SPRITE_ROBOT 9
-#define SPRITE_PROBE 10
-#define SPRITE_LIFE 11
-#define SPRITE_BOMB 12
+typedef enum {
+	SPRITE_BLOCK = 1,
+	SPRITE_LADDER = 2,
+	SPRITE_TRAP = 3,
+	SPRITE_GATE = 4,
+	SPRITE_KEY = 5,
+	SPRITE_DOOR = 6,
+	SPRITE_EXIT = 7,
+	SPRITE_START = 8,
+	SPRITE_ROBOT = 9,
+	SPRITE_PROBE = 10,
+	SPRITE_LIFE = 11,
+	SPRITE_BOMB = 12
+} type_sprite_enum;
 
-void paint_block(window_t* window, int posX, int posY);
+typedef struct{
+	type_sprite_enum type;
+	int specification;
+} sprite_t;
 
-void paint_ladder(window_t* window, int posX, int posY);
+int width_sprite(type_sprite_enum type_sprite);
 
-void paint_trap(window_t* window, int posX, int posY);
+int height_sprite(type_sprite_enum type_sprite);
 
-void paint_key(window_t* window, int posX, int posY);
 
-void paint_gate(window_t* window, int posX, int posY, unsigned int color);
+size_t necessary_size_sprite();
 
-void paint_door(window_t* window, int posX, int posY);
+void write_sprite_in_file_descriptor(int file_descriptor, sprite_t sprite);
 
-void paint_exit(window_t* window, int posX, int posY);
-
-void paint_start(window_t* window, int posX, int posY);
-
-void paint_robot(window_t* window, int posX, int posY);
-
-void paint_probe(window_t* window, int posX, int posY);
-
-void paint_heart(window_t* window, int posX, int posY);
-
-void paint_bomb(window_t* window, int posX, int posY);
-
-int width_sprite(int id_sprite);
-
-int height_sprite(int id_sprite);
+void read_sprite_in_file_descriptor(int file_descriptor, sprite_t* sprite);
 
 #endif

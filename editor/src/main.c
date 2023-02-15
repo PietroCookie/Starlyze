@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
 	clear();
 	refresh();
 
-	interface = interface_create();
+	interface = interface_create("test.bin");
 
 	// Main loop
 	while (quit == FALSE)

@@ -13,7 +13,7 @@ void interface_dimensions(unsigned short width, unsigned short height) {
     } 
 }
 
-interface_t* interface_create(){
+interface_t* interface_create(char *name_file_game){
 	interface_t* result;
 
 	interface_dimensions(77, 27);
@@ -25,10 +25,10 @@ interface_t* interface_create(){
 	}
 
 	result->paint_tool.id_tool = 0;
-	initialise_game_level(&result->game_level, DEFAULT_WIDTH_INTERFACE_GAME-2, DEFAULT_HEIGHT_INTERFACE_GAME-2);
+
+	result->game_level = open_file_game_level(name_file_game, &result->file_game_level);
 
 	result->win_level = window_create(0, 0, DEFAULT_WIDTH_INTERFACE_GAME, DEFAULT_HEIGHT_INTERFACE_GAME, "Level", FALSE);
-	initialise_win_level(result);
 	window_refresh(result->win_level);
 
 	result->win_tools = window_create(DEFAULT_WIDTH_INTERFACE_GAME, 0, 15, DEFAULT_HEIGHT_INTERFACE_GAME, "Tools", TRUE);
@@ -70,71 +70,10 @@ void interface_actions(interface_t* interface, int c){
 		}
 
 		if(window_getcoordinates(interface->win_level, mouseX, mouseY, &posX, &posY)){
-			action_tool(&interface->game_level, interface->win_infos, interface->paint_tool, posX, posY);
+			action_tool(&interface->file_game_level, &interface->game_level, interface->win_infos, interface->paint_tool, posX, posY);
 			refresh_win_level(interface);
 		}
 	}
-}
-
-void initialise_win_level(interface_t* interface){
-	int i;
-	element_map_t* element_block;
-
-	for (i = 0; i < interface->game_level.width; i++)
-	{
-		if((element_block = malloc(sizeof(element_map_t))) == NULL){
-			ncurses_stop();
-			perror("Error allocating memory intialise_win_level");
-			exit(EXIT_FAILURE);
-		}
-		element_block->width = 1;
-		element_block->height = 1;
-		element_block->id_sprite = SPRITE_BLOCK;
-		element_block->posX = i;
-		element_block->posY = 0;
-		add_element_map_in_case(&interface->game_level, element_block);
-
-		if((element_block = malloc(sizeof(element_map_t))) == NULL){
-			ncurses_stop();
-			perror("Error allocating memory intialise_win_level");
-			exit(EXIT_FAILURE);
-		}
-		element_block->width = 1;
-		element_block->height = 1;
-		element_block->id_sprite = SPRITE_BLOCK;
-		element_block->posX = i;
-		element_block->posY = interface->game_level.height-1;
-		add_element_map_in_case(&interface->game_level, element_block);
-	}
-	
-	for (i = 1; i < interface->game_level.height; i++)
-	{
-		if((element_block = malloc(sizeof(element_map_t))) == NULL){
-			ncurses_stop();
-			perror("Error allocating memory intialise_win_level");
-			exit(EXIT_FAILURE);
-		}
-		element_block->width = 1;
-		element_block->height = 1;
-		element_block->id_sprite = SPRITE_BLOCK;
-		element_block->posX = 0;
-		element_block->posY = i;
-		add_element_map_in_case(&interface->game_level, element_block);
-
-		if((element_block = malloc(sizeof(element_map_t))) == NULL){
-			ncurses_stop();
-			perror("Error allocating memory intialise_win_level");
-			exit(EXIT_FAILURE);
-		}
-		element_block->width = 1;
-		element_block->height = 1;
-		element_block->id_sprite = SPRITE_BLOCK;
-		element_block->posX = interface->game_level.width-1;
-		element_block->posY = i;
-		add_element_map_in_case(&interface->game_level, element_block);
-	}
-
-	refresh_win_level(interface);
 }
 
 void initialise_win_tools(interface_t* interface){
@@ -156,7 +95,7 @@ void initialise_win_tools(interface_t* interface){
 
 void refresh_win_level(interface_t* interface){
 	int i, j;
-	element_map_t* element_select;
+	element_game_level_t* element_select;
 
 	for (i = 0; i < interface->game_level.width; i++)
 	{
@@ -172,7 +111,7 @@ void refresh_win_level(interface_t* interface){
 		{
 			element_select = interface->game_level.elements_map[i][j];
 			if(element_select != NULL && element_select->posX == i && element_select->posY == j){
-				switch (element_select->id_sprite)
+				switch (element_select->sprite.type)
 				{
 					case SPRITE_BLOCK:
 						paint_block(interface->win_level, element_select->posX, element_select->posY);

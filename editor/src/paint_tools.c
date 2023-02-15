@@ -5,6 +5,7 @@
 #include "colors.h"
 #include "sprite.h"
 #include "functions.h"
+#include "element_game_level.h"
 
 int select_paint_tool(window_t* win_tools, paint_tool_t* tool, int id_tool){
 	if(id_tool >= 0 && id_tool < 13)
@@ -18,69 +19,72 @@ int select_paint_tool(window_t* win_tools, paint_tool_t* tool, int id_tool){
 	return tool->id_tool;
 }
 
-void action_tool(game_level_t* game_level, window_t* win_infos, paint_tool_t tool, int posX, int posY){
-	int sprite_validate = 1;
-	element_map_t* element_map;
-	if((element_map = malloc(sizeof(element_map_t))) == NULL){
+void action_tool(file_game_level_t* file_game_level, game_level_t* game_level, window_t* win_infos, paint_tool_t tool, int posX, int posY){
+	int sprite_validate = 1, i, j;
+	element_game_level_t* element_map, *element_delete;
+	if((element_map = malloc(sizeof(element_game_level_t))) == NULL){
 		ncurses_stop();
 		perror("Error allocating memory");
 		exit(EXIT_FAILURE);
 	}
 
+	element_map->sprite.specification = -1;
+
 	switch (tool.id_tool)
 	{
 		case 0:
 			delete_element_map_in_case(game_level, posX, posY);
+			save_modification_game_level(file_game_level, *game_level, posX, posY);
 			free(element_map);
 			sprite_validate = 0;
 			break;
 
 		case SPRITE_BLOCK:
-			element_map->id_sprite = SPRITE_BLOCK;
+			element_map->sprite.type = SPRITE_BLOCK;
 			break;
 
 		case SPRITE_LADDER:
-			element_map->id_sprite = SPRITE_LADDER;
+			element_map->sprite.type = SPRITE_LADDER;
 			break;
 
 		case SPRITE_TRAP:
-			element_map->id_sprite = SPRITE_TRAP;
+			element_map->sprite.type = SPRITE_TRAP;
 			break;
 
 		case SPRITE_GATE:
-			element_map->id_sprite = SPRITE_GATE;
+			element_map->sprite.type = SPRITE_GATE;
 			break;
 
 		case SPRITE_KEY:
-			element_map->id_sprite = SPRITE_KEY;
+			element_map->sprite.type = SPRITE_KEY;
 			break;
 
 		case SPRITE_DOOR:
-			element_map->id_sprite = SPRITE_DOOR;
+			element_map->sprite.type = SPRITE_DOOR;
 			break;
 
 		case SPRITE_EXIT:
-			element_map->id_sprite = SPRITE_EXIT;
+			element_map->sprite.type = SPRITE_EXIT;
 			break;
 
 		case SPRITE_START:
-			element_map->id_sprite = SPRITE_START;
+			element_map->sprite.type = SPRITE_START;
 			break;
 
 		case SPRITE_ROBOT:
-			element_map->id_sprite = SPRITE_ROBOT;
+			element_map->sprite.type = SPRITE_ROBOT;
 			break;
 
 		case SPRITE_PROBE:
-			element_map->id_sprite = SPRITE_PROBE;
+			element_map->sprite.type = SPRITE_PROBE;
 			break;
 
 		case SPRITE_LIFE:
-			element_map->id_sprite = SPRITE_LIFE;
+			element_map->sprite.type = SPRITE_LIFE;
 			break;
 
 		case SPRITE_BOMB:
-			element_map->id_sprite = SPRITE_BOMB;
+			element_map->sprite.type = SPRITE_BOMB;
 			break;
 		
 		default:
@@ -92,12 +96,26 @@ void action_tool(game_level_t* game_level, window_t* win_infos, paint_tool_t too
 	}
 
 	if(sprite_validate){
+		for (i = element_map->posX; i < (element_map->posX + element_map->width); i++)
+		{
+			for (j = element_map->posY; j < element_map->height; j++)
+			{
+				if((element_delete = game_level->elements_map[i][j]) != NULL){
+					delete_element_map_in_case(game_level, i, j);
+					save_modification_game_level(file_game_level, *game_level, element_delete->posX, element_delete->posY);
+				}
+			}
+		}
+
 		element_map->posX = posX;
 		element_map->posY = posY;
-		element_map->width = width_sprite(element_map->id_sprite);
+		element_map->width = width_sprite(element_map->sprite.type);
 		element_map->height = height_sprite(element_map->height);
 		add_element_map_in_case(game_level, element_map);
+		
+		save_modification_game_level(file_game_level, *game_level, posX, posY);
 	}
+
 }
 
 char* select_name_tool(int id_tool){

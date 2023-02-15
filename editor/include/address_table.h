@@ -17,9 +17,16 @@ typedef struct{
 } address_table_t;
 
 void initialize_address_table(address_table_t* address_table);
-void save_address_table_file(int fd, off_t position, address_table_t* address_table);
-void read_address_table_file(int fd, off_t position, address_table_t* address_table);
+int address_table_full(address_table_t address_table);
 
-size_t calculate_necessary_size(address_table_t address_table);
+void write_address_table_in_file_descriptor(int file_descriptor, address_table_t address_table);
+address_table_t read_address_table_in_file_descriptor(int file_descriptor);
+
+void save_modification_address_table(int file_descriptor, address_table_t address_table, int id_table);
+
+int add_entry_in_address_table(address_table_t* address_table, entry_address_table_t entry);
+void remove_entry_in_address_table(address_table_t* address_table, int id_table);
+
+size_t necessary_size_address_table();
 
 #endif

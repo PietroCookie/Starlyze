@@ -7,19 +7,18 @@
 #include "functions.h"
 #include "element_game_level.h"
 
-int select_paint_tool(window_t* win_tools, paint_tool_t* tool, int id_tool){
+int select_paint_tool(paint_tool_t* tool, int id_tool){
 	if(id_tool >= 0 && id_tool < 13)
 		tool->id_tool = id_tool;
 	else
 		tool->id_tool = -1;
 
 	tool->name_tool = select_name_tool(tool->id_tool);
-	print_paint_tool(win_tools, tool->id_tool);
 
 	return tool->id_tool;
 }
 
-void action_tool(file_game_level_t* file_game_level, game_level_t* game_level, window_t* win_infos, paint_tool_t tool, int posX, int posY){
+void action_tool(file_game_level_t* file_game_level, game_level_t* game_level, window_t* win_infos, paint_tool_t tool, int posX, int posY, int specification){
 	int sprite_validate = 1, i, j;
 	element_game_level_t* element_map, *element_delete;
 	if((element_map = malloc(sizeof(element_game_level_t))) == NULL){
@@ -28,7 +27,7 @@ void action_tool(file_game_level_t* file_game_level, game_level_t* game_level, w
 		exit(EXIT_FAILURE);
 	}
 
-	element_map->sprite.specification = -1;
+	element_map->sprite.specification = specification;
 
 	switch (tool.id_tool)
 	{
@@ -188,7 +187,7 @@ char* select_name_tool(int id_tool){
 	return name_tool;
 }
 
-void print_paint_tool(window_t* win_tools, int tool_select){
+void print_paint_tool(window_t* win_tools, int tool_select, int id_door, int id_gate, int id_key){
 	int i;
 	char complete_name[15];
 
@@ -203,6 +202,19 @@ void print_paint_tool(window_t* win_tools, int tool_select){
 			strcpy(complete_name, "  ");
 			strcat(complete_name, select_name_tool(i));
 			window_mvprintw_col(win_tools, i, 0, RED, complete_name);
+		}
+
+		if(i == SPRITE_DOOR){
+			sprintf(complete_name, "< %2d >", id_door);
+			window_mvprintw_col(win_tools, i, 7, WHITE, complete_name);
+		}else if(i == SPRITE_GATE){
+			window_mvaddch_col(win_tools, i, 7, WHITE, '<');
+			window_mvaddch_col(win_tools, i, 10, get_color_gate_key(id_gate)+7, ' ');
+			window_mvaddch_col(win_tools, i, 12, WHITE, '>');
+		}else if(i == SPRITE_KEY){
+			window_mvaddch_col(win_tools, i, 7, WHITE, '<');
+			window_mvaddch_col(win_tools, i, 10, get_color_gate_key(id_key)+7, ' ');
+			window_mvaddch_col(win_tools, i, 12, WHITE, '>');
 		}
 	}
 

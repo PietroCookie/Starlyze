@@ -11,12 +11,12 @@ typedef struct
 	char* name_tool;
 } paint_tool_t;
 
-int select_paint_tool(window_t* win_tools, paint_tool_t* tool, int id_tool);
+int select_paint_tool(paint_tool_t* tool, int id_tool);
 
-void action_tool(file_game_level_t* file_game_level, game_level_t* game_level, window_t* win_infos, paint_tool_t tool, int posX, int posY);
+void action_tool(file_game_level_t* file_game_level, game_level_t* game_level, window_t* win_infos, paint_tool_t tool, int posX, int posY, int specification);
 
 char* select_name_tool(int tool);
 
-void print_paint_tool(window_t* win_tools, int tool_select);
+void print_paint_tool(window_t* win_tools, int tool_select, int id_door, int id_gate, int id_key);
 
 #endif

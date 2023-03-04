@@ -153,6 +153,38 @@ void read_sprite_in_file_descriptor(int file_descriptor, sprite_t* sprite){
 	}
 }
 
+unsigned int get_color_gate_key(int specification){
+	unsigned int color;
+
+	switch (specification){
+		case 1:
+			color = WHITE;
+			break;
+		case 2:
+			color = GREEN;
+			break;
+		case 3:
+			color = BLUE;
+			break;
+		case 4:
+			color = RED;
+			break;
+		case 5:
+			color = YELLOW;
+			break;
+		case 6:
+			color = CYAN;
+			break;
+		case 7:
+			color = MAGENTA;
+			break;
+		default:
+			color = MAGENTA;
+			break;
+	};
+
+	return color;
+}
 
 void paint_block(window_t* window, int posX, int posY){
 	window_mvaddch_col(window, posY, posX, FD_CYAN, ' ');
@@ -168,21 +200,37 @@ void paint_trap(window_t* window, int posX, int posY){
 	window_mvaddch_col(window, posY, posX, FD_CYAN, '#');
 }
 
-void paint_key(window_t* window, int posX, int posY){
-	window_mvaddch_col(window, posY, posX, FD_MAGENTA, ' ');
-	window_mvaddch_col(window, ++posY, posX, MAGENTA, ACS_LLCORNER);
+void paint_key(window_t* window, int posX, int posY, int id_key){
+	unsigned int color = get_color_gate_key(id_key);
+
+	window_mvaddch_col(window, posY, posX, color+7, ' ');
+	window_mvaddch_col(window, ++posY, posX, color, ACS_LLCORNER);
 }
 
-void paint_gate(window_t* window, int posX, int posY, unsigned int color){
+void paint_gate(window_t* window, int posX, int posY, int id_gate){
+	unsigned int color = get_color_gate_key(id_gate);
+
 	window_mvaddch_col(window, posY, posX, color, ACS_PLUS);
 	window_mvaddch_col(window, ++posY, posX, color, ACS_PLUS);
 	window_mvaddch_col(window, ++posY, posX, color, ACS_PLUS);
 	window_mvaddch_col(window, ++posY, posX, color, ACS_PLUS);
 }
 
-void paint_door(window_t* window, int posX, int posY){
+void paint_door(window_t* window, int posX, int posY, sprite_t sprite){
 	int i, j;
-	for (i = 0; i < 4; i++)
+	char char_value[4];
+
+	sprintf(char_value, "%d", sprite.specification);
+
+	window_mvaddch_col(window, posY, posX, FD_GREEN, '0');
+	if(sprite.specification >= 10)
+		window_mvprintw_col(window, posY, posX+1, FD_GREEN, char_value);
+	else{
+		window_mvaddch_col(window, posY, posX+1, FD_GREEN, '0');
+		window_mvprintw_col(window, posY, posX+2, FD_GREEN, char_value);
+	}
+
+	for (i = 1; i < 4; i++)
 		for (j = 0; j < 3; j++)
 			window_mvaddch_col(window, i+posY, j+posX, FD_GREEN, ' ');
 }

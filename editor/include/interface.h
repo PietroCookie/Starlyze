@@ -26,6 +26,10 @@ typedef struct
 
 	game_level_t game_level;
 	paint_tool_t paint_tool;
+
+	int id_door;
+	int id_gate;
+	int id_key;
 } interface_t;
 
 /**

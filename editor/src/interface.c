@@ -27,6 +27,9 @@ interface_t* interface_create(char *name_file_game){
 	}
 
 	result->paint_tool.id_tool = 0;
+	result->id_door = 1;
+	result->id_gate = 1;
+	result->id_key = 1;
 
 	result->game_level = open_file_game_level(name_file_game, &result->file_game_level);
 
@@ -57,7 +60,7 @@ void interface_delete(interface_t **interface) {
 }
 
 void interface_actions(interface_t* interface, int c){
-	int mouseX, mouseY, posX, posY;
+	int mouseX, mouseY, posX, posY, specification = -1;
 
 	if((c == KEY_MOUSE) && (mouse_getpos(&mouseX, &mouseY) == OK)){
 		#ifdef _DEBUG_
@@ -66,7 +69,13 @@ void interface_actions(interface_t* interface, int c){
 		#endif
 
 		if(window_getcoordinates(interface->win_level, mouseX, mouseY, &posX, &posY)){
-			action_tool(&interface->file_game_level, &interface->game_level, interface->win_infos, interface->paint_tool, posX, posY);
+			if(interface->paint_tool.id_tool == SPRITE_DOOR)
+				specification = interface->id_door;
+			else if(interface->paint_tool.id_tool == SPRITE_GATE)
+				specification = interface->id_gate;
+			else if(interface->paint_tool.id_tool == SPRITE_KEY)
+				specification = interface->id_key;
+			action_tool(&interface->file_game_level, &interface->game_level, interface->win_infos, interface->paint_tool, posX, posY, specification);
 			refresh_win_level(interface);
 		}
 		else if(window_getcoordinates(interface->win_tools, mouseX, mouseY, &posX, &posY)){
@@ -83,8 +92,53 @@ void interface_actions(interface_t* interface, int c){
 				delete_game_level(&interface->game_level);
 				load_level_in_file(&interface->file_game_level, &interface->game_level, -1);
 			}
+			else if(posY == 4){
+				if(posX == 7){
+					if(interface->id_gate == 1)
+						interface->id_gate = MAX_ID_GATE_KEY;
+					else
+						interface->id_gate--;
+				}else if(posX == 12){
+					if(interface->id_gate == MAX_ID_GATE_KEY)
+						interface->id_gate = 1;
+					else
+						interface->id_gate++;
+				}
+				if(interface->paint_tool.id_tool != SPRITE_GATE)
+					select_paint_tool(&interface->paint_tool, posY);
+			}
+			else if(posY == 5){
+				if(posX == 7){
+					if(interface->id_key == 1)
+						interface->id_key = MAX_ID_GATE_KEY;
+					else
+						interface->id_key--;
+				}else if(posX == 12){
+					if(interface->id_key == MAX_ID_GATE_KEY)
+						interface->id_key = 1;
+					else
+						interface->id_key++;
+				}
+				if(interface->paint_tool.id_tool != SPRITE_KEY)
+					select_paint_tool(&interface->paint_tool, posY);
+			}
+			else if(posY == 6){
+				if(posX == 7){
+					if(interface->id_door == 1)
+						interface->id_door = MAX_ID_DOOR;
+					else
+						interface->id_door--;
+				}else if(posX == 12){
+					if(interface->id_door == MAX_ID_DOOR)
+						interface->id_door = 1;
+					else
+						interface->id_door++;
+				}
+				if(interface->paint_tool.id_tool != SPRITE_DOOR)
+					select_paint_tool(&interface->paint_tool, posY);
+			}
 			else
-				select_paint_tool(interface->win_tools, &interface->paint_tool, posY);
+				select_paint_tool(&interface->paint_tool, posY);
 
 			refresh_win_level(interface);
 			refresh_win_tools(interface);
@@ -98,7 +152,7 @@ void refresh_win_tools(interface_t* interface){
 	char level_current[10];
 	char level_select[8];
 	
-	print_paint_tool(interface->win_tools, interface->paint_tool.id_tool);
+	print_paint_tool(interface->win_tools, interface->paint_tool.id_tool, interface->id_door, interface->id_gate, interface->id_key);
 
 	sprintf(level_current, "Level %d", interface->file_game_level.current_index_address_table);
 	window_mvprintw_col(interface->win_tools, posY, posX+2, WHITE, level_current);
@@ -146,15 +200,15 @@ void refresh_win_level(interface_t* interface){
 						break;
 
 					case SPRITE_GATE:
-						paint_gate(interface->win_level, element_select->posX, element_select->posY, MAGENTA);
+						paint_gate(interface->win_level, element_select->posX, element_select->posY, element_select->sprite.specification);
 						break;
 
 					case SPRITE_KEY:
-						paint_key(interface->win_level, element_select->posX, element_select->posY);
+						paint_key(interface->win_level, element_select->posX, element_select->posY, element_select->sprite.specification);
 						break;
 
 					case SPRITE_DOOR:
-						paint_door(interface->win_level, element_select->posX, element_select->posY);
+						paint_door(interface->win_level, element_select->posX, element_select->posY, element_select->sprite);
 						break;
 
 					case SPRITE_EXIT:

@@ -13,11 +13,12 @@ LDFLAGS_DEBUG = -fsanitize=address
 
 # Le nom du projet (utile pour le nom de l'archive)
 PROJECT_NAME = Starlyze
+
 # Le nom de l'executable a creer
-EXE = editor
+EXE = client server editor
 
 # Liste des dossiers contenus dans SRC_DIR et INCLUDE_DIR
-DIR = editor global ncurses
+DIR = editor global ncurses server client
 
 DIR_OBJ = obj
 DIR_EXE = bin

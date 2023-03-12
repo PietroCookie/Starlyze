@@ -3,10 +3,18 @@
 
 #include "sprite.h"
 
+#define NUMBER_ROBOT 10
+#define NUMBER_PROBE 10
+#define NUMBER_TRAP 40
+
 typedef struct
 {
 	int width, height;
 	sprite_t **map;
+
+	int robot[NUMBER_ROBOT];
+	int probe[NUMBER_PROBE];
+	int trap[NUMBER_TRAP];
 } level_info_t;
 
 

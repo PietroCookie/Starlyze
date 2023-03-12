@@ -5,9 +5,11 @@
 
 #include "level_info.h"
 
+#define NUMBER_DOOR 99
+
 typedef struct
 {
-	int doors_level[99][2];
+	int doors_level[NUMBER_DOOR][2];
 	
 	int total_level;
 	level_info_t *levels;

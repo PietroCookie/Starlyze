@@ -44,37 +44,29 @@ void interface_actions_client(interface_client_t* interface, int c){
         window_printw(interface->win_infos, "\nClick (%d,%d)", mouseX, mouseY);
         window_refresh(interface->win_infos);
 
-        // Number of players
-        if((mouseX >= 29 && mouseX<=71) && mouseY==12){
-            window_mvprintw_col(interface->win_main, 7, posX_item+2, WHITE, "<< Nombre de joueur(s) connecte(s) : 2 >>"); 
+        if((mouseX >= 29 && mouseX<=71) && mouseY==12){ // Number of players
+            interface_delete_menu(interface); 
+            window_mvprintw_col(interface->win_main, 9, posX_item+2, WHITE, "<< Nombre de joueur(s) connecte(s) : 2 >>"); 
+            window_mvprintw_col(interface->win_main, 19, 0, WHITE, "<- Retour"); 
             window_refresh(interface->win_main);
-            for(int x=0; x<DEFAULT_WIDTH_INTERFACE_CLIENT; x++){
-                for(int y=0; y< DEFAULT_HEIGHT_INTERFACE_CLIENT; y++){
-                    window_mvprintw_col(interface->win_main, y, x, WHITE, " "); 
-                }
-            } 
-            interface_print_logo(interface); 
-        }else if((mouseX >= 29 && mouseX<=64) && mouseY == 14){
-            window_mvprintw_col(interface->win_main, 11, posX_item+2, WHITE, "<< Nombre de joueur(s) connecte(s) : 2 >>"); 
-            window_mvprintw_col(interface->win_main, 13, posX_item+2, GREEN, "<< Creer une partie de starlyze >>"); 
-            window_mvprintw_col(interface->win_main, 15, posX_item+2, WHITE, "<< Rejoindre partie en attente : 3 >>"); 
-            window_mvprintw_col(interface->win_main, 17, posX_item+2, WHITE, "<< Quitter le jeu >>");            
+        }else if((mouseX >= 29 && mouseX<=64) && mouseY == 14){ // Create a game
+            interface_delete_menu(interface); 
+            window_mvprintw_col(interface->win_main, 9, posX_item+2, WHITE, "<< Creer une partie de starlyze >>"); 
+            window_mvprintw_col(interface->win_main, 19, 0, WHITE, "<- Retour"); 
             window_refresh(interface->win_main);
-        }else if((mouseX>=29 && mouseX<=67) && mouseY==16){
-            window_mvprintw_col(interface->win_main, 11, posX_item+2, WHITE, "<< Nombre de joueur(s) connecte(s) : 2 >>"); 
-            window_mvprintw_col(interface->win_main, 13, posX_item+2, WHITE, "<< Creer une partie de starlyze >>"); 
-            window_mvprintw_col(interface->win_main, 15, posX_item+2, GREEN, "<< Rejoindre partie en attente : 3 >>"); 
-            window_mvprintw_col(interface->win_main, 17, posX_item+2, WHITE, "<< Quitter le jeu >>");            
+        }else if((mouseX>=29 && mouseX<=67) && mouseY==16){ // Join a game
+            interface_delete_menu(interface); 
+            window_mvprintw_col(interface->win_main, 9, posX_item+2, WHITE, "<< Rejoindre partie en attente : 3 >>"); 
+            window_mvprintw_col(interface->win_main, 19, 0, WHITE, "<- Retour"); 
             window_refresh(interface->win_main); 
-        }else if((mouseX>=29 && mouseX<=60) && mouseY==18){
-            window_mvprintw_col(interface->win_main, 11, posX_item+2, WHITE, "<< Nombre de joueur(s) connecte(s) : 2 >>"); 
-            window_mvprintw_col(interface->win_main, 13, posX_item+2, WHITE, "<< Creer une partie de starlyze >>"); 
-            window_mvprintw_col(interface->win_main, 15, posX_item+2, WHITE, "<< Rejoindre partie en attente : 3 >>"); 
-            window_mvprintw_col(interface->win_main, 17, posX_item+2, GREEN, "<< Quitter le jeu >>");
-            window_refresh(interface->win_main); 
+        }else if((mouseX>=29 && mouseX<=60) && mouseY==18){ // Quit game
             ncurses_stop(); 
             interface_delete_client(&interface); 
             exit(EXIT_SUCCESS); 
+        }else if((mouseX>=0 && mouseX<=10) && mouseY==20){
+            interface_delete_menu(interface); 
+            interface_print_menu(interface); 
+            window_refresh(interface->win_main); 
         }
     } 
 }
@@ -151,3 +143,11 @@ void interface_print_menu(interface_client_t* interface){
     window_mvprintw_col(interface->win_main, 15, posX_item+2, WHITE, "<< Rejoindre partie en attente : 3 >>"); 
     window_mvprintw_col(interface->win_main, 17, posX_item+2, WHITE, "<< Quitter le jeu >>");
 }
+
+void interface_delete_menu(interface_client_t* interface){
+    for(int x=0; x<DEFAULT_WIDTH_INTERFACE_CLIENT; x++){
+        for(int y=8; y< DEFAULT_HEIGHT_INTERFACE_CLIENT; y++){
+            window_mvprintw_col(interface->win_main, y, x, WHITE, " "); 
+        }
+    }
+} 

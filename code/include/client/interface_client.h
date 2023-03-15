@@ -48,4 +48,6 @@ void interface_print_logo(interface_client_t* result);
 
 void interface_print_menu(interface_client_t* result); 
 
+void interface_delete_menu(interface_client_t* interface); 
+
 #endif

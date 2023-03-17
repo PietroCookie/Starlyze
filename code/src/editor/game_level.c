@@ -60,7 +60,6 @@ size_t necessary_size_game_level(game_level_t game_level){
 void save_modification_game_level_in_file_descriptor(int file_descriptor, off_t position, game_level_t game_level, int posX, int posY){
 	element_game_level_t element_write = {posX, posY, 0, 0, {0, -1}};
 
-	position += 2 * sizeof(int); // Size of width and height save
 	position += posX * HEIGHT_LEVEL_GAME * necessary_size_element_game_level() + posY * necessary_size_element_game_level(); // Move to position of element to save
 
 	if(lseek(file_descriptor, position, SEEK_SET) == -1){

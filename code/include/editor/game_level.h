@@ -5,18 +5,16 @@
 
 #include "element_game_level.h"
 
-#define DEFAULT_WIDTH_LEVEL_GAME 60
-#define DEFAULT_HEIGHT_LEVEL_GAME 20
+#define WIDTH_LEVEL_GAME 60
+#define HEIGHT_LEVEL_GAME 20
 
 typedef struct
 {
-	int width;
-	int height;
-	element_game_level_t*** elements_map;
+	element_game_level_t *elements_map[WIDTH_LEVEL_GAME][HEIGHT_LEVEL_GAME];
 } game_level_t;
 
 
-void initialise_game_level(game_level_t* game_level, int width, int height);
+void initialise_game_level(game_level_t* game_level);
 
 void delete_game_level(game_level_t* game_level);
 

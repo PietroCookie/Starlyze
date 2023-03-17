@@ -16,7 +16,6 @@ typedef struct
 
 	int start_level;
 	int exit_level;
-
 } world_info_t;
 
 void load_world_info(world_info_t *world_info, char *name_world);

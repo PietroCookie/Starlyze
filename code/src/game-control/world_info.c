@@ -16,17 +16,13 @@ void load_world_info(world_info_t *world_info, char *name_world){
 	sprite_t sprite;
 
 	world_info->total_level = 0;
+	world_info->levels = NULL;
 
 	if((file = open(name_world, O_RDONLY)) == -1){
 		perror("Error opening file world");
 		exit(EXIT_FAILURE);
 	}
 
-
-	if((world_info->levels = malloc(0)) == NULL){
-		perror("Error allocating levels in load_world_info");
-		exit(EXIT_FAILURE);
-	}
 
 	// Load levels of world
 	while (position_next_address_table != -1)
@@ -37,12 +33,17 @@ void load_world_info(world_info_t *world_info, char *name_world){
 			if(address_table.table[i].position != -1)
 				world_info->total_level++;
 		
-
-		if((world_info->levels = realloc(world_info->levels, world_info->total_level * sizeof(level_info_t))) == NULL){
-			perror("Error reallocating levels in load_world_info");
-			exit(EXIT_FAILURE);
+		if(world_info->levels == NULL){
+			if((world_info->levels = malloc(world_info->total_level * sizeof(level_info_t))) == NULL){
+				perror("Error allocating levels in load_world_info");
+				exit(EXIT_FAILURE);
+			}
+		} else {
+			if((world_info->levels = realloc(world_info->levels, world_info->total_level * sizeof(level_info_t))) == NULL){
+				perror("Error reallocating levels in load_world_info");
+				exit(EXIT_FAILURE);
+			}
 		}
-
 
 		for (i = 1; i < DEFAULT_SIZE_ADDRESS_TABLE-1; i++)
 			if(address_table.table[i].position != -1){

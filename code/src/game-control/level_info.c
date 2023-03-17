@@ -15,7 +15,7 @@ void load_level_info(level_info_t *level_info, int file){
 	for (i = 0; i < NUMBER_PROBE; i++)
 		level_info->probe[i] = -1;
 	for (i = 0; i < NUMBER_TRAP; i++)
-		level_info->trap[i] = -1;
+		level_info->trap[i] = -1;	
 	
 
 	if(read(file, &level_info->width, sizeof(int)) == -1){
@@ -27,6 +27,19 @@ void load_level_info(level_info_t *level_info, int file){
 		perror("Error read heigh level in load_world_info");
 		exit(EXIT_FAILURE);
 	}
+
+
+	level_info->number_mutex_zone = (level_info->width * level_info->height) / (WIDTH_ZONE_LEVEL * HEIGHT_ZONE_LEVEL);
+	if((level_info->mutex_zone = malloc(level_info->number_mutex_zone * sizeof(pthread_mutex_t))) == NULL){
+		perror("Error allocating memory for mutex zone");
+		exit(EXIT_FAILURE);
+	}
+	for (i = 0; i < level_info->number_mutex_zone; i++)
+		if(pthread_mutex_init(&level_info->mutex_zone[i], NULL) != 0){
+			fprintf(stderr, "Error intialise mutex zone");
+			exit(EXIT_FAILURE);
+		}
+	
 
 
 	if((level_info->map = malloc(level_info->width * sizeof(sprite_t*))) == NULL){
@@ -46,9 +59,11 @@ void load_level_info(level_info_t *level_info, int file){
 			read_sprite_in_file_descriptor(file, &sprite);
 
 			if(sprite.type != 0) {
-				for (m = 0; m < width_sprite(sprite.type); m++)
-					for (n = 0; n < height_sprite(sprite.type); n++)
-						level_info->map[i+m][j+n] = sprite;
+
+				if(sprite.type != SPRITE_ROBOT && sprite.type != SPRITE_PROBE)
+					for (m = 0; m < width_sprite(sprite.type); m++)
+						for (n = 0; n < height_sprite(sprite.type); n++)
+							level_info->map[i+m][j+n] = sprite;
 
 				if(sprite.type == SPRITE_ROBOT)
 					level_info->robot[current_robot++] = j * level_info->width + i;
@@ -58,6 +73,8 @@ void load_level_info(level_info_t *level_info, int file){
 					level_info->trap[current_trap++] = j * level_info->width + i;
 			}
 		}
+
+	level_info->number_enemy = current_probe + current_robot;
 }
 
 void delete_level_info(level_info_t *level_info){
@@ -65,6 +82,13 @@ void delete_level_info(level_info_t *level_info){
 
 	for (i = 0; i < level_info->width; i++)
 		free(level_info->map[i]);
-
 	free(level_info->map);
+
+
+	for (i = 0; i < level_info->number_mutex_zone; i++)
+		if(pthread_mutex_destroy(&level_info->mutex_zone[i]) != 0){
+			fprintf(stderr, "Error destroy mutex zone");
+			exit(EXIT_FAILURE);
+		}
+	free(level_info->mutex_zone);
 }

@@ -1,4 +1,4 @@
-#ifndef __PAYER_H__
+#ifndef __PLAYER_H__
 #define __PLAYER_H__
 
 #define MAX_LIFE_PLAYER 5
@@ -14,5 +14,6 @@ typedef struct
 
 void initialiser_player(player_t *player, int posX, int posY);
 
+void *thread_player(void *arg);
 
 #endif

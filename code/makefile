@@ -4,7 +4,7 @@
 
 CC = gcc
 CFLAGS = -Wall -O3 -Werror
-LDFLAGS = -lncurses
+LDFLAGS = -lncurses -pthread
 CCLIBS = 
 
 # DEBUG FLAGS (make debug : [#define _DEBUG_])

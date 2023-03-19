@@ -8,7 +8,7 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 	int posX_dest = entity_move->posX, posY_dest = entity_move->posY;
 	int zone_src, zone_dest;
 
-	zone_src = (entity_move->posY / HEIGHT_ZONE_LEVEL) * (level->width / WIDTH_ZONE_LEVEL) + (entity_move->posX / WIDTH_ZONE_LEVEL);
+	zone_src = (entity_move->posY / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (entity_move->posX / WIDTH_ZONE_LEVEL);
 
 	switch (direction)
 	{
@@ -35,11 +35,11 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 			break;
 	}
 
-	if(posX_dest >= level->width || posX_dest < 0 || entity_move->posY >= level->height || posY_dest < 0 || level->map[posX_dest][posY_dest].type == SPRITE_BLOCK)
+	if(posX_dest >= WIDTH_LEVEL || posX_dest < 0 || entity_move->posY >= HEIGHT_LEVEL || posY_dest < 0 || level->map[posX_dest][posY_dest].type == SPRITE_BLOCK)
 		validate = 0;
 
 	if(validate){
-		zone_dest = (posY_dest / HEIGHT_ZONE_LEVEL) * (level->width / WIDTH_ZONE_LEVEL) + (posX_dest / WIDTH_ZONE_LEVEL);
+		zone_dest = (posY_dest / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX_dest / WIDTH_ZONE_LEVEL);
 		if(pthread_mutex_lock(&level->mutex_zone[zone_src]) != 0){
 			fprintf(stderr, "Error lock mutex in move_level");
 			exit(EXIT_FAILURE);

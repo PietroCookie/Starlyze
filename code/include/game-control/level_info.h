@@ -9,13 +9,15 @@
 #define NUMBER_PROBE 10
 #define NUMBER_TRAP 40
 
+#define WIDTH_LEVEL 60
+#define HEIGHT_LEVEL 20
+
 #define WIDTH_ZONE_LEVEL 5
 #define HEIGHT_ZONE_LEVEL 5
 
 typedef struct
 {
-	int width, height;
-	sprite_t **map;
+	sprite_t map[WIDTH_LEVEL][HEIGHT_LEVEL];
 
 	int number_enemy;
 	int robot[NUMBER_ROBOT];

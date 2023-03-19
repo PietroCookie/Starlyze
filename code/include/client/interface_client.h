@@ -42,12 +42,23 @@ void interface_actions_client(interface_client_t* interface, int c);
 
 /**
  * @brief Show the letter S in the logo
+ * 
  * @param result the interface
  */
 void interface_print_logo(interface_client_t* result); 
 
-void interface_print_menu(interface_client_t* result); 
+/**
+ * @brief Display the menu of client
+ * 
+ * @param result 
+ */
+void interface_display_menu(interface_client_t* result); 
 
+/**
+ * @brief Delete the menu of clien  
+ * 
+ * @param interface 
+ */
 void interface_delete_menu(interface_client_t* interface); 
 
 #endif

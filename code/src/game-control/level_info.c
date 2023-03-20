@@ -28,6 +28,11 @@ void load_level_info(level_info_t *level_info, int file){
 			fprintf(stderr, "Error intialise mutex zone");
 			exit(EXIT_FAILURE);
 		}
+
+	if(pthread_mutex_init(&level_info->mutex_level, NULL) != 0) {
+		fprintf(stderr, "Error initialise mutex level");
+		exit(EXIT_FAILURE);
+	}
 	
 	// Load sprite of level
 	for (i = 0; i < WIDTH_LEVEL; i++)

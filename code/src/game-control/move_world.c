@@ -10,6 +10,11 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 
 	zone_src = (entity_move->posY / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (entity_move->posX / WIDTH_ZONE_LEVEL);
 
+	if(pthread_mutex_lock(&level->mutex_level) != 0) {
+		fprintf(stderr, "Error lock mutex level in move_level");
+		exit(EXIT_FAILURE);
+	}
+
 	switch (direction)
 	{
 		case LEFT:
@@ -64,6 +69,11 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 				fprintf(stderr, "Error lock mutex in move_level");
 				exit(EXIT_FAILURE);
 			}
+	}
+
+	if(pthread_mutex_unlock(&level->mutex_level) != 0) {
+		fprintf(stderr, "Error unlock mutex level in move_level");
+		exit(EXIT_FAILURE);
 	}
 
 	return validate;

@@ -17,7 +17,7 @@ PROJECT_NAME = Starlyze
 EXE = editor game-control-test
 
 # Liste des dossiers contenus dans SRC_DIR et INCLUDE_DIR
-DIR = editor global ncurses game-control
+DIR = editor global ncurses game-control display_game
 
 DIR_OBJ = obj
 DIR_EXE = bin

@@ -5,10 +5,10 @@
 
 #include "game_control.h"
 
-
 int main(int argc, char const *argv[])
 {
 	pid_t game_pid;
+
 
 	if((game_pid = fork()) == -1){
 		perror("Error creating child process");

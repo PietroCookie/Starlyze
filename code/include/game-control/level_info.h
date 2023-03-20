@@ -26,6 +26,7 @@ typedef struct
 
 	int number_mutex_zone;
 	pthread_mutex_t *mutex_zone;
+	pthread_mutex_t mutex_level;
 } level_info_t;
 
 

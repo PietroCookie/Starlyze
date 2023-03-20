@@ -1,15 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <locale.h>
+#include <string.h>
 
-#include "interface_client.h"
-#include "functions.h"
-#include "colors.h"
+#include "client_utility.h"
+#include "network_udp.h"
+#include "network_request.h"
 
 int main(int argc, char *argv[]){
-    int ch; 
-    interface_client_t* interface; 
-    bool quit = FALSE;
+    int port; 
+    char address_ip[15], *pseudo;  
 
     // Check the number of arguments
     if(argc != 3){
@@ -20,29 +19,22 @@ int main(int argc, char *argv[]){
         exit(EXIT_FAILURE);
     }
 
-    // Ncurses initialisation
-    setlocale(LC_ALL, ""); 
-    ncurses_init(); 
-    ncurses_init_mouse(); 
-    ncurses_colors(); 
-    palette(); 
-    clear(); 
-    refresh(); 
-
-    interface = interface_create_client(); 
-
-    // Main loop
-    while(quit == FALSE){
-        ch=getch(); 
-        if((ch=='Q') || (ch=='q')){
-            quit = TRUE; 
-        }else{
-            interface_actions_client(interface, ch); 
-        }
+    // Copy argv[1] to address_ip
+    if(strcpy(address_ip, argv[1]) == 0){
+        perror("[ERROR] - Error copying argv[1] to address_ip"); 
+        exit(EXIT_FAILURE); 
     }
+    port = atoi(argv[2]);
 
-    // Stop ncurses
-    ncurses_stop(); 
-    interface_delete_client(&interface); 
+    display_logo_app(); 
+
+    pseudo = malloc(MAX_MSG*sizeof(char)); 
+    pseudo = pseudo_entry(); 
+    send_id_to_init_communication(port, address_ip,FIRST_CONNEXION_PSEUDO); 
+    send_pseudo_to_server(pseudo, port, address_ip); 
+
+    display_menu(3, port, address_ip); 
+    handler_menu(3, port, address_ip); 
+
     return EXIT_SUCCESS; 
 }

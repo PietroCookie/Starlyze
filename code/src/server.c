@@ -1,146 +1,93 @@
-/**
- * @file server.c
- * @author HADID Hocine & CHEMIN Pierre
- * @brief 
- * @version 0.1
- * @date 2023-03-10
- * 
- * @copyright Copyright (c) 2023
- * 
- */
 #include <stdlib.h>
+#include <stdio.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 #include <signal.h>
+#include <string.h>
+#include <unistd.h>
 #include <errno.h>
-#include <sys/wait.h>
 
-int stop = 0; 
+#include "network_request.h"
+
+int stop=0; 
 
 void handler(int signum){
-    int result; 
-
-    if(signum == SIGINT){
-        printf("\n[WARNING] - Stop request received !\n"); 
-        stop = 1; 
-    }
-
-    // Wait for children and
-    do{
-        result = waitpid(-1, NULL, WNOHANG); 
-    }while((result != -1) || (errno==EINTR)); 
+    printf("[INFO] - Stop request received by signal\n"); 
+    stop = 1; 
 }
 
 int main(int argc, char *argv[]){
-    int fd, sockclient, n; 
+    int sockfd, id_request_received; 
+    struct sockaddr_in server_address, client_address; 
+    socklen_t address_length = sizeof(struct sockaddr_in); 
+    request_init_communication_t request_received; 
     struct sigaction action; 
-    struct sockaddr_in address; 
-
+    
+    // Specify handler
     sigemptyset(&action.sa_mask); 
     action.sa_flags = 0; 
-    action.sa_handler = handler; 
-
-    if(sigaction(SIGCHLD, &action, NULL)==-1){
-        perror("Error positioning handler");
-        exit(EXIT_FAILURE);  
-    }
+    action.sa_handler = handler;
     if(sigaction(SIGINT, &action, NULL)==-1){
-        perror("Error positioning handler"); 
-        exit(EXIT_FAILURE);
-    }
-
-    // Check the number of arguments 
-    if(argc != 2){
-        fprintf(stderr, "[ERROR] - Use %s port\n",argv[0]); 
-        fprintf(stderr, "[HELP]  - Where : \n"); 
-        fprintf(stderr, "\t   - port : the server port\n"); 
+        perror("[ERROR] - Error positionning handler"); 
         exit(EXIT_FAILURE); 
     }
 
-    // Create socket 
-    if((fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP))== -1){
-        perror("Error creating socket"); 
+    // Check arguments 
+    if(argc != 2){
+        fprintf(stderr, "[ERROR] - Use %s port\n",argv[0]); 
+        exit(EXIT_FAILURE); 
+    }
+
+    // Create socket
+    if((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1){
+        perror("[ERROR] - Error creating socket\n"); 
         exit(EXIT_FAILURE); 
     }
 
     // Fill server address
-    memset(&address, 0, sizeof(struct sockaddr_in)); 
-    address.sin_family = AF_INET; 
-    address.sin_addr.s_addr = htonl(INADDR_ANY); 
-    address.sin_port = htons(atoi(argv[1]));
+    memset(&server_address, 0, sizeof(struct sockaddr_in)); 
+    server_address.sin_family = AF_INET; 
+    server_address.sin_port = htons(atoi(argv[1])); 
+    server_address.sin_addr.s_addr = htonl(INADDR_ANY); 
+
 
     // Name socket
-    if(bind(fd, (struct sockaddr*)&address, sizeof(struct sockaddr_in)) == -1){
-        perror("Error naming socket"); 
+    if(bind(sockfd, (struct sockaddr*)&server_address, sizeof(struct sockaddr_in)) == -1){
+        perror("[ERROR] - Error naming socket"); 
         exit(EXIT_FAILURE); 
     }
 
-    // Switch the socket in passive mode 
-    if(listen(fd, 1) == -1){
-        perror("Error switching socket in passive mode"); 
-        exit(EXIT_FAILURE); 
-    }
-
-    while(stop == 0){
-        // Wait for a connection of client 
-        printf("[INFO] - Server : waiting for connection ...\n"); 
-        if((sockclient = accept(fd, NULL, NULL)) == -1){
-            if(errno != EINTR){
-                perror("Error waiting connexion"); 
+    // Wait for client requests
+    while(stop==0){
+        printf("Wait for a request [CTRL + C to stop]\n"); 
+        
+        // Read a request received 
+        if(recvfrom(sockfd, &request_received, sizeof(request_init_communication_t), 0,
+                    (struct sockaddr*)&client_address, &address_length)==-1){
+            if(errno!=EINTR){
+                perror("[ERROR] - Error receiving message"); 
                 exit(EXIT_FAILURE); 
             }
-        }else{
-            if((n=fork()) == -1){
-                perror("Error creating child"); 
-            }
-            if(n==0){
-                // Close socket
-                if(close(fd) == -1){
-                    perror("Error closing socket"); 
-                    exit(EXIT_FAILURE); 
-                }
+        }
 
-                // Read value
-                if(read(sockclient, &n, sizeof(int)) == -1){
-                    perror("Error reading value"); 
-                    exit(EXIT_FAILURE); 
-                }
-                printf("[INFO] - Server-child : value received '%d'\n",n); 
-
-                // Send response
-                n*=2; 
-                if(write(sockclient, &n, sizeof(int))==-1){
-                    perror("Error sending value"); 
-                    exit(EXIT_FAILURE); 
-                }
-                printf("[INFO] - Server-child : Value sent '%d'\n", n); 
-
-                // Close socket
-                if(close(sockclient)==-1){
-                    perror("Error closing socket"); 
-                    exit(EXIT_FAILURE); 
-                }
-
-                printf("[INFO] - Server-child : DONE\n"); 
-                exit(EXIT_SUCCESS); 
-            }else{
-                // Close socket 
-                if(close(sockclient) == -1){
-                    perror("Error closing socket"); 
-                    exit(EXIT_FAILURE); 
-                }
-            }
+        id_request_received = request_received.id_request; 
+        switch(id_request_received){
+            case FIRST_CONNEXION_PSEUDO :
+                receive_request_first_connexion(); 
+                break; 
         }
     }
 
+
+
     // Close socket
-    if(close(fd)==-1){
+    if(close(sockfd) == -1){
         perror("Error closing socket"); 
         exit(EXIT_FAILURE); 
     }
-    printf("[INFO] - Server done\n"); 
-    return EXIT_SUCCESS;
+
+    printf("[INFO] - Server : STOP\n"); 
+
+    return EXIT_SUCCESS; 
+
 }

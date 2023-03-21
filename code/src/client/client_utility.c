@@ -15,7 +15,11 @@ void display_logo_app(){
 }
 
 char* pseudo_entry(){
-    char* pseudo = malloc(MAX_MSG*sizeof(char)); 
+    char* pseudo; 
+    if((pseudo=malloc(MAX_MSG*sizeof(char)))==NULL){
+        perror("[ERROR] - Memory allocation pseudo failed"); 
+        exit(EXIT_FAILURE); 
+    } 
     printf("\n\n============================ I N F O S ============================\n"); 
     printf("Veuillez saisir votre pseudo : "); 
     if(scanf("%[^\n]", pseudo) == -1){

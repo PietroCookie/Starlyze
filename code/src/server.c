@@ -8,7 +8,7 @@
 #include <errno.h>
 
 #include "network_request.h"
-
+#include "server_udp.h"
 int stop=0; 
 
 void handler(int signum){
@@ -17,12 +17,16 @@ void handler(int signum){
 }
 
 int main(int argc, char *argv[]){
-    int sockfd, id_request_received; 
+    int sockfd, type_request_received, nb_client=0; 
     struct sockaddr_in server_address, client_address; 
     socklen_t address_length = sizeof(struct sockaddr_in); 
-    request_init_communication_t request_received; 
+    request_client_udp request_received; 
     struct sigaction action; 
+    list_connected_client* connected_clients; 
     
+    // Initialise the list of clients 
+    connected_clients = init_list_connected_client(nb_client); 
+
     // Specify handler
     sigemptyset(&action.sa_mask); 
     action.sa_flags = 0; 
@@ -58,11 +62,11 @@ int main(int argc, char *argv[]){
     }
 
     // Wait for client requests
+    printf("Wait for a request [CTRL + C to stop]\n"); 
     while(stop==0){
-        printf("Wait for a request [CTRL + C to stop]\n"); 
         
         // Read a request received 
-        if(recvfrom(sockfd, &request_received, sizeof(request_init_communication_t), 0,
+        if(recvfrom(sockfd, &request_received, sizeof(request_client_udp), 0,
                     (struct sockaddr*)&client_address, &address_length)==-1){
             if(errno!=EINTR){
                 perror("[ERROR] - Error receiving message"); 
@@ -70,12 +74,17 @@ int main(int argc, char *argv[]){
             }
         }
 
-        id_request_received = request_received.id_request; 
-        switch(id_request_received){
-            case FIRST_CONNEXION_PSEUDO :
-                receive_request_first_connexion(); 
+        type_request_received = request_received.type_request; 
+
+        switch(type_request_received){
+            case FIRST_CONNEXION_SEND_PSEUDO :
+                nb_client++; 
+                char client_address_str[INET_ADDRSTRLEN];
+                inet_ntop(AF_INET, &(client_address.sin_addr), client_address_str, INET_ADDRSTRLEN);
+                save_new_client(connected_clients, request_received.content.pseudo, client_address_str, nb_client); 
                 break; 
         }
+        
     }
 
 

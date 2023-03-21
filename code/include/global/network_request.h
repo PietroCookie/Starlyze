@@ -4,15 +4,15 @@
 #define MAX_MSG 255
 
 // Type of request from client to server
-#define FIRST_CONNEXION_PSEUDO 1
+#define FIRST_CONNEXION_SEND_PSEUDO 1
 
-typedef struct{
-    int id_request; 
-}request_init_communication_t; 
-
-typedef struct{
-    int id;
+typedef union{
     char pseudo[MAX_MSG]; 
-}request_first_connexion_t; 
+}content_request_t; 
+
+typedef struct{
+    int type_request; 
+    content_request_t content; 
+}request_client_udp; 
 
 #endif  

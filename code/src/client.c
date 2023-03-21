@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "client_utility.h"
-#include "network_udp.h"
+#include "client_udp.h"
 #include "network_request.h"
 
 int main(int argc, char *argv[]){
@@ -28,9 +28,12 @@ int main(int argc, char *argv[]){
 
     display_logo_app(); 
 
-    pseudo = malloc(MAX_MSG*sizeof(char)); 
+    if((pseudo=malloc(MAX_MSG*sizeof(char)))==NULL){
+        perror("[ERROR] - Memory allocation pseudo failed"); 
+        exit(EXIT_FAILURE); 
+    } 
+
     pseudo = pseudo_entry(); 
-    send_id_to_init_communication(port, address_ip,FIRST_CONNEXION_PSEUDO); 
     send_pseudo_to_server(pseudo, port, address_ip); 
 
     display_menu(3, port, address_ip); 

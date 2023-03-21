@@ -8,29 +8,43 @@
 #include <errno.h>
 
 #include "network_request.h"
-#include "network_udp.h"
+#include "server_udp.h"
 
-void receive_request_first_connexion(int port){
-    int sockfd; 
-    struct sockaddr_in server_address, client_address; 
-    socklen_t address_length = sizeof(struct sockaddr_in); 
-    receive_request_first_connexion request_received; 
-    struct sigaction action; 
-
-    // Create socket UDP
-    if((sockfd=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP))==-1){
-        perror("[ERROR] - Error creating socket\n"); 
+list_connected_client* init_list_connected_client(int nb_clients){
+    list_connected_client* connected_clients; 
+    if((connected_clients = (list_connected_client*) malloc(sizeof(list_connected_client))) == NULL){
+        perror("[ERROR] - Memory allocation connected_clients failed"); 
         exit(EXIT_FAILURE); 
     }
+    if((connected_clients->list = (info_client_t*) malloc(nb_clients * sizeof(info_client_t)))==NULL){
+        perror("[ERROR] - Memory allocation connected_clients->list failed"); 
+        exit(EXIT_FAILURE); 
+    }
+    return connected_clients; 
+}
 
-    // Fill server address
-    memset(&server_address, 0, sizeof(struct sockaddr_in)); 
-    server_address.sin_family = AF_INET; 
-    server_address.sin_port = htons(port); 
-    server_address.sin_addr.s_addr = htonl(INADDR_ANY); 
+void save_new_client(list_connected_client* connected_clients, char pseudo[MAX_MSG], char* client_address, int nb_client){
+    if((connected_clients->list = (info_client_t*) realloc(connected_clients->list, (nb_client+1) * sizeof(info_client_t)))==NULL){
+        perror("[ERROR] - Memory reallocation connected_clients->list failed"); 
+        exit(EXIT_FAILURE); 
+    }
+    
+    connected_clients->list[nb_client].id = nb_client; 
+    strcpy(connected_clients->list[nb_client].pseudo, pseudo); 
 
-    // Name socket
-    if(bind(sockfd, (struct sockaddr*)&server_address, sizeof(struct sockaddr_in))==-1){
-        
+    connected_clients->list[nb_client].client_address = malloc((INET_ADDRSTRLEN + 1) * sizeof(char));
+    if(connected_clients->list[nb_client].client_address == NULL){
+        perror("[ERROR] - Memory allocation client_address failed"); 
+        exit(EXIT_FAILURE); 
+    }
+    strcpy(connected_clients->list[nb_client].client_address, client_address);
+}
+
+void print_list_connected_client(list_connected_client list, int nb_clients){
+    int i;
+    for(i = 1; i <= nb_clients; i++){
+        if(list.list[i].id != -1){
+            printf("Client %d - Pseudo: %s - Adresse: %s\n", list.list[i].id, list.list[i].pseudo, list.list[i].client_address);
+        }
     }
 }

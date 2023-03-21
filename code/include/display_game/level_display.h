@@ -16,6 +16,6 @@ typedef struct
 } level_display_t;
 
 
-void convert_level_info(level_display_t *level_display, level_info_t *level_info, entity_t *enemies, int number_enemies);
+void convert_level_info(level_display_t *level_display, level_info_t level_info, entity_t *enemies, int number_enemies);
 
 #endif

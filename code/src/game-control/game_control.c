@@ -102,9 +102,9 @@ void game_control(int num_player)
 		// if((ch == 'Q') || (ch == 'q'))
 		// 	quit = TRUE;
 			
-		convert_level_info(&level_display, &world_info.levels[2], enemy[2], world_info.levels[2].number_enemy);
+		convert_level_info(&level_display, world_info.levels[2], enemy[2], world_info.levels[2].number_enemy);
 		refresh_win_level_game(interface, level_display);
-		
+
 		sleep(1);
 	}
 	

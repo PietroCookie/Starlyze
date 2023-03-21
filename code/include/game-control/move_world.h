@@ -3,6 +3,7 @@
 
 #include "level_info.h"
 #include "entity.h"
+#include "sprite.h"
 
 typedef enum {
 	LEFT = 1,
@@ -12,6 +13,8 @@ typedef enum {
 } direction_enum;
 
 int move_level(level_info_t *level, entity_t *entity_move, direction_enum direction, int number_collision, entity_t *collision);
+
+int check_validation_move(level_info_t *level, int posX_dest, int posY_dest, type_sprite_enum type_sprite, direction_enum direction);
 
 int take_item(level_info_t *level, player_t *player, int posX, int posY);
 

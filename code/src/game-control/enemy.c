@@ -5,6 +5,8 @@
 
 #include "include_game.h"
 
+#include <unistd.h>
+
 void initialiser_enemy(enemy_t *enemy, type_enemy_enum type){
 	enemy->type = type;
 }

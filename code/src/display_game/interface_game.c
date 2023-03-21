@@ -62,6 +62,10 @@ void refresh_win_level_game(interface_game_t* interface, level_display_t level_d
 				paint_robot(interface->win_level, i, j);
 				break;
 
+			case SPRITE_LADDER:
+				paint_ladder(interface->win_level, i, j);
+				break;
+
 			default:
 				break;
 			}

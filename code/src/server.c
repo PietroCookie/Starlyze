@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
     struct sockaddr_in server_address, client_address; 
     socklen_t address_length = sizeof(struct sockaddr_in); 
     request_client_udp_t request_received; 
+    response_server_udp_t response; 
     struct sigaction action; 
     list_connected_client* connected_clients; 
     
@@ -77,12 +78,25 @@ int main(int argc, char *argv[]){
         type_request_received = request_received.type_request; 
 
         switch(type_request_received){
+            
             case CLIENT_FIRST_CONNEXION_SEND_PSEUDO :
                 nb_client++; 
                 char client_address_str[INET_ADDRSTRLEN];
                 inet_ntop(AF_INET, &(client_address.sin_addr), client_address_str, INET_ADDRSTRLEN);
                 save_new_client(connected_clients, request_received.content.pseudo, client_address_str, nb_client); 
                 break; 
+
+            case CLIENT_NB_CLIENTS:
+                printf("Type de requete recu : %d\n", request_received.type_request); 
+                response.type_request = SERVER_SEND_NB_CLIENTS; 
+                response.content.nb_clients = nb_client;
+
+                if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0,
+                        (struct sockaddr*)&client_address, address_length) == -1) {
+                    perror("Error sending response");
+                    exit(EXIT_FAILURE);
+                }
+                break;
         }
         
     }

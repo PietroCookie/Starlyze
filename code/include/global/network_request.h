@@ -5,6 +5,7 @@
 
 // Type of request for client
 #define CLIENT_FIRST_CONNEXION_SEND_PSEUDO 1
+#define CLIENT_NB_CLIENTS 2
 
 // Type of response for server
 #define SERVER_SEND_NB_CLIENTS 1
@@ -15,7 +16,7 @@ typedef union{
 
 typedef struct{
     int type_request; 
-    content_request_client_t content; 
+    content_request_client_udp_t content; 
 }request_client_udp_t; 
 
 typedef union{
@@ -26,6 +27,9 @@ typedef struct{
     int type_request;
     content_response_server_t content; 
 }response_server_udp_t; 
+
+
+
 
 
 #endif  

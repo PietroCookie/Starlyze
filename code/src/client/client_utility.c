@@ -1,4 +1,5 @@
 #include "client_utility.h"
+#include "client_udp.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,9 +40,10 @@ void display_menu(int nb_players, int port, char address_ip[15]){
     printf("=========================================================      ||  ======================================\n\n"); 
 }
 
-void handler_menu(int nb_players, int port, char address_ip[15]){
-    int choice=0, choice_world; 
+void handler_menu(int port, char address_ip[15]){
+    int choice=0, choice_world, nb_clients; 
     list_world_t list_world; 
+    
     while(choice<=0){
         printf("Quel est votre choix ? "); 
         if(scanf("%d", &choice) == -1){
@@ -57,9 +59,10 @@ void handler_menu(int nb_players, int port, char address_ip[15]){
             printf("\n\n====================== Créer une partie de STARLYZE ======================\n"); 
             list_world = recovering_existing_worlds(); 
             choice_world = handler_list_world(list_world); 
+            nb_clients = receive_nb_clients(port, address_ip); 
             if(choice_world == list_world.nb_world+1){
-                display_menu(3, port, address_ip); 
-                handler_menu(3, port, address_ip); 
+                display_menu(nb_clients, port, address_ip); 
+                handler_menu(port, address_ip); 
             }
             break; 
         case 3 :  

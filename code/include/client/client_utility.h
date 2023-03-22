@@ -13,7 +13,7 @@ typedef struct{
 void display_logo_app(); 
 char* pseudo_entry(); 
 void display_menu(int, int, char[15]); 
-void handler_menu(int, int, char[15]);
+void handler_menu(int, char[15]);
 
 int filter_file(const struct dirent *entry); 
 list_world_t recovering_existing_worlds(); 

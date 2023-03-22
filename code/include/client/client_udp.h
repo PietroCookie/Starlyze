@@ -3,5 +3,5 @@
 
 void send_pseudo_to_server(char *pseudo, int port, char address_ip[15]); 
 
-void receive_nb_clients(); 
+int receive_nb_clients(int port, char address[15]); 
 #endif

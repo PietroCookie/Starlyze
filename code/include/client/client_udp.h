@@ -3,6 +3,5 @@
 
 void send_pseudo_to_server(char *pseudo, int port, char address_ip[15]); 
 
-void send_id_to_init_communication(int port, char address_ip[15], int code_request); 
-
+void receive_nb_clients(); 
 #endif

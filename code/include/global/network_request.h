@@ -3,16 +3,29 @@
 
 #define MAX_MSG 255
 
-// Type of request from client to server
-#define FIRST_CONNEXION_SEND_PSEUDO 1
+// Type of request for client
+#define CLIENT_FIRST_CONNEXION_SEND_PSEUDO 1
+
+// Type of response for server
+#define SERVER_SEND_NB_CLIENTS 1
 
 typedef union{
     char pseudo[MAX_MSG]; 
-}content_request_t; 
+}content_request_client_udp_t; 
 
 typedef struct{
     int type_request; 
-    content_request_t content; 
-}request_client_udp; 
+    content_request_client_t content; 
+}request_client_udp_t; 
+
+typedef union{
+    int nb_clients; 
+}content_response_server_t;
+
+typedef struct{
+    int type_request;
+    content_response_server_t content; 
+}response_server_udp_t; 
+
 
 #endif  

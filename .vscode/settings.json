@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "interface.h": "c",
-        "string.h": "c",
-        "window.h": "c",
-        "functions.h": "c",
-        "stdlib.h": "c"
-    }
-}

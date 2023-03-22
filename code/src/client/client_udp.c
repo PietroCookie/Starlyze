@@ -13,7 +13,7 @@
 void send_pseudo_to_server(char *pseudo, int port, char address_ip[15]){
     int sockfd; 
     struct sockaddr_in address; 
-    request_client_udp request; 
+    request_client_udp_t request; 
 
     // Create socket UDP
     if((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1){
@@ -31,17 +31,42 @@ void send_pseudo_to_server(char *pseudo, int port, char address_ip[15]){
     }
 
     // Send request
-    request.type_request = FIRST_CONNEXION_SEND_PSEUDO; 
+    request.type_request = CLIENT_FIRST_CONNEXION_SEND_PSEUDO; 
     strcpy(request.content.pseudo, pseudo); 
 
-    if(sendto(sockfd, &request, sizeof(request_client_udp), 0, 
+    if(sendto(sockfd, &request, sizeof(request_client_udp_t), 0, 
             (struct sockaddr*)&address,sizeof(struct sockaddr_in))==-1){
         perror("[ERROR] - Error sending request"); 
         exit(EXIT_FAILURE); 
     }
 
+
+
     if(close(sockfd) == -1){
         perror("[ERROR] - Error closing socket"); 
         exit(EXIT_FAILURE); 
     }
+}
+
+
+void receive_nb_clients(){
+    int sockfd; 
+    response_server_udp_t response_received; 
+    if((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1) {
+        perror("Error creating socket");
+        exit(EXIT_FAILURE);
+    }
+
+    if(recvfrom(sockfd, &response_received, sizeof(response_server_udp_t), 0, NULL, 0)==-1){
+        if(errno==EINTR){
+            perror("[ERROR] - Error receiving message"); 
+            exit(EXIT_FAILURE); 
+        }
+    }
+
+    if(close(sockfd) == -1) {
+        perror("Error closing socket");
+        exit(EXIT_FAILURE);
+    }
+
 }

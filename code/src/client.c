@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
 
     pseudo = pseudo_entry(); 
     send_pseudo_to_server(pseudo, port, address_ip); 
-
+    
     display_menu(3, port, address_ip); 
     handler_menu(3, port, address_ip); 
 

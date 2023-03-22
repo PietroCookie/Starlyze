@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
     int sockfd, type_request_received, nb_client=0; 
     struct sockaddr_in server_address, client_address; 
     socklen_t address_length = sizeof(struct sockaddr_in); 
-    request_client_udp request_received; 
+    request_client_udp_t request_received; 
     struct sigaction action; 
     list_connected_client* connected_clients; 
     
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]){
     while(stop==0){
         
         // Read a request received 
-        if(recvfrom(sockfd, &request_received, sizeof(request_client_udp), 0,
+        if(recvfrom(sockfd, &request_received, sizeof(request_client_udp_t), 0,
                     (struct sockaddr*)&client_address, &address_length)==-1){
             if(errno!=EINTR){
                 perror("[ERROR] - Error receiving message"); 
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]){
         type_request_received = request_received.type_request; 
 
         switch(type_request_received){
-            case FIRST_CONNEXION_SEND_PSEUDO :
+            case CLIENT_FIRST_CONNEXION_SEND_PSEUDO :
                 nb_client++; 
                 char client_address_str[INET_ADDRSTRLEN];
                 inet_ntop(AF_INET, &(client_address.sin_addr), client_address_str, INET_ADDRSTRLEN);

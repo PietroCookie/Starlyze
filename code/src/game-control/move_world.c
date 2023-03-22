@@ -37,14 +37,22 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 			break;
 
 		case UP:
+<<<<<<< HEAD
 			if(entity_move->type == PLAYER && level->map[entity_move->posX][entity_move->posY].type == SPRITE_LADDER) {
+=======
+			if((entity_move->type == PLAYER && level->map[entity_move->posX][entity_move->posY].type == SPRITE_LADDER) || (entity_move->type == ENEMY && entity_move->enemy.type == PROBE)) {
+>>>>>>> main
 				posY_dest--;
 				posY_height--;
 			}
 			break;
 
 		case DOWN:
+<<<<<<< HEAD
 			if(entity_move->type == PLAYER && level->map[entity_move->posX][entity_move->posY].type == SPRITE_LADDER) {
+=======
+			if((entity_move->type == PLAYER && level->map[entity_move->posX][entity_move->posY].type == SPRITE_LADDER) || (entity_move->type == ENEMY && entity_move->enemy.type == PROBE)) {
+>>>>>>> main
 				posY_dest++;
 				posY_height++;
 			}
@@ -114,7 +122,11 @@ int check_validation_move(level_info_t *level, int posX_dest, int posY_dest, typ
 
 	if(validate && type_sprite != SPRITE_PROBE && (direction == LEFT || direction == RIGHT)) {
 		if((level->map[posX_dest][posY_height+1].type != SPRITE_BLOCK && level->map[posX_dest][posY_height+1].type != SPRITE_LADDER)
+<<<<<<< HEAD
 			|| (level->map[posX_width][posY_height+1].type != SPRITE_BLOCK && level->map[posX_width][posY_height+1].type != SPRITE_LADDER) )
+=======
+			|| (level->map[posX_width][posY_height+1].type != SPRITE_BLOCK && level->map[posX_width][posY_height+1].type != SPRITE_LADDER))
+>>>>>>> main
 			validate = 0;
 	}
 

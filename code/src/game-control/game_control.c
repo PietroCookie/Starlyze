@@ -4,9 +4,19 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <locale.h>
+<<<<<<< HEAD
 
 
 #include "world_info.h"
+=======
+#include <signal.h>
+#include <time.h>
+
+
+
+#include "world_info.h"
+#include "level_info.h"
+>>>>>>> main
 #include "move_world.h"
 #include "entity.h"
 #include "player.h"
@@ -19,6 +29,7 @@
 
 void * p_thread_player = thread_player;
 void * p_thread_enemy = thread_enemy;
+<<<<<<< HEAD
 
 void game_control(int num_player)
 {
@@ -33,11 +44,45 @@ void game_control(int num_player)
 
 	interface_game_t *interface;
 	bool quit = FALSE;
+=======
+// void * p_thread_trap = thread_trap;
+
+bool quit = FALSE;
+
+void handler_exit(int signum) {
+	quit = TRUE;
+}
+
+void game_control(int num_player)
+{
+	struct sigaction action;
+	game_control_t game_control_infos;
+	int i;
+	// int *tab_infos;
+	pthread_t *thread_player, *thread_enemy, *thread_trap;
+
+
+	interface_game_t *interface;
+>>>>>>> main
 	// char ch;
 	level_display_t level_display;
 
 	
 	srand(time(NULL));
+<<<<<<< HEAD
+=======
+	sigemptyset(&action.sa_mask);
+    action.sa_flags = 0;
+    action.sa_handler = handler_exit;
+    if(sigaction(SIGCHLD, &action, NULL) == -1) {
+        perror("Error positioning handler (1)");
+        exit(EXIT_FAILURE);    
+    }
+    if(sigaction(SIGINT, &action, NULL) == -1) {
+        perror("Error positioning handler (2)");
+        exit(EXIT_FAILURE);    
+    }
+>>>>>>> main
 
 	load_world_info(&game_control_infos.world_info, "test.world");
 
@@ -59,6 +104,7 @@ void game_control(int num_player)
 
 
 	// Create enemy
+<<<<<<< HEAD
 	number_total_enemy = load_enemy_world(&game_control_infos);
 	if((thread_enemy = malloc(number_total_enemy * sizeof(pthread_t))) == NULL){
 		perror("Error allocating enemy thread");
@@ -88,6 +134,20 @@ void game_control(int num_player)
 	}
 
 
+=======
+	thread_enemy = launch_enemy(&game_control_infos);
+
+	// Create thread trap
+	if((thread_trap = malloc(game_control_infos.world_info.total_level)) == NULL) {
+		perror("Error allocating memory for thread_trap");
+		exit(EXIT_FAILURE);
+	}
+	for (i = 0; i < game_control_infos.world_info.total_level; i++)
+		if(pthread_create(&thread_trap[i], NULL, thread_trap_level, &game_control_infos.world_info.levels[i]) != 0) {
+			fprintf(stderr, "Error create thread for trap");
+		}
+	
+>>>>>>> main
 
 	setlocale(LC_ALL, "");
 	ncurses_init();
@@ -105,10 +165,18 @@ void game_control(int num_player)
 		// if((ch == 'Q') || (ch == 'q'))
 		// 	quit = TRUE;
 			
+<<<<<<< HEAD
 		convert_level_info(&level_display, game_control_infos.world_info.levels[2], game_control_infos.enemy[2], game_control_infos.world_info.levels[2].number_enemy);
 		refresh_win_level_game(interface, level_display);
 
 		sleep(1);
+=======
+		convert_level_info(&level_display, game_control_infos.world_info.levels[0], game_control_infos.enemy[0], game_control_infos.world_info.levels[0].number_enemy);
+		refresh_win_level_game(interface, level_display);
+		
+
+		
+>>>>>>> main
 	}
 	
 	ncurses_stop();
@@ -116,14 +184,39 @@ void game_control(int num_player)
 	interface_game_delete(&interface);
 
 
+<<<<<<< HEAD
 
 	
+=======
+	for (i = 0; i < game_control_infos.world_info.total_level; i++)
+		if(pthread_cancel(thread_trap[i]) != 0) {
+			fprintf(stderr, "Error cancel thread for trap");
+		}
+
+	for (i = 0; i < game_control_infos.number_player; i++)
+		if(pthread_cancel(thread_player[i]) != 0) {
+			fprintf(stderr, "Error cancel thread player");
+		}
+	for (i = 0; i < game_control_infos.number_total_enemy; i++)
+		if(pthread_cancel(thread_enemy[i]) != 0) {
+			fprintf(stderr, "Error cancel thread enemy");
+		}
+
+	for (i = 0; i < game_control_infos.world_info.total_level; i++)
+		if(pthread_join(thread_trap[i], NULL) != 0) {
+			fprintf(stderr, "Error join thread for trap");
+		}
+>>>>>>> main
 	for (i = 0; i < game_control_infos.number_player; i++)
 		if(pthread_join(thread_player[i], NULL)) {
 			fprintf(stderr, "Error join thread player");
 		}
+<<<<<<< HEAD
 
 	for (i = 0; i < number_total_enemy; i++)
+=======
+	for (i = 0; i < game_control_infos.number_total_enemy; i++)
+>>>>>>> main
 		if(pthread_join(thread_enemy[i], NULL)) {
 			fprintf(stderr, "Error join thread enemy");
 		}
@@ -140,10 +233,55 @@ void game_control(int num_player)
 	free(thread_player);
 }
 
+<<<<<<< HEAD
 int load_enemy_world(game_control_t *game_control_infos) {
 	int i, number_total_enemy = 0;
 	int current_robot, current_probe, current_enemy;
 
+=======
+pthread_t* launch_enemy(game_control_t *game_control_infos) {
+	int i, current_level, current_enemy_level;
+	enemy_infos_thread_t *enemy_infos_thread;
+	pthread_t *thread_enemy;
+
+	load_enemy_world(game_control_infos);
+	if((thread_enemy = malloc(game_control_infos->number_total_enemy * sizeof(pthread_t))) == NULL){
+		perror("Error allocating enemy thread");
+		exit(EXIT_FAILURE);
+	}
+
+	current_level = 0;
+	current_enemy_level = 0;
+	for (i = 0; i < game_control_infos->number_total_enemy; i++) {
+		if((enemy_infos_thread = malloc(sizeof(enemy_infos_thread_t))) == NULL) {
+			perror("Error allocating memory for passing argument in thread enemy");
+			exit(EXIT_FAILURE);
+		}
+
+		enemy_infos_thread->level = current_level;
+		enemy_infos_thread->id_enemy = current_enemy_level++;
+		enemy_infos_thread->game_control = game_control_infos;
+
+		if(pthread_create(&thread_enemy[i], NULL, p_thread_enemy, enemy_infos_thread) != 0){
+			fprintf(stderr, "Error create thread for enemy");
+		}
+
+		if(current_enemy_level >= game_control_infos->world_info.levels[current_level].number_enemy) {
+			current_level++;
+			current_enemy_level = 0;
+		}
+	}
+
+	return thread_enemy;
+}
+
+void load_enemy_world(game_control_t *game_control_infos) {
+	int i;
+	int current_robot, current_probe, current_enemy;
+
+	game_control_infos->number_total_enemy = 0;
+
+>>>>>>> main
 	if((game_control_infos->enemy = malloc(game_control_infos->world_info.total_level * sizeof(entity_t*))) == NULL) {
 		perror("Error allocating memory for enemies array");
 		exit(EXIT_FAILURE);
@@ -153,7 +291,11 @@ int load_enemy_world(game_control_t *game_control_infos) {
 		current_robot = 0;
 		current_probe = 0;
 		current_enemy = 0;
+<<<<<<< HEAD
 		number_total_enemy += game_control_infos->world_info.levels[i].number_enemy;
+=======
+		game_control_infos->number_total_enemy += game_control_infos->world_info.levels[i].number_enemy;
+>>>>>>> main
 
 		if((game_control_infos->enemy[i] = malloc(game_control_infos->world_info.levels[i].number_enemy * sizeof(entity_t))) == NULL) {
 			perror("Error allocating memery for enemies array in level");
@@ -185,6 +327,59 @@ int load_enemy_world(game_control_t *game_control_infos) {
 		}
 		
 	}
+<<<<<<< HEAD
 
 	return number_total_enemy;
+=======
+}
+
+void *thread_trap_level(void *arg) {
+	level_info_t *level_info;
+	int i;
+	int posX, posY, zone_trap;
+	struct timespec time_wait;
+
+	level_info = (level_info_t *)arg;
+
+	time_wait.tv_sec = 0;
+	time_wait.tv_nsec = 100000000;
+
+	while (1)
+	{
+		i = 0;
+		while (i < NUMBER_TRAP && level_info->trap[i] != -1)
+		{
+			posX = level_info->trap[i] % WIDTH_LEVEL;
+			posY = (level_info->trap[i] - posX) / WIDTH_LEVEL;
+
+
+			zone_trap = (posY / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX / WIDTH_ZONE_LEVEL);
+
+			if(pthread_mutex_lock(&level_info->mutex_zone[zone_trap]) != 0) {
+				fprintf(stderr, "Error mutex lock zone level in thread_trap_level");
+				exit(EXIT_FAILURE);
+			}
+
+
+			if(level_info->map[posX][posY].specification == -1)
+				level_info->map[posX][posY].specification = 1;
+			else
+				level_info->map[posX][posY].specification = -1;
+
+
+			if(pthread_mutex_unlock(&level_info->mutex_zone[zone_trap]) != 0) {
+				fprintf(stderr, "Error mutex unlock zone level in thread_trap_level");
+				exit(EXIT_FAILURE);
+			}
+
+			i++;
+			pthread_testcancel();
+			if(nanosleep(&time_wait, NULL) == -1) {
+				fprintf(stderr, "Error with nanosleep in thread_trap_level");
+			}
+		}
+	}
+
+	return NULL;
+>>>>>>> main
 }

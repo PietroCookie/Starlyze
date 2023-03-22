@@ -29,10 +29,16 @@ void load_level_info(level_info_t *level_info, int file){
 			exit(EXIT_FAILURE);
 		}
 
+<<<<<<< HEAD
 	if(pthread_mutex_init(&level_info->mutex_level, NULL) != 0) {
 		fprintf(stderr, "Error initialise mutex level");
 		exit(EXIT_FAILURE);
 	}
+=======
+	for (i = 0; i < WIDTH_LEVEL; i++)
+		for (j = 0; j < HEIGHT_LEVEL; j++)
+			level_info->map[i][j].type = 0;
+>>>>>>> main
 	
 	// Load sprite of level
 	for (i = 0; i < WIDTH_LEVEL; i++)
@@ -55,7 +61,11 @@ void load_level_info(level_info_t *level_info, int file){
 			}
 		}
 
+<<<<<<< HEAD
 	level_info->number_enemy = current_probe + current_robot;
+=======
+	level_info->number_enemy = current_probe + current_robot;	
+>>>>>>> main
 }
 
 void delete_level_info(level_info_t *level_info){

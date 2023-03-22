@@ -6,6 +6,10 @@
 #include "functions.h"
 
 #include "level_display.h"
+<<<<<<< HEAD
+=======
+#include "sprite.h"
+>>>>>>> main
 
 void interface_dimensions_game(unsigned short width, unsigned short height) {
 	if((COLS < width) || (LINES < height)) {
@@ -43,7 +47,12 @@ void interface_game_delete(interface_game_t** interface) {
 }
 
 void refresh_win_level_game(interface_game_t* interface, level_display_t level_display) {
+<<<<<<< HEAD
 	int i, j;
+=======
+	int i, j, sprite;
+	sprite_t sp;
+>>>>>>> main
 
 	for (i = 0; i < WIDTH_LEVEL_GAME; i++)
 		for (j = 0; j < HEIGHT_LEVEL_GAME; j++)
@@ -52,6 +61,7 @@ void refresh_win_level_game(interface_game_t* interface, level_display_t level_d
 	for (i = 0; i < WIDTH_LEVEL_GAME; i++)
 		for (j = 0; j < HEIGHT_LEVEL_GAME; j++)
 		{
+<<<<<<< HEAD
 			switch (level_display.tab[i][j])
 			{
 			case SPRITE_BLOCK:
@@ -69,6 +79,34 @@ void refresh_win_level_game(interface_game_t* interface, level_display_t level_d
 			default:
 				break;
 			}
+=======
+			sprite = level_display.tab[i][j];
+			if(sprite == SPRITE_BLOCK)
+				paint_block(interface->win_level, i, j);
+			else if(sprite == SPRITE_LADDER)
+				paint_ladder(interface->win_level, i, j);
+			else if(sprite == SPRITE_TRAP)
+				paint_trap(interface->win_level, i, j);
+			else if(sprite >= SPECIFICATION_GATE && sprite < (SPECIFICATION_GATE + INTERVALLE_SPECIFICATION))
+				paint_gate(interface->win_level, i, j, sprite - SPECIFICATION_GATE);
+			else if(sprite >= SPECIFICATION_KEY && sprite < (SPECIFICATION_KEY + INTERVALLE_SPECIFICATION))
+				paint_key(interface->win_level, i, j, sprite - SPECIFICATION_KEY);
+			else if(sprite >= SPECIFICATION_DOOR && sprite < (SPECIFICATION_DOOR + INTERVALLE_SPECIFICATION)) {
+				sp.type = SPRITE_DOOR;
+				sp.specification = sprite - SPECIFICATION_DOOR;
+				paint_door(interface->win_level, i, j, sp);
+			}
+			else if(sprite == SPRITE_EXIT)
+				paint_exit(interface->win_level, i, j);
+			else if(sprite == SPRITE_START)
+				paint_start(interface->win_level, i, j);
+			else if(sprite == SPRITE_ROBOT)
+				paint_robot(interface->win_level, i, j);
+			else if(sprite == SPRITE_PROBE)
+				paint_probe(interface->win_level, i, j);
+			
+
+>>>>>>> main
 		}
 	
 	window_refresh(interface->win_level);

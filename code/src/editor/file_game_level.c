@@ -17,8 +17,7 @@ game_level_t open_file_game_level(const char* name_file, file_game_level_t* file
 				exit(EXIT_FAILURE);
 			}
             file_exist = 0;
-        }else{
-			
+        }else{		
             perror("Error open file");
             exit(EXIT_FAILURE);
         }
@@ -42,7 +41,7 @@ game_level_t open_file_game_level(const char* name_file, file_game_level_t* file
 		file_game_level->address_table_void.position = necessary_size_address_table();
 		write_address_table_in_file_descriptor(file_game_level->file_descriptor, file_game_level->address_table_void);
 		
-		initialise_game_level(&game_level, DEFAULT_WIDTH_LEVEL_GAME, DEFAULT_HEIGHT_LEVEL_GAME);
+		initialise_game_level(&game_level);
 		first_save_game_level_in_file(file_game_level, game_level);
 	}
 
@@ -51,7 +50,6 @@ game_level_t open_file_game_level(const char* name_file, file_game_level_t* file
 
 void delete_file_game_level(file_game_level_t* file_game_level){
 	if(close(file_game_level->file_descriptor)){
-		
 		perror("Error closing file");
 		exit(EXIT_FAILURE);
 	}
@@ -264,7 +262,7 @@ void load_level_in_file(file_game_level_t* file_game_level, game_level_t* game_l
 					valid = 1;
 					file_game_level->address_table = address_table;
 					if(next > 0){
-						initialise_game_level(game_level, DEFAULT_WIDTH_LEVEL_GAME, DEFAULT_HEIGHT_LEVEL_GAME);
+						initialise_game_level(game_level);
 						first_save_game_level_in_file(file_game_level, *game_level);
 					}
 					next_index = file_game_level->current_index_address_table;

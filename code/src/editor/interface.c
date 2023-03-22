@@ -4,6 +4,7 @@
 
 #include "functions.h"
 #include "sprite.h"
+#include "game_level.h"
 
 void interface_dimensions(unsigned short width, unsigned short height) {
     if((COLS < width) || (LINES < height)) {
@@ -171,20 +172,15 @@ void refresh_win_level(interface_t* interface){
 	int i, j;
 	element_game_level_t* element_select;
 
-	for (i = 0; i < interface->game_level.width; i++)
-	{
-		for (j = 0; j < interface->game_level.height; j++)
-		{
+	for (i = 0; i < WIDTH_LEVEL_GAME; i++)
+		for (j = 0; j < HEIGHT_LEVEL_GAME; j++)
 			window_mvaddch_col(interface->win_level, j, i, COLOR_BLACK, ' ');
-		}
-	}
 	
-	for (i = 0; i < interface->game_level.width; i++)
-	{
-		for (j = 0; j < interface->game_level.height; j++)
+	for (i = 0; i < WIDTH_LEVEL_GAME; i++)
+		for (j = 0; j < HEIGHT_LEVEL_GAME; j++)
 		{
 			element_select = interface->game_level.elements_map[i][j];
-			if(element_select != NULL && element_select->posX == i && element_select->posY == j){
+			if(element_select != NULL && element_select->posX == i && element_select->posY == j)
 				switch (element_select->sprite.type)
 				{
 					case SPRITE_BLOCK:
@@ -238,9 +234,7 @@ void refresh_win_level(interface_t* interface){
 					default:
 						break;
 				}
-			}
 		}
-	}
 	
 	window_refresh(interface->win_level);
 }

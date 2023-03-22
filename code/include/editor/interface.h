@@ -4,7 +4,6 @@
 #include <locale.h>
 
 #include "window.h"
-#include "colors.h"
 #include "paint_tools.h"
 #include "game_level.h"
 #include "file_game_level.h"

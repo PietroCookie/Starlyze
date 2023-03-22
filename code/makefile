@@ -4,7 +4,7 @@
 
 CC = gcc
 CFLAGS = -Wall -O3 -Werror
-LDFLAGS = -lncurses
+LDFLAGS = -lncurses -pthread
 CCLIBS = 
 
 # DEBUG FLAGS (make debug : [#define _DEBUG_])
@@ -13,11 +13,11 @@ LDFLAGS_DEBUG = -fsanitize=address
 
 # Le nom du projet (utile pour le nom de l'archive)
 PROJECT_NAME = Starlyze
-# Le nom de l'executable a creer
-EXE = editor
+# Le nom des executables a creer
+EXE = editor game-control-test
 
 # Liste des dossiers contenus dans SRC_DIR et INCLUDE_DIR
-DIR = editor global ncurses
+DIR = editor global ncurses game-control display_game
 
 DIR_OBJ = obj
 DIR_EXE = bin
@@ -76,17 +76,6 @@ $(addprefix $(DIR_OBJ)/,%.o) : $(addprefix $(SRC_DIR)/,%.c)
 	@echo "create >>> $@"
 	@${CC} ${CFLAGS} -c $< -o $@ $(CPATH)
 			
-##############################
-### generation des modules objet
-# $(DIR_OBJ)$(PRINCIPAL).o : $(DIR_SRC)$(PRINCIPAL).c $(DEP)
-# 	$(CC) $(CFLAGS) $(CPATH) $< -c -o $@
-# $(DIR_OBJ)%.o : $(DIR_SRC)%.c $(DIR_INCLUDE)%.h
-# 	$(CC) $(CFLAGS) $(CPATH) $< -c -o $@
-		
-##############################
-### regle principale : edition de lien
-# $(EXE) : $(OBJ)
-# 	$(CC) $^ -o $@ $(LDFLAGS) 
 	
 ##############################
 ### regles complementaires usuelles

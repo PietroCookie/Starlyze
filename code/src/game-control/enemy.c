@@ -1,9 +1,8 @@
 #include "enemy.h"
 
-#include "entity.h"
+#include "game_control.h"
 #include "move_world.h"
-
-#include "include_game.h"
+#include "entity.h"
 
 #include <unistd.h>
 
@@ -13,24 +12,26 @@ void initialiser_enemy(enemy_t *enemy, type_enemy_enum type){
 
 void *thread_enemy(void *arg){
 	int level, id_enemy, direction;
+	game_control_t *game_control;
 
-	level = ((int *)arg)[0];
-	id_enemy = ((int *)arg)[1];
+	level = ((enemy_infos_thread_t *)arg)->level;
+	id_enemy = ((enemy_infos_thread_t *)arg)->id_enemy;
+	game_control = ((enemy_infos_thread_t *)arg)->game_control;
 	free(arg);
 
-	direction = direction_alea(enemy[level][id_enemy].enemy.type);
+	direction = direction_alea(game_control->enemy[level][id_enemy].enemy.type);
 
 	while (1) {
-		if(!enemy[level][id_enemy].freeze) {
-			if(!move_level(&world_info.levels[level], &enemy[level][id_enemy], direction, number_player, players)) {
-				if(enemy[level][id_enemy].enemy.type == ROBOT) {
+		if(!game_control->enemy[level][id_enemy].freeze) {
+			if(!move_level(&game_control->world_info.levels[level], &game_control->enemy[level][id_enemy], direction, game_control->number_player, game_control->players)) {
+				if(game_control->enemy[level][id_enemy].enemy.type == ROBOT) {
 					if(direction == LEFT)
 						direction = RIGHT;
 					else
 						direction = LEFT;
 				}
 				else {
-					direction = direction_alea(enemy[level][id_enemy].enemy.type);
+					direction = direction_alea(game_control->enemy[level][id_enemy].enemy.type);
 				}
 			}
 
@@ -38,7 +39,7 @@ void *thread_enemy(void *arg){
 		}
 		else {
 			sleep(5);
-			enemy[level][id_enemy].freeze = 0;
+			game_control->enemy[level][id_enemy].freeze = 0;
 		}
 	}
 

@@ -5,12 +5,12 @@
 #include <pthread.h>
 #include <locale.h>
 
-#include "include_game.h"
 
 #include "world_info.h"
 #include "move_world.h"
 #include "entity.h"
 #include "player.h"
+#include "enemy.h"
 
 #include "functions.h"
 #include "interface_game.h"
@@ -22,9 +22,11 @@ void * p_thread_enemy = thread_enemy;
 
 void game_control(int num_player)
 {
+	game_control_t game_control_infos;
 	int i;
 	int current_level, current_enemy_level;
-	int *tab_infos;
+	// int *tab_infos;
+	enemy_infos_thread_t *enemy_infos_thread;
 	pthread_t *thread_player, *thread_enemy;
 	int number_total_enemy;
 
@@ -37,27 +39,27 @@ void game_control(int num_player)
 	
 	srand(time(NULL));
 
-	load_world_info(&world_info, "test.world");
+	load_world_info(&game_control_infos.world_info, "test.world");
 
-	number_player = num_player;
+	game_control_infos.number_player = num_player;
 
 	// Create player and thread
-	if((players = malloc(number_player * sizeof(entity_t))) == NULL) {
+	if((game_control_infos.players = malloc(game_control_infos.number_player * sizeof(entity_t))) == NULL) {
 		perror("Error allocating player thread");
 		exit(EXIT_FAILURE);
 	}
-	if((thread_player = malloc(number_player * sizeof(pthread_t))) == NULL) {
+	if((thread_player = malloc(game_control_infos.number_player * sizeof(pthread_t))) == NULL) {
 		perror("Error allocating player thread");
 		exit(EXIT_FAILURE);
 	}
-	for (i = 0; i < number_player; i++)
+	for (i = 0; i < game_control_infos.number_player; i++)
 		if(pthread_create(&thread_player[i], NULL, p_thread_player, NULL) != 0){
 			fprintf(stderr, "Error create thread for player");
 		}
 
 
 	// Create enemy
-	number_total_enemy = load_enemy_world();
+	number_total_enemy = load_enemy_world(&game_control_infos);
 	if((thread_enemy = malloc(number_total_enemy * sizeof(pthread_t))) == NULL){
 		perror("Error allocating enemy thread");
 		exit(EXIT_FAILURE);
@@ -66,19 +68,20 @@ void game_control(int num_player)
 	current_level = 0;
 	current_enemy_level = 0;
 	for (i = 0; i < number_total_enemy; i++) {
-		if((tab_infos = malloc(2 * sizeof(int))) == NULL) {
+		if((enemy_infos_thread = malloc(sizeof(enemy_infos_thread_t))) == NULL) {
 			perror("Error allocating memory for passing argument in thread enemy");
 			exit(EXIT_FAILURE);
 		}
 
-		tab_infos[0] = current_level;
-		tab_infos[1] = current_enemy_level++;
+		enemy_infos_thread->level = current_level;
+		enemy_infos_thread->id_enemy = current_enemy_level++;
+		enemy_infos_thread->game_control = &game_control_infos;
 
-		if(pthread_create(&thread_enemy[i], NULL, p_thread_enemy, tab_infos) != 0){
+		if(pthread_create(&thread_enemy[i], NULL, p_thread_enemy, enemy_infos_thread) != 0){
 			fprintf(stderr, "Error create thread for enemy");
 		}
 
-		if(current_enemy_level >= world_info.levels[current_level].number_enemy) {
+		if(current_enemy_level >= game_control_infos.world_info.levels[current_level].number_enemy) {
 			current_level++;
 			current_enemy_level = 0;
 		}
@@ -102,7 +105,7 @@ void game_control(int num_player)
 		// if((ch == 'Q') || (ch == 'q'))
 		// 	quit = TRUE;
 			
-		convert_level_info(&level_display, world_info.levels[2], enemy[2], world_info.levels[2].number_enemy);
+		convert_level_info(&level_display, game_control_infos.world_info.levels[2], game_control_infos.enemy[2], game_control_infos.world_info.levels[2].number_enemy);
 		refresh_win_level_game(interface, level_display);
 
 		sleep(1);
@@ -115,7 +118,7 @@ void game_control(int num_player)
 
 
 	
-	for (i = 0; i < number_player; i++)
+	for (i = 0; i < game_control_infos.number_player; i++)
 		if(pthread_join(thread_player[i], NULL)) {
 			fprintf(stderr, "Error join thread player");
 		}
@@ -127,55 +130,55 @@ void game_control(int num_player)
 	
 
 
-	for (i = 0; i < world_info.total_level; i++)
-		free(enemy[i]);
-	free(enemy);
+	for (i = 0; i < game_control_infos.world_info.total_level; i++)
+		free(game_control_infos.enemy[i]);
+	free(game_control_infos.enemy);
 
-	delete_world_info(&world_info);
+	delete_world_info(&game_control_infos.world_info);
 
 	free(thread_enemy);
 	free(thread_player);
 }
 
-int load_enemy_world() {
+int load_enemy_world(game_control_t *game_control_infos) {
 	int i, number_total_enemy = 0;
 	int current_robot, current_probe, current_enemy;
 
-	if((enemy = malloc(world_info.total_level * sizeof(entity_t*))) == NULL) {
+	if((game_control_infos->enemy = malloc(game_control_infos->world_info.total_level * sizeof(entity_t*))) == NULL) {
 		perror("Error allocating memory for enemies array");
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; i < world_info.total_level; i++) {
+	for (i = 0; i < game_control_infos->world_info.total_level; i++) {
 		current_robot = 0;
 		current_probe = 0;
 		current_enemy = 0;
-		number_total_enemy += world_info.levels[i].number_enemy;
+		number_total_enemy += game_control_infos->world_info.levels[i].number_enemy;
 
-		if((enemy[i] = malloc(world_info.levels[i].number_enemy * sizeof(entity_t))) == NULL) {
+		if((game_control_infos->enemy[i] = malloc(game_control_infos->world_info.levels[i].number_enemy * sizeof(entity_t))) == NULL) {
 			perror("Error allocating memery for enemies array in level");
 			exit(EXIT_FAILURE);
 		}
 
-		while (world_info.levels[i].robot[current_robot] != -1)
+		while (game_control_infos->world_info.levels[i].robot[current_robot] != -1)
 		{
-			enemy[i][current_enemy].type = ENEMY;
-			enemy[i][current_enemy].posX = world_info.levels[i].robot[current_robot] % WIDTH_LEVEL;
-			enemy[i][current_enemy].posY = (world_info.levels[i].robot[current_robot] - enemy[i][current_enemy].posX) / WIDTH_LEVEL;
-			enemy[i][current_enemy].freeze = 0;
-			enemy[i][current_enemy].enemy.type = ROBOT;
+			game_control_infos->enemy[i][current_enemy].type = ENEMY;
+			game_control_infos->enemy[i][current_enemy].posX = game_control_infos->world_info.levels[i].robot[current_robot] % WIDTH_LEVEL;
+			game_control_infos->enemy[i][current_enemy].posY = (game_control_infos->world_info.levels[i].robot[current_robot] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL;
+			game_control_infos->enemy[i][current_enemy].freeze = 0;
+			game_control_infos->enemy[i][current_enemy].enemy.type = ROBOT;
 
 			current_enemy++;
 			current_robot++;
 		}
 
-		while (world_info.levels[i].probe[current_probe] != -1)
+		while (game_control_infos->world_info.levels[i].probe[current_probe] != -1)
 		{
-			enemy[i][current_enemy].type = ENEMY;
-			enemy[i][current_enemy].posX = world_info.levels[i].probe[current_probe] % WIDTH_LEVEL;
-			enemy[i][current_enemy].posY = (world_info.levels[i].probe[current_probe] - enemy[i][current_enemy].posX) / WIDTH_LEVEL;
-			enemy[i][current_enemy].freeze = 0;
-			enemy[i][current_enemy].enemy.type = PROBE;
+			game_control_infos->enemy[i][current_enemy].type = ENEMY;
+			game_control_infos->enemy[i][current_enemy].posX = game_control_infos->world_info.levels[i].probe[current_probe] % WIDTH_LEVEL;
+			game_control_infos->enemy[i][current_enemy].posY = (game_control_infos->world_info.levels[i].probe[current_probe] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL;
+			game_control_infos->enemy[i][current_enemy].freeze = 0;
+			game_control_infos->enemy[i][current_enemy].enemy.type = PROBE;
 
 			current_enemy++;
 			current_probe++;

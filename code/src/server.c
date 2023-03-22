@@ -9,6 +9,7 @@
 
 #include "network_request.h"
 #include "server_udp.h"
+#include "create_game.h"
 int stop=0; 
 
 void handler(int signum){
@@ -24,6 +25,7 @@ int main(int argc, char *argv[]){
     response_server_udp_t response; 
     struct sigaction action; 
     list_connected_client* connected_clients; 
+    list_world_response_t list_world; 
     
     // Initialise the list of clients 
     connected_clients = init_list_connected_client(nb_client); 
@@ -64,6 +66,7 @@ int main(int argc, char *argv[]){
 
     // Wait for client requests
     printf("Wait for a request [CTRL + C to stop]\n"); 
+
     while(stop==0){
         
         // Read a request received 
@@ -82,21 +85,46 @@ int main(int argc, char *argv[]){
             case CLIENT_FIRST_CONNEXION_SEND_PSEUDO :
                 nb_client++; 
                 char client_address_str[INET_ADDRSTRLEN];
+                response.type_request = SERVER_SEND_ID_CLIENTS; 
+                response.content.id_clients = nb_client; 
                 inet_ntop(AF_INET, &(client_address.sin_addr), client_address_str, INET_ADDRSTRLEN);
                 save_new_client(connected_clients, request_received.content.pseudo, client_address_str, nb_client); 
+                if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0, 
+                        (struct sockaddr*)&client_address, address_length)==-1){
+                    perror("Error sending response");
+                    exit(EXIT_FAILURE);
+                }
                 break; 
 
             case CLIENT_NB_CLIENTS:
-                printf("Type de requete recu : %d\n", request_received.type_request); 
                 response.type_request = SERVER_SEND_NB_CLIENTS; 
                 response.content.nb_clients = nb_client;
-
                 if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0,
                         (struct sockaddr*)&client_address, address_length) == -1) {
                     perror("Error sending response");
                     exit(EXIT_FAILURE);
                 }
                 break;
+            
+            case CLIENT_DISCONNECTION: 
+                delete_client_disconnection(connected_clients, request_received.content.id_client, nb_client); 
+                printf("Type de requete reçu : %d\n", request_received.type_request);
+                printf("ID Client a deconnecté : %d\n", request_received.content.id_client); 
+
+                break; 
+
+            case CLIENT_RECOVERING_LIST_WORLDS: 
+                printf("Requete reçu afin d'envoyer la liste des mondes\n"); 
+                list_world = recovering_existing_worlds();
+                response.content.list_world.nb_world = list_world.nb_world;
+                for(int i=0; i<list_world.nb_world; i++){
+                    strcpy(response.content.list_world.name_world[i], list_world.name_world[i]); 
+                }
+                if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0,
+                        (struct sockaddr*)&client_address, address_length) == -1) {
+                    perror("Error sending response");
+                    exit(EXIT_FAILURE);
+                }
         }
         
     }

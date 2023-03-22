@@ -49,36 +49,17 @@ void print_list_connected_client(list_connected_client list, int nb_clients){
     }
 }
 
-// void send_nb_client(int nb_clients, int port){
-//     int sockfd; 
-//     struct sockaddr_in address; 
-//     response_server_udp_t response; 
-
-//     // Create socket
-//     if((sockfd=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP))==-1){
-//         perror("[ERROR] - Error creating socket"); 
-//         exit(EXIT_FAILURE);
-//     }
-
-//     // Fill the address structure
-//     memset(&address, 0, sizeof(struct sockaddr_in)); 
-//     address.sin_family = AF_INET; 
-//     address.sin_port = htons(port); 
-//     if(inet_pton(AF_INET, port, &address.sin_addr) != 1){
-//         perror("[ERROR] - Error converting address"); 
-//         exit(EXIT_FAILURE); 
-//     }
-
-//     response.type_request = SERVER_SEND_NB_CLIENTS; 
-//     response.content.nb_clients = nb_clients; 
-
-//     if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0, 
-//             (struct sockaddr*)&address, sizeof(struct sockaddr_in))==-1){
-//         perror("[ERROR] - Error sending request"); 
-//         exit(EXIT_FAILURE); 
-//     }
-
-//     if(close(sockfd)==-1){
-//         perror("[ERROR] - Error closing socket"); 
-//     }
-// }
+void delete_client_disconnection(list_connected_client* list, int id_client, int nb_clients){
+    // if (id_client < 0) {
+    //     printf("L'indice %d est invalide.\n", id_client);
+    //     return;
+    // }
+    // // Libérer la mémoire allouée pour l'adresse client
+    // free(list->list[id_client].client_address);
+    
+    // // Déplacer les éléments suivants vers la gauche
+    // for (int i = id_client; i < list->num_clients - 1; i++) {
+    //     list->list[i] = list->list[i+1];
+    // }
+    printf("Delete client disconnection\n"); 
+}

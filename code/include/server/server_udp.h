@@ -3,29 +3,14 @@
 
 #define MAX_MSG 255
 
-typedef struct{
-    int id; 
-    char pseudo[MAX_MSG]; 
-    char* client_address; 
-}info_client_t; 
+#include "info_client.h"
+#include "game.h"
 
 typedef struct{
     info_client_t* list; 
     int nb_clients;
 }list_connected_client; 
 
-typedef struct{
-    int id; 
-    int nb_participants_final; 
-    int nb_participants_actual;
-    char name_world[MAX_MSG]; 
-    info_client_t* list_players; 
-}game_t; 
-
-typedef struct{
-    game_t* game; 
-    int nb_games;
-}list_game_t; 
 
 list_connected_client* init_list_connected_client(int nb_clients); 
 
@@ -39,7 +24,7 @@ void delete_client_disconnection(list_connected_client* list, int id_client, int
 
 list_game_t* init_list_games(int nb_games); 
 
-void save_new_game(list_game_t* list_game, int nb_games, int nb_participants_final, char name_world[MAX_MSG], info_client_t new_client); 
+void save_new_game(list_game_t* list_game, int nb_games, int nb_participants_final, char name_world[MAX_MSG], info_client_t* new_client); 
 
 void print_list_game(list_game_t list_game); 
 

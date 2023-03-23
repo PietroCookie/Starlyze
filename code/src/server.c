@@ -10,6 +10,7 @@
 #include "network_request.h"
 #include "server_udp.h"
 #include "create_game.h"
+#include "info_client.h"
 int stop=0; 
 
 void handler(int signum){
@@ -27,8 +28,8 @@ int main(int argc, char *argv[]){
     struct sigaction action; 
     list_connected_client* connected_clients; 
     list_world_response_t list_world; 
+    info_client_t* actual_user;
     list_game_t* list_game; 
-    info_client_t actual_user;
     
     // Initialise the list of clients and list of games
     connected_clients = init_list_connected_client(nb_client); 
@@ -93,6 +94,7 @@ int main(int argc, char *argv[]){
                 response.content.id_clients = nb_client; 
                 inet_ntop(AF_INET, &(client_address.sin_addr), client_address_str, INET_ADDRSTRLEN);
                 save_new_client(connected_clients, request_received.content.pseudo, client_address_str, nb_client); 
+                
                 if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0, 
                         (struct sockaddr*)&client_address, address_length)==-1){
                     perror("Error sending response");
@@ -132,26 +134,18 @@ int main(int argc, char *argv[]){
 
             case CLIENT_START_GAMES: 
                 nb_games++; 
-                printf("[INFO] - Requete choix world\n"); 
-                // printf("[INFO] - Monde choisi:%s\n", list_world.name_world[request_received.content.settings_game[0]]); 
-                // printf("[INFO] - Nombre de participant : %d\n", request_received.content.settings_game[1]); 
-                // printf("[INFO] - Id du joueur : %d\n", request_received.content.settings_game[2]); 
-                // printf("[INFO][USER_CLIENT] - Nom : %s | Adresse IP : %s | ID Client : %d\n", 
-                //         connected_clients->list[request_received.content.settings_game[2]].pseudo, 
-                //         connected_clients->list[request_received.content.settings_game[2]].client_address, 
-                //         connected_clients->list[request_received.content.settings_game[2]].id);
+                printf("[INFO] - Request received : START GAMES\n"); 
 
-                actual_user.client_address = malloc(sizeof(info_client_t)*strlen(connected_clients->list[request_received.content.settings_game[2]].client_address));
-                strcpy(actual_user.client_address, connected_clients->list[request_received.content.settings_game[2]].client_address);
-                actual_user.id = connected_clients->list[request_received.content.settings_game[2]].id;
-                strcpy(actual_user.pseudo, connected_clients->list[request_received.content.settings_game[2]].pseudo);
-                printf("[INFO][USER_SERVER] - Nom : %s | Adresse IP : %s | ID Client : %d\n", 
-                        actual_user.pseudo, actual_user.client_address, actual_user.id);
-                char name[255]; 
-                for (int i = 0; i < 255; i++) {
-                    strcpy(name + i*255,list_world);  // copier chaque ligne dans le tableau unidimensionnel
-                }
-                printf("[INFO] - Nom du monde : %s\n", name);
+
+                int id = request_received.content.settings_game[2];
+                char pseudo[255], client_address[255]; 
+                strcpy(pseudo, connected_clients->list[request_received.content.settings_game[2]].pseudo);
+                strcpy(client_address, connected_clients->list[request_received.content.settings_game[2]].client_address);
+
+                // Initialisation de l'utilisateur
+                actual_user = init_info_client(id, pseudo, client_address);
+
+                print_list_client(*list_info_client);
                 save_new_game(list_game, nb_games, request_received.content.settings_game[1], 
                                 list_world.name_world[request_received.content.settings_game[0]], actual_user);
                 break; 

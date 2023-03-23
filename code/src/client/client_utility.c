@@ -92,12 +92,11 @@ void handler_menu(int port, char address_ip[15], int id_client){
             if(choice_world == list_world.nb_world+1){
                 display_menu(nb_clients, port, address_ip); 
                 handler_menu(port, address_ip, id_client); 
-            }else{
-
             }
             break; 
         case 3 :  
             printf("\n\n====================== Rejoindre une partie en attente ======================\n"); 
+            
             break; 
         case 4 : 
             printf("\n\n<<<<<<< Jeu en arrêt ... >>>>>>>\n"); 

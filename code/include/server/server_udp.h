@@ -5,14 +5,10 @@
 
 #include "info_client.h"
 #include "game.h"
-
-typedef struct{
-    info_client_t* list; 
-    int nb_clients;
-}list_connected_client; 
+#include "clients_connected.h"
 
 
-list_connected_client* init_list_connected_client(int nb_clients); 
+// list_connected_client* init_list_connected_client(int nb_clients); 
 
 void save_new_client(list_connected_client* connected_clients, char pseudo[MAX_MSG], char* client_adress, int nb_client); 
 

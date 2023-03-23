@@ -11,6 +11,8 @@
 #include "server_udp.h"
 #include "create_game.h"
 #include "info_client.h"
+#include "clients_connected.h"
+
 int stop=0; 
 
 void handler(int signum){
@@ -32,9 +34,8 @@ int main(int argc, char *argv[]){
     list_game_t* list_game; 
 
     // Initialise the list of clients and list of games
-    connected_clients = init_list_connected_client(nb_client); 
     list_game = init_list_game(nb_games); 
-
+    connected_clients = init_list_connected_client(nb_client);
 
     // Specify handler
     sigemptyset(&action.sa_mask); 
@@ -93,6 +94,7 @@ int main(int argc, char *argv[]){
                 response.type_request = SERVER_SEND_ID_CLIENTS; 
                 response.content.id_clients = nb_client; 
                 inet_ntop(AF_INET, &(client_address.sin_addr), client_address_str, INET_ADDRSTRLEN);
+
                 save_new_client(connected_clients, request_received.content.pseudo, client_address_str, nb_client); 
                 
                 if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0, 
@@ -131,22 +133,24 @@ int main(int argc, char *argv[]){
                     exit(EXIT_FAILURE);
                 }
                 break;
-
+ 
             case CLIENT_START_GAMES: 
                 nb_games++; 
                 printf("[INFO] - Request received : START GAMES\n"); 
 
-
                 int id = request_received.content.settings_game[2];
                 char pseudo[255], client_address[255]; 
-                strcpy(pseudo, connected_clients->list[request_received.content.settings_game[2]].pseudo);
-                strcpy(client_address, connected_clients->list[request_received.content.settings_game[2]].client_address);
+                info_client_t* client_search =  search_client_connected(connected_clients, request_received.content.settings_game[2]);  
+                strcpy(pseudo, client_search->pseudo);
+                strcpy(client_address, client_search->client_address);
 
                 // Initialisation de l'utilisateur
                 actual_user = init_info_client(id, pseudo, client_address);
                 save_new_game(list_game, nb_games, request_received.content.settings_game[1], 
                                 list_world.name_world[request_received.content.settings_game[0]], actual_user);
                 break; 
+
+            case 
         }
         
     }

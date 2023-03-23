@@ -30,9 +30,9 @@ void convert_level_info(int id_level, level_display_t *level_display, level_info
 
 			case SPRITE_TRAP:
 				if(level_info.map[i][j].specification != -1)
-					level_display->tab[i][j] = SPRITE_TRAP;
+					level_display->tab[i][j] = 0;
 				else
-					level_display->tab[i][j] = SPRITE_BLOCK;
+					level_display->tab[i][j] = SPRITE_TRAP;
 				break;
 			
 			default:

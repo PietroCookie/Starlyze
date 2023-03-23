@@ -257,9 +257,9 @@ void load_enemy_world(game_control_t *game_control_infos) {
 
 void *thread_trap_level(void *arg) {
 	level_info_t *level_info;
-	int i, j;
+	int i;
 	int posX, posY, zone_trap;
-	int presence_robot = 0;
+	// int presence_robot = 0;
 	struct timespec time_wait;
 
 	level_info = (level_info_t *)arg;
@@ -282,25 +282,17 @@ void *thread_trap_level(void *arg) {
 				fprintf(stderr, "Error mutex lock zone level in thread_trap_level");
 				exit(EXIT_FAILURE);
 			}
-
-			j = 0;
-			while (!presence_robot && j < NUMBER_ROBOT && level_info->robot[j] != -1)
-			{
-				presence_robot = ((level_info->robot[j] % WIDTH_LEVEL) == posX) && (((level_info->robot[j] - posX) / WIDTH_LEVEL) == posY-1);
-				j++;
-			}
 			
-			if(!presence_robot) {
-				if(level_info->map[posX][posY].specification == -1) {
-					level_info->map[posX][posY].specification = rand() % 5;
-					if((rand()%2+1) == 1)
-						level_info->map[posX][posY].specification = -level_info->map[posX][posY].specification;
-				}
-				else if (level_info->map[posX][posY].specification > -1)
-					level_info->map[posX][posY].specification--;
-				else if(level_info->map[posX][posY].specification < -1)
-					level_info->map[posX][posY].specification++;
+			if(level_info->map[posX][posY].specification == -1) {
+				level_info->map[posX][posY].specification = rand() % 5;
+				if((rand()%2+1) == 1)
+					level_info->map[posX][posY].specification = -level_info->map[posX][posY].specification;
 			}
+			else if (level_info->map[posX][posY].specification > -1)
+				level_info->map[posX][posY].specification--;
+			else if(level_info->map[posX][posY].specification < -1)
+				level_info->map[posX][posY].specification++;
+			
 
 
 

@@ -65,9 +65,8 @@ list_game_t* init_list_games(int nb_games){
     return list; 
 }
 
-void save_new_game(list_game_t* list_game, int nb_games, int nb_participants_final, char name_world[255], 
+void save_new_game(list_game_t* list_game, int nb_games, int nb_participants_final, char name_world[MAX_MSG], 
                     info_client_t new_client){
-    printf("{DEBUG} - nb_games: %d\n", nb_games);
     list_game->nb_games = nb_games; 
     if((list_game->game = (game_t*) realloc(list_game->game, sizeof(game_t)*nb_games+1))==NULL){
         perror("[ERROR] - Memory reallocation list_game->list failed"); 
@@ -75,16 +74,21 @@ void save_new_game(list_game_t* list_game, int nb_games, int nb_participants_fin
     }else{
         printf("{DEBUG} - Memory reallocation list_game->list success\n");
     }
+
     list_game->game[nb_games].id = nb_games; 
-    strcpy(list_game->game[nb_games].name_world, name_world);
-    list_game->game[nb_games].nb_participants_actual = 1; 
-    list_game->game[nb_games].nb_participants_final = nb_participants_final;
-    
-    // Allocation memory for list_players
+    printf("{DEBUG} - nb_games: %d\n", list_game->game[nb_games].id);
+    // strcpy(list_game->game[nb_games].name_world, name_world);
+    // printf("{DEBUG} - name_world: %s\n", list_game->game[nb_games].name_world);
+    // list_game->game[nb_games].nb_participants_actual = 1; 
+    // list_game->game[nb_games].nb_participants_final = nb_participants_final;
+
+    // printf("{DEBUG} - nb_participants_final: %d", list_game->game[nb_games].nb_participants_final); 
+
     if((list_game->game[nb_games].list_players = (info_client_t*) malloc(sizeof(info_client_t)*nb_participants_final))==NULL){
         perror("[ERROR] - Memory allocation list_game->list_players failed"); 
         exit(EXIT_FAILURE); 
     }
+
 
     // Copy new_client to list_players
     // Copy id

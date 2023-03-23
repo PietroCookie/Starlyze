@@ -147,10 +147,13 @@ int main(int argc, char *argv[]){
                 strcpy(actual_user.pseudo, connected_clients->list[request_received.content.settings_game[2]].pseudo);
                 printf("[INFO][USER_SERVER] - Nom : %s | Adresse IP : %s | ID Client : %d\n", 
                         actual_user.pseudo, actual_user.client_address, actual_user.id);
-                printf("Participant : %d\n", request_received.content.settings_game[1]); 
+                char name[255]; 
+                for (int i = 0; i < 255; i++) {
+                    strcpy(name + i*255,list_world);  // copier chaque ligne dans le tableau unidimensionnel
+                }
+                printf("[INFO] - Nom du monde : %s\n", name);
                 save_new_game(list_game, nb_games, request_received.content.settings_game[1], 
                                 list_world.name_world[request_received.content.settings_game[0]], actual_user);
-                printf("Apres segmentation fault\n");
                 break; 
         }
         

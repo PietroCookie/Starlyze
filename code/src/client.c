@@ -59,15 +59,11 @@ int main(int argc, char *argv[]){
 
     info_client.id = id_client; 
     strcpy(info_client.pseudo, pseudo); 
-
-    printf("==========INFO================\n"); 
-    printf("id_client : %d", info_client.id); 
-    printf("pseudo : %s", info_client.pseudo); 
     
     int nb_clients = receive_response_nb_clients(port, address_ip); 
     
     display_menu(nb_clients, port, address_ip); 
-    handler_menu(port, address_ip); 
+    handler_menu(port, address_ip, id_client); 
 
     return EXIT_SUCCESS; 
 }

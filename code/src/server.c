@@ -18,7 +18,8 @@ void handler(int signum){
 }
 
 int main(int argc, char *argv[]){
-    int sockfd, type_request_received, nb_client=0; 
+    int sockfd, type_request_received, nb_client=0, nb_games=0; 
+    char client_address_str[INET_ADDRSTRLEN];
     struct sockaddr_in server_address, client_address; 
     socklen_t address_length = sizeof(struct sockaddr_in); 
     request_client_udp_t request_received; 
@@ -26,9 +27,13 @@ int main(int argc, char *argv[]){
     struct sigaction action; 
     list_connected_client* connected_clients; 
     list_world_response_t list_world; 
+    list_game_t* list_game; 
+    info_client_t actual_user;
     
-    // Initialise the list of clients 
+    // Initialise the list of clients and list of games
     connected_clients = init_list_connected_client(nb_client); 
+    list_game = init_list_games(nb_games); 
+
 
     // Specify handler
     sigemptyset(&action.sa_mask); 
@@ -84,7 +89,6 @@ int main(int argc, char *argv[]){
             
             case CLIENT_FIRST_CONNEXION_SEND_PSEUDO :
                 nb_client++; 
-                char client_address_str[INET_ADDRSTRLEN];
                 response.type_request = SERVER_SEND_ID_CLIENTS; 
                 response.content.id_clients = nb_client; 
                 inet_ntop(AF_INET, &(client_address.sin_addr), client_address_str, INET_ADDRSTRLEN);
@@ -114,7 +118,6 @@ int main(int argc, char *argv[]){
                 break; 
 
             case CLIENT_RECOVERING_LIST_WORLDS: 
-                printf("Requete reçu afin d'envoyer la liste des mondes\n"); 
                 list_world = recovering_existing_worlds();
                 response.content.list_world.nb_world = list_world.nb_world;
                 for(int i=0; i<list_world.nb_world; i++){
@@ -125,6 +128,30 @@ int main(int argc, char *argv[]){
                     perror("Error sending response");
                     exit(EXIT_FAILURE);
                 }
+                break;
+
+            case CLIENT_START_GAMES: 
+                nb_games++; 
+                printf("[INFO] - Requete choix world\n"); 
+                // printf("[INFO] - Monde choisi:%s\n", list_world.name_world[request_received.content.settings_game[0]]); 
+                // printf("[INFO] - Nombre de participant : %d\n", request_received.content.settings_game[1]); 
+                // printf("[INFO] - Id du joueur : %d\n", request_received.content.settings_game[2]); 
+                // printf("[INFO][USER_CLIENT] - Nom : %s | Adresse IP : %s | ID Client : %d\n", 
+                //         connected_clients->list[request_received.content.settings_game[2]].pseudo, 
+                //         connected_clients->list[request_received.content.settings_game[2]].client_address, 
+                //         connected_clients->list[request_received.content.settings_game[2]].id);
+
+                actual_user.client_address = malloc(sizeof(info_client_t)*strlen(connected_clients->list[request_received.content.settings_game[2]].client_address));
+                strcpy(actual_user.client_address, connected_clients->list[request_received.content.settings_game[2]].client_address);
+                actual_user.id = connected_clients->list[request_received.content.settings_game[2]].id;
+                strcpy(actual_user.pseudo, connected_clients->list[request_received.content.settings_game[2]].pseudo);
+                printf("[INFO][USER_SERVER] - Nom : %s | Adresse IP : %s | ID Client : %d\n", 
+                        actual_user.pseudo, actual_user.client_address, actual_user.id);
+                printf("Participant : %d\n", request_received.content.settings_game[1]); 
+                save_new_game(list_game, nb_games, request_received.content.settings_game[1], 
+                                list_world.name_world[request_received.content.settings_game[0]], actual_user);
+                printf("Apres segmentation fault\n");
+                break; 
         }
         
     }

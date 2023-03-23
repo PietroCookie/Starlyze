@@ -22,13 +22,13 @@ char* pseudo_entry(){
         perror("[ERROR] - Memory allocation pseudo failed"); 
         exit(EXIT_FAILURE); 
     } 
-    printf("\n\n============================ I N F O S ============================\n"); 
+    printf("\n\n============================ Et si on faisait connaissance ? ============================\n"); 
     printf("Veuillez saisir votre pseudo : "); 
     if(scanf("%[^\n]", pseudo) == -1){
         perror("[ERROR] - Error when retrieving the choice\n"); 
         exit(EXIT_FAILURE);        
     }
-    printf("===================================================================\n"); 
+    printf("=========================================================================================\n"); 
     return pseudo; 
 }
 
@@ -41,7 +41,7 @@ void display_menu(int nb_players, int port, char address_ip[15]){
     printf("=========================================================      ||  ======================================\n\n"); 
 }
 
-void handler_menu(int port, char address_ip[15]){
+void handler_menu(int port, char address_ip[15], int id_client){
     int choice=0, nb_clients, choice_world, choice_nb_players=0; 
     list_world_response_t list_world; 
     
@@ -73,7 +73,7 @@ void handler_menu(int port, char address_ip[15]){
             switch(choice_nb_players){
                 case 1 : 
                     display_menu(nb_clients, port, address_ip); 
-                    handler_menu(port, address_ip); 
+                    handler_menu(port, address_ip, id_client); 
                     break; 
                 case 2 : 
                     printf("\n\n<<<<<<< Jeu en arrêt ... >>>>>>>\n"); 
@@ -88,11 +88,12 @@ void handler_menu(int port, char address_ip[15]){
         case 2 : 
             printf("\n\n====================== Créer une partie de STARLYZE ======================\n"); 
             list_world = receive_list_world(port, address_ip); 
-            
-            choice_world = handler_list_world(list_world); 
+            choice_world = handler_create_game(list_world, port, address_ip, id_client); 
             if(choice_world == list_world.nb_world+1){
                 display_menu(nb_clients, port, address_ip); 
-                handler_menu(port, address_ip); 
+                handler_menu(port, address_ip, id_client); 
+            }else{
+
             }
             break; 
         case 3 :  
@@ -109,27 +110,3 @@ void handler_menu(int port, char address_ip[15]){
     }
 }
 
-
-int handler_list_world(list_world_response_t list_world){
-    int choice = 0; 
-    printf("\n>>>>>>>>>>>>>>>>>>>>>>>>>> Liste des mondes <<<<<<<<<<<<<<<<<<<<<<<<<<\n"); 
-    for(int i=0; i<list_world.nb_world; i++){
-        printf("%d°) %s \n", i+1, list_world.name_world[i]); 
-    }
-    printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"); 
-
-    while(choice<=0){
-        printf("\n[Tapez %d pour retourner au menu]\n", list_world.nb_world+1); 
-        printf("Veuillez choisir un monde parmi ceux proprosés (ou option du retour vers le menu) : "); 
-
-        if(scanf("%d", &choice) == -1){
-            perror("[ERROR] - Error when retrieving the choice\n"); 
-            exit(EXIT_FAILURE); 
-        }
-    }
-    if(choice > list_world.nb_world+1){
-        return 0;
-    }else{
-        return choice; 
-    }    
-}

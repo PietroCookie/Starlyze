@@ -12,6 +12,7 @@
 #define CLIENT_DISCONNECTION 3
 #define CLIENT_LIST_PLAYERS 4
 #define CLIENT_RECOVERING_LIST_WORLDS 5
+#define CLIENT_START_GAMES 6
 
 // Type of response for server
 #define SERVER_SEND_ID_CLIENTS 1
@@ -20,6 +21,7 @@
 typedef union{
     char pseudo[MAX_MSG]; 
     int id_client; 
+    int settings_game[3]; // [0] : name_world | [1] : nb_players_game | [2] : id_client
 }content_request_client_udp_t; 
 
 typedef struct{

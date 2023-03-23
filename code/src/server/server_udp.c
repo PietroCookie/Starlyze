@@ -49,6 +49,71 @@ void print_list_connected_client(list_connected_client list, int nb_clients){
     }
 }
 
+list_game_t* init_list_games(int nb_games){
+    list_game_t* list;
+    if((list = (list_game_t*) malloc(sizeof(list_game_t)))==NULL){
+        perror("[ERROR] - Memory allocation list_game failed"); 
+        exit(EXIT_FAILURE); 
+    }
+    list->nb_games = nb_games; 
+
+    if((list->game=(game_t*) malloc(sizeof(game_t)*nb_games))==NULL){
+        perror("[ERROR] - Memory allocation list_game->game_t failed"); 
+        exit(EXIT_FAILURE); 
+    }
+
+    return list; 
+}
+
+void save_new_game(list_game_t* list_game, int nb_games, int nb_participants_final, char name_world[255], 
+                    info_client_t new_client){
+    printf("{DEBUG} - nb_games: %d\n", nb_games);
+    list_game->nb_games = nb_games; 
+    if((list_game->game = (game_t*) realloc(list_game->game, sizeof(game_t)*nb_games+1))==NULL){
+        perror("[ERROR] - Memory reallocation list_game->list failed"); 
+        exit(EXIT_FAILURE); 
+    }else{
+        printf("{DEBUG} - Memory reallocation list_game->list success\n");
+    }
+    list_game->game[nb_games].id = nb_games; 
+    strcpy(list_game->game[nb_games].name_world, name_world);
+    list_game->game[nb_games].nb_participants_actual = 1; 
+    list_game->game[nb_games].nb_participants_final = nb_participants_final;
+    
+    // Allocation memory for list_players
+    if((list_game->game[nb_games].list_players = (info_client_t*) malloc(sizeof(info_client_t)*nb_participants_final))==NULL){
+        perror("[ERROR] - Memory allocation list_game->list_players failed"); 
+        exit(EXIT_FAILURE); 
+    }
+
+    // Copy new_client to list_players
+    // Copy id
+    // list_game->game[nb_games].list_players[(list_game->game[nb_games].nb_participants_actual)-1].id = new_client.id;
+    // Copy pseudo
+    // strcpy(list_game->game[nb_games].list_players[(list_game->game[nb_games].nb_participants_actual)-1].pseudo, new_client.pseudo);
+    
+    // // Allocation memory for client_address of list_players
+    // if((list_game->game[nb_games].list_players[(list_game->game[nb_games].nb_participants_actual)-1].client_address = 
+    //     malloc((INET_ADDRSTRLEN + 1) * sizeof(char)))==NULL){
+    //     perror("[ERROR] - Memory allocation list_game->game->list_players->client_address failed"); 
+    //     exit(EXIT_FAILURE); 
+    // }
+    // // Copy client_address
+    // strcpy(list_game->game[nb_games].list_players[(list_game->game[nb_games].nb_participants_actual)-1].client_address, new_client.client_address);
+
+    // print_list_game(*list_game);
+}
+
+void print_list_game(list_game_t list_game){
+    int i;
+    for(i = 1; i <= list_game.nb_games; i++){
+        printf("Game %d - Name world: %s - Nb participants actual: %d - Nb participants final: %d\n", 
+                list_game.game[i].id, list_game.game[i].name_world, list_game.game[i].nb_participants_actual, 
+                list_game.game[i].nb_participants_final);
+        printf("List participants: \n");
+    }
+}
+
 void delete_client_disconnection(list_connected_client* list, int id_client, int nb_clients){
     // if (id_client < 0) {
     //     printf("L'indice %d est invalide.\n", id_client);

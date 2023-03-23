@@ -6,10 +6,7 @@
 #include "functions.h"
 
 #include "level_display.h"
-<<<<<<< HEAD
-=======
 #include "sprite.h"
->>>>>>> main
 
 void interface_dimensions_game(unsigned short width, unsigned short height) {
 	if((COLS < width) || (LINES < height)) {
@@ -47,12 +44,8 @@ void interface_game_delete(interface_game_t** interface) {
 }
 
 void refresh_win_level_game(interface_game_t* interface, level_display_t level_display) {
-<<<<<<< HEAD
-	int i, j;
-=======
 	int i, j, sprite;
 	sprite_t sp;
->>>>>>> main
 
 	for (i = 0; i < WIDTH_LEVEL_GAME; i++)
 		for (j = 0; j < HEIGHT_LEVEL_GAME; j++)
@@ -61,25 +54,6 @@ void refresh_win_level_game(interface_game_t* interface, level_display_t level_d
 	for (i = 0; i < WIDTH_LEVEL_GAME; i++)
 		for (j = 0; j < HEIGHT_LEVEL_GAME; j++)
 		{
-<<<<<<< HEAD
-			switch (level_display.tab[i][j])
-			{
-			case SPRITE_BLOCK:
-				paint_block(interface->win_level, i, j);
-				break;
-			
-			case SPRITE_ROBOT:
-				paint_robot(interface->win_level, i, j);
-				break;
-
-			case SPRITE_LADDER:
-				paint_ladder(interface->win_level, i, j);
-				break;
-
-			default:
-				break;
-			}
-=======
 			sprite = level_display.tab[i][j];
 			if(sprite == SPRITE_BLOCK)
 				paint_block(interface->win_level, i, j);
@@ -104,9 +78,8 @@ void refresh_win_level_game(interface_game_t* interface, level_display_t level_d
 				paint_robot(interface->win_level, i, j);
 			else if(sprite == SPRITE_PROBE)
 				paint_probe(interface->win_level, i, j);
-			
-
->>>>>>> main
+			else if(sprite >= SPECIFICATION_PLAYERS && sprite < (SPECIFICATION_PLAYERS + INTERVALLE_SPECIFICATION))
+				paint_robot(interface->win_level, i, j);
 		}
 	
 	window_refresh(interface->win_level);

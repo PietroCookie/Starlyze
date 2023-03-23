@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-void convert_level_info(level_display_t *level_display, level_info_t level_info, entity_t *enemies, int number_enemies) {
+void convert_level_info(int id_level, level_display_t *level_display, level_info_t level_info, entity_t *enemies, int number_enemies, entity_t *players, int number_players) {
 	int i, j, m, n;
 	type_sprite_enum type_sprite;
 
@@ -29,14 +29,10 @@ void convert_level_info(level_display_t *level_display, level_info_t level_info,
 				break;
 
 			case SPRITE_TRAP:
-<<<<<<< HEAD
-				level_display->tab[i][j] = SPECIFICATION_TRAP + level_info.map[i][j].specification;
-=======
 				if(level_info.map[i][j].specification != -1)
 					level_display->tab[i][j] = SPRITE_TRAP;
 				else
 					level_display->tab[i][j] = SPRITE_BLOCK;
->>>>>>> main
 				break;
 			
 			default:
@@ -52,5 +48,9 @@ void convert_level_info(level_display_t *level_display, level_info_t level_info,
 
 	for (i = 0; i < number_enemies; i++)
 		level_display->tab[enemies[i].posX][enemies[i].posY] = enemies[i].enemy.type;
+	
+	for (i = 0; i < number_players; i++)
+		if(players[i].player.level == id_level)
+			level_display->tab[players[i].posX][players[i].posY] = SPECIFICATION_PLAYERS + players[i].player.id;
 	
 }

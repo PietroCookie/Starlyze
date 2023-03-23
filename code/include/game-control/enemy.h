@@ -17,10 +17,6 @@ void initialiser_enemy(enemy_t *enemy, type_enemy_enum type);
 
 void *thread_enemy(void *arg);
 
-<<<<<<< HEAD
-int direction_alea();
-=======
 int direction_alea(type_enemy_enum type_enemy);
->>>>>>> main
 
 #endif

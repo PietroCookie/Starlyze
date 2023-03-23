@@ -8,10 +8,7 @@
 typedef struct {
 	world_info_t world_info;
 	int number_player;
-<<<<<<< HEAD
-=======
 	int number_total_enemy;
->>>>>>> main
 
 	entity_t *players;
 
@@ -22,25 +19,27 @@ typedef struct {
 	int level;
 	int id_enemy;
 	game_control_t *game_control;
-<<<<<<< HEAD
-} enemy_infos_thread_t;	
-
-void game_control(int num_player);
-
-int load_enemy_world(game_control_t *game_control_infos);
-=======
 } enemy_infos_thread_t;
+
+typedef struct {
+	int id_player;
+	game_control_t *game_control;
+} player_infos_thread_t;
 
 
 void handler_exit(int signum);
 
 void game_control(int num_player);
 
+void delete_game_control(game_control_t *game_control_infos);
+
 pthread_t *launch_enemy(game_control_t *game_control_infos);
 
 void load_enemy_world(game_control_t *game_control_infos);
 
 void *thread_trap_level(void *arg);
->>>>>>> main
+
+pthread_t *launch_players(game_control_t *game_control_infos);
+
 
 #endif

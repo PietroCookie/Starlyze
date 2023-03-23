@@ -18,7 +18,7 @@ info_client_t* init_info_client(int id, char pseudo[MAX_MSG], char* client_addre
     return info; 
 }
 
-int is_empty(list_info_client_t* list){
+int is_empty_client(list_info_client_t* list){
     if(list->head == NULL){
         return 1; // Right
     }else{
@@ -27,7 +27,7 @@ int is_empty(list_info_client_t* list){
 }
 
 void add_client(list_info_client_t* list, info_client_t* client){
-    if(is_empty(list)==1){
+    if(is_empty_client(list)==1){
         list->head = client; 
         list->head->next = NULL; 
         list->head->prev = NULL;
@@ -42,11 +42,14 @@ void add_client(list_info_client_t* list, info_client_t* client){
 }
 
 void print_list_client(list_info_client_t list){
-    printf("Liste des clients\n");
-    info_client_t* current = list.head; 
-    while(current != NULL){
-        printf("Client %d - Pseudo: %s - Adresse: %s\n", current->id, current->pseudo, current->client_address);
-        current = current->next; 
+    if(is_empty_client(&list)==1){
+        printf("Liste vide\n");
+    }else{
+        info_client_t* current = list.head; 
+        while(current != NULL){
+            printf("Client %d - Pseudo: %s - Adresse: %s\n", current->id, current->pseudo, current->client_address);
+            current = current->next; 
+        }
     }
 }
 

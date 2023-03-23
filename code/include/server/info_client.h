@@ -22,7 +22,7 @@ void init_list_info_client(list_info_client_t* list);
 
 info_client_t* init_info_client(int id, char pseudo[MAX_MSG], char* client_address); 
 
-int is_empty(list_info_client_t* list); 
+int is_empty_client(list_info_client_t* list); 
 
 void add_client(list_info_client_t* list, info_client_t* client); 
 

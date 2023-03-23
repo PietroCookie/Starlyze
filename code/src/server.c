@@ -30,10 +30,10 @@ int main(int argc, char *argv[]){
     list_world_response_t list_world; 
     info_client_t* actual_user;
     list_game_t* list_game; 
-    
+
     // Initialise the list of clients and list of games
     connected_clients = init_list_connected_client(nb_client); 
-    list_game = init_list_games(nb_games); 
+    list_game = init_list_game(nb_games); 
 
 
     // Specify handler
@@ -144,8 +144,6 @@ int main(int argc, char *argv[]){
 
                 // Initialisation de l'utilisateur
                 actual_user = init_info_client(id, pseudo, client_address);
-
-                print_list_client(*list_info_client);
                 save_new_game(list_game, nb_games, request_received.content.settings_game[1], 
                                 list_world.name_world[request_received.content.settings_game[0]], actual_user);
                 break; 

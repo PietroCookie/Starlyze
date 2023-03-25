@@ -93,3 +93,17 @@ void delete_list_game(list_game_t* list){
     }
     list->head = NULL;
 }
+
+void convert_struct_game_to_game_without_players(list_game_t* list, list_game_without_pointers* list_without_pointers){
+    game_t* current = list->head;
+    int i = 0;
+    while(current != NULL){
+        list_without_pointers->game[i].id = current->id;
+        list_without_pointers->game[i].nb_participants_final = current->nb_participants_final;
+        list_without_pointers->game[i].nb_participants_actual = current->nb_participants_actual;
+        strcpy(list_without_pointers->game[i].name_world, current->name_world);
+        current = current->next;
+        i++;
+    }
+    list_without_pointers->nb_games = list->nb_games;
+}

@@ -4,7 +4,6 @@
 #define MAX_MSG 255
 #include "info_client.h"
 
-
 struct game_t{
     int id; 
     int nb_participants_final; 
@@ -21,6 +20,18 @@ typedef struct{
     int nb_games;
 }list_game_t; 
 
+typedef struct{
+    int id; 
+    char name_world[MAX_MSG];
+    int nb_participants_final;
+    int nb_participants_actual;
+}game_withou_players_t; 
+
+typedef struct{
+    game_t game[256];
+    int nb_games;
+}list_game_without_pointers;
+
 list_game_t* init_list_game(int nb_games);
 
 game_t* init_game(int id, int nb_participants_final, int nb_participants_actual, char name_world[MAX_MSG], info_client_t* new_client); 
@@ -36,6 +47,8 @@ game_t* search_game(list_game_t* list, int id);
 void delete_game(list_game_t* list, game_t* game);
 
 void delete_list_game(list_game_t* list);
+
+void convert_struct_game_to_game_without_players(list_game_t* list, list_game_without_pointers* list_without_pointers);
 
 
 #endif

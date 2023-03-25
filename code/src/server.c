@@ -150,7 +150,7 @@ int main(int argc, char *argv[]){
                                 list_world.name_world[request_received.content.settings_game[0]], actual_user);
                 break; 
 
-            case 
+            
         }
         
     }

@@ -37,7 +37,6 @@ pthread_t *launch_enemy(game_control_t *game_control_infos);
 
 void load_enemy_world(game_control_t *game_control_infos);
 
-void *thread_trap_level(void *arg);
 
 pthread_t *launch_players(game_control_t *game_control_infos);
 

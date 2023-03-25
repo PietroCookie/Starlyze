@@ -17,13 +17,21 @@ void *thread_enemy(void *arg){
 	game_control_t *game_control;
 	struct timespec time_wait;
 
-	time_wait.tv_sec = 0;
-	time_wait.tv_nsec = 100000000;
 
 	level = ((enemy_infos_thread_t *)arg)->level;
 	id_enemy = ((enemy_infos_thread_t *)arg)->id_enemy;
 	game_control = ((enemy_infos_thread_t *)arg)->game_control;
 	free((enemy_infos_thread_t *) arg);
+
+	if(game_control->enemy[level][id_enemy].enemy.type == PROBE) {
+		time_wait.tv_sec = 0;
+		time_wait.tv_nsec = 250000000;
+	}
+	else {
+		time_wait.tv_sec = 0;
+		time_wait.tv_nsec = 100000000;
+	}
+
 
 	direction = direction_alea(game_control->enemy[level][id_enemy].enemy.type);
 

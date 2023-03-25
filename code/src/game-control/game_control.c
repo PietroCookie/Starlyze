@@ -8,13 +8,13 @@
 #include <time.h>
 
 
-
 #include "world_info.h"
 #include "level_info.h"
 #include "move_world.h"
 #include "entity.h"
 #include "player.h"
 #include "enemy.h"
+#include "trap.h"
 
 #include "functions.h"
 #include "interface_game.h"
@@ -23,6 +23,7 @@
 
 void * p_thread_player = thread_player;
 void * p_thread_enemy = thread_enemy;
+void * p_thread_trap_level = thread_trap_level;
 
 bool quit = FALSE;
 
@@ -101,7 +102,7 @@ void game_control(int num_player)
 		exit(EXIT_FAILURE);
 	}
 	for (i = 0; i < game_control_infos.world_info.total_level; i++)
-		if(pthread_create(&thread_trap[i], NULL, thread_trap_level, &game_control_infos.world_info.levels[i]) != 0) {
+		if(pthread_create(&thread_trap[i], NULL, p_thread_trap_level, &game_control_infos.world_info.levels[i]) != 0) {
 			fprintf(stderr, "Error create thread for trap");
 		}
 	
@@ -129,7 +130,6 @@ void game_control(int num_player)
 		if(pthread_cancel(thread_trap[i]) != 0) {
 			fprintf(stderr, "Error cancel thread for trap");
 		}
-
 	for (i = 0; i < game_control_infos.number_player; i++)
 		if(pthread_cancel(thread_player[i]) != 0) {
 			fprintf(stderr, "Error cancel thread player");
@@ -255,61 +255,5 @@ void load_enemy_world(game_control_t *game_control_infos) {
 	}
 }
 
-void *thread_trap_level(void *arg) {
-	level_info_t *level_info;
-	int i;
-	int posX, posY, zone_trap;
-	// int presence_robot = 0;
-	struct timespec time_wait;
 
-	level_info = (level_info_t *)arg;
-
-	time_wait.tv_sec = 0;
-	time_wait.tv_nsec = 100000000;
-
-	while (1)
-	{
-		i = 0;
-		while (i < NUMBER_TRAP && level_info->trap[i] != -1)
-		{
-			posX = level_info->trap[i] % WIDTH_LEVEL;
-			posY = (level_info->trap[i] - posX) / WIDTH_LEVEL;
-
-
-			zone_trap = (posY / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX / WIDTH_ZONE_LEVEL);
-
-			if(pthread_mutex_lock(&level_info->mutex_zone[zone_trap]) != 0) {
-				fprintf(stderr, "Error mutex lock zone level in thread_trap_level");
-				exit(EXIT_FAILURE);
-			}
-			
-			if(level_info->map[posX][posY].specification == -1) {
-				level_info->map[posX][posY].specification = rand() % 5;
-				if((rand()%2+1) == 1)
-					level_info->map[posX][posY].specification = -level_info->map[posX][posY].specification;
-			}
-			else if (level_info->map[posX][posY].specification > -1)
-				level_info->map[posX][posY].specification--;
-			else if(level_info->map[posX][posY].specification < -1)
-				level_info->map[posX][posY].specification++;
-			
-
-
-
-			if(pthread_mutex_unlock(&level_info->mutex_zone[zone_trap]) != 0) {
-				fprintf(stderr, "Error mutex unlock zone level in thread_trap_level");
-				exit(EXIT_FAILURE);
-			}
-
-			i++;
-			pthread_testcancel();
-			if(nanosleep(&time_wait, NULL) == -1) {
-				fprintf(stderr, "Error with nanosleep in thread_trap_level");
-			}
-		}
-		pthread_testcancel();
-	}
-
-	return NULL;
-}
 

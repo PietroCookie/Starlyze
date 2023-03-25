@@ -57,6 +57,11 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 
 	validate = check_validation_move(level, posX_dest, posY_dest, type_sprite, direction);
 
+	if(validate && entity_move->type == ENEMY) {
+		if(level->map[posX_dest][posY_height+1].type == SPRITE_TRAP || level->map[posX_width][posY_height+1].type == SPRITE_TRAP)
+			validate = 0;
+	}
+
 	if(validate){
 		zone_dest = (posY_dest / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX_dest / WIDTH_ZONE_LEVEL);
 		if(pthread_mutex_lock(&level->mutex_zone[zone_src[0]]) != 0){
@@ -116,12 +121,6 @@ int check_validation_move(level_info_t *level, int posX_dest, int posY_dest, typ
 		if((level->map[posX_dest][posY_height+1].type != SPRITE_BLOCK && level->map[posX_dest][posY_height+1].type != SPRITE_LADDER && level->map[posX_dest][posY_height+1].type != SPRITE_TRAP)
 			|| (level->map[posX_width][posY_height+1].type != SPRITE_BLOCK && level->map[posX_width][posY_height+1].type != SPRITE_LADDER && level->map[posX_width][posY_height+1].type != SPRITE_TRAP))
 			validate = 0;
-	}
-
-	if(validate && type_sprite == SPRITE_ROBOT) {
-		if((level->map[posX_dest][posY_height+1].type == SPRITE_TRAP && level->map[posX_dest][posY_height+1].specification > -1) ||
-			(level->map[posX_width][posY_height+1].type == SPRITE_TRAP && level->map[posX_width][posY_height+1].specification > -1))
-				validate = 0;
 	}
 
 	return validate;

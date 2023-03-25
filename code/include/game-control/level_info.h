@@ -4,6 +4,7 @@
 #include <pthread.h>
 
 #include "sprite.h"
+#include "trap.h"
 
 #define NUMBER_ROBOT 10
 #define NUMBER_PROBE 10
@@ -22,7 +23,7 @@ typedef struct
 	int number_enemy;
 	int robot[NUMBER_ROBOT];
 	int probe[NUMBER_PROBE];
-	int trap[NUMBER_TRAP];
+	list_block_trap_t list_block_trap;
 
 	int number_mutex_zone;
 	pthread_mutex_t *mutex_zone;
@@ -31,5 +32,7 @@ typedef struct
 
 void load_level_info(level_info_t *level_info, int file);
 void delete_level_info(level_info_t *level_info);
+
+void load_block_trap(level_info_t level_info, list_block_trap_t *list_block_trap);
 
 #endif

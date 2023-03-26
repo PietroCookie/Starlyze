@@ -118,7 +118,7 @@ void game_control(int num_player)
 	interface = interface_game_create();
 	while (quit == FALSE)
 	{		
-		convert_level_info(0, &level_display, game_control_infos.world_info.levels[0], game_control_infos.enemy[0], game_control_infos.world_info.levels[0].number_enemy, game_control_infos.players, game_control_infos.number_player);
+		convert_level_info(1, &level_display, game_control_infos.world_info.levels[1], game_control_infos.enemy[1], game_control_infos.world_info.levels[1].number_enemy, game_control_infos.players, game_control_infos.number_player);
 		refresh_win_level_game(interface, level_display);
 	}
 	

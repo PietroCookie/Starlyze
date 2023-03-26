@@ -1,7 +1,6 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-
 #define MAX_LIFE_PLAYER 5
 #define NUMBER_KEY 6
 

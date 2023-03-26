@@ -56,6 +56,10 @@ int width_sprite(type_sprite_enum type_sprite){
 			width = 1;
 			break;
 
+		case SPRITE_PLAYER:
+			width = 3;
+			break;
+
 		default:
 			width = -1;
 			break;
@@ -65,64 +69,68 @@ int width_sprite(type_sprite_enum type_sprite){
 }
 
 int height_sprite(type_sprite_enum type_sprite){
-	int width;
+	int height;
 
 	switch (type_sprite)
 	{
 		case SPRITE_BLOCK:
-			width = 1;
+			height = 1;
 			break;
 
 		case SPRITE_LADDER:
-			width = 1;
+			height = 1;
 			break;
 
 		case SPRITE_TRAP:
-			width = 1;
+			height = 1;
 			break;
 
 		case SPRITE_GATE:
-			width = 4;
+			height = 4;
 			break;
 
 		case SPRITE_KEY:
-			width = 2;
+			height = 2;
 			break;
 
 		case SPRITE_DOOR:
-			width = 4;
+			height = 4;
 			break;
 
 		case SPRITE_EXIT:
-			width = 4;
+			height = 4;
 			break;
 
 		case SPRITE_START:
-			width = 4;
+			height = 4;
 			break;
 
 		case SPRITE_ROBOT:
-			width = 4;
+			height = 4;
 			break;
 
 		case SPRITE_PROBE:
-			width = 2;
+			height = 2;
 			break;
 
 		case SPRITE_LIFE:
-			width = 1;
+			height = 1;
 			break;
 
 		case SPRITE_BOMB:
-			width = 1;
+			height = 1;
+			break;
+
+		case SPRITE_PLAYER:
+			height = 4;
 			break;
 
 		default:
-			width = -1;
+			height = -1;
 			break;
 	}
 
-	return width;
+	return height;
 }
 
 size_t necessary_size_sprite(){
@@ -283,4 +291,21 @@ void paint_heart(window_t* window, int posX, int posY){
 
 void paint_bomb(window_t* window, int posX, int posY){
 	window_mvaddch_col(window, posY, posX, WHITE, 'o');
+}
+
+void paint_player(window_t *window, int posX, int posY, unsigned int color) {
+	window_mvaddch_col(window, posY, ++posX, color, ' ');
+	window_mvaddch_col(window, posY, ++posX, color, ACS_HLINE);
+	posX -= 2;
+	window_mvaddch(window, ++posY, posX, ACS_HLINE);
+	window_mvaddch(window, posY, ++posX, ACS_PLUS);
+	window_mvaddch(window, posY, ++posX, ACS_HLINE);
+	posX -= 2;
+	window_mvaddch(window, ++posY, posX, ACS_ULCORNER);
+	window_mvaddch(window, posY, ++posX, ACS_BTEE);
+	window_mvaddch(window, posY, ++posX, ACS_URCORNER);
+	posX -= 2;
+	window_mvaddch(window, ++posY, posX, ACS_VLINE);
+	posX++;
+	window_mvaddch(window, posY, ++posX, ACS_VLINE);
 }

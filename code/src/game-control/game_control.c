@@ -76,21 +76,11 @@ void game_control(int num_player)
 	}
 	for (i = 0; i < game_control_infos.number_player; i++)
 	{
-		game_control_infos.players[i].posX = m+2;
-		game_control_infos.players[i].posY = n;
-		game_control_infos.players[i].freeze = 0;
-		game_control_infos.players[i].type = PLAYER;
+		initialise_entity(&game_control_infos.players[i], SPRITE_PLAYER, m+2, n);
 		initialise_player(&game_control_infos.players[i].player, game_control_infos.world_info.start_level, i);
 	}
 	
-	if((thread_player = malloc(game_control_infos.number_player * sizeof(pthread_t))) == NULL) {
-		perror("Error allocating player thread");
-		exit(EXIT_FAILURE);
-	}
-	for (i = 0; i < game_control_infos.number_player; i++)
-		if(pthread_create(&thread_player[i], NULL, p_thread_player, NULL) != 0){
-			fprintf(stderr, "Error create thread for player");
-		}
+	thread_player = launch_players(&game_control_infos);
 
 
 	// Create enemy
@@ -118,7 +108,7 @@ void game_control(int num_player)
 	interface = interface_game_create();
 	while (quit == FALSE)
 	{		
-		convert_level_info(1, &level_display, game_control_infos.world_info.levels[1], game_control_infos.enemy[1], game_control_infos.world_info.levels[1].number_enemy, game_control_infos.players, game_control_infos.number_player);
+		convert_level_info(0, &level_display, game_control_infos.world_info.levels[0], game_control_infos.enemy[0], game_control_infos.world_info.levels[0].number_enemy, game_control_infos.players, game_control_infos.number_player);
 		refresh_win_level_game(interface, level_display);
 	}
 	
@@ -230,11 +220,8 @@ void load_enemy_world(game_control_t *game_control_infos) {
 
 		while (game_control_infos->world_info.levels[i].robot[current_robot] != -1)
 		{
-			game_control_infos->enemy[i][current_enemy].type = ENEMY;
-			game_control_infos->enemy[i][current_enemy].posX = game_control_infos->world_info.levels[i].robot[current_robot] % WIDTH_LEVEL;
-			game_control_infos->enemy[i][current_enemy].posY = (game_control_infos->world_info.levels[i].robot[current_robot] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL;
-			game_control_infos->enemy[i][current_enemy].freeze = 0;
-			game_control_infos->enemy[i][current_enemy].enemy.type = ROBOT;
+			initialise_entity(&game_control_infos->enemy[i][current_enemy], SPRITE_ROBOT, game_control_infos->world_info.levels[i].robot[current_robot] % WIDTH_LEVEL, ((game_control_infos->world_info.levels[i].robot[current_robot] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL));
+			initialise_enemy(&game_control_infos->enemy[i][current_enemy].enemy, ROBOT);
 
 			current_enemy++;
 			current_robot++;
@@ -242,11 +229,8 @@ void load_enemy_world(game_control_t *game_control_infos) {
 
 		while (game_control_infos->world_info.levels[i].probe[current_probe] != -1)
 		{
-			game_control_infos->enemy[i][current_enemy].type = ENEMY;
-			game_control_infos->enemy[i][current_enemy].posX = game_control_infos->world_info.levels[i].probe[current_probe] % WIDTH_LEVEL;
-			game_control_infos->enemy[i][current_enemy].posY = (game_control_infos->world_info.levels[i].probe[current_probe] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL;
-			game_control_infos->enemy[i][current_enemy].freeze = 0;
-			game_control_infos->enemy[i][current_enemy].enemy.type = PROBE;
+			initialise_entity(&game_control_infos->enemy[i][current_enemy], SPRITE_PROBE, game_control_infos->world_info.levels[i].probe[current_probe] % WIDTH_LEVEL, ((game_control_infos->world_info.levels[i].probe[current_probe] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL));
+			initialise_enemy(&game_control_infos->enemy[i][current_enemy].enemy, PROBE);
 
 			current_enemy++;
 			current_probe++;
@@ -255,5 +239,32 @@ void load_enemy_world(game_control_t *game_control_infos) {
 	}
 }
 
+pthread_t *launch_players(game_control_t *game_control_infos) {
+	pthread_t *thread;
+	player_infos_thread_t *player_info;
+	int i;
+	
+	if((thread = malloc(game_control_infos->number_player * sizeof(pthread_t))) == NULL) {
+		perror("Error allocating player thread");
+		exit(EXIT_FAILURE);
+	}
 
+
+	for (i = 0; i < game_control_infos->number_player; i++) {
+		if((player_info = malloc(sizeof(player_infos_thread_t))) == NULL) {
+			perror("Error allocating memory for infos player");
+			exit(EXIT_FAILURE);
+		}
+
+		player_info->id_player = i;
+		player_info->game_control = game_control_infos;
+
+		if(pthread_create(&thread[i], NULL, p_thread_player, player_info) != 0){
+			fprintf(stderr, "Error create thread for player");
+		}
+	}
+
+
+	return thread;
+}
 

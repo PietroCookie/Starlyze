@@ -4,6 +4,7 @@
 #include "paint_tools.h"
 #include "colors.h"
 #include "functions.h"
+#include "colors.h"
 
 #include "level_display.h"
 #include "sprite.h"
@@ -78,8 +79,9 @@ void refresh_win_level_game(interface_game_t* interface, level_display_t level_d
 				paint_robot(interface->win_level, i, j);
 			else if(sprite == SPRITE_PROBE)
 				paint_probe(interface->win_level, i, j);
-			else if(sprite >= SPECIFICATION_PLAYERS && sprite < (SPECIFICATION_PLAYERS + INTERVALLE_SPECIFICATION))
-				paint_robot(interface->win_level, i, j);
+			else if(sprite >= SPECIFICATION_PLAYERS && sprite < (SPECIFICATION_PLAYERS + INTERVALLE_SPECIFICATION)) {
+				paint_player(interface->win_level, i, j, sprite - SPECIFICATION_PLAYERS + 8);
+			}
 		}
 	
 	window_refresh(interface->win_level);

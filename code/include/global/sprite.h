@@ -21,7 +21,8 @@ typedef enum {
 	SPRITE_ROBOT = 9,
 	SPRITE_PROBE = 10,
 	SPRITE_LIFE = 11,
-	SPRITE_BOMB = 12
+	SPRITE_BOMB = 12,
+	SPRITE_PLAYER = 13
 } type_sprite_enum;
 
 typedef struct{
@@ -67,5 +68,7 @@ void paint_probe(window_t* window, int posX, int posY);
 void paint_heart(window_t* window, int posX, int posY);
 
 void paint_bomb(window_t* window, int posX, int posY);
+
+void paint_player(window_t *window, int posX, int posY, unsigned int color);
 
 #endif

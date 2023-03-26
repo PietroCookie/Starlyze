@@ -4,8 +4,8 @@
 #include "sprite.h"
 
 typedef enum {
-	ROBOT = SPRITE_ROBOT,
-	PROBE = SPRITE_PROBE
+	ROBOT = 1,
+	PROBE = 2
 } type_enemy_enum;
 
 typedef struct
@@ -13,7 +13,8 @@ typedef struct
 	type_enemy_enum type;
 } enemy_t;
 
-void initialiser_enemy(enemy_t *enemy, type_enemy_enum type);
+
+void initialise_enemy(enemy_t *enemy, type_enemy_enum type);
 
 void *thread_enemy(void *arg);
 

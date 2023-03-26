@@ -1,6 +1,7 @@
 #ifndef __MOVE_WORLD_H__
 #define __MOVE_WORLD_H__
 
+#include "world_info.h"
 #include "level_info.h"
 #include "entity.h"
 #include "sprite.h"
@@ -20,8 +21,8 @@ int take_item(level_info_t *level, player_t *player, int posX, int posY);
 
 void drop_bomb(level_info_t *level, player_t *player, int posX, int posY);
 
-void change_level(level_info_t *level_src, player_t *player, level_info_t *level_dest);
+void enter_door(world_info_t *world_info, entity_t *player);
 
-void enter_gate(level_info_t *level, player_t *player);
+void enter_gate(level_info_t *level, entity_t *player);
 
 #endif

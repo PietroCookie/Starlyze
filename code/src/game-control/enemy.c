@@ -8,7 +8,7 @@
 #include "entity.h"
 
 
-void initialiser_enemy(enemy_t *enemy, type_enemy_enum type){
+void initialise_enemy(enemy_t *enemy, type_enemy_enum type){
 	enemy->type = type;
 }
 

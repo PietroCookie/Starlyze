@@ -88,7 +88,6 @@ int main(int argc, char *argv[]){
         type_request_received = request_received.type_request; 
 
         switch(type_request_received){
-            
             case CLIENT_FIRST_CONNEXION_SEND_PSEUDO :
                 nb_client++; 
                 response.type_request = SERVER_SEND_ID_CLIENTS; 
@@ -99,7 +98,7 @@ int main(int argc, char *argv[]){
                 
                 if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0, 
                         (struct sockaddr*)&client_address, address_length)==-1){
-                    perror("Error sending response");
+                    perror("[ERROR][SERVER] - Error sending response ici");
                     exit(EXIT_FAILURE);
                 }
                 break; 
@@ -109,16 +108,14 @@ int main(int argc, char *argv[]){
                 response.content.nb_clients = nb_client;
                 if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0,
                         (struct sockaddr*)&client_address, address_length) == -1) {
-                    perror("Error sending response");
+                    perror("[ERROR][SERVER] - Error sending response");
                     exit(EXIT_FAILURE);
                 }
                 break;
             
             case CLIENT_DISCONNECTION: 
-                delete_client_disconnection(connected_clients, request_received.content.id_client, nb_client); 
-                printf("Type de requete reçu : %d\n", request_received.type_request);
+                printf("Type de requete reçu : %d | ", request_received.type_request);
                 printf("ID Client a deconnecté : %d\n", request_received.content.id_client); 
-
                 break; 
 
             case CLIENT_RECOVERING_LIST_WORLDS: 
@@ -129,8 +126,10 @@ int main(int argc, char *argv[]){
                 }
                 if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0,
                         (struct sockaddr*)&client_address, address_length) == -1) {
-                    perror("Error sending response");
+                    perror("[ERROR][SERVER] - Error sending response");
                     exit(EXIT_FAILURE);
+                }else{
+                    printf("Reponse liste des mondes envoyés !\n"); 
                 }
                 break;
  
@@ -139,23 +138,45 @@ int main(int argc, char *argv[]){
                 printf("[INFO] - Request received : START GAMES\n"); 
 
                 int id = request_received.content.settings_game[2];
-                char pseudo[255], client_address[255]; 
+                char pseudo[255], client_address_start_games[255]; 
                 info_client_t* client_search =  search_client_connected(connected_clients, request_received.content.settings_game[2]);  
                 strcpy(pseudo, client_search->pseudo);
-                strcpy(client_address, client_search->client_address);
+                strcpy(client_address_start_games, client_search->client_address);
 
                 // Initialisation de l'utilisateur
-                actual_user = init_info_client(id, pseudo, client_address);
+                actual_user = init_info_client(id, pseudo, client_address_start_games);
                 save_new_game(list_game, nb_games, request_received.content.settings_game[1], 
                                 list_world.name_world[request_received.content.settings_game[0]], actual_user);
                 break; 
 
-            
+            case CLIENT_SEND_LIST_GAME: 
+                if(list_game->nb_games == 0){
+                    response.type_request = SERVER_SEND_NO_GAMES; 
+                    if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0,
+                        (struct sockaddr*)&client_address, address_length) == -1) {
+                        perror("[ERROR][SERVER] - Error sending response");
+                        exit(EXIT_FAILURE);
+                    }
+                }else{
+                    response.type_request = SERVER_SEND_LIST_GAMES;
+                    response.content.list_game = convert_struct_game_to_game_without_players(list_game);
+                    if(sendto(sockfd, &response, sizeof(response_server_udp_t), 0,
+                            (struct sockaddr*)&client_address, address_length) == -1) {
+                        perror("[ERROR][SERVER] - Error sending response");
+                        exit(EXIT_FAILURE);
+                    }else{
+                        printf("Requete envoyé avec succès\n");
+                    }
+                }
+                break;
+
+            case CLIENT_JOIN_GAME: 
+                printf("Type de requete reçu : %d | ", request_received.type_request);
+                printf("Client n°%d a rejoins le jeu n°%d\n", request_received.content.choice_game[1], request_received.content.choice_game[0]); 
+                
+                break;
         }
-        
     }
-
-
 
     // Close socket
     if(close(sockfd) == -1){

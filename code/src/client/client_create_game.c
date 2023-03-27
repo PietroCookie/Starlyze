@@ -106,7 +106,10 @@ int handler_create_game(list_world_response_t list_world, int port, char address
     }
     printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"); 
 
-    while(choice_world<=0){
+    while(choice_world<=0 || choice_world>list_world.nb_world+1){
+        if(choice_world > list_world.nb_world+1){
+            printf("\n[ERROR] - Le monde choisi n'existe pas\n"); 
+        }
         printf("\n[Tapez %d pour retourner au menu]\n", list_world.nb_world+1); 
         printf("Veuillez choisir un monde parmi ceux proprosés (ou option du retour vers le menu) : "); 
 

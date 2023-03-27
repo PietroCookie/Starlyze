@@ -45,3 +45,11 @@ list_world_response_t recovering_existing_worlds(){
 
     return response_list_world; 
 }
+
+void save_new_game(list_game_t* list_game, int nb_games, int nb_participants_final, char name_world[MAX_MSG], 
+                    info_client_t* new_client){
+    game_t* new_game = init_game(nb_games, nb_participants_final, 1, name_world, new_client);
+    add_game(list_game, new_game);
+    print_list_game(*list_game);
+    list_game->nb_games++;
+}

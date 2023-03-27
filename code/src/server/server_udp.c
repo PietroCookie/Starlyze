@@ -16,24 +16,8 @@ void save_new_client(list_connected_client* connected_clients, char pseudo[MAX_M
     print_list_connected_clients(*connected_clients);
 }
 
-void save_new_game(list_game_t* list_game, int nb_games, int nb_participants_final, char name_world[MAX_MSG], 
-                    info_client_t* new_client){
-    game_t* new_game = init_game(nb_games, nb_participants_final, 1, name_world, new_client);
-    add_game(list_game, new_game);
-    print_list_game(*list_game);
+
+void add_client_at_game(list_game_t* list_game, int id_game, int id_client){
+    
 }
 
-void delete_client_disconnection(list_connected_client* list, int id_client, int nb_clients){
-    // if (id_client < 0) {
-    //     printf("L'indice %d est invalide.\n", id_client);
-    //     return;
-    // }
-    // // Libérer la mémoire allouée pour l'adresse client
-    // free(list->list[id_client].client_address);
-    
-    // // Déplacer les éléments suivants vers la gauche
-    // for (int i = id_client; i < list->num_clients - 1; i++) {
-    //     list->list[i] = list->list[i+1];
-    // }
-    printf("Delete client disconnection\n"); 
-}

@@ -1,6 +1,7 @@
 #include "client_utility.h"
 #include "client_udp.h"
 #include "client_create_game.h"
+#include "client_join_game.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -42,8 +43,9 @@ void display_menu(int nb_players, int port, char address_ip[15]){
 }
 
 void handler_menu(int port, char address_ip[15], int id_client){
-    int choice=0, nb_clients, choice_world, choice_nb_players=0; 
+    int choice=0, nb_clients, choice_world, choice_nb_players=0, choice_game=0, choice_quit=0; 
     list_world_response_t list_world; 
+    list_game_without_pointers_t list_game;
     
     while(choice<=0){
         printf("Quel est votre choix ? "); 
@@ -96,7 +98,50 @@ void handler_menu(int port, char address_ip[15], int id_client){
             break; 
         case 3 :  
             printf("\n\n====================== Rejoindre une partie en attente ======================\n"); 
-            
+            list_game = receive_list_games_on_hold(port, address_ip);
+            if(list_game.nb_games == 0){
+                printf("Il n'y a aucune partie en attente pour le moment\n"); 
+                while(choice_quit<=0){
+                    printf("1°) Retour au menu\n"); 
+                    printf("2°) Quitter le jeu\n\n"); 
+                    printf("Quel est votre choix ? "); 
+                    if(scanf("%d", &choice_quit) == -1){
+                        perror("[ERROR] - Error when retrieving the choice\n"); 
+                        exit(EXIT_FAILURE); 
+                    }
+                }
+                if(choice_quit == 1){
+                    display_menu(nb_clients, port, address_ip); 
+                    handler_menu(port, address_ip, id_client);
+                }else{
+                    printf("\n\n<<<<<<< Jeu en arrêt ... >>>>>>>\n"); 
+                    exit(EXIT_FAILURE); 
+                }
+            }else{
+                printf("Nombre de parties actuel : %d\n", list_game.nb_games);
+
+                // Display the list of pending games
+                for(int i=0; i<list_game.nb_games; i++){
+                    printf("%d°) Game n°%d | Monde : %s | Nombre de joueurs actuel : %d | Nombre de joueurs max : %d\n", 
+                    i+1, list_game.game[i].id, list_game.game[i].name_world, 
+                    list_game.game[i].nb_participants_actual, list_game.game[i].nb_participants_final);
+                }
+
+                while(choice_game<=0 || choice_game>list_game.nb_games){
+                    if(choice_game>list_game.nb_games){
+                        printf("Votre choix n'est pas parmi les choix proposés\n"); 
+                        exit(EXIT_FAILURE); 
+                    }
+                    printf("Quel est votre choix ? "); 
+                    if(scanf("%d", &choice_game) == -1){
+                        perror("[ERROR] - Error when retrieving the choice\n"); 
+                        exit(EXIT_FAILURE); 
+                    }
+                }
+                printf("Vous avez choisi la partie n° : %d\n", choice_game);
+                join_game(port, address_ip, choice_game, id_client); 
+            }
+
             break; 
         case 4 : 
             printf("\n\n<<<<<<< Jeu en arrêt ... >>>>>>>\n"); 

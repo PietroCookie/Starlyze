@@ -25,12 +25,12 @@ typedef struct{
     char name_world[MAX_MSG];
     int nb_participants_final;
     int nb_participants_actual;
-}game_withou_players_t; 
+}game_without_players_t; 
 
 typedef struct{
-    game_t game[256];
+    game_without_players_t game[200];
     int nb_games;
-}list_game_without_pointers;
+}list_game_without_pointers_t;
 
 list_game_t* init_list_game(int nb_games);
 
@@ -48,7 +48,7 @@ void delete_game(list_game_t* list, game_t* game);
 
 void delete_list_game(list_game_t* list);
 
-void convert_struct_game_to_game_without_players(list_game_t* list, list_game_without_pointers* list_without_pointers);
+list_game_without_pointers_t convert_struct_game_to_game_without_players(list_game_t* list);
 
 
 #endif

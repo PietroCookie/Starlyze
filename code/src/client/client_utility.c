@@ -42,7 +42,7 @@ void display_menu(int nb_players, int port, char address_ip[15]){
     printf("=========================================================      ||  ======================================\n\n"); 
 }
 
-void handler_menu(int port, char address_ip[15], int id_client){
+void handler_menu(int port, char address_ip[15], info_client_t info_client){
     int choice=0, nb_clients, choice_world, choice_nb_players=0, choice_game=0, choice_quit=0; 
     list_world_response_t list_world; 
     list_game_without_pointers_t list_game;
@@ -54,10 +54,10 @@ void handler_menu(int port, char address_ip[15], int id_client){
             exit(EXIT_FAILURE); 
         }
     }
-    nb_clients = receive_response_nb_clients(port, address_ip); 
     switch(choice){
         case 1 : 
             printf("\n\n====================== Nombre de joueur(s) connecte(s) ======================\n"); 
+            nb_clients = receive_response_nb_clients(port, address_ip); 
             if(nb_clients == 1){
                 printf("Il y a actuellemnt %d joueur qui est connecté sur STARLYZE\n\n", nb_clients); 
             }else{
@@ -74,10 +74,12 @@ void handler_menu(int port, char address_ip[15], int id_client){
             }
             switch(choice_nb_players){
                 case 1 : 
+                    nb_clients = receive_response_nb_clients(port, address_ip); 
                     display_menu(nb_clients, port, address_ip); 
-                    handler_menu(port, address_ip, id_client); 
+                    handler_menu(port, address_ip, info_client); 
                     break; 
                 case 2 : 
+                    send_request_to_client_disconnection(info_client, port, address_ip); 
                     printf("\n\n<<<<<<< Jeu en arrêt ... >>>>>>>\n"); 
                     exit(EXIT_FAILURE); 
                     break; 
@@ -90,10 +92,11 @@ void handler_menu(int port, char address_ip[15], int id_client){
         case 2 : 
             printf("\n\n====================== Créer une partie de STARLYZE ======================\n"); 
             list_world = receive_list_world(port, address_ip); 
-            choice_world = handler_create_game(list_world, port, address_ip, id_client); 
+            choice_world = handler_create_game(list_world, port, address_ip, info_client.id); 
             if(choice_world == list_world.nb_world+1){
+                nb_clients = receive_response_nb_clients(port, address_ip); 
                 display_menu(nb_clients, port, address_ip); 
-                handler_menu(port, address_ip, id_client); 
+                handler_menu(port, address_ip, info_client); 
             }
             break; 
         case 3 :  
@@ -111,9 +114,11 @@ void handler_menu(int port, char address_ip[15], int id_client){
                     }
                 }
                 if(choice_quit == 1){
+                    nb_clients = receive_response_nb_clients(port, address_ip); 
                     display_menu(nb_clients, port, address_ip); 
-                    handler_menu(port, address_ip, id_client);
+                    handler_menu(port, address_ip, info_client);
                 }else{
+                    send_request_to_client_disconnection(info_client, port, address_ip); 
                     printf("\n\n<<<<<<< Jeu en arrêt ... >>>>>>>\n"); 
                     exit(EXIT_FAILURE); 
                 }
@@ -122,34 +127,43 @@ void handler_menu(int port, char address_ip[15], int id_client){
 
                 // Display the list of pending games
                 for(int i=0; i<list_game.nb_games; i++){
-                    printf("%d°) Game n°%d | Monde : %s | Nombre de joueurs actuel : %d | Nombre de joueurs max : %d\n", 
-                    i+1, list_game.game[i].id, list_game.game[i].name_world, 
-                    list_game.game[i].nb_participants_actual, list_game.game[i].nb_participants_final);
+                    if(strlen(list_game.game[i].name_world)!=0){
+                        printf("%d°) Id game : %d | Monde : %s | Nombre de joueurs actuel : %d | Nombre de joueurs max : %d\n", 
+                        i+1, list_game.game[i].id, list_game.game[i].name_world, 
+                        list_game.game[i].nb_participants_actual, list_game.game[i].nb_participants_final);
+                    }
                 }
 
-                while(choice_game<=0 || choice_game>list_game.nb_games){
+                while(choice_game==0 || choice_game>list_game.nb_games){
                     if(choice_game>list_game.nb_games){
                         printf("Votre choix n'est pas parmi les choix proposés\n"); 
-                        exit(EXIT_FAILURE); 
                     }
-                    printf("Quel est votre choix ? "); 
+                    printf("\n[Taper -1 pour quitter le jeu]\nQuel est votre choix ?"); 
                     if(scanf("%d", &choice_game) == -1){
                         perror("[ERROR] - Error when retrieving the choice\n"); 
                         exit(EXIT_FAILURE); 
                     }
                 }
-                printf("Vous avez choisi la partie n° : %d\n", choice_game);
-                join_game(port, address_ip, choice_game, id_client); 
+                if(choice_game < 0){
+                    send_request_to_client_disconnection(info_client, port, address_ip); 
+                    printf("\n\n<<<<<<< Jeu en arrêt ... >>>>>>>\n"); 
+                    exit(EXIT_FAILURE); 
+                }else{
+                    printf("Vous avez choisi la partie n° : %d\n", choice_game);
+                    join_game(port, address_ip, choice_game, info_client.id); 
+                }
+                
             }
 
             break; 
         case 4 : 
+            send_request_to_client_disconnection(info_client, port, address_ip); 
             printf("\n\n<<<<<<< Jeu en arrêt ... >>>>>>>\n"); 
             exit(EXIT_FAILURE); 
             break; 
         default : 
-            fprintf(stderr, "\n[ERROR] - Error when selecting the menu\n"); 
-            fprintf(stderr, "[HELP]  - Select a number between 1 and 4\n"); 
+            fprintf(stderr, "\n[ERROR] - Erreur lors de la sélection dans le menu\n"); 
+            fprintf(stderr, "[HELP]  - Veuillez sélectionner un chiffre entre 1 et 4 \n"); 
             break;
     }
 }

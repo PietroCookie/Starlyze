@@ -67,6 +67,7 @@ void delete_client_connected(list_connected_client* list, info_client_t* client)
         client->next->prev = client->prev;
     }
     free(client);
+    list->nb_clients--;
 }
 
 void delete_list_connected(list_connected_client* list){

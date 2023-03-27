@@ -63,7 +63,7 @@ int main(int argc, char *argv[]){
     int nb_clients = receive_response_nb_clients(port, address_ip); 
     
     display_menu(nb_clients, port, address_ip); 
-    handler_menu(port, address_ip, id_client); 
+    handler_menu(port, address_ip, info_client); 
 
     return EXIT_SUCCESS; 
 }

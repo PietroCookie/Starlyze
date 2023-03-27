@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "create_game.h"
 
 int filter_file_bin(const struct dirent *entry){
@@ -50,6 +51,5 @@ void save_new_game(list_game_t* list_game, int nb_games, int nb_participants_fin
                     info_client_t* new_client){
     game_t* new_game = init_game(nb_games, nb_participants_final, 1, name_world, new_client);
     add_game(list_game, new_game);
-    print_list_game(*list_game);
     list_game->nb_games++;
 }

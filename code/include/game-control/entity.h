@@ -6,10 +6,15 @@
 #include "enemy.h"
 
 
+typedef enum {
+	PLAYER = 1,
+	ENEMY = 2
+} type_entity_enum;
+
 typedef struct {
 	int posX;
 	int posY;
-	type_sprite_enum type;
+	type_entity_enum type;
 	int freeze;
 	union {
 		player_t player;
@@ -17,6 +22,6 @@ typedef struct {
 	};
 } entity_t;
 
-void initialise_entity(entity_t *entity, type_sprite_enum type, int posX, int posY);
+void initialise_entity(entity_t *entity, type_entity_enum type, int posX, int posY);
 
 #endif

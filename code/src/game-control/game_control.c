@@ -76,7 +76,7 @@ void game_control(int num_player)
 	}
 	for (i = 0; i < game_control_infos.number_player; i++)
 	{
-		initialise_entity(&game_control_infos.players[i], SPRITE_PLAYER, m+2, n);
+		initialise_entity(&game_control_infos.players[i], PLAYER, m+2, n);
 		initialise_player(&game_control_infos.players[i].player, game_control_infos.world_info.start_level, i);
 	}
 	
@@ -220,7 +220,7 @@ void load_enemy_world(game_control_t *game_control_infos) {
 
 		while (game_control_infos->world_info.levels[i].robot[current_robot] != -1)
 		{
-			initialise_entity(&game_control_infos->enemy[i][current_enemy], SPRITE_ROBOT, game_control_infos->world_info.levels[i].robot[current_robot] % WIDTH_LEVEL, ((game_control_infos->world_info.levels[i].robot[current_robot] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL));
+			initialise_entity(&game_control_infos->enemy[i][current_enemy], ENEMY, game_control_infos->world_info.levels[i].robot[current_robot] % WIDTH_LEVEL, ((game_control_infos->world_info.levels[i].robot[current_robot] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL));
 			initialise_enemy(&game_control_infos->enemy[i][current_enemy].enemy, ROBOT);
 
 			current_enemy++;
@@ -229,7 +229,7 @@ void load_enemy_world(game_control_t *game_control_infos) {
 
 		while (game_control_infos->world_info.levels[i].probe[current_probe] != -1)
 		{
-			initialise_entity(&game_control_infos->enemy[i][current_enemy], SPRITE_PROBE, game_control_infos->world_info.levels[i].probe[current_probe] % WIDTH_LEVEL, ((game_control_infos->world_info.levels[i].probe[current_probe] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL));
+			initialise_entity(&game_control_infos->enemy[i][current_enemy], ENEMY, game_control_infos->world_info.levels[i].probe[current_probe] % WIDTH_LEVEL, ((game_control_infos->world_info.levels[i].probe[current_probe] - game_control_infos->enemy[i][current_enemy].posX) / WIDTH_LEVEL));
 			initialise_enemy(&game_control_infos->enemy[i][current_enemy].enemy, PROBE);
 
 			current_enemy++;

@@ -15,7 +15,11 @@ typedef enum {
 
 int move_level(level_info_t *level, entity_t *entity_move, direction_enum direction, int number_collision, entity_t *collision);
 
-int check_validation_move(level_info_t *level, int posX_dest, int posY_dest, type_sprite_enum type_sprite, direction_enum direction);
+int check_validation_move(level_info_t *level, int posX_dest, int posY_dest, int posX_width, int posY_height, entity_t *entity_move);
+
+int check_validation_move_enemy(level_info_t *level, int posX_dest, int posY_dest, int posX_width, int posY_height, entity_t *entity_move);
+
+int check_validation_move_player(level_info_t *level, int posX_dest, int posY_dest, int posX_width, int posY_height, entity_t *entity_move);
 
 int take_item(level_info_t *level, player_t *player, int posX, int posY);
 
@@ -23,6 +27,6 @@ void drop_bomb(level_info_t *level, player_t *player, int posX, int posY);
 
 void enter_door(world_info_t *world_info, entity_t *player);
 
-void enter_gate(level_info_t *level, entity_t *player);
+// void enter_gate(level_info_t *level, entity_t *player);
 
 #endif

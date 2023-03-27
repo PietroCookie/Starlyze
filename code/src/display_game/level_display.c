@@ -46,8 +46,12 @@ void convert_level_info(int id_level, level_display_t *level_display, level_info
 		}
 
 
-	for (i = 0; i < number_enemies; i++)
-		level_display->tab[enemies[i].posX][enemies[i].posY] = enemies[i].type;
+	for (i = 0; i < number_enemies; i++) {
+		if(enemies[i].enemy.type == ROBOT)
+			level_display->tab[enemies[i].posX][enemies[i].posY] = SPRITE_ROBOT;
+		else if(enemies[i].enemy.type == PROBE)
+			level_display->tab[enemies[i].posX][enemies[i].posY] = SPRITE_PROBE;
+	}
 	
 	for (i = 0; i < number_players; i++)
 		if(players[i].player.level == id_level)

@@ -143,6 +143,59 @@ void send_request_to_client_disconnection(info_client_t info_client, int port, c
 
     if(close(sockfd)==-1){
         perror("[ERROR] - Error closing socket"); 
+    } 
+}
+
+
+void receive_port_tcp_of_server(int port, char ip_server[15]){
+    int sockfd; 
+    struct sockaddr_in address; 
+    response_server_udp_t response; 
+
+    // Create socket
+    if((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1) {
+        perror("Error creating socket");
+        exit(EXIT_FAILURE);
     }
     
+    // Fill the address structure
+    memset(&address, 0, sizeof(struct sockaddr_in));
+    address.sin_family = AF_INET;
+    address.sin_port = htons(port);
+    if(inet_pton(AF_INET, "127.0.0.1", &address.sin_addr) != 1) {
+        perror("Error converting address");
+        exit(EXIT_FAILURE);
+    }
+
+    // Display address
+    printf("[INFO] - Adresse IP du serveur : %s\n", inet_ntoa(address.sin_addr));
+    printf("[INFO] - Port UDP du serveur : %d\n", ntohs(address.sin_port));
+
+    printf("[INFO] - En attente de connexion du début de la partie ...\n"); 
+    // while(stop==0){
+    //     if(recvfrom(sockfd, &response, sizeof(response_server_udp_t), 0, NULL, 0)==-1){
+    //         if(errno == EINTR){
+    //             perror("[ERROR] - Error receiving message"); 
+    //             exit(EXIT_FAILURE); 
+    //         }
+    //     }else{
+    //         stop=1;
+    //         printf("Requete recu !"); 
+    //     }
+    // }
+    if(recvfrom(sockfd, &response, sizeof(response_server_udp_t), 0, NULL, 0)==-1){
+        if(errno == EINTR){
+            perror("[ERROR] - Error receiving message"); 
+            exit(EXIT_FAILURE); 
+        }
+    }else{
+        // stop=1;
+        printf("Requete reçu !");
+    }
+
+    printf("[INFO] - Port TCP : %d ", response.content.port_tcp);
+
+    if(close(sockfd)==-1){
+        perror("[ERROR] - Error closing socket"); 
+    }
 }

@@ -1,10 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
 #include "client_utility.h"
 #include "client_udp.h"
 #include "client_create_game.h"
 #include "client_join_game.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "client_tcp.h"
+
+
 
 
 void display_logo_app(){
@@ -97,6 +102,8 @@ void handler_menu(int port, char address_ip[15], info_client_t info_client){
                 nb_clients = receive_response_nb_clients(port, address_ip); 
                 display_menu(nb_clients, port, address_ip); 
                 handler_menu(port, address_ip, info_client); 
+            }else{
+                receive_port_tcp_of_server(port, address_ip);
             }
             break; 
         case 3 :  
@@ -151,6 +158,7 @@ void handler_menu(int port, char address_ip[15], info_client_t info_client){
                 }else{
                     printf("Vous avez choisi la partie n° : %d\n", choice_game);
                     join_game(port, address_ip, choice_game, info_client.id); 
+                    receive_port_tcp_of_server(port, address_ip); 
                 }
                 
             }

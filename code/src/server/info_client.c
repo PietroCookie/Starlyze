@@ -6,13 +6,15 @@
 
 void init_list_info_client(list_info_client_t* list){
     list->head = NULL; 
+    list->nb_clients = 0;
 }
 
-info_client_t* init_info_client(int id, char pseudo[MAX_MSG], char* client_address){
+info_client_t* init_info_client(int id, char pseudo[MAX_MSG], char* client_address, int port){
     info_client_t* info = malloc(sizeof(info_client_t));
     info->id = id; 
     strcpy(info->pseudo, pseudo); 
     info->client_address = client_address;
+    info->port = port;
     info->next = NULL; 
     info->prev = NULL; 
     return info; 
@@ -39,6 +41,14 @@ void add_client(list_info_client_t* list, info_client_t* client){
         list->head = client; 
         client->prev = NULL;
     }
+    list->nb_clients++;
+    // if(list->head == NULL){
+    //     list->head = client; 
+    // }else{
+    //     client->next = list->head;
+    //     list->head->prev = client;
+    //     list->head = client;
+    // }
 }
 
 void print_list_client(list_info_client_t list){
@@ -47,7 +57,7 @@ void print_list_client(list_info_client_t list){
     }else{
         info_client_t* current = list.head; 
         while(current != NULL){
-            printf("Client %d - Pseudo: %s - Adresse: %s\n", current->id, current->pseudo, current->client_address);
+            printf("Client %d - Pseudo: %s - Adresse: %s - Port : %d\n", current->id, current->pseudo, current->client_address, current->port);
             current = current->next; 
         }
     }
@@ -74,6 +84,7 @@ void delete_client(list_info_client_t* list, info_client_t* client){
         client->next->prev = client->prev; 
     }
     free(client); 
+    list->nb_clients--;
 }
 
 void delete_list(list_info_client_t* list){

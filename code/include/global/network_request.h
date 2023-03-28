@@ -38,6 +38,7 @@ typedef struct{
 typedef union{
     int nb_clients; 
     int id_clients; 
+    int port_tcp;
     list_world_response_t list_world; 
     list_game_without_pointers_t list_game;
 }content_response_server_t;

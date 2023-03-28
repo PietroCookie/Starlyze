@@ -7,6 +7,7 @@ struct info_client_t{
     int id; 
     char pseudo[MAX_MSG]; 
     char* client_address; 
+    int port;
     struct info_client_t* next;
     struct info_client_t* prev;
 };
@@ -15,12 +16,13 @@ typedef struct info_client_t info_client_t;
 // Liste
 typedef struct{
     info_client_t* head; 
+    int nb_clients;
 }list_info_client_t;
 
 
 void init_list_info_client(list_info_client_t* list); 
 
-info_client_t* init_info_client(int id, char pseudo[MAX_MSG], char* client_address); 
+info_client_t* init_info_client(int id, char pseudo[MAX_MSG], char* client_address, int port); 
 
 int is_empty_client(list_info_client_t* list); 
 

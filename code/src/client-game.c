@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <locale.h>
+#include <string.h>
 
 #include <pthread.h>
 
@@ -15,6 +16,9 @@ int main(int argc, char const *argv[])
 	int socket_client;
 	pthread_t thread[2];
 	client_game_infos_thread_t client_infos;
+	char address[25];
+
+	strcpy(address, argv[1]);
 	
     
     // Check arguments
@@ -36,7 +40,7 @@ int main(int argc, char const *argv[])
 
 	
 
-	socket_client = connection_game("127.0.0.1", atoi(argv[2]));
+	socket_client = connection_game(address, atoi(argv[2]));
 	client_infos.socket_client = &socket_client;
 	client_infos.interface = interface_game_create();
     

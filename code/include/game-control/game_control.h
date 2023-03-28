@@ -23,13 +23,14 @@ typedef struct {
 
 typedef struct {
 	int id_player;
+	int *socket_client;
 	game_control_t *game_control;
 } player_infos_thread_t;
 
 
 void handler_exit(int signum);
 
-void game_control(int num_player);
+void game_control(int num_player, int socket_game);
 
 void delete_game_control(game_control_t *game_control_infos);
 
@@ -38,7 +39,7 @@ pthread_t *launch_enemy(game_control_t *game_control_infos);
 void load_enemy_world(game_control_t *game_control_infos);
 
 
-pthread_t *launch_players(game_control_t *game_control_infos);
+pthread_t *launch_players(game_control_t *game_control_infos, int socket_game, int *socket_client);
 
 
 #endif

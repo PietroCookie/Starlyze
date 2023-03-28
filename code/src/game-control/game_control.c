@@ -6,6 +6,8 @@
 #include <locale.h>
 #include <signal.h>
 #include <time.h>
+#include <sys/socket.h>
+#include <errno.h>
 
 
 #include "world_info.h"
@@ -15,10 +17,6 @@
 #include "player.h"
 #include "enemy.h"
 #include "trap.h"
-
-#include "functions.h"
-#include "interface_game.h"
-#include "level_display.h"
 
 
 void * p_thread_player = thread_player;
@@ -31,14 +29,13 @@ void handler_exit(int signum) {
 	quit = TRUE;
 }
 
-void game_control(int num_player)
+void game_control(int num_player, int socket_game)
 {
 	struct sigaction action;
 	game_control_t game_control_infos;
 	int i, m, n;
+	int *socket_client;
 	pthread_t *thread_player, *thread_enemy, *thread_trap;
-	interface_game_t *interface;
-	level_display_t level_display;
 
 	
 	srand(time(NULL));
@@ -79,10 +76,15 @@ void game_control(int num_player)
 		initialise_entity(&game_control_infos.players[i], PLAYER, m+2, n);
 		initialise_player(&game_control_infos.players[i].player, game_control_infos.world_info.start_level, i);
 	}
+
+	if((socket_client = malloc(game_control_infos.number_player * sizeof(int))) == NULL) {
+		perror("Error allocating memory for socket_client in game_control");
+		exit(EXIT_FAILURE);
+	}
 	
-	thread_player = launch_players(&game_control_infos);
+	thread_player = launch_players(&game_control_infos, socket_game, socket_client);
 
-
+	
 	// Create enemy
 	thread_enemy = launch_enemy(&game_control_infos);
 
@@ -95,35 +97,21 @@ void game_control(int num_player)
 		if(pthread_create(&thread_trap[i], NULL, p_thread_trap_level, &game_control_infos.world_info.levels[i]) != 0) {
 			fprintf(stderr, "Error create thread for trap");
 		}
-	
-	setlocale(LC_ALL, "");
-	ncurses_init();
-	ncurses_init_mouse();
-	ncurses_colors();
-	palette();
-	clear();
-	refresh();
 
 
-	interface = interface_game_create();
-	while (quit == FALSE)
-	{		
-		convert_level_info(0, &level_display, game_control_infos.world_info.levels[0], game_control_infos.enemy[0], game_control_infos.world_info.levels[0].number_enemy, game_control_infos.players, game_control_infos.number_player);
-		refresh_win_level_game(interface, level_display);
+	while(1) {
+
 	}
-	
-	ncurses_stop();
 
-	interface_game_delete(&interface);
 
 	for (i = 0; i < game_control_infos.world_info.total_level; i++)
 		if(pthread_cancel(thread_trap[i]) != 0) {
 			fprintf(stderr, "Error cancel thread for trap");
 		}
-	for (i = 0; i < game_control_infos.number_player; i++)
-		if(pthread_cancel(thread_player[i]) != 0) {
-			fprintf(stderr, "Error cancel thread player");
-		}
+	// for (i = 0; i < game_control_infos.number_player; i++)
+	// 	if(pthread_cancel(thread_player[i]) != 0) {
+	// 		fprintf(stderr, "Error cancel thread player");
+	// 	}
 	for (i = 0; i < game_control_infos.number_total_enemy; i++)
 		if(pthread_cancel(thread_enemy[i]) != 0) {
 			fprintf(stderr, "Error cancel thread enemy");
@@ -239,7 +227,7 @@ void load_enemy_world(game_control_t *game_control_infos) {
 	}
 }
 
-pthread_t *launch_players(game_control_t *game_control_infos) {
+pthread_t *launch_players(game_control_t *game_control_infos, int socket_game, int *socket_client) {
 	pthread_t *thread;
 	player_infos_thread_t *player_info;
 	int i;
@@ -248,6 +236,17 @@ pthread_t *launch_players(game_control_t *game_control_infos) {
 		perror("Error allocating player thread");
 		exit(EXIT_FAILURE);
 	}
+
+	for (i = 0; i < game_control_infos->number_player; i++)
+	{
+		if((socket_client[i] = accept(socket_game, NULL, NULL)) == -1) {
+            if(errno != EINTR) {
+                perror("Error waiting connexion");
+                exit(EXIT_FAILURE);
+            }
+        }
+	}
+	
 
 
 	for (i = 0; i < game_control_infos->number_player; i++) {
@@ -258,12 +257,12 @@ pthread_t *launch_players(game_control_t *game_control_infos) {
 
 		player_info->id_player = i;
 		player_info->game_control = game_control_infos;
+		player_info->socket_client = &socket_client[i];
 
 		if(pthread_create(&thread[i], NULL, p_thread_player, player_info) != 0){
 			fprintf(stderr, "Error create thread for player");
 		}
 	}
-
 
 	return thread;
 }

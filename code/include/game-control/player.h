@@ -16,6 +16,10 @@ typedef struct
 
 void initialise_player(player_t *player, int level, int id);
 
+void cleanup_handler(void *arg);
+
 void *thread_player(void *arg);
+
+void *thread_sending_level(void *arg);
 
 #endif

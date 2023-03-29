@@ -75,12 +75,12 @@ int move_level(game_control_t *game_control_info, int id_level, entity_t *entity
 	if(validate){
 		zone_dest = (posY_dest / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX_dest / WIDTH_ZONE_LEVEL);
 		if(pthread_mutex_lock(&game_control_info->world_info.levels[id_level].mutex_zone[zone_src[0]]) != 0){
-			fprintf(stderr, "Error lock mutex in move_level");
+			fprintf(stderr, "Error lock mutex in move_level\n");
 			exit(EXIT_FAILURE);
 		}
 		if(zone_dest != zone_src[0])
 			if(pthread_mutex_lock(&game_control_info->world_info.levels[id_level].mutex_zone[zone_dest]) != 0){
-				fprintf(stderr, "Error lock mutex in move_level");
+				fprintf(stderr, "Error lock mutex in move_level\n");
 				exit(EXIT_FAILURE);
 			}
 
@@ -120,12 +120,12 @@ int move_level(game_control_t *game_control_info, int id_level, entity_t *entity
 		}
 
 		if(pthread_mutex_unlock(&game_control_info->world_info.levels[id_level].mutex_zone[zone_src[0]]) != 0){
-			fprintf(stderr, "Error unlock mutex in move_level");
+			fprintf(stderr, "Error unlock mutex in move_level\n");
 			exit(EXIT_FAILURE);
 		}
 		if(zone_dest != zone_src[0])
 			if(pthread_mutex_unlock(&game_control_info->world_info.levels[id_level].mutex_zone[zone_dest]) != 0){
-				fprintf(stderr, "Error lock mutex in move_level");
+				fprintf(stderr, "Error lock mutex in move_level\n");
 				exit(EXIT_FAILURE);
 			}
 	}
@@ -424,7 +424,7 @@ void drop_bomb(game_control_t *game_control, entity_t *player){
 	player->player.bomb--;
 
 	if(pthread_create(&explosion, NULL, thread_explose_bomb, &infos_bomb) != 0) {
-		fprintf(stderr, "Error create thread explosion bomb");
+		fprintf(stderr, "Error create thread explosion bomb\n");
 	}
 }
 
@@ -474,7 +474,7 @@ void *thread_explose_bomb(void *arg) {
 	for (i = 0; i < 9; i++){
 		if(zone_explosion[i] < world_info->levels[id_level].number_mutex_zone && zone_explosion[i] >= 0)
 			if(pthread_mutex_lock(&world_info->levels[id_level].mutex_zone[zone_explosion[i]]) != 0) {
-				fprintf(stderr, "Error lock mutex zone explosion");
+				fprintf(stderr, "Error lock mutex zone explosion\n");
 			}
 	}
 
@@ -499,7 +499,7 @@ void *thread_explose_bomb(void *arg) {
 	for (i = 0; i < 9; i++){
 		if(zone_explosion[i] < world_info->levels[id_level].number_mutex_zone && zone_explosion[i] >= 0)
 			if(pthread_mutex_unlock(&world_info->levels[id_level].mutex_zone[zone_explosion[i]]) != 0) {
-				fprintf(stderr, "Error unlock mutex zone explosion");
+				fprintf(stderr, "Error unlock mutex zone explosion\n");
 			}
 	}
 

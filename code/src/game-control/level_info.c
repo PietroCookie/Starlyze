@@ -26,7 +26,7 @@ void load_level_info(level_info_t *level_info, int file){
 	}
 	for (i = 0; i < level_info->number_mutex_zone; i++)
 		if(pthread_mutex_init(&level_info->mutex_zone[i], NULL) != 0){
-			fprintf(stderr, "Error intialise mutex zone");
+			fprintf(stderr, "Error intialise mutex zone\n");
 			exit(EXIT_FAILURE);
 		}
 
@@ -63,7 +63,7 @@ void delete_level_info(level_info_t *level_info){
 
 	for (i = 0; i < level_info->number_mutex_zone; i++)
 		if(pthread_mutex_destroy(&level_info->mutex_zone[i]) != 0){
-			fprintf(stderr, "Error destroy mutex zone");
+			fprintf(stderr, "Error destroy mutex zone\n");
 			exit(EXIT_FAILURE);
 		}
 	free(level_info->mutex_zone);

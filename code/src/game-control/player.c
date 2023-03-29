@@ -64,7 +64,6 @@ void *thread_player(void *arg) {
 
 	while (quit == 0)
 	{
-		// enter_gate(&game_control->world_info.levels[player_entity->player.level], player_entity);
 		if(read(socket_client, &ch, sizeof(char))== -1) {
 			perror("Error receive value");
 			quit = 1;

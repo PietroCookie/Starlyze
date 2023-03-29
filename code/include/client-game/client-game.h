@@ -8,7 +8,6 @@
 typedef struct
 {
 	int *socket_client;
-	pthread_t *thread_display;
 	interface_game_t *interface;
 } client_game_infos_thread_t;
 
@@ -16,7 +15,5 @@ typedef struct
 int connection_game(char* address, int port);
 
 void *thread_display(void *arg);
-
-void *thread_send(void *arg);
 
 #endif

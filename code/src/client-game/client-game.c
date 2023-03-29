@@ -72,31 +72,3 @@ void *thread_display(void *arg) {
 
 	pthread_exit(NULL);
 }
-
-void *thread_send(void *arg) {
-	int quit = 0;
-	char ch;
-	int socket_client = *((client_game_infos_thread_t*)arg)->socket_client;
-	pthread_t thread_display = *((client_game_infos_thread_t*)arg)->thread_display;
-
-
-	while (quit == 0)
-	{
-		ch = getch();
-		if(ch == 'n' || ch =='N')
-			quit = 1;
-		else {
-			if(write(socket_client, &ch, sizeof(char)) == -1) {
-				perror("Error sending value");
-				quit = 1;
-			}
-		}
-	}
-
-	if(pthread_cancel(thread_display) != 0) {
-		fprintf(stderr, "Error cancel thread display");
-	}
-
-	pthread_exit(NULL);
-}
-

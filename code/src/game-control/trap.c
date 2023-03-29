@@ -161,7 +161,7 @@ void *thread_trap_level(void *arg) {
 			
 			pthread_testcancel();
 			if(nanosleep(&time_wait, NULL) == -1) {
-				fprintf(stderr, "Error with nanosleep in thread_trap_level");
+				fprintf(stderr, "Error with nanosleep in thread_trap_level\n");
 			}
 		}
 

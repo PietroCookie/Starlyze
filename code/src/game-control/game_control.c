@@ -95,7 +95,7 @@ void game_control(int num_player, int socket_game)
 	}
 	for (i = 0; i < game_control_infos.world_info.total_level; i++)
 		if(pthread_create(&thread_trap[i], NULL, p_thread_trap_level, &game_control_infos.world_info.levels[i]) != 0) {
-			fprintf(stderr, "Error create thread for trap");
+			fprintf(stderr, "Error create thread for trap\n");
 		}
 
 
@@ -106,28 +106,28 @@ void game_control(int num_player, int socket_game)
 
 	for (i = 0; i < game_control_infos.world_info.total_level; i++)
 		if(pthread_cancel(thread_trap[i]) != 0) {
-			fprintf(stderr, "Error cancel thread for trap");
+			fprintf(stderr, "Error cancel thread for trap\n");
 		}
 	for (i = 0; i < game_control_infos.number_player; i++)
 		if(pthread_cancel(thread_player[i]) != 0) {
-			fprintf(stderr, "Error cancel thread player");
+			fprintf(stderr, "Error cancel thread player\n");
 		}
 	for (i = 0; i < game_control_infos.number_total_enemy; i++)
 		if(pthread_cancel(thread_enemy[i]) != 0) {
-			fprintf(stderr, "Error cancel thread enemy");
+			fprintf(stderr, "Error cancel thread enemy\n");
 		}
 
 	for (i = 0; i < game_control_infos.world_info.total_level; i++)
 		if(pthread_join(thread_trap[i], NULL) != 0) {
-			fprintf(stderr, "Error join thread for trap");
+			fprintf(stderr, "Error join thread for trap\n");
 		}
 	for (i = 0; i < game_control_infos.number_player; i++)
 		if(pthread_join(thread_player[i], NULL)) {
-			fprintf(stderr, "Error join thread player");
+			fprintf(stderr, "Error join thread player\n");
 		}
 	for (i = 0; i < game_control_infos.number_total_enemy; i++)
 		if(pthread_join(thread_enemy[i], NULL)) {
-			fprintf(stderr, "Error join thread enemy");
+			fprintf(stderr, "Error join thread enemy\n");
 		}
 	
 	delete_game_control(&game_control_infos);
@@ -172,7 +172,7 @@ pthread_t* launch_enemy(game_control_t *game_control_infos) {
 		enemy_infos_thread->game_control = game_control_infos;
 
 		if(pthread_create(&thread_enemy[i], NULL, p_thread_enemy, enemy_infos_thread) != 0){
-			fprintf(stderr, "Error create thread for enemy");
+			fprintf(stderr, "Error create thread for enemy\n");
 		}
 
 		if(current_enemy_level >= game_control_infos->world_info.levels[current_level].number_enemy) {
@@ -260,7 +260,7 @@ pthread_t *launch_players(game_control_t *game_control_infos, int socket_game, i
 		player_info->socket_client = &socket_client[i];
 
 		if(pthread_create(&thread[i], NULL, p_thread_player, player_info) != 0){
-			fprintf(stderr, "Error create thread for player");
+			fprintf(stderr, "Error create thread for player\n");
 		}
 	}
 

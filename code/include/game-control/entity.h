@@ -24,4 +24,8 @@ typedef struct {
 
 void initialise_entity(entity_t *entity, type_entity_enum type, int posX, int posY);
 
+int posX_width_entity(entity_t entity);
+
+int posY_height_entity(entity_t entity);
+
 #endif

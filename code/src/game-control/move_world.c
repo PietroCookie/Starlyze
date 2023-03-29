@@ -6,6 +6,8 @@
 #include "game_control.h"
 #include "sprite.h"
 
+void * p_thread_invincible = thread_invincible;
+
 void *thread_wait_item(void *arg) {
 
 	int posX = ((infos_wait_item_t*)arg)->infos[0];
@@ -19,27 +21,17 @@ void *thread_wait_item(void *arg) {
 	pthread_exit(NULL);
 }
 
-int move_level(level_info_t *level, entity_t *entity_move, direction_enum direction, int number_collision, entity_t *collision){
+int move_level(game_control_t *game_control_info, int id_level, entity_t *entity_move, direction_enum direction){
 	int validate = 1;
 	int posX_dest = entity_move->posX, posY_dest = entity_move->posY;
 	int posX_width = posX_dest, posY_height = posY_dest;
 	int zone_dest;
 	int zone_src[2];
+	entity_t *collider;
+	pthread_t thread_invincible;
 
-	if(entity_move->type == PLAYER) {
-		posX_width = entity_move->posX + width_sprite(SPRITE_PLAYER)-1;
-		posY_height = entity_move->posY + height_sprite(SPRITE_PLAYER)-1;
-	}
-	else if(entity_move->type == ENEMY) {
-		if(entity_move->enemy.type == PROBE) {
-			posX_width = entity_move->posX + width_sprite(SPRITE_PROBE)-1;
-			posY_height = entity_move->posY + height_sprite(SPRITE_PROBE)-1;
-		}
-		else if(entity_move->enemy.type == ROBOT) {
-			posX_width = entity_move->posX + width_sprite(SPRITE_ROBOT)-1;
-			posY_height = entity_move->posY + height_sprite(SPRITE_ROBOT)-1;
-		}
-	}
+	posX_width = posX_width_entity(*entity_move);
+	posY_height = posY_height_entity(*entity_move);
 
 	zone_src[0] = (entity_move->posY / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (entity_move->posX / WIDTH_ZONE_LEVEL);
 	zone_src[1] = (posY_height / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX_width / WIDTH_ZONE_LEVEL);
@@ -57,7 +49,7 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 			break;
 
 		case UP:
-			if((entity_move->type == PLAYER && (level->map[entity_move->posX][entity_move->posY].type == SPRITE_LADDER || level->map[entity_move->posX][posY_height].type == SPRITE_LADDER))
+			if((entity_move->type == PLAYER && (game_control_info->world_info.levels[id_level].map[entity_move->posX][entity_move->posY].type == SPRITE_LADDER || game_control_info->world_info.levels[id_level].map[entity_move->posX][posY_height].type == SPRITE_LADDER))
 				|| (entity_move->type == ENEMY && entity_move->enemy.type  == PROBE) ) {
 				posY_dest--;
 				posY_height--;
@@ -65,7 +57,7 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 			break;
 
 		case DOWN:
-			if((entity_move->type == PLAYER && (level->map[entity_move->posX][entity_move->posY].type == SPRITE_LADDER || level->map[entity_move->posX][posY_height+1].type == SPRITE_LADDER)) 
+			if((entity_move->type == PLAYER && (game_control_info->world_info.levels[id_level].map[entity_move->posX][entity_move->posY].type == SPRITE_LADDER || game_control_info->world_info.levels[id_level].map[entity_move->posX][posY_height+1].type == SPRITE_LADDER)) 
 				|| (entity_move->type == ENEMY && entity_move->enemy.type == PROBE)) {
 				posY_dest++;
 				posY_height++;
@@ -82,38 +74,89 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 
 	if(validate){
 		zone_dest = (posY_dest / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX_dest / WIDTH_ZONE_LEVEL);
-		if(pthread_mutex_lock(&level->mutex_zone[zone_src[0]]) != 0){
+		if(pthread_mutex_lock(&game_control_info->world_info.levels[id_level].mutex_zone[zone_src[0]]) != 0){
 			fprintf(stderr, "Error lock mutex in move_level");
 			exit(EXIT_FAILURE);
 		}
 		if(zone_dest != zone_src[0])
-			if(pthread_mutex_lock(&level->mutex_zone[zone_dest]) != 0){
+			if(pthread_mutex_lock(&game_control_info->world_info.levels[id_level].mutex_zone[zone_dest]) != 0){
 				fprintf(stderr, "Error lock mutex in move_level");
 				exit(EXIT_FAILURE);
 			}
 
 
-		validate = check_validation_move(level, posX_dest, posY_dest, posX_width, posY_height, entity_move);
+		validate = check_validation_move(&game_control_info->world_info.levels[id_level], posX_dest, posY_dest, posX_width, posY_height, entity_move);
 
+		
 		if(validate) {
 			entity_move->posX = posX_dest;
 			entity_move->posY = posY_dest;
-			if(entity_move->type == PLAYER)
-				take_item(level, &entity_move->player, posX_dest, posY_dest, posX_width, posY_height);
+			
+			if(entity_move->type == PLAYER) {
+				if(!entity_move->player.invincible && (collider = check_collision(entity_move, game_control_info->enemy[id_level], game_control_info->world_info.levels[id_level].number_enemy, id_level)) != NULL) {
+					entity_move->player.life--;
+					
+					if(entity_move->player.life <= 0)
+						reset_player(game_control_info->world_info, entity_move);
+					if(pthread_create(&thread_invincible, NULL, p_thread_invincible, &entity_move->player) != 0) {
+						fprintf(stderr, "Error create thread invincible\n");
+					}
+				}
+				else
+					take_item(&game_control_info->world_info.levels[id_level], &entity_move->player, posX_dest, posY_dest, posX_width, posY_height);
+			}
+			else if(entity_move->type == ENEMY) {
+				if((collider = check_collision(entity_move, game_control_info->players, game_control_info->number_player, id_level)) != NULL && !collider->player.invincible) {
+					collider->player.life--;
+					
+					if(collider->player.life <= 0)
+						reset_player(game_control_info->world_info, collider);
+					if(pthread_create(&thread_invincible, NULL, p_thread_invincible, &collider->player) != 0) {
+						fprintf(stderr, "Error create thread invincible\n");
+					}
+				}
+			}
+			
 		}
 
-		if(pthread_mutex_unlock(&level->mutex_zone[zone_src[0]]) != 0){
+		if(pthread_mutex_unlock(&game_control_info->world_info.levels[id_level].mutex_zone[zone_src[0]]) != 0){
 			fprintf(stderr, "Error unlock mutex in move_level");
 			exit(EXIT_FAILURE);
 		}
 		if(zone_dest != zone_src[0])
-			if(pthread_mutex_unlock(&level->mutex_zone[zone_dest]) != 0){
+			if(pthread_mutex_unlock(&game_control_info->world_info.levels[id_level].mutex_zone[zone_dest]) != 0){
 				fprintf(stderr, "Error lock mutex in move_level");
 				exit(EXIT_FAILURE);
 			}
 	}
 
 	return validate;
+}
+
+void reset_player(world_info_t world_info, entity_t *player) {
+	int m, n;
+
+	m = 0;
+	n = 0;
+	while (world_info.levels[world_info.start_level].map[m][n].type != SPRITE_START)
+	{
+		n++;
+		if(n == HEIGHT_LEVEL) {
+			m++;
+			n = 0;
+		}
+	}
+
+	player->posX = m;
+	player->posY = n;
+
+	for (m = 0; m < NUMBER_KEY; m++)
+		player->player.key[m] = 0;
+	
+
+	player->player.life = MAX_LIFE_PLAYER;
+	player->player.bomb = 0;
+	player->player.level = world_info.start_level;
 }
 
 int check_validation_move(level_info_t *level, int posX_dest, int posY_dest, int posX_width, int posY_height, entity_t *entity_move){
@@ -198,6 +241,34 @@ int check_validation_move_player(level_info_t *level, int posX_dest, int posY_de
 	return validate;
 }
 
+entity_t *check_collision(entity_t *entity_collision, entity_t *collider, int number_collider, int level) {
+	int i;
+	int posX_width, posY_height, posX_width_collider, posY_height_collider;
+	entity_t *collision = NULL;
+
+	posX_width = posX_width_entity(*entity_collision);
+	posY_height = posY_height_entity(*entity_collision);
+
+	i = 0;
+	while (collision == NULL && i < number_collider)
+	{
+		if((collider[i].type == PLAYER && collider[i].player.level == level && !collider[i].player.invincible) || (collider[i].type == ENEMY && !collider[i].freeze) ) {
+			posX_width_collider = posX_width_entity(collider[i]);
+			posY_height_collider = posY_height_entity(collider[i]);
+			
+			if((entity_collision->posX <= posX_width_collider && entity_collision->posX >= collider[i].posX && entity_collision->posY <= posY_height_collider && entity_collision->posY >= collider[i].posY)
+				|| (posX_width <= posX_width_collider && posX_width >= collider[i].posX && entity_collision->posY <= posY_height_collider && entity_collision->posY >= collider[i].posY )
+				|| (entity_collision->posX <= posX_width_collider && entity_collision->posX >= collider[i].posX && posY_height <= posY_height_collider && posY_height >= collider[i].posY)
+				|| (posX_width <= posX_width_collider && posX_width >= collider[i].posX && posY_height <=posY_height_collider && posY_height >= collider[i].posY) )
+				collision = &collider[i];
+		}
+		
+		i++;
+	}
+
+	return collision;
+}
+
 void take_item(level_info_t *level, player_t *player, int posX, int posY, int posX_width, int posY_height){
 	int i, j;
 	pthread_t thread;
@@ -208,7 +279,7 @@ void take_item(level_info_t *level, player_t *player, int posX, int posY, int po
 		{
 			if(level->map[i][j].type == SPRITE_KEY) 
 				player->key[level->map[i][j].specification] = 1;
-			else if(level->map[i][j].type == SPRITE_LIFE) {
+			else if(level->map[i][j].type == SPRITE_LIFE && player->life < MAX_LIFE_PLAYER) {
 				player->life = MAX_LIFE_PLAYER;
 				infos_thread.infos[0] = i;
 				infos_thread.infos[1] = j;
@@ -326,7 +397,7 @@ void drop_bomb(game_control_t *game_control, entity_t *player){
 
 	zone_drop = (posY_bomb / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX_bomb / WIDTH_ZONE_LEVEL);
 
-	infos_bomb.level = &game_control->world_info.levels[player->player.level];
+	infos_bomb.world_info = &game_control->world_info;
 	infos_bomb.position[0] = posX_bomb;
 	infos_bomb.position[1] = posY_bomb;
 	infos_bomb.id_level = player->player.level;
@@ -364,7 +435,7 @@ void *thread_explose_bomb(void *arg) {
 	int posY = ((infos_bomb_explose_t*)arg)->position[1];
 	int posX_bomb = posX, posY_bomb = posY;
 	int posX_width = posX, posY_height = posY;
-	level_info_t *level = ((infos_bomb_explose_t*)arg)->level;
+	world_info_t *world_info = ((infos_bomb_explose_t*)arg)->world_info;
 	entity_t *enemy = ((infos_bomb_explose_t*)arg)->enemy_level;
 	int number_enemy = ((infos_bomb_explose_t*)arg)->number_enemy;
 	entity_t *players = ((infos_bomb_explose_t*)arg)->players;
@@ -401,8 +472,8 @@ void *thread_explose_bomb(void *arg) {
 
 	
 	for (i = 0; i < 9; i++){
-		if(zone_explosion[i] < level->number_mutex_zone && zone_explosion[i] >= 0)
-			if(pthread_mutex_lock(&level->mutex_zone[zone_explosion[i]]) != 0) {
+		if(zone_explosion[i] < world_info->levels[id_level].number_mutex_zone && zone_explosion[i] >= 0)
+			if(pthread_mutex_lock(&world_info->levels[id_level].mutex_zone[zone_explosion[i]]) != 0) {
 				fprintf(stderr, "Error lock mutex zone explosion");
 			}
 	}
@@ -412,17 +483,22 @@ void *thread_explose_bomb(void *arg) {
 			enemy->freeze = 1;
 
 	for (i = 0; i < number_players; i++)
-		if(players[i].player.level == id_level && players[i].posX >= posX && players[i].posX <= posX_width && players[i].posY >= posY && players[i].posY <= posY_height)
+		if(players[i].player.level == id_level && players[i].posX >= posX && players[i].posX <= posX_width && players[i].posY >= posY && players[i].posY <= posY_height) {
 			players[i].freeze = 1;
+			players[i].player.life--;
+			
+			if(players[i].player.life <= 0)
+				reset_player(*world_info, players);
+		}
 
 	
-	level->map[posX_bomb][posY_bomb].type = last_sprite;
-	level->map[posX_bomb][posY_bomb].specification = -1;
+	world_info->levels[id_level].map[posX_bomb][posY_bomb].type = last_sprite;
+	world_info->levels[id_level].map[posX_bomb][posY_bomb].specification = -1;
 
 	
 	for (i = 0; i < 9; i++){
-		if(zone_explosion[i] < level->number_mutex_zone && zone_explosion[i] >= 0)
-			if(pthread_mutex_unlock(&level->mutex_zone[zone_explosion[i]]) != 0) {
+		if(zone_explosion[i] < world_info->levels[id_level].number_mutex_zone && zone_explosion[i] >= 0)
+			if(pthread_mutex_unlock(&world_info->levels[id_level].mutex_zone[zone_explosion[i]]) != 0) {
 				fprintf(stderr, "Error unlock mutex zone explosion");
 			}
 	}

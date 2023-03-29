@@ -39,7 +39,7 @@ void *thread_enemy(void *arg){
 		pthread_testcancel();
 
 		if(!game_control->enemy[level][id_enemy].freeze) {
-			if(!move_level(&game_control->world_info.levels[level], &game_control->enemy[level][id_enemy], direction, game_control->number_player, game_control->players)) {
+			if(!move_level(game_control, level, &game_control->enemy[level][id_enemy], direction)) {
 				if(game_control->enemy[level][id_enemy].enemy.type == ROBOT) {
 					if(direction == LEFT)
 						direction = RIGHT;

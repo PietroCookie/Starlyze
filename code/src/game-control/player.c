@@ -16,9 +16,10 @@ void initialise_player(player_t *player, int level, int id){
 	int i;
 
 	player->life = MAX_LIFE_PLAYER;
-	player->bomb = 1;
+	player->bomb = 0;
 	player->level = level;
 	player->id = id;
+	player->invincible = 0;
 
 	for (i = 0; i < NUMBER_KEY; i++)
 		player->key[i] = 0;
@@ -31,6 +32,17 @@ void cleanup_handler(void *arg) {
 	if(pthread_join(*(pthread_t*)arg, NULL) != 0)
 		fprintf(stderr, "Error join thread_sending_level\n");
 }
+
+void *thread_invincible(void *arg) {
+	player_t *player = ((player_t*)arg);
+
+	player->invincible = 1;
+	sleep(3);
+	player->invincible = 0;
+
+	pthread_exit(NULL);
+}
+
 
 void *thread_player(void *arg) {
 	int quit = 0;
@@ -59,13 +71,13 @@ void *thread_player(void *arg) {
 
 		if(!player_entity->freeze) {
 			if(ch == 'd' || ch == 'D')
-				move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, RIGHT, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
+				move_level(game_control, player_entity->player.level, player_entity, RIGHT);
 			else if(ch == 'q' || ch == 'Q')
-				move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, LEFT, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
+				move_level(game_control, player_entity->player.level, player_entity, LEFT);
 			else if(ch == 'z' || ch == 'Z')
-				move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, UP, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
+				move_level(game_control, player_entity->player.level, player_entity, UP);
 			else if(ch == 's' || ch == 'S')
-				move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, DOWN, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
+				move_level(game_control, player_entity->player.level, player_entity, DOWN);
 			else if(ch == 'e' || ch == 'E')
 				enter_door(&game_control->world_info, player_entity);
 			else if(ch == 'g' || ch == 'G')

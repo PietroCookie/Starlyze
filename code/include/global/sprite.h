@@ -7,7 +7,7 @@
 #include "colors.h"
 
 #define MAX_ID_DOOR 99
-#define MAX_ID_GATE_KEY 7
+#define MAX_ID_GATE_KEY 4
 
 typedef enum {
 	SPRITE_BLOCK = 1,

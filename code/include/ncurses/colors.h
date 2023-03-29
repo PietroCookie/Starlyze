@@ -1,4 +1,4 @@
-    #ifndef __COLORS_H__
+#ifndef __COLORS_H__
 #define __COLORS_H__
 
 // Colors constants

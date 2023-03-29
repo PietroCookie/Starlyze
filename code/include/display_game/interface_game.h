@@ -4,6 +4,7 @@
 #include "window.h"
 
 #include "level_display.h"
+#include "player.h"
 
 #define DEFAULT_WIDTH_INTERFACE_GAME 62
 #define DEFAULT_HEIGHT_INTERFACE_GAME 22
@@ -11,7 +12,7 @@
 typedef struct
 {
 	window_t *win_level;
-
+	window_t *win_infos;
 } interface_game_t;
 
 /**
@@ -35,5 +36,7 @@ void interface_game_delete(interface_game_t** interface);
 
 
 void refresh_win_level_game(interface_game_t* interface, level_display_t level_display);
+
+void refresh_win_infos(interface_game_t* interface, player_t player);
 
 #endif

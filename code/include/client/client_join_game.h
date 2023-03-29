@@ -17,9 +17,10 @@
  *
  * @param port
  * @param ip_server
+ * @param sockfd
  * @return list_game_without_pointers_t
  */
-list_game_without_pointers_t receive_list_games_on_hold(int port, char ip_server[15]);
+list_game_without_pointers_t receive_list_games_on_hold(int port, char ip_server[15], int sockfd);
 
 /**
  * @brief Sends the request to the server to join a game

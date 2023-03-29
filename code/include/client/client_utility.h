@@ -44,7 +44,8 @@ void display_menu(int nb_players);
  * @param port
  * @param address_ip
  * @param info_client
+ * @param sockfd
  */
-void handler_menu(int port, char address_ip[15], info_client_t info_client);
+void handler_menu(int port, char address_ip[15], info_client_t info_client, int sockfd);
 
 #endif

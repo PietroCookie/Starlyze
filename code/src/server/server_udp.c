@@ -101,7 +101,7 @@ void send_tcp_socket(int port, int port_tcp, game_t *game, int sockfd)
         {
             // Display IP Adress
             inet_ntop(AF_INET, &address.sin_addr, client_address_str, INET_ADDRSTRLEN);
-            printf("[INFO][%s] - Request with port TCP sent to %s with port n°%d\n", get_timestamp(),
+            printf("[INFO][REQUEST][%s] - Send TCP port to IP address %s to port %d\n", get_timestamp(),
                    client_address_str, address.sin_port);
         }
         current = current->next;

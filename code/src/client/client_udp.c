@@ -20,6 +20,7 @@
 #include <stdio.h>
 
 #include "client_udp.h"
+#include "client_tcp.h"
 #include "network_request.h"
 
 /**
@@ -28,21 +29,15 @@
  * @param pseudo
  * @param port
  * @param address_ip
+ * @param sockfd
  * @return int
  */
-int send_pseudo_to_server(char *pseudo, int port, char address_ip[15])
+int send_pseudo_to_server(char *pseudo, int port, char address_ip[15], int sockfd)
 {
-    int sockfd, stop = 0;
+    int stop = 0;
     struct sockaddr_in address;
     request_client_udp_t request;
     response_server_udp_t response;
-
-    // Create socket UDP
-    if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
-    {
-        perror("[ERROR] - Error creating socket");
-        exit(EXIT_FAILURE);
-    }
 
     // Fill the address structure
     memset(&address, 0, sizeof(struct sockaddr_in));
@@ -81,12 +76,6 @@ int send_pseudo_to_server(char *pseudo, int port, char address_ip[15])
         }
     }
 
-    if (close(sockfd) == -1)
-    {
-        perror("[ERROR] - Error closing socket");
-        exit(EXIT_FAILURE);
-    }
-
     if (response.type_request == SERVER_SEND_ID_CLIENTS)
     {
         return response.content.id_clients;
@@ -102,21 +91,15 @@ int send_pseudo_to_server(char *pseudo, int port, char address_ip[15])
  *
  * @param port
  * @param address_ip
+ * @param sockfd
  * @return int
  */
-int receive_response_nb_clients(int port, char address_ip[15])
+int receive_response_nb_clients(int port, char address_ip[15], int sockfd)
 {
-    int sockfd, stop = 0;
+    int stop = 0;
     struct sockaddr_in address;
     request_client_udp_t request;
     response_server_udp_t response;
-
-    // Create socket
-    if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
-    {
-        perror("Error creating socket");
-        exit(EXIT_FAILURE);
-    }
 
     // Fill the address structure
     memset(&address, 0, sizeof(struct sockaddr_in));
@@ -152,11 +135,6 @@ int receive_response_nb_clients(int port, char address_ip[15])
         }
     }
 
-    if (close(sockfd) == -1)
-    {
-        perror("[ERROR] - Error closing socket");
-    }
-
     return response.content.nb_clients;
 }
 
@@ -166,19 +144,12 @@ int receive_response_nb_clients(int port, char address_ip[15])
  * @param info_client
  * @param port
  * @param address_ip
+ * @param sockfd
  */
-void send_request_to_client_disconnection(info_client_t info_client, int port, char address_ip[15])
+void send_request_to_client_disconnection(info_client_t info_client, int port, char address_ip[15], int sockfd)
 {
-    int sockfd;
     struct sockaddr_in address;
     request_client_udp_t request;
-
-    // Create socket
-    if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
-    {
-        perror("Error creating socket");
-        exit(EXIT_FAILURE);
-    }
 
     // Fill the address structure
     memset(&address, 0, sizeof(struct sockaddr_in));
@@ -200,11 +171,6 @@ void send_request_to_client_disconnection(info_client_t info_client, int port, c
         perror("[ERROR] - Error sending request");
         exit(EXIT_FAILURE);
     }
-
-    if (close(sockfd) == -1)
-    {
-        perror("[ERROR] - Error closing socket");
-    }
 }
 
 /**
@@ -212,35 +178,26 @@ void send_request_to_client_disconnection(info_client_t info_client, int port, c
  *
  * @param port
  * @param ip_server
+ * @param sockfd
  */
-void receive_port_tcp_of_server(int port, char ip_server[15])
+void receive_port_tcp_of_server(int port, char ip_server[15], int sockfd)
 {
-    int sockfd;
     struct sockaddr_in address;
     response_server_udp_t response;
-
-    // Create socket
-    if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
-    {
-        perror("Error creating socket");
-        exit(EXIT_FAILURE);
-    }
 
     // Fill the address structure
     memset(&address, 0, sizeof(struct sockaddr_in));
     address.sin_family = AF_INET;
     address.sin_port = htons(port);
-    if (inet_pton(AF_INET, "127.0.0.1", &address.sin_addr) != 1)
+    if (inet_pton(AF_INET, ip_server, &address.sin_addr) != 1)
     {
         perror("Error converting address");
         exit(EXIT_FAILURE);
     }
 
-    // Display address
-    printf("[INFO] - Adresse IP du serveur : %s\n", inet_ntoa(address.sin_addr));
-    printf("[INFO] - Port UDP du serveur : %d\n", ntohs(address.sin_port));
-
-    printf("[INFO] - En attente de connexion du début de la partie ...\n");
+    printf("\n\n============================ DEBUT DE LA PARTIE ============================\n"); 
+    printf("[INFO] - En attente de connexion de tous les joueurs ...\n");
+    printf("[INFO] - La partie se lancera automatiquement lorsque tous les joueurs seront connectés\n");
 
     if (recvfrom(sockfd, &response, sizeof(response_server_udp_t), 0, NULL, 0) == -1)
     {
@@ -252,14 +209,9 @@ void receive_port_tcp_of_server(int port, char ip_server[15])
     }
     else
     {
-        // stop=1;
-        printf("Requete reçu !\n");
+        printf("[INFO] - Requête reçu -> Port TCP de la partie : %d\n", response.content.port_tcp);
     }
 
-    printf("[INFO] - Port TCP : %d ", response.content.port_tcp);
+    connect_to_server_with_tcp(response.content.port_tcp, ip_server);
 
-    if (close(sockfd) == -1)
-    {
-        perror("[ERROR] - Error closing socket");
-    }
 }

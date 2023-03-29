@@ -33,42 +33,40 @@
  */
 void create_socket_tcp(int port, game_t *game, int sockfd)
 {
-    int fd;
+    int fd, n;
     struct sockaddr_in address;
     socklen_t address_length = sizeof(struct sockaddr_in);
 
-    // Create socket
-    if ((fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1)
-    {
-        perror("[ERROR] - Error creating socket");
-        exit(EXIT_FAILURE);
+    if((n=fork())){
+        // Create socket
+        if ((fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1)
+        {
+            perror("[ERROR] - Error creating socket");
+            exit(EXIT_FAILURE);
+        }
+
+        // Fill server address
+        memset(&address, 0, sizeof(struct sockaddr_in));
+        address.sin_family = AF_INET;
+        address.sin_addr.s_addr = INADDR_ANY;
+        address.sin_port = htons(0);
+
+        // Bind socket
+        if (bind(fd, (struct sockaddr *)&address, sizeof(struct sockaddr_in)) == -1)
+        {
+            perror("[ERROR] - Error binding socket");
+            exit(EXIT_FAILURE);
+        }
+
+        // Get socket name
+        if (getsockname(fd, (struct sockaddr *)&address, &address_length) == -1)
+        {
+            perror("[ERROR] - Error binding socket");
+            exit(EXIT_FAILURE);
+        }
+        printf("[INFO][%s] - TCP socket created on port %d in son no. 15\n", get_timestamp(), ntohs(address.sin_port));
+        // game_control(game->nb_participants_final, ntohs(address.sin_port), game->name_world);  
+        send_tcp_socket(port, ntohs(address.sin_port), game, sockfd);
     }
 
-    // Fill server address
-    memset(&address, 0, sizeof(struct sockaddr_in));
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(0);
-
-    // Bind socket
-    if (bind(fd, (struct sockaddr *)&address, sizeof(struct sockaddr_in)) == -1)
-    {
-        perror("[ERROR] - Error binding socket");
-        exit(EXIT_FAILURE);
-    }
-
-    // Get socket name
-    if (getsockname(fd, (struct sockaddr *)&address, &address_length) == -1)
-    {
-        perror("[ERROR] - Error binding socket");
-        exit(EXIT_FAILURE);
-    }
-
-    if (close(fd) == -1)
-    {
-        perror("[ERROR] - Error closing socket");
-        exit(EXIT_FAILURE);
-    }
-
-    send_tcp_socket(port, ntohs(address.sin_port), game, sockfd);
 }

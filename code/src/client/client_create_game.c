@@ -27,21 +27,15 @@
  *
  * @param port
  * @param address_ip
+ * @param sockfd
  * @return list_world_response_t
  */
-list_world_response_t receive_list_world(int port, char address_ip[15])
+list_world_response_t receive_list_world(int port, char address_ip[15], int sockfd)
 {
-    int sockfd, stop = 0;
+    int stop = 0;
     struct sockaddr_in address;
     request_client_udp_t request;
     response_server_udp_t response;
-
-    // Create socket UDP
-    if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
-    {
-        perror("[ERROR] - Error creating socket");
-        exit(EXIT_FAILURE);
-    }
 
     // Fill the address structure
     memset(&address, 0, sizeof(struct sockaddr_in));
@@ -52,6 +46,7 @@ list_world_response_t receive_list_world(int port, char address_ip[15])
         perror("[ERROR] - Error converting address");
         exit(EXIT_FAILURE);
     }
+    
     // Send request
     request.type_request = CLIENT_RECOVERING_LIST_WORLDS;
 
@@ -78,12 +73,6 @@ list_world_response_t receive_list_world(int port, char address_ip[15])
         }
     }
 
-    if (close(sockfd) == -1)
-    {
-        perror("[ERROR] - Error closing socket");
-        exit(EXIT_FAILURE);
-    }
-
     return response.content.list_world;
 }
 
@@ -95,19 +84,12 @@ list_world_response_t receive_list_world(int port, char address_ip[15])
  * @param choice_world
  * @param nb_players_game
  * @param id_client
+ * @param sockfd
  */
-void send_settings_game(int port, char address_ip[15], int choice_world, int nb_players_game, int id_client)
+void send_settings_game(int port, char address_ip[15], int choice_world, int nb_players_game, int id_client, int sockfd)
 {
-    int sockfd;
     struct sockaddr_in address;
     request_client_udp_t request;
-
-    // Create socket UDP
-    if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
-    {
-        perror("[ERROR] - Error creating socket");
-        exit(EXIT_FAILURE);
-    }
 
     // Fill the address structure
     memset(&address, 0, sizeof(struct sockaddr_in));
@@ -131,11 +113,6 @@ void send_settings_game(int port, char address_ip[15], int choice_world, int nb_
         exit(EXIT_FAILURE);
     }
 
-    if (close(sockfd) == -1)
-    {
-        perror("[ERROR] - Error closing socket");
-        exit(EXIT_FAILURE);
-    }
 }
 
 /**
@@ -145,9 +122,10 @@ void send_settings_game(int port, char address_ip[15], int choice_world, int nb_
  * @param port
  * @param address_ip
  * @param id_client
+ * @param sockfd
  * @return int
  */
-int handler_create_game(list_world_response_t list_world, int port, char address_ip[15], int id_client)
+int handler_create_game(list_world_response_t list_world, int port, char address_ip[15], int id_client, int sockfd)
 {
     int choice_world = 0, nb_players_game = 0;
     printf("\n>>>>>>>>>>>>>>>>>>>>>>>>>> Liste des mondes <<<<<<<<<<<<<<<<<<<<<<<<<<\n");
@@ -190,7 +168,7 @@ int handler_create_game(list_world_response_t list_world, int port, char address
                 exit(EXIT_FAILURE);
             }
         }
-        send_settings_game(port, address_ip, choice_world, nb_players_game, id_client);
+        send_settings_game(port, address_ip, choice_world, nb_players_game, id_client, sockfd);
         return choice_world;
     }
 }

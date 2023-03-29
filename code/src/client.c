@@ -14,13 +14,17 @@
 #include <stdio.h>
 #include <signal.h>
 #include <string.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <errno.h>
 
 #include "client_utility.h"
 #include "client_udp.h"
 #include "network_request.h"
 
 // Global variables
-int port;
+int port, sockfd;
 char address_ip[15];
 info_client_t info_client;
 
@@ -32,7 +36,7 @@ info_client_t info_client;
 void sigint_handler(int signum)
 {
     printf("\n[STOP] - Client arrested !\n");
-    send_request_to_client_disconnection(info_client, port, address_ip);
+    send_request_to_client_disconnection(info_client, port, address_ip, sockfd);
     exit(0);
 }
 
@@ -59,6 +63,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
+
     // Check the number of arguments
     if (argc != 3)
     {
@@ -66,6 +71,13 @@ int main(int argc, char *argv[])
         fprintf(stderr, "[HELP]  - Where : \n");
         fprintf(stderr, "\t   - address : IPv4 address of the server\n");
         fprintf(stderr, "\t   - port : the server port\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Create socket UDP
+    if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
+    {
+        perror("[ERROR] - Error creating socket");
         exit(EXIT_FAILURE);
     }
 
@@ -86,15 +98,21 @@ int main(int argc, char *argv[])
     }
 
     pseudo = pseudo_entry();
-    id_client = send_pseudo_to_server(pseudo, port, address_ip);
+    id_client = send_pseudo_to_server(pseudo, port, address_ip, sockfd);
 
     info_client.id = id_client;
     strcpy(info_client.pseudo, pseudo);
 
-    int nb_clients = receive_response_nb_clients(port, address_ip);
+    int nb_clients = receive_response_nb_clients(port, address_ip, sockfd);
 
     display_menu(nb_clients);
-    handler_menu(port, address_ip, info_client);
+    handler_menu(port, address_ip, info_client, sockfd);
+
+    if(close(sockfd) == -1)
+    {
+        perror("[ERROR] - Error closing socket");
+        exit(EXIT_FAILURE);
+    }
 
     return EXIT_SUCCESS;
 }

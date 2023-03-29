@@ -28,21 +28,15 @@
  *
  * @param port
  * @param ip_server
+ * @param sockfd
  * @return list_game_without_pointers_t
  */
-list_game_without_pointers_t receive_list_games_on_hold(int port, char ip_server[15])
+list_game_without_pointers_t receive_list_games_on_hold(int port, char ip_server[15], int sockfd)
 {
-    int sockfd, stop = 0;
+    int stop = 0;
     struct sockaddr_in address;
     request_client_udp_t request;
     response_server_udp_t response;
-
-    // Create socket UDP
-    if ((sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
-    {
-        perror("[ERROR] - Error creating socket");
-        exit(EXIT_FAILURE);
-    }
 
     // Fill the address structure
     memset(&address, 0, sizeof(struct sockaddr_in));
@@ -75,12 +69,6 @@ list_game_without_pointers_t receive_list_games_on_hold(int port, char ip_server
         {
             stop = 1;
         }
-    }
-
-    if (close(sockfd) == -1)
-    {
-        perror("[ERROR] - Error closing socket");
-        exit(EXIT_FAILURE);
     }
 
     return response.content.list_game;

@@ -18,9 +18,10 @@
  *
  * @param port
  * @param address_ip
+ * @param sockfd
  * @return list_world_response_t
  */
-list_world_response_t receive_list_world(int port, char address_ip[15]);
+list_world_response_t receive_list_world(int port, char address_ip[15], int sockfd);
 
 /**
  * @brief Send the settings of the game to the server
@@ -30,8 +31,9 @@ list_world_response_t receive_list_world(int port, char address_ip[15]);
  * @param choice_world
  * @param nb_players_game
  * @param id_client
+ * @param sockfd
  */
-void send_settings_game(int port, char address_ip[15], int choice_world, int nb_players_game, int id_client);
+void send_settings_game(int port, char address_ip[15], int choice_world, int nb_players_game, int id_client, int sockfd);
 
 /**
  * @brief Menu managing the creation of a game
@@ -39,8 +41,10 @@ void send_settings_game(int port, char address_ip[15], int choice_world, int nb_
  * @param list_world
  * @param port
  * @param address_ip
+ * @param id_client
+ * @param sockfd
  * @return int
  */
-int handler_create_game(list_world_response_t list_world, int port, char address_ip[15], int);
+int handler_create_game(list_world_response_t list_world, int port, char address_ip[15], int id_client, int sockfd);
 
 #endif

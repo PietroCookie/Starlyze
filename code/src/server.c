@@ -1,6 +1,6 @@
 /**
  * @file server.c
- * @author HADID Hocine
+ * @author HADID Hocine & CHEMIN Pierre
  * @brief File that manages the server
  * @version 0.1
  * @date 2023-03-29

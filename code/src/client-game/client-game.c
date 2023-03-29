@@ -11,6 +11,7 @@
 #include "functions.h"
 #include "interface_game.h"
 #include "level_display.h"
+#include "request_exchange.h"
 
 
 int connection_game(char* address, int port){
@@ -46,25 +47,26 @@ void *thread_display(void *arg) {
 	int quit = 0;
 	int socket_client = *((client_game_infos_thread_t*)arg)->socket_client ;
 	interface_game_t *interface = ((client_game_infos_thread_t*)arg)->interface;
-	level_display_t level_display;
-	struct timespec time_wait;
+	request_send_player_t request_receive;
+	// struct timespec time_wait;
 
 
-	time_wait.tv_sec = 0;
-	time_wait.tv_nsec = 100000000;
+	// time_wait.tv_sec = 0;
+	// time_wait.tv_nsec = 100000000;
 
 
 	while (quit == 0)
 	{
 		// Read the server response
-		if(read(socket_client, &level_display, sizeof(level_display_t)) == -1) {
+		if(read(socket_client, &request_receive, sizeof(request_send_player_t)) == -1) {
 			perror("Error reading response");
 			quit = 1;
 		}
 		
-		refresh_win_level_game(interface, level_display);
+		refresh_win_level_game(interface, request_receive.level_display);
+		refresh_win_infos(interface, request_receive.player);
 
-		nanosleep(&time_wait, NULL);
+		// nanosleep(&time_wait, NULL);
 	}
 	
 

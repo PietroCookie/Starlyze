@@ -277,7 +277,7 @@ void take_item(level_info_t *level, player_t *player, int posX, int posY, int po
 	for (i = posX; i <= posX_width; i++)
 		for (j = posY; j <= posY_height; j++)
 		{
-			if(level->map[i][j].type == SPRITE_KEY) 
+			if(level->map[i][j].type == SPRITE_KEY)
 				player->key[level->map[i][j].specification] = 1;
 			else if(level->map[i][j].type == SPRITE_LIFE && player->life < MAX_LIFE_PLAYER) {
 				player->life = MAX_LIFE_PLAYER;

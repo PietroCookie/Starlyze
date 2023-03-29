@@ -10,6 +10,7 @@
 #include "game_control.h"
 #include "move_world.h"
 #include "level_display.h"
+#include "request_exchange.h"
 
 
 void initialise_player(player_t *player, int level, int id){
@@ -100,8 +101,8 @@ void *thread_sending_level(void *arg) {
 	game_control_t *game_control = ((player_infos_thread_t *)arg)->game_control;
 	int socket_client = *((player_infos_thread_t *)arg)->socket_client;
 	entity_t *player_entity = &game_control->players[id_player];
-	level_display_t level_display;
 	struct timespec time_wait;
+	request_send_player_t request_send;
 
 
 	free(arg);
@@ -111,9 +112,11 @@ void *thread_sending_level(void *arg) {
 
 	while (!quit)
 	{
-		convert_level_info(player_entity->player.level, &level_display, game_control->world_info.levels[player_entity->player.level], game_control->enemy[player_entity->player.level], game_control->number_total_enemy, game_control->players, game_control->number_player);
+		convert_level_info(player_entity->player.level, &request_send.level_display, game_control->world_info.levels[player_entity->player.level], game_control->enemy[player_entity->player.level], game_control->number_total_enemy, game_control->players, game_control->number_player);
 
-		if(write(socket_client, &level_display, sizeof(level_display_t)) == -1) {
+		request_send.player = player_entity->player;
+
+		if(write(socket_client, &request_send, sizeof(request_send_player_t)) == -1) {
 			perror("Error sending value");
 			quit = 1;
 		}

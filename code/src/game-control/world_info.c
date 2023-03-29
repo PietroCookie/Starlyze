@@ -74,7 +74,7 @@ void load_world_info(world_info_t *world_info, char *name_world){
 			for(k = 0; k < HEIGHT_LEVEL; k++) {
 				sprite = world_info->levels[i].map[j][k];
 				if (sprite.type == SPRITE_DOOR){
-					if(sprite.specification >= 1 || sprite.specification <= NUMBER_DOOR){
+					if(sprite.specification >= 1 && sprite.specification <= NUMBER_DOOR){
 						if(world_info->doors_level[sprite.specification-1][0] == -1)
 							world_info->doors_level[sprite.specification-1][0] = i;
 						else

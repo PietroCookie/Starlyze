@@ -21,7 +21,7 @@ int check_validation_move_enemy(level_info_t *level, int posX_dest, int posY_des
 
 int check_validation_move_player(level_info_t *level, int posX_dest, int posY_dest, int posX_width, int posY_height, entity_t *entity_move);
 
-int take_item(level_info_t *level, player_t *player, int posX, int posY);
+void take_item(level_info_t *level, player_t *player, int posX_dest, int posY_dest, int posX_width, int posY_height);
 
 void drop_bomb(level_info_t *level, player_t *player, int posX, int posY);
 

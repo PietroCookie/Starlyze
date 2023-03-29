@@ -72,7 +72,7 @@ int main(int argc, char const *argv[])
 		printf("Server done.\n");
 	}
 	else {
-		game_control(1, socket_game);
+		game_control(2, socket_game);
 	}
 
 	return EXIT_SUCCESS;

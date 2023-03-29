@@ -4,11 +4,13 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include <pthread.h>
 
 void load_level_info(level_info_t *level_info, int file){
 	int i, j, m, n;
 	int current_robot = 0, current_probe = 0;
 	sprite_t sprite;
+
 
 	for (i = 0; i < NUMBER_ROBOT; i++)
 		level_info->robot[i] = -1;

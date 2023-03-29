@@ -60,7 +60,7 @@ int main(int argc, char const *argv[])
 	}
 
 	if(pthread_join(thread[1], NULL) != 0) {
-		fprintf(stderr, "Error join thread display\n");
+		fprintf(stderr, "Error join thread send\n");
 	}
 
 

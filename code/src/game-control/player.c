@@ -65,11 +65,13 @@ void *thread_player(void *arg) {
 			move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, UP, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
 		else if(ch == 's' || ch == 'S')
 			move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, DOWN, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
+		else if(ch == 'e' || ch == 'E')
+			enter_door(&game_control->world_info, player_entity);
 	}
 
 	pthread_cleanup_pop(0);
 
-	return NULL;
+	pthread_exit(NULL);
 }
 
 void *thread_sending_level(void *arg) {
@@ -103,5 +105,5 @@ void *thread_sending_level(void *arg) {
         perror("Error closing socket in cleanup_handler");
     }
 
-	return NULL;
+	pthread_exit(NULL);
 }

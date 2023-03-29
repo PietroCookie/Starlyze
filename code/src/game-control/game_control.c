@@ -108,10 +108,10 @@ void game_control(int num_player, int socket_game)
 		if(pthread_cancel(thread_trap[i]) != 0) {
 			fprintf(stderr, "Error cancel thread for trap");
 		}
-	// for (i = 0; i < game_control_infos.number_player; i++)
-	// 	if(pthread_cancel(thread_player[i]) != 0) {
-	// 		fprintf(stderr, "Error cancel thread player");
-	// 	}
+	for (i = 0; i < game_control_infos.number_player; i++)
+		if(pthread_cancel(thread_player[i]) != 0) {
+			fprintf(stderr, "Error cancel thread player");
+		}
 	for (i = 0; i < game_control_infos.number_total_enemy; i++)
 		if(pthread_cancel(thread_enemy[i]) != 0) {
 			fprintf(stderr, "Error cancel thread enemy");

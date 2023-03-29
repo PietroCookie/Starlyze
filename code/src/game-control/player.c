@@ -16,7 +16,7 @@ void initialise_player(player_t *player, int level, int id){
 	int i;
 
 	player->life = MAX_LIFE_PLAYER;
-	player->bomb = 0;
+	player->bomb = 1;
 	player->level = level;
 	player->id = id;
 
@@ -57,16 +57,24 @@ void *thread_player(void *arg) {
 			quit = 1;
 		}
 
-		if(ch == 'd' || ch == 'D')
-			move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, RIGHT, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
-		else if(ch == 'q' || ch == 'Q')
-			move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, LEFT, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
-		else if(ch == 'z' || ch == 'Z')
-			move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, UP, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
-		else if(ch == 's' || ch == 'S')
-			move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, DOWN, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
-		else if(ch == 'e' || ch == 'E')
-			enter_door(&game_control->world_info, player_entity);
+		if(!player_entity->freeze) {
+			if(ch == 'd' || ch == 'D')
+				move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, RIGHT, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
+			else if(ch == 'q' || ch == 'Q')
+				move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, LEFT, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
+			else if(ch == 'z' || ch == 'Z')
+				move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, UP, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
+			else if(ch == 's' || ch == 'S')
+				move_level(&game_control->world_info.levels[player_entity->player.level], player_entity, DOWN, game_control->world_info.levels[player_entity->player.level].number_enemy, game_control->enemy[player_entity->player.level]);
+			else if(ch == 'e' || ch == 'E')
+				enter_door(&game_control->world_info, player_entity);
+			else if(ch == 'g' || ch == 'G')
+				drop_bomb(game_control, player_entity);
+		}
+		else {
+			sleep(5);
+			player_entity->freeze = 0;
+		}
 	}
 
 	pthread_cleanup_pop(0);

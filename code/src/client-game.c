@@ -63,17 +63,14 @@ int main(int argc, char const *argv[])
 		fprintf(stderr, "Error join thread send\n");
 	}
 
-
-	ncurses_stop();
-	interface_game_delete(&client_infos.interface);
-	
-
     // Close the socket
     if(close(socket_client) == -1) {
         perror("Error closing socket");
         exit(EXIT_FAILURE);
     }
 
+	ncurses_stop();
+	interface_game_delete(&client_infos.interface);
 
 	return EXIT_FAILURE;
 }

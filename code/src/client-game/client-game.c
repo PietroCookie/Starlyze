@@ -68,7 +68,7 @@ void *thread_display(void *arg) {
 	}
 	
 
-	return NULL;
+	pthread_exit(NULL);
 }
 
 void *thread_send(void *arg) {
@@ -95,6 +95,6 @@ void *thread_send(void *arg) {
 		fprintf(stderr, "Error cancel thread display");
 	}
 
-	return NULL;
+	pthread_exit(NULL);
 }
 

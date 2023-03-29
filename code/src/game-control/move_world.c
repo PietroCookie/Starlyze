@@ -3,7 +3,21 @@
 #include <pthread.h>
 #include <stdio.h>
 
+#include "game_control.h"
 #include "sprite.h"
+
+void *thread_wait_item(void *arg) {
+
+	int posX = ((infos_wait_item_t*)arg)->infos[0];
+	int posY = ((infos_wait_item_t*)arg)->infos[1];
+	int type_sprite = ((infos_wait_item_t*)arg)->infos[2];
+
+	sleep(rand() % 5 +1);
+
+	((infos_wait_item_t*)arg)->level->map[posX][posY].type = type_sprite;
+
+	pthread_exit(NULL);
+}
 
 int move_level(level_info_t *level, entity_t *entity_move, direction_enum direction, int number_collision, entity_t *collision){
 	int validate = 1;
@@ -87,7 +101,6 @@ int move_level(level_info_t *level, entity_t *entity_move, direction_enum direct
 			if(entity_move->type == PLAYER)
 				take_item(level, &entity_move->player, posX_dest, posY_dest, posX_width, posY_height);
 		}
-
 
 		if(pthread_mutex_unlock(&level->mutex_zone[zone_src[0]]) != 0){
 			fprintf(stderr, "Error unlock mutex in move_level");
@@ -185,23 +198,41 @@ int check_validation_move_player(level_info_t *level, int posX_dest, int posY_de
 	return validate;
 }
 
-void take_item(level_info_t *level, player_t *player, int posX_dest, int posY_dest, int posX_width, int posY_height){
+void take_item(level_info_t *level, player_t *player, int posX, int posY, int posX_width, int posY_height){
 	int i, j;
+	pthread_t thread;
+	infos_wait_item_t infos_thread;
 
-	for (i = posX_dest; i < posX_width; i++)
-		for (j = posY_dest; j < posY_height; j++)
+	for (i = posX; i <= posX_width; i++)
+		for (j = posY; j <= posY_height; j++)
 		{
 			if(level->map[i][j].type == SPRITE_KEY) 
 				player->key[level->map[i][j].specification] = 1;
-			else if(level->map[i][j].type == SPRITE_LIFE)
+			else if(level->map[i][j].type == SPRITE_LIFE) {
 				player->life = MAX_LIFE_PLAYER;
-			else if(level->map[i][j].type == SPRITE_BOMB)
+				infos_thread.infos[0] = i;
+				infos_thread.infos[1] = j;
+				infos_thread.infos[2] = SPRITE_LIFE;
+				infos_thread.level = level;
+
+				if(pthread_create(&thread, NULL, thread_wait_item, &infos_thread) != 0)
+					fprintf(stderr, "Error create thread wait item\n");
+
+				level->map[i][j].type = 0;
+			}
+			else if(level->map[i][j].type == SPRITE_BOMB && level->map[i][j].specification == -1) {
 				player->bomb += rand() % 3 + 1;
+				infos_thread.infos[0] = i;
+				infos_thread.infos[1] = j;
+				infos_thread.infos[2] = SPRITE_BOMB;
+				infos_thread.level = level;
+
+				level->map[i][j].type = 0;
+				
+				if(pthread_create(&thread, NULL, thread_wait_item, &infos_thread) != 0)
+					fprintf(stderr, "Error create thread wait item\n");
+			}
 		}
-}
-
-void drop_bomb(level_info_t *level, player_t *player, int posX, int posY){
-
 }
 
 void enter_door(world_info_t *world_info, entity_t *player) {
@@ -281,6 +312,121 @@ void enter_door(world_info_t *world_info, entity_t *player) {
 	}
 }
 
-// void enter_gate(level_info_t *level, entity_t *player){
+void drop_bomb(game_control_t *game_control, entity_t *player){
+	pthread_t explosion;
+	infos_bomb_explose_t infos_bomb;
+	int zone_drop;
+	int posX_bomb, posY_bomb;
+
+	if(player->player.bomb <= 0)
+		return;
+
+	posX_bomb = player->posX + 1;
+	posY_bomb = player->posY + height_sprite(SPRITE_PLAYER)-1;
+
+	zone_drop = (posY_bomb / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX_bomb / WIDTH_ZONE_LEVEL);
+
+	infos_bomb.level = &game_control->world_info.levels[player->player.level];
+	infos_bomb.position[0] = posX_bomb;
+	infos_bomb.position[1] = posY_bomb;
+	infos_bomb.id_level = player->player.level;
+	infos_bomb.enemy_level = game_control->enemy[player->player.level];
+	infos_bomb.number_enemy = game_control->world_info.levels[player->player.level].number_enemy;
+	infos_bomb.players = game_control->players;
+	infos_bomb.number_players = game_control->number_player;
+	infos_bomb.delay_explosion = rand() % 10 + 4;
+
+	if(pthread_mutex_lock(&game_control->world_info.levels[player->player.level].mutex_zone[zone_drop]) != 0) {
+		fprintf(stderr, "Error mutex lock zone drop bomb\n");
+		exit(EXIT_FAILURE);
+	}
+
+	infos_bomb.last_sprite = game_control->world_info.levels[player->player.level].map[posX_bomb][posY_bomb].type;
+	game_control->world_info.levels[player->player.level].map[posX_bomb][posY_bomb].type = SPRITE_BOMB;
+	game_control->world_info.levels[player->player.level].map[posX_bomb][posY_bomb].specification = infos_bomb.delay_explosion;
+
+	if(pthread_mutex_unlock(&game_control->world_info.levels[player->player.level].mutex_zone[zone_drop]) != 0) {
+		fprintf(stderr, "Error mutex unlock zone drop bomb\n");
+		exit(EXIT_FAILURE);
+	}
+
+	player->player.bomb--;
+
+	if(pthread_create(&explosion, NULL, thread_explose_bomb, &infos_bomb) != 0) {
+		fprintf(stderr, "Error create thread explosion bomb");
+	}
+}
+
+void *thread_explose_bomb(void *arg) {
+	int i, j, current_zone;
+	int id_level = ((infos_bomb_explose_t*)arg)->id_level;
+	int posX = ((infos_bomb_explose_t*)arg)->position[0];
+	int posY = ((infos_bomb_explose_t*)arg)->position[1];
+	int posX_bomb = posX, posY_bomb = posY;
+	int posX_width = posX, posY_height = posY;
+	level_info_t *level = ((infos_bomb_explose_t*)arg)->level;
+	entity_t *enemy = ((infos_bomb_explose_t*)arg)->enemy_level;
+	int number_enemy = ((infos_bomb_explose_t*)arg)->number_enemy;
+	entity_t *players = ((infos_bomb_explose_t*)arg)->players;
+	int number_players = ((infos_bomb_explose_t*)arg)->number_players;
+	int delay = ((infos_bomb_explose_t*)arg)->delay_explosion;
+	type_sprite_enum last_sprite = ((infos_bomb_explose_t*)arg)->last_sprite;
+	int zone_explosion[9];
+
+	if(posX < 5)
+		posX = 0;
+	else
+		posX -= 5;
+
+	if(posY < 5)
+		posY = 0;
+	else
+		posY -= 5;
+
+	if((posX_width += 5) > WIDTH_LEVEL)
+		posX_width = WIDTH_LEVEL;
+	if((posY_height += 5) > HEIGHT_LEVEL)
+		posY_height = HEIGHT_LEVEL;
+
+
+	current_zone = 0;
+	for (i = 0; i < 3; i++)
+		for (j = 0; j < 3; j++)
+		{
+			zone_explosion[current_zone] = ((posY + j*HEIGHT_ZONE_LEVEL) / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + ((posX + i*WIDTH_ZONE_LEVEL) / WIDTH_ZONE_LEVEL);
+			current_zone++;
+		}
+
+	sleep( delay );
+
 	
-// }
+	for (i = 0; i < 9; i++){
+		if(zone_explosion[i] < level->number_mutex_zone && zone_explosion[i] >= 0)
+			if(pthread_mutex_lock(&level->mutex_zone[zone_explosion[i]]) != 0) {
+				fprintf(stderr, "Error lock mutex zone explosion");
+			}
+	}
+
+	for (i = 0; i < number_enemy; i++)
+		if( enemy[i].posX >= posX && enemy[i].posX <= posX_width && enemy[i].posY >= posY && enemy[i].posY <= posY_height)
+			enemy->freeze = 1;
+
+	for (i = 0; i < number_players; i++)
+		if(players[i].player.level == id_level && players[i].posX >= posX && players[i].posX <= posX_width && players[i].posY >= posY && players[i].posY <= posY_height)
+			players[i].freeze = 1;
+
+	
+	level->map[posX_bomb][posY_bomb].type = last_sprite;
+	level->map[posX_bomb][posY_bomb].specification = -1;
+
+	
+	for (i = 0; i < 9; i++){
+		if(zone_explosion[i] < level->number_mutex_zone && zone_explosion[i] >= 0)
+			if(pthread_mutex_unlock(&level->mutex_zone[zone_explosion[i]]) != 0) {
+				fprintf(stderr, "Error unlock mutex zone explosion");
+			}
+	}
+
+
+	pthread_exit(NULL);
+}

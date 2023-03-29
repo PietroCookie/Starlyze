@@ -82,6 +82,10 @@ void refresh_win_level_game(interface_game_t* interface, level_display_t level_d
 			else if(sprite >= SPECIFICATION_PLAYERS && sprite < (SPECIFICATION_PLAYERS + INTERVALLE_SPECIFICATION)) {
 				paint_player(interface->win_level, i, j, sprite - SPECIFICATION_PLAYERS + 8);
 			}
+			else if(sprite == SPRITE_BOMB)
+				paint_bomb(interface->win_level, i, j);
+			else if(sprite == SPRITE_LIFE)
+				paint_heart(interface->win_level, i, j);
 		}
 	
 	window_refresh(interface->win_level);

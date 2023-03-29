@@ -6,7 +6,9 @@
 #include <locale.h>
 #include <signal.h>
 #include <time.h>
+#include <string.h>
 #include <sys/socket.h>
+#include <arpa/inet.h>
 #include <errno.h>
 
 
@@ -19,6 +21,7 @@
 #include "trap.h"
 
 
+
 void * p_thread_player = thread_player;
 void * p_thread_enemy = thread_enemy;
 void * p_thread_trap_level = thread_trap_level;
@@ -29,14 +32,17 @@ void handler_exit(int signum) {
 	quit = TRUE;
 }
 
-void game_control(int num_player, int socket_game)
+void game_control(int num_player, int socket_game, char* name_world)
 {
 	struct sigaction action;
 	game_control_t game_control_infos;
 	int i, m, n;
 	int *socket_client;
 	pthread_t *thread_player, *thread_enemy, *thread_trap;
+	char path_world[255] = "world/";
 
+	strcat(path_world, name_world);
+	strcat(path_world, ".world");
 	
 	srand(time(NULL));
 	sigemptyset(&action.sa_mask);
@@ -51,7 +57,9 @@ void game_control(int num_player, int socket_game)
         exit(EXIT_FAILURE);    
     }
 
-	load_world_info(&game_control_infos.world_info, "test.world");
+	load_world_info(&game_control_infos.world_info, path_world);
+
+	printf("[GAME %s] : Loaded world\n", name_world);
 
 	game_control_infos.number_player = num_player;
 
@@ -229,6 +237,8 @@ void load_enemy_world(game_control_t *game_control_infos) {
 
 pthread_t *launch_players(game_control_t *game_control_infos, int socket_game, int *socket_client) {
 	pthread_t *thread;
+	struct sockaddr_in address;
+	socklen_t size_address;
 	player_infos_thread_t *player_info;
 	int i;
 	
@@ -237,7 +247,15 @@ pthread_t *launch_players(game_control_t *game_control_infos, int socket_game, i
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; i < game_control_infos->number_player; i++)
+	size_address = sizeof(address);
+	if(getsockname(socket_game, (struct sockaddr*)&address, &size_address) == -1){
+		perror("Error getsockname");
+		exit(EXIT_FAILURE);
+	}
+
+	printf("[GAME] - Waiting connexion on port %d\n", ntohs(address.sin_port));
+	i = 0;
+	while (i < game_control_infos->number_player)
 	{
 		if((socket_client[i] = accept(socket_game, NULL, NULL)) == -1) {
             if(errno != EINTR) {
@@ -245,6 +263,10 @@ pthread_t *launch_players(game_control_t *game_control_infos, int socket_game, i
                 exit(EXIT_FAILURE);
             }
         }
+		else {
+			printf("[GAME] - Client %d connecting ...\n", i);
+			i++;
+		}
 	}
 	
 

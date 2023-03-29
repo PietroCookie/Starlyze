@@ -23,6 +23,7 @@
 #include "server_tcp.h"
 #include "server_udp.h"
 #include "function.h"
+#include "game_control.h"
 
 /**
  * @brief Create a socket tcp object
@@ -33,40 +34,51 @@
  */
 void create_socket_tcp(int port, game_t *game, int sockfd)
 {
-    int fd, n;
+    int socket_game, n;
     struct sockaddr_in address;
-    socklen_t address_length = sizeof(struct sockaddr_in);
+    socklen_t size_address = sizeof(struct sockaddr_in);
 
-    if((n=fork())){
-        // Create socket
-        if ((fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1)
-        {
-            perror("[ERROR] - Error creating socket");
-            exit(EXIT_FAILURE);
-        }
-
-        // Fill server address
-        memset(&address, 0, sizeof(struct sockaddr_in));
-        address.sin_family = AF_INET;
-        address.sin_addr.s_addr = INADDR_ANY;
-        address.sin_port = htons(0);
-
-        // Bind socket
-        if (bind(fd, (struct sockaddr *)&address, sizeof(struct sockaddr_in)) == -1)
-        {
-            perror("[ERROR] - Error binding socket");
-            exit(EXIT_FAILURE);
-        }
-
-        // Get socket name
-        if (getsockname(fd, (struct sockaddr *)&address, &address_length) == -1)
-        {
-            perror("[ERROR] - Error binding socket");
-            exit(EXIT_FAILURE);
-        }
-        printf("[INFO][%s] - TCP socket created on port %d in son no. 15\n", get_timestamp(), ntohs(address.sin_port));
-        // game_control(game->nb_participants_final, ntohs(address.sin_port), game->name_world);  
-        send_tcp_socket(port, ntohs(address.sin_port), game, sockfd);
+	// Create socket
+    if((socket_game = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1) {
+        perror("[ERROR] - Error creating socket");
+        exit(EXIT_FAILURE);
     }
+
+	// Fill server address
+    memset(&address, 0, sizeof(struct sockaddr_in));
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = htonl(INADDR_ANY);
+    address.sin_port = 0;
+
+
+    // Name socket
+    if(bind(socket_game, (struct sockaddr*)&address, sizeof(struct sockaddr_in)) == -1) {
+        perror("[ERROR] - Error naming socket");
+        exit(EXIT_FAILURE);
+    }
+
+	// Switch the socket in passive mode
+    if(listen(socket_game, 1) == -1) {
+        perror("[ERROR] - Error switching socket in passive mod");
+        exit(EXIT_FAILURE);
+    }
+
+	size_address = sizeof(address);
+	if(getsockname(socket_game, (struct sockaddr*)&address, &size_address) == -1){
+		perror("[ERROR] - Error getsockname socket");
+		exit(EXIT_FAILURE);
+	}
+
+	
+	printf("[INFO][%s] - TCP socket created on port %d in son no. 15\n", get_timestamp(), ntohs(address.sin_port));
+	send_tcp_socket(port, ntohs(address.sin_port), game, sockfd);
+
+
+    if((n=fork()) == 0){
+        game_control(game->nb_participants_final, socket_game, game->name_world);
+
+		exit(EXIT_SUCCESS);
+    }
+
 
 }

@@ -45,7 +45,7 @@ list_world_response_t recovering_existing_worlds()
     list_world_response_t response_list_world;
     char *name, *last_dot;
     // Scans the directory with the custom filter function and retrieve the number of files
-    list_world.nb_world = scandir("../world/", &list_world.name_world, filter_file_bin, alphasort);
+    list_world.nb_world = scandir("world/", &list_world.name_world, filter_file_bin, alphasort);
 
     if (list_world.name_world < 0)
     {

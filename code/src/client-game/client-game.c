@@ -20,7 +20,7 @@ int connection_game(char* address, int port){
 
 	// Create socket
     if((socket_client = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1) {
-        perror("Error creating socket");
+        perror("[ERROR] - Error creating socket");
         exit(EXIT_FAILURE);
     }
     
@@ -29,7 +29,7 @@ int connection_game(char* address, int port){
     addr.sin_family = AF_INET;
     addr.sin_port = htons(port);
     if(inet_pton(AF_INET, address, &addr.sin_addr.s_addr) != 1) {
-        perror("Error converting address");
+        perror("[ERROR] - Error converting address");
         exit(EXIT_FAILURE);
     }
 

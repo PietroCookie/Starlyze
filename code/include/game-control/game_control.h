@@ -30,7 +30,7 @@ typedef struct {
 
 void handler_exit(int signum);
 
-void game_control(int num_player, int socket_game);
+void game_control(int num_player, int socket_game, char* name_world);
 
 void delete_game_control(game_control_t *game_control_infos);
 

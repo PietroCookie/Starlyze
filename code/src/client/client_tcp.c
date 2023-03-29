@@ -16,9 +16,15 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <locale.h>
+#include <pthread.h>
+
 
 #include "client_tcp.h"
-#include "function.h"
+#include "functions.h"
+#include "client-game.h"
+#include "interface_game.h"
+
 
 /**
  * @brief Connect to the server with TCP
@@ -30,26 +36,58 @@ void connect_to_server_with_tcp(int port, char address_ip[15]){
     printf("[INFO] - Connecting to the server with TCP\n"); 
 
     int socket_fd;
-    struct sockaddr_in address;
+	pthread_t thread;
+	client_game_infos_thread_t client_infos;
+	int quit = 0;
+	char ch;
 
-    // Create socket
-    if((socket_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1){
-        perror("[ERROR] - Error creating socket");
-        exit(EXIT_FAILURE);
+
+	socket_fd = connection_game(address_ip, port);
+
+
+	setlocale(LC_ALL, "");
+	ncurses_init();
+	ncurses_init_mouse();
+	ncurses_colors();
+	palette();
+	clear();
+	refresh();
+
+	client_infos.socket_client = &socket_fd;
+	client_infos.interface = interface_game_create();
+    
+	if(pthread_create(&thread, NULL, thread_display, &client_infos) != 0) {
+		fprintf(stderr, "Error create thread display\n");
+	}
+
+
+	while (quit == 0)
+	{
+		ch = getch();
+		if(ch == 'n' || ch =='N')
+			quit = 1;
+		else {
+			if(write(socket_fd, &ch, sizeof(char)) == -1) {
+				perror("Error sending value");
+				quit = 1;
+			}
+		}
+	}
+
+	if(pthread_cancel(thread) != 0) {
+		fprintf(stderr, "Error cancel thread display\n");
+	}
+
+	if(pthread_join(thread, NULL) != 0) {
+		fprintf(stderr, "Error join thread display\n");
+	}
+
+    // Close the socket
+    if(close(socket_fd) == -1) {
+        perror("Error closing socket");
     }
 
-    // Fill the address structure
-    memset(&address, 0, sizeof(struct sockaddr_in));
-    address.sin_family = AF_INET;
-    address.sin_port = htons(port);
-    if(inet_pton(AF_INET, address_ip, &address.sin_addr) != 1){
-        perror("[ERROR] - Error converting address");
-        exit(EXIT_FAILURE);
-    }
+	ncurses_stop();
+	interface_game_delete(&client_infos.interface);
 
-    // Connect to the server
-    if(connect(socket_fd, (struct sockaddr *)&address, sizeof(address)) == -1){
-        perror("[ERROR] - Error connecting to the server");
-        exit(EXIT_FAILURE);
-    }
 }

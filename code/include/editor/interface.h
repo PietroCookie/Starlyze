@@ -1,3 +1,14 @@
+/**
+ * @file interface.h
+ * @author HADID Hocine & CHEMIN Pierre
+ * @brief File that manage a interface of editor
+ * @version 0.1
+ * @date 2023-03-30
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef __INTERFACE_H__
 #define __INTERFACE_H__
 
@@ -12,7 +23,7 @@
 #define DEFAULT_HEIGHT_INTERFACE_GAME 22
 
 /**
- * @brief Structure représentant l'interface demandée
+ * @brief Structure representing the interface of an editor
  * 
  */
 typedef struct
@@ -58,8 +69,18 @@ void interface_delete(interface_t** interface);
  */
 void interface_actions(interface_t* interface, int c);
 
+/**
+ * @brief Refresh window tool
+ * 
+ * @param interface The interface
+ */
 void refresh_win_tools(interface_t* interface);
 
+/**
+ * @brief Refresh window level
+ * 
+ * @param interface The interface
+ */
 void refresh_win_level(interface_t* interface);
 
 #endif

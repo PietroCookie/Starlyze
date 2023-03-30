@@ -13,10 +13,11 @@ void *thread_wait_item(void *arg) {
 	int posX = ((infos_wait_item_t*)arg)->infos[0];
 	int posY = ((infos_wait_item_t*)arg)->infos[1];
 	int type_sprite = ((infos_wait_item_t*)arg)->infos[2];
+	level_info_t *level = ((infos_wait_item_t*)arg)->level;
 
 	sleep(rand() % 5 +1);
 
-	((infos_wait_item_t*)arg)->level->map[posX][posY].type = type_sprite;
+	level->map[posX][posY].type = type_sprite;
 
 	pthread_exit(NULL);
 }

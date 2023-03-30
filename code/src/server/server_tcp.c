@@ -79,6 +79,14 @@ void create_socket_tcp(int port, game_t *game, int sockfd)
 
 		exit(EXIT_SUCCESS);
     }
+	else {
+		// Close socket
+		if (close(socket_game) == -1)
+		{
+			perror("[ERROR] - Error closing socket");
+			exit(EXIT_FAILURE);
+		}
+	}
 
 
 }

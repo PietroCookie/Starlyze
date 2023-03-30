@@ -41,6 +41,8 @@ int move_level(game_control_t *game_control_info, int id_level, entity_t *entity
 
 void reset_player(world_info_t world_info, entity_t *player);
 
+void check_victory(game_control_t *game_control_info, entity_t player);
+
 int check_validation_move(level_info_t *level, int posX_dest, int posY_dest, int posX_width, int posY_height, entity_t *entity_move);
 
 int check_validation_move_enemy(level_info_t *level, int posX_dest, int posY_dest, int posX_width, int posY_height, entity_t *entity_move);

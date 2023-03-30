@@ -61,6 +61,15 @@ void game_control(int num_player, int socket_game, char* name_world)
 
 	printf("[GAME %s] : Loaded world\n", name_world);
 
+	if(pthread_cond_init(&game_control_infos.cond_victory, NULL) != 0) {
+		fprintf(stderr, "[GAME] - error init condition victory\n");
+		exit(EXIT_FAILURE);
+	}
+	if(pthread_mutex_init(&game_control_infos.mutex_victory, NULL) != 0) {
+		fprintf(stderr, "[GAME] - error init mutex victory");
+		exit(EXIT_FAILURE);
+	}
+
 	game_control_infos.number_player = num_player;
 
 	m = 0;
@@ -98,7 +107,7 @@ void game_control(int num_player, int socket_game, char* name_world)
 
 	// Create thread trap
 	if((thread_trap = malloc(game_control_infos.world_info.total_level * sizeof(pthread_t))) == NULL) {
-		perror("Error allocating memory for thread_trap");
+		perror("Error allocating memory for thread_trap\n");
 		exit(EXIT_FAILURE);
 	}
 	for (i = 0; i < game_control_infos.world_info.total_level; i++)
@@ -106,10 +115,14 @@ void game_control(int num_player, int socket_game, char* name_world)
 			fprintf(stderr, "Error create thread for trap\n");
 		}
 
-
 	while(1) {
 
 	}
+	// printf("[GAME] - Waiting winner\n");
+	// if(pthread_cond_wait(&game_control_infos.cond_victory, &game_control_infos.mutex_victory) != 0) {
+	// 	fprintf(stderr, "[GAME] - error waiting condition victory\n");
+	// }
+	// printf("[GAME] - There are a winner\n");
 
 
 	for (i = 0; i < game_control_infos.world_info.total_level; i++)
@@ -154,6 +167,14 @@ void delete_game_control(game_control_t *game_control_infos) {
 	free(game_control_infos->players);
 
 	delete_world_info(&game_control_infos->world_info);
+
+	if(pthread_cond_destroy(&game_control_infos->cond_victory) != 0) {
+		fprintf(stderr, "[GAME] - error destroy condition victory\n");
+	}
+	if(pthread_mutex_destroy(&game_control_infos->mutex_victory) != 0) {
+		fprintf(stderr, "[GAME] - error destroy mutex victory\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 pthread_t* launch_enemy(game_control_t *game_control_infos) {

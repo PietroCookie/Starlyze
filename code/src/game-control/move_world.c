@@ -103,8 +103,10 @@ int move_level(game_control_t *game_control_info, int id_level, entity_t *entity
 						fprintf(stderr, "Error create thread invincible\n");
 					}
 				}
-				else
+				else {
 					take_item(&game_control_info->world_info.levels[id_level], &entity_move->player, posX_dest, posY_dest, posX_width, posY_height);
+					check_victory(game_control_info, *entity_move);
+				}
 			}
 			else if(entity_move->type == ENEMY) {
 				if((collider = check_collision(entity_move, game_control_info->players, game_control_info->number_player, id_level)) != NULL && !collider->player.invincible) {
@@ -158,6 +160,18 @@ void reset_player(world_info_t world_info, entity_t *player) {
 	player->player.life = MAX_LIFE_PLAYER;
 	player->player.bomb = 0;
 	player->player.level = world_info.start_level;
+}
+
+void check_victory(game_control_t *game_control_info, entity_t player) {
+	int i, j;
+
+	if(player.player.level == game_control_info->world_info.exit_level) {
+		for (i = player.posX ; i < posX_width_entity(player); i++)
+			for (j = player.posY; j < posY_height_entity(player); j++)
+				if(game_control_info->world_info.levels[player.player.level].map[i][j].type == SPRITE_EXIT)
+					if(pthread_cond_signal(&game_control_info->cond_victory) != 0)
+						fprintf(stderr, "[GAME] - error signal cond victory");
+	}
 }
 
 int check_validation_move(level_info_t *level, int posX_dest, int posY_dest, int posX_width, int posY_height, entity_t *entity_move){

@@ -91,6 +91,10 @@ void *thread_player(void *arg) {
 
 	pthread_cleanup_pop(0);
 
+	cleanup_handler(&thread_display);
+
+	printf("Thread player %d TERMINATED\n", player_entity->player.id);
+
 	pthread_exit(NULL);
 }
 

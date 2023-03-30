@@ -1,6 +1,8 @@
 #ifndef __GAME_CONTROL_H__
 #define __GAME_CONTROL_H__
 
+#include <pthread.h>
+
 #include "world_info.h"
 #include "entity.h"
 
@@ -9,6 +11,8 @@ typedef struct {
 	world_info_t world_info;
 	int number_player;
 	int number_total_enemy;
+	pthread_cond_t cond_victory;
+	pthread_mutex_t mutex_victory;
 
 	entity_t *players;
 

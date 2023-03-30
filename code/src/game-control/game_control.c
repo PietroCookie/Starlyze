@@ -115,14 +115,14 @@ void game_control(int num_player, int socket_game, char* name_world)
 			fprintf(stderr, "Error create thread for trap\n");
 		}
 
-	while(1) {
+	// while(1) {
 
-	}
-	// printf("[GAME] - Waiting winner\n");
-	// if(pthread_cond_wait(&game_control_infos.cond_victory, &game_control_infos.mutex_victory) != 0) {
-	// 	fprintf(stderr, "[GAME] - error waiting condition victory\n");
 	// }
-	// printf("[GAME] - There are a winner\n");
+	printf("[GAME] - Waiting winner\n");
+	if(pthread_cond_wait(&game_control_infos.cond_victory, &game_control_infos.mutex_victory) != 0) {
+		fprintf(stderr, "[GAME] - error waiting condition victory\n");
+	}
+	printf("[GAME] - There are a winner\n");
 
 
 	for (i = 0; i < game_control_infos.world_info.total_level; i++)

@@ -22,6 +22,8 @@
  */
 typedef struct 
 {
+	int freeze;
+	int end_game;
 	int *socket_client;
 	interface_game_t *interface;
 } client_game_infos_thread_t;

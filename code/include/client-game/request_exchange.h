@@ -14,15 +14,33 @@
 #include "level_display.h"
 #include "player.h"
 
+typedef enum {
+	REFRESH_LEVEL = 1,
+	FREEZE_PLAYER = 2,
+	END_GAME = 3
+} type_request_send_player_enum;
+
 /**
- * @brief The request for display game in client
+ * @brief The request that the server sends to the player
  * 
  */
 typedef struct
 {
+	type_request_send_player_enum type_request;
 	level_display_t level_display;
+	union {
+		int second_freeze;
+		char message[50];
+	};
 	player_t player;
 } request_send_player_t;
 
+// /**
+//  * @brief The request that the player sends to the server
+// */
+// typedef struct
+// {
+// 	char move;
+// } request_send_server_t;
 
 #endif

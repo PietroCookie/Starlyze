@@ -27,6 +27,7 @@ typedef struct
 {
 	window_t *win_level;
 	window_t *win_infos;
+	window_t *win_message;
 } interface_game_t;
 
 /**

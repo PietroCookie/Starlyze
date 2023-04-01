@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <time.h>
+#include <string.h>
 
 #include "functions.h"
 
@@ -17,7 +18,7 @@ void initialise_player(player_t *player, int level, int id){
 	int i;
 
 	player->life = MAX_LIFE_PLAYER;
-	player->bomb = 0;
+	player->bomb = 1;
 	player->level = level;
 	player->id = id;
 	player->invincible = 0;
@@ -26,12 +27,31 @@ void initialise_player(player_t *player, int level, int id){
 		player->key[i] = 0;
 }
 
-void cleanup_handler(void *arg) {
+void cancel_thread_send_player(void *arg) {
 	if(pthread_cancel(*(pthread_t*)arg) != 0)
 		fprintf(stderr, "Error cancel thread_sending_level\n");
 
 	if(pthread_join(*(pthread_t*)arg, NULL) != 0)
 		fprintf(stderr, "Error join thread_sending_level\n");
+}
+
+void end_thread_player_properly(void *arg) {
+	int socket = ((infos_end_thread_properly_t*)arg)->socket;
+	request_send_player_t request_send;
+
+	request_send.type_request = END_GAME;
+	if( ((infos_end_thread_properly_t*)arg)->game_control_infos->id_player_winner == ((infos_end_thread_properly_t*)arg)->player->id)
+		strcpy(request_send.message, "La partie est termine ! VICTORY !!\n");
+	else
+		strcpy(request_send.message, "La partie est termine ! YOU LOOSE \n");
+
+	if(write(socket, &request_send, sizeof(request_send_player_t)) == -1) {
+		perror("Error sending value");
+	}
+
+	if(close(socket) == -1) {
+        perror("Error closing socket in end_thread_player_properly");
+    }
 }
 
 void *thread_invincible(void *arg) {
@@ -52,15 +72,20 @@ void *thread_player(void *arg) {
 	int socket_client = *((player_infos_thread_t *)arg)->socket_client;
 	entity_t *player_entity = &game_control->players[id_player];
 	pthread_t thread_display;
+	infos_end_thread_properly_t infos_end_thread_properly;
 	char ch;
 	
 
 	if(pthread_create(&thread_display, NULL, thread_sending_level, arg)) {
 		fprintf(stderr, "Error create thread display player\n");
 	}
+
+	infos_end_thread_properly.game_control_infos = game_control;
+	infos_end_thread_properly.player = &player_entity->player;
+	infos_end_thread_properly.socket = socket_client;
 	
-	pthread_cleanup_push(cleanup_handler, &thread_display);
-	
+	pthread_cleanup_push(cancel_thread_send_player, &thread_display);
+	pthread_cleanup_push(end_thread_player_properly, &infos_end_thread_properly);
 
 	while (quit == 0)
 	{
@@ -90,8 +115,10 @@ void *thread_player(void *arg) {
 	}
 
 	pthread_cleanup_pop(0);
+	pthread_cleanup_pop(0);
 
-	cleanup_handler(&thread_display);
+	cancel_thread_send_player(&thread_display);
+	end_thread_player_properly(&socket_client);
 
 	printf("Thread player %d TERMINATED\n", player_entity->player.id);
 
@@ -115,7 +142,24 @@ void *thread_sending_level(void *arg) {
 
 	while (!quit)
 	{
-		convert_level_info(player_entity->player.level, &request_send.level_display, game_control->world_info.levels[player_entity->player.level], game_control->enemy[player_entity->player.level], game_control->number_total_enemy, game_control->players, game_control->number_player);
+		convert_level_info(player_entity->player.level, &request_send.level_display , game_control->world_info.levels[player_entity->player.level], game_control->enemy[player_entity->player.level], game_control->number_total_enemy, game_control->players, game_control->number_player);
+
+		if(player_entity->freeze > 0) {
+			request_send.type_request = FREEZE_PLAYER;
+			request_send.second_freeze = 5;
+			player_entity->freeze = 0;
+		}
+		else if(game_control->id_player_winner > -1) {
+			request_send.type_request = END_GAME;
+			if(game_control->id_player_winner == player_entity->player.id)
+				strcpy(request_send.message, "La partie est terminé ! VICTORY !!\n");
+			else
+				strcpy(request_send.message, "La partie est terminé ! YOU LOOSE \n");
+			printf("Request end_game\n");
+		}
+		else {
+			request_send.type_request = REFRESH_LEVEL;
+		}
 
 		request_send.player = player_entity->player;
 
@@ -126,10 +170,6 @@ void *thread_sending_level(void *arg) {
 
 		nanosleep(&time_wait, NULL);
 	}
-
-	if(close(socket_client) == -1) {
-        perror("Error closing socket in cleanup_handler");
-    }
 
 	pthread_exit(NULL);
 }

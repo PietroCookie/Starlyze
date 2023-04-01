@@ -48,6 +48,7 @@ void *thread_display(void *arg) {
 	int socket_client = *((client_game_infos_thread_t*)arg)->socket_client ;
 	interface_game_t *interface = ((client_game_infos_thread_t*)arg)->interface;
 	request_send_player_t request_receive;
+	// char *message_receive = "";
 	// struct timespec time_wait;
 
 
@@ -62,9 +63,22 @@ void *thread_display(void *arg) {
 			perror("Error reading response");
 			quit = 1;
 		}
+
+		if(request_receive.type_request == FREEZE_PLAYER) {
+			((client_game_infos_thread_t*)arg)->freeze = request_receive.second_freeze;
+		}
+		else if(request_receive.type_request == END_GAME) {
+			window_printw(interface->win_message, request_receive.message);
+			window_printw_col(interface->win_message, RED, "Press n to quit\n");
+			window_refresh(interface->win_message);
+			quit = 1;
+			((client_game_infos_thread_t*)arg)->end_game = 1;
+		}
 		
-		refresh_win_level_game(interface, request_receive.level_display);
-		refresh_win_infos(interface, request_receive.player);
+		if(request_receive.type_request != END_GAME) {
+			refresh_win_level_game(interface, request_receive.level_display);
+			refresh_win_infos(interface, request_receive.player);
+		}
 
 		// nanosleep(&time_wait, NULL);
 	}

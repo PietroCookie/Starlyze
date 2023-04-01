@@ -34,6 +34,8 @@ interface_game_t* interface_game_create() {
 
 	result->win_level = window_create(0, 0, DEFAULT_WIDTH_INTERFACE_GAME, DEFAULT_HEIGHT_INTERFACE_GAME, "Level", FALSE);
 	result->win_infos = window_create(DEFAULT_WIDTH_INTERFACE_GAME, 0, 15, DEFAULT_HEIGHT_INTERFACE_GAME, "", FALSE);
+	result->win_message = window_create(0, 22, 77, 5, "Informations", TRUE);
+	window_printw_col(result->win_message, RED, "Press n to exit\n");
 
 	return result;
 }

@@ -15,6 +15,8 @@
 #define MAX_LIFE_PLAYER 5
 #define NUMBER_KEY 4
 
+typedef struct game_control_t game_control_t;
+
 /**
  * @brief Reppresent a player
  * 
@@ -29,6 +31,13 @@ typedef struct
 	int invincible;
 } player_t;
 
+typedef struct 
+{
+	int socket;
+	game_control_t *game_control_infos;
+	player_t *player;
+} infos_end_thread_properly_t;
+
 /**
  * @brief Initialize a player
  * 
@@ -39,11 +48,18 @@ typedef struct
 void initialise_player(player_t *player, int level, int id);
 
 /**
- * @brief The cleaning manager of the player's main thread
+ * @brief The method cancel thread_sending_level
  * 
  * @param arg The information needed by the cleaning manager
  */
-void cleanup_handler(void *arg);
+void cancel_thread_send_player(void *arg);
+
+/**
+ * @brief The method send the request END_GAME to the client player
+ * 
+ * @param The information needed by the cleaning manager
+*/
+void end_thread_player_properly(void *arg);
 
 /**
  * @brief The thread that makes the player invincible for three seconds

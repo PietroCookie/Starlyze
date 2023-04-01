@@ -21,12 +21,13 @@
  * @brief The structure with all the game information
  * 
  */
-typedef struct {
+typedef struct game_control_t{
 	world_info_t world_info;
 	int number_player;
 	int number_total_enemy;
 	pthread_cond_t cond_victory;
 	pthread_mutex_t mutex_victory;
+	int id_player_winner;
 
 	entity_t *players;
 

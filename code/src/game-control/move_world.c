@@ -168,9 +168,11 @@ void check_victory(game_control_t *game_control_info, entity_t player) {
 	if(player.player.level == game_control_info->world_info.exit_level) {
 		for (i = player.posX ; i < posX_width_entity(player); i++)
 			for (j = player.posY; j < posY_height_entity(player); j++)
-				if(game_control_info->world_info.levels[player.player.level].map[i][j].type == SPRITE_EXIT)
+				if(game_control_info->world_info.levels[player.player.level].map[i][j].type == SPRITE_EXIT) {
 					if(pthread_cond_signal(&game_control_info->cond_victory) != 0)
 						fprintf(stderr, "[GAME] - error signal cond victory");
+					game_control_info->id_player_winner = player.player.id;
+				}
 	}
 }
 

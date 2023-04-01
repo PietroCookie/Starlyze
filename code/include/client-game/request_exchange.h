@@ -35,12 +35,4 @@ typedef struct
 	player_t player;
 } request_send_player_t;
 
-// /**
-//  * @brief The request that the player sends to the server
-// */
-// typedef struct
-// {
-// 	char move;
-// } request_send_server_t;
-
 #endif

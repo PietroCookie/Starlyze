@@ -31,7 +31,9 @@ typedef struct
 	int invincible;
 } player_t;
 
-
+/**
+ * @brief Structure that contains informations transmit at end_thread_player_properly
+*/
 typedef struct 
 {
 	int socket;

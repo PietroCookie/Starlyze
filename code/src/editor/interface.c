@@ -228,7 +228,7 @@ void refresh_win_level(interface_t* interface){
 						break;
 
 					case SPRITE_BOMB:
-						paint_bomb(interface->win_level, element_select->posX, element_select->posY);
+						paint_bomb(interface->win_level, element_select->posX, element_select->posY, WHITE);
 						break;
 
 					default:

@@ -34,6 +34,13 @@ void convert_level_info(int id_level, level_display_t *level_display, level_info
 				else
 					level_display->tab[i][j] = SPRITE_TRAP;
 				break;
+
+			case SPRITE_BOMB:
+				if(level_info.map[i][j].specification == -1)
+					level_display->tab[i][j] = SPRITE_BOMB;
+				else
+					level_display->tab[i][j] = SPECIFICATION_BOMB + SPRITE_BOMB;
+				break;
 			
 			default:
 				level_display->tab[i][j] = level_info.map[i][j].type;

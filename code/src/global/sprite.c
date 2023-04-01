@@ -289,8 +289,8 @@ void paint_heart(window_t* window, int posX, int posY){
 	window_mvaddch_col(window, posY, posX, RED, 'V');
 }
 
-void paint_bomb(window_t* window, int posX, int posY){
-	window_mvaddch_col(window, posY, posX, WHITE, 'o');
+void paint_bomb(window_t* window, int posX, int posY, unsigned int color){
+	window_mvaddch_col(window, posY, posX, color, 'o');
 }
 
 void paint_player(window_t *window, int posX, int posY, unsigned int color) {

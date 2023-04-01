@@ -191,8 +191,9 @@ void paint_heart(window_t* window, int posX, int posY);
  * @param window The window in which the bomb is drawn
  * @param posX Position X of the bomb
  * @param posY Position Y of the bomb
+ * @param color The color of the bomb
  */
-void paint_bomb(window_t* window, int posX, int posY);
+void paint_bomb(window_t* window, int posX, int posY, unsigned int color);
 /**
  * @brief Draw a player
  * 

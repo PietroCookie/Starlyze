@@ -31,6 +31,7 @@ typedef struct
 	int invincible;
 } player_t;
 
+
 typedef struct 
 {
 	int socket;

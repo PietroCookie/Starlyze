@@ -14,7 +14,7 @@ LDFLAGS_DEBUG = -fsanitize=address
 # Le nom du projet (utile pour le nom de l'archive)
 PROJECT_NAME = Starlyze
 # Le nom des executables a creer
-EXE = editor game-control-test server client client-game
+EXE = editor server client
 
 # Liste des dossiers contenus dans SRC_DIR et INCLUDE_DIR
 DIR = editor global ncurses game-control display_game server client client-game

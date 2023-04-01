@@ -9,14 +9,15 @@
 void * p_thread_invincible = thread_invincible;
 
 void *thread_wait_item(void *arg) {
-
-	int posX = ((infos_wait_item_t*)arg)->infos[0];
-	int posY = ((infos_wait_item_t*)arg)->infos[1];
-	int type_sprite = ((infos_wait_item_t*)arg)->infos[2];
+	int posX = (int)((infos_wait_item_t*)arg)->infos[0];
+	int posY = (int)((infos_wait_item_t*)arg)->infos[1];
+	int type_sprite = (int)((infos_wait_item_t*)arg)->infos[2];
+	level_info_t *level = (level_info_t*)((infos_wait_item_t*)arg)->level;
+	
+	free(arg);
 
 	sleep(rand() % 5 +1);
-
-	((infos_wait_item_t*)arg)->level->map[posX][posY].type = type_sprite;
+	level->map[posX][posY].type = type_sprite;
 
 	pthread_exit(NULL);
 }
@@ -102,8 +103,10 @@ int move_level(game_control_t *game_control_info, int id_level, entity_t *entity
 						fprintf(stderr, "Error create thread invincible\n");
 					}
 				}
-				else
+				else {
 					take_item(&game_control_info->world_info.levels[id_level], &entity_move->player, posX_dest, posY_dest, posX_width, posY_height);
+					check_victory(game_control_info, *entity_move);
+				}
 			}
 			else if(entity_move->type == ENEMY) {
 				if((collider = check_collision(entity_move, game_control_info->players, game_control_info->number_player, id_level)) != NULL && !collider->player.invincible) {
@@ -157,6 +160,20 @@ void reset_player(world_info_t world_info, entity_t *player) {
 	player->player.life = MAX_LIFE_PLAYER;
 	player->player.bomb = 0;
 	player->player.level = world_info.start_level;
+}
+
+void check_victory(game_control_t *game_control_info, entity_t player) {
+	int i, j;
+
+	if(player.player.level == game_control_info->world_info.exit_level) {
+		for (i = player.posX ; i < posX_width_entity(player); i++)
+			for (j = player.posY; j < posY_height_entity(player); j++)
+				if(game_control_info->world_info.levels[player.player.level].map[i][j].type == SPRITE_EXIT) {
+					if(pthread_cond_signal(&game_control_info->cond_victory) != 0)
+						fprintf(stderr, "[GAME] - error signal cond victory");
+					game_control_info->id_player_winner = player.player.id;
+				}
+	}
 }
 
 int check_validation_move(level_info_t *level, int posX_dest, int posY_dest, int posX_width, int posY_height, entity_t *entity_move){
@@ -272,7 +289,7 @@ entity_t *check_collision(entity_t *entity_collision, entity_t *collider, int nu
 void take_item(level_info_t *level, player_t *player, int posX, int posY, int posX_width, int posY_height){
 	int i, j;
 	pthread_t thread;
-	infos_wait_item_t infos_thread;
+	infos_wait_item_t *infos_thread;
 
 	for (i = posX; i <= posX_width; i++)
 		for (j = posY; j <= posY_height; j++)
@@ -280,28 +297,38 @@ void take_item(level_info_t *level, player_t *player, int posX, int posY, int po
 			if(level->map[i][j].type == SPRITE_KEY)
 				player->key[level->map[i][j].specification] = 1;
 			else if(level->map[i][j].type == SPRITE_LIFE && player->life < MAX_LIFE_PLAYER) {
-				player->life = MAX_LIFE_PLAYER;
-				infos_thread.infos[0] = i;
-				infos_thread.infos[1] = j;
-				infos_thread.infos[2] = SPRITE_LIFE;
-				infos_thread.level = level;
+				if((infos_thread = malloc(sizeof(infos_wait_item_t))) == NULL) {
+					fprintf(stderr, "[GAME] - Error allocating memory for waiting item");
+				} 
+				else {
+					player->life = MAX_LIFE_PLAYER;
+					infos_thread->infos[0] = i;
+					infos_thread->infos[1] = j;
+					infos_thread->infos[2] = SPRITE_LIFE;
+					infos_thread->level = level;
 
-				if(pthread_create(&thread, NULL, thread_wait_item, &infos_thread) != 0)
-					fprintf(stderr, "Error create thread wait item\n");
+					if(pthread_create(&thread, NULL, thread_wait_item, infos_thread) != 0)
+						fprintf(stderr, "Error create thread wait item\n");
 
-				level->map[i][j].type = 0;
+					level->map[i][j].type = 0;
+				}
 			}
 			else if(level->map[i][j].type == SPRITE_BOMB && level->map[i][j].specification == -1) {
-				player->bomb += rand() % 3 + 1;
-				infos_thread.infos[0] = i;
-				infos_thread.infos[1] = j;
-				infos_thread.infos[2] = SPRITE_BOMB;
-				infos_thread.level = level;
+				if((infos_thread = malloc(sizeof(infos_wait_item_t))) == NULL) {
+					fprintf(stderr, "[GAME] - Error allocating memory for waiting item");
+				} 
+				else {
+					player->bomb += rand() % 3 + 1;
+					infos_thread->infos[0] = i;
+					infos_thread->infos[1] = j;
+					infos_thread->infos[2] = SPRITE_BOMB;
+					infos_thread->level = level;
 
-				level->map[i][j].type = 0;
-				
-				if(pthread_create(&thread, NULL, thread_wait_item, &infos_thread) != 0)
-					fprintf(stderr, "Error create thread wait item\n");
+					level->map[i][j].type = 0;
+					
+					if(pthread_create(&thread, NULL, thread_wait_item, infos_thread) != 0)
+						fprintf(stderr, "Error create thread wait item\n");
+				}
 			}
 		}
 }
@@ -385,7 +412,7 @@ void enter_door(world_info_t *world_info, entity_t *player) {
 
 void drop_bomb(game_control_t *game_control, entity_t *player){
 	pthread_t explosion;
-	infos_bomb_explose_t infos_bomb;
+	infos_bomb_explose_t *infos_bomb;
 	int zone_drop;
 	int posX_bomb, posY_bomb;
 
@@ -397,35 +424,41 @@ void drop_bomb(game_control_t *game_control, entity_t *player){
 
 	zone_drop = (posY_bomb / HEIGHT_ZONE_LEVEL) * (WIDTH_LEVEL / WIDTH_ZONE_LEVEL) + (posX_bomb / WIDTH_ZONE_LEVEL);
 
-	infos_bomb.world_info = &game_control->world_info;
-	infos_bomb.position[0] = posX_bomb;
-	infos_bomb.position[1] = posY_bomb;
-	infos_bomb.id_level = player->player.level;
-	infos_bomb.enemy_level = game_control->enemy[player->player.level];
-	infos_bomb.number_enemy = game_control->world_info.levels[player->player.level].number_enemy;
-	infos_bomb.players = game_control->players;
-	infos_bomb.number_players = game_control->number_player;
-	infos_bomb.delay_explosion = rand() % 10 + 4;
+	if((infos_bomb = malloc(sizeof(infos_bomb_explose_t))) == NULL) {
+		fprintf(stderr, "[GAME] - Error allocating memeory for infos_bomb");
+	}
+	else {
+		infos_bomb->world_info = &game_control->world_info;
+		infos_bomb->position[0] = posX_bomb;
+		infos_bomb->position[1] = posY_bomb;
+		infos_bomb->id_level = player->player.level;
+		infos_bomb->enemy_level = game_control->enemy[player->player.level];
+		infos_bomb->number_enemy = game_control->world_info.levels[player->player.level].number_enemy;
+		infos_bomb->players = game_control->players;
+		infos_bomb->number_players = game_control->number_player;
+		infos_bomb->delay_explosion = rand() % 10 + 4;
 
-	if(pthread_mutex_lock(&game_control->world_info.levels[player->player.level].mutex_zone[zone_drop]) != 0) {
-		fprintf(stderr, "Error mutex lock zone drop bomb\n");
-		exit(EXIT_FAILURE);
+		if(pthread_mutex_lock(&game_control->world_info.levels[player->player.level].mutex_zone[zone_drop]) != 0) {
+			fprintf(stderr, "Error mutex lock zone drop bomb\n");
+			exit(EXIT_FAILURE);
+		}
+
+		infos_bomb->last_sprite = game_control->world_info.levels[player->player.level].map[posX_bomb][posY_bomb].type;
+		game_control->world_info.levels[player->player.level].map[posX_bomb][posY_bomb].type = SPRITE_BOMB;
+		game_control->world_info.levels[player->player.level].map[posX_bomb][posY_bomb].specification = infos_bomb->delay_explosion;
+
+		if(pthread_mutex_unlock(&game_control->world_info.levels[player->player.level].mutex_zone[zone_drop]) != 0) {
+			fprintf(stderr, "Error mutex unlock zone drop bomb\n");
+			exit(EXIT_FAILURE);
+		}
+
+		player->player.bomb--;
+
+		if(pthread_create(&explosion, NULL, thread_explose_bomb, infos_bomb) != 0) {
+			fprintf(stderr, "Error create thread explosion bomb\n");
+		}
 	}
 
-	infos_bomb.last_sprite = game_control->world_info.levels[player->player.level].map[posX_bomb][posY_bomb].type;
-	game_control->world_info.levels[player->player.level].map[posX_bomb][posY_bomb].type = SPRITE_BOMB;
-	game_control->world_info.levels[player->player.level].map[posX_bomb][posY_bomb].specification = infos_bomb.delay_explosion;
-
-	if(pthread_mutex_unlock(&game_control->world_info.levels[player->player.level].mutex_zone[zone_drop]) != 0) {
-		fprintf(stderr, "Error mutex unlock zone drop bomb\n");
-		exit(EXIT_FAILURE);
-	}
-
-	player->player.bomb--;
-
-	if(pthread_create(&explosion, NULL, thread_explose_bomb, &infos_bomb) != 0) {
-		fprintf(stderr, "Error create thread explosion bomb\n");
-	}
 }
 
 void *thread_explose_bomb(void *arg) {
@@ -443,6 +476,8 @@ void *thread_explose_bomb(void *arg) {
 	int delay = ((infos_bomb_explose_t*)arg)->delay_explosion;
 	type_sprite_enum last_sprite = ((infos_bomb_explose_t*)arg)->last_sprite;
 	int zone_explosion[9];
+
+	free(arg);
 
 	if(posX < 5)
 		posX = 0;

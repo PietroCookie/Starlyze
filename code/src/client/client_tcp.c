@@ -40,6 +40,7 @@ void connect_to_server_with_tcp(int port, char address_ip[15]){
 	client_game_infos_thread_t client_infos;
 	int quit = 0;
 	char ch;
+	int freeze = 0;
 
 
 	socket_fd = connection_game(address_ip, port);
@@ -55,6 +56,7 @@ void connect_to_server_with_tcp(int port, char address_ip[15]){
 
 	client_infos.socket_client = &socket_fd;
 	client_infos.interface = interface_game_create();
+	client_infos.freeze = freeze;
     
 	if(pthread_create(&thread, NULL, thread_display, &client_infos) != 0) {
 		fprintf(stderr, "Error create thread display\n");
@@ -63,14 +65,19 @@ void connect_to_server_with_tcp(int port, char address_ip[15]){
 
 	while (quit == 0)
 	{
-		ch = getch();
-		if(ch == 'n' || ch =='N')
-			quit = 1;
-		else {
-			if(write(socket_fd, &ch, sizeof(char)) == -1) {
-				perror("Error sending value");
+		if(freeze == 0) {
+			ch = getch();
+			if(ch == 'n' || ch =='N')
 				quit = 1;
-			}
+			else
+				if(write(socket_fd, &ch, sizeof(char)) == -1) {
+					perror("Error sending value");
+					quit = 1;
+				}
+		}
+		else {
+			sleep(freeze);
+			freeze = 0;
 		}
 	}
 

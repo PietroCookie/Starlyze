@@ -43,6 +43,9 @@ int main(int argc, char const *argv[])
 	socket_client = connection_game(address, atoi(argv[2]));
 	client_infos.socket_client = &socket_client;
 	client_infos.interface = interface_game_create();
+	client_infos.freeze = 0;
+	client_infos.end_game = 0;
+
     
 	if(pthread_create(&thread, NULL, thread_display, &client_infos) != 0) {
 		fprintf(stderr, "Error create thread display\n");
@@ -55,9 +58,17 @@ int main(int argc, char const *argv[])
 		if(ch == 'n' || ch =='N')
 			quit = 1;
 		else {
-			if(write(socket_client, &ch, sizeof(char)) == -1) {
-				perror("Error sending value");
-				quit = 1;
+			if(client_infos.end_game == 0) {
+				if(client_infos.freeze == 0) {
+					if(write(socket_client, &ch, sizeof(char)) == -1) {
+						perror("Error sending value");
+						quit = 1;
+					}
+				}
+				else {
+					sleep(client_infos.freeze);
+					client_infos.freeze = 0;
+				}
 			}
 		}
 	}

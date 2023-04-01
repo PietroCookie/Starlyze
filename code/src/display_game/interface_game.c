@@ -34,6 +34,8 @@ interface_game_t* interface_game_create() {
 
 	result->win_level = window_create(0, 0, DEFAULT_WIDTH_INTERFACE_GAME, DEFAULT_HEIGHT_INTERFACE_GAME, "Level", FALSE);
 	result->win_infos = window_create(DEFAULT_WIDTH_INTERFACE_GAME, 0, 15, DEFAULT_HEIGHT_INTERFACE_GAME, "", FALSE);
+	result->win_message = window_create(0, 22, 77, 5, "Informations", TRUE);
+	window_printw_col(result->win_message, RED, "Press n to exit\n");
 
 	return result;
 }
@@ -111,7 +113,10 @@ void refresh_win_infos(interface_game_t* interface, player_t player) {
 
 	window_mvprintw(interface->win_infos, 4, 0, "Lives");
 	for (i = 0; i < player.life; i++)
-		window_mvaddch(interface->win_infos, 5, i+1, 'V');
+			window_mvaddch(interface->win_infos, 5, i+1, 'V');
+	for (i = player.life; i < MAX_LIFE_PLAYER; i++)
+			window_mvaddch(interface->win_infos, 5, i+1, ' ');
+	
 
 	window_mvprintw(interface->win_infos, 7, 0, "Bombs");
 	sprintf(string,"%d",player.bomb);

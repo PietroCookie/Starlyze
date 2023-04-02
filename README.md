@@ -1,12 +1,12 @@
-![Logo Starlyze](bin/starlyze-remove-bg.png)
+![Logo Starlyze](img/starlyze-remove-bg.png)
 
 <hr>
 
 STARLYZE is a project of INFO0601 and INFO0604 at the University of Reims Champagne-Ardenne
 
-![Langage c](bin/langage-c.svg)
-![Ncurses](bin/ncurses.svg)
-![Compiler](bin/compiler.svg)
+![Langage c](img/langage-c.svg)
+![Ncurses](img/ncurses.svg)
+![Compiler](img/compiler.svg)
 
 
 

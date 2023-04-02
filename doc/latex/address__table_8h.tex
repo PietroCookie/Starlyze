@@ -1,0 +1,241 @@
+\hypertarget{address__table_8h}{}\doxysection{code/include/global/address\+\_\+table.h File Reference}
+\label{address__table_8h}\index{code/include/global/address\_table.h@{code/include/global/address\_table.h}}
+
+
+File that manage address\+\_\+table.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structentry__address__table__t}{entry\+\_\+address\+\_\+table\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em An entry in the address table. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em An address table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{address__table_8h_ab3ccfece45d811215b3dc3de35d6220b}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+Z\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+T\+A\+B\+LE}}~10
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{address__table_8h_a575ec42c840ab6dbcca24a394746aab2}{initialize\+\_\+address\+\_\+table}} (\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} $\ast$address\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Initialize an address table. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{address__table_8h_a48b18f3a44f03d4f82a58afccd0604db}{address\+\_\+table\+\_\+full}} (\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} address\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Allows to know if an address table is full or not. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{address__table_8h_a7fc3c6918e15ee85660125a719fb98a8}{write\+\_\+address\+\_\+table\+\_\+in\+\_\+file\+\_\+descriptor}} (int file\+\_\+descriptor, \mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} address\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Write an address table to a file descriptor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} \mbox{\hyperlink{address__table_8h_aa9b6d38069adbc756b52723bcda53cb3}{read\+\_\+address\+\_\+table\+\_\+in\+\_\+file\+\_\+descriptor}} (int file\+\_\+descriptor)
+\begin{DoxyCompactList}\small\item\em Reads an address table from a file descriptor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{address__table_8h_a9b8f0faefbdd4cf574f22d44505dc12d}{save\+\_\+modification\+\_\+address\+\_\+table}} (int file\+\_\+descriptor, \mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} address\+\_\+table, int id\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Saves changes to the address table in the file descriptor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{address__table_8h_a14bb103faf53616eeec3b119139fae1e}{add\+\_\+entry\+\_\+in\+\_\+address\+\_\+table}} (\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} $\ast$address\+\_\+table, \mbox{\hyperlink{structentry__address__table__t}{entry\+\_\+address\+\_\+table\+\_\+t}} entry)
+\begin{DoxyCompactList}\small\item\em Adds an entry in the address table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{address__table_8h_a2e5d6cdff7f0b2400b7e236655eaa4f9}{remove\+\_\+entry\+\_\+in\+\_\+address\+\_\+table}} (\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} $\ast$address\+\_\+table, int id\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Delete an entry from the address table. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{address__table_8h_ad03ae65f61ff8aaeda37d49ab809609d}{necessary\+\_\+size\+\_\+address\+\_\+table}} ()
+\begin{DoxyCompactList}\small\item\em The necessary size of an address table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manage address\+\_\+table. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/31
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{address__table_8h_ab3ccfece45d811215b3dc3de35d6220b}\label{address__table_8h_ab3ccfece45d811215b3dc3de35d6220b}} 
+\index{address\_table.h@{address\_table.h}!DEFAULT\_SIZE\_ADDRESS\_TABLE@{DEFAULT\_SIZE\_ADDRESS\_TABLE}}
+\index{DEFAULT\_SIZE\_ADDRESS\_TABLE@{DEFAULT\_SIZE\_ADDRESS\_TABLE}!address\_table.h@{address\_table.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_SIZE\_ADDRESS\_TABLE}{DEFAULT\_SIZE\_ADDRESS\_TABLE}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+Z\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+T\+A\+B\+LE~10}
+
+
+
+Definition at line 17 of file address\+\_\+table.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{address__table_8h_a14bb103faf53616eeec3b119139fae1e}\label{address__table_8h_a14bb103faf53616eeec3b119139fae1e}} 
+\index{address\_table.h@{address\_table.h}!add\_entry\_in\_address\_table@{add\_entry\_in\_address\_table}}
+\index{add\_entry\_in\_address\_table@{add\_entry\_in\_address\_table}!address\_table.h@{address\_table.h}}
+\doxysubsubsection{\texorpdfstring{add\_entry\_in\_address\_table()}{add\_entry\_in\_address\_table()}}
+{\footnotesize\ttfamily int add\+\_\+entry\+\_\+in\+\_\+address\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} $\ast$}]{address\+\_\+table,  }\item[{\mbox{\hyperlink{structentry__address__table__t}{entry\+\_\+address\+\_\+table\+\_\+t}}}]{entry }\end{DoxyParamCaption})}
+
+
+
+Adds an entry in the address table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address\+\_\+table} & The address table \\
+\hline
+{\em entry} & The input that is addeds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The position of the entry in the address table or -\/1 if the table is fulls 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file address\+\_\+table.\+c.
+
+\mbox{\Hypertarget{address__table_8h_a48b18f3a44f03d4f82a58afccd0604db}\label{address__table_8h_a48b18f3a44f03d4f82a58afccd0604db}} 
+\index{address\_table.h@{address\_table.h}!address\_table\_full@{address\_table\_full}}
+\index{address\_table\_full@{address\_table\_full}!address\_table.h@{address\_table.h}}
+\doxysubsubsection{\texorpdfstring{address\_table\_full()}{address\_table\_full()}}
+{\footnotesize\ttfamily int address\+\_\+table\+\_\+full (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}}}]{address\+\_\+table }\end{DoxyParamCaption})}
+
+
+
+Allows to know if an address table is full or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address\+\_\+table} & The address table which we want to know if it is full or not \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int True if the address table is full, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file address\+\_\+table.\+c.
+
+\mbox{\Hypertarget{address__table_8h_a575ec42c840ab6dbcca24a394746aab2}\label{address__table_8h_a575ec42c840ab6dbcca24a394746aab2}} 
+\index{address\_table.h@{address\_table.h}!initialize\_address\_table@{initialize\_address\_table}}
+\index{initialize\_address\_table@{initialize\_address\_table}!address\_table.h@{address\_table.h}}
+\doxysubsubsection{\texorpdfstring{initialize\_address\_table()}{initialize\_address\_table()}}
+{\footnotesize\ttfamily void initialize\+\_\+address\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} $\ast$}]{address\+\_\+table }\end{DoxyParamCaption})}
+
+
+
+Initialize an address table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address\+\_\+table} & The address table that is initialized \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 6 of file address\+\_\+table.\+c.
+
+\mbox{\Hypertarget{address__table_8h_ad03ae65f61ff8aaeda37d49ab809609d}\label{address__table_8h_ad03ae65f61ff8aaeda37d49ab809609d}} 
+\index{address\_table.h@{address\_table.h}!necessary\_size\_address\_table@{necessary\_size\_address\_table}}
+\index{necessary\_size\_address\_table@{necessary\_size\_address\_table}!address\_table.h@{address\_table.h}}
+\doxysubsubsection{\texorpdfstring{necessary\_size\_address\_table()}{necessary\_size\_address\_table()}}
+{\footnotesize\ttfamily size\+\_\+t necessary\+\_\+size\+\_\+address\+\_\+table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The necessary size of an address table. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The necessary size 
+\end{DoxyReturn}
+
+
+Definition at line 94 of file address\+\_\+table.\+c.
+
+\mbox{\Hypertarget{address__table_8h_aa9b6d38069adbc756b52723bcda53cb3}\label{address__table_8h_aa9b6d38069adbc756b52723bcda53cb3}} 
+\index{address\_table.h@{address\_table.h}!read\_address\_table\_in\_file\_descriptor@{read\_address\_table\_in\_file\_descriptor}}
+\index{read\_address\_table\_in\_file\_descriptor@{read\_address\_table\_in\_file\_descriptor}!address\_table.h@{address\_table.h}}
+\doxysubsubsection{\texorpdfstring{read\_address\_table\_in\_file\_descriptor()}{read\_address\_table\_in\_file\_descriptor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} read\+\_\+address\+\_\+table\+\_\+in\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor }\end{DoxyParamCaption})}
+
+
+
+Reads an address table from a file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file descriptor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} The address table 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file address\+\_\+table.\+c.
+
+\mbox{\Hypertarget{address__table_8h_a2e5d6cdff7f0b2400b7e236655eaa4f9}\label{address__table_8h_a2e5d6cdff7f0b2400b7e236655eaa4f9}} 
+\index{address\_table.h@{address\_table.h}!remove\_entry\_in\_address\_table@{remove\_entry\_in\_address\_table}}
+\index{remove\_entry\_in\_address\_table@{remove\_entry\_in\_address\_table}!address\_table.h@{address\_table.h}}
+\doxysubsubsection{\texorpdfstring{remove\_entry\_in\_address\_table()}{remove\_entry\_in\_address\_table()}}
+{\footnotesize\ttfamily void remove\+\_\+entry\+\_\+in\+\_\+address\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}} $\ast$}]{address\+\_\+table,  }\item[{int}]{id\+\_\+table }\end{DoxyParamCaption})}
+
+
+
+Delete an entry from the address table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address\+\_\+table} & The address table \\
+\hline
+{\em id\+\_\+table} & The identifier of the entry to be deleted \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 122 of file address\+\_\+table.\+c.
+
+\mbox{\Hypertarget{address__table_8h_a9b8f0faefbdd4cf574f22d44505dc12d}\label{address__table_8h_a9b8f0faefbdd4cf574f22d44505dc12d}} 
+\index{address\_table.h@{address\_table.h}!save\_modification\_address\_table@{save\_modification\_address\_table}}
+\index{save\_modification\_address\_table@{save\_modification\_address\_table}!address\_table.h@{address\_table.h}}
+\doxysubsubsection{\texorpdfstring{save\_modification\_address\_table()}{save\_modification\_address\_table()}}
+{\footnotesize\ttfamily void save\+\_\+modification\+\_\+address\+\_\+table (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor,  }\item[{\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}}}]{address\+\_\+table,  }\item[{int}]{id\+\_\+table }\end{DoxyParamCaption})}
+
+
+
+Saves changes to the address table in the file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file descriptor \\
+\hline
+{\em address\+\_\+table} & The address table \\
+\hline
+{\em id\+\_\+table} & The identifier of the table entry to be saved \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file address\+\_\+table.\+c.
+
+\mbox{\Hypertarget{address__table_8h_a7fc3c6918e15ee85660125a719fb98a8}\label{address__table_8h_a7fc3c6918e15ee85660125a719fb98a8}} 
+\index{address\_table.h@{address\_table.h}!write\_address\_table\_in\_file\_descriptor@{write\_address\_table\_in\_file\_descriptor}}
+\index{write\_address\_table\_in\_file\_descriptor@{write\_address\_table\_in\_file\_descriptor}!address\_table.h@{address\_table.h}}
+\doxysubsubsection{\texorpdfstring{write\_address\_table\_in\_file\_descriptor()}{write\_address\_table\_in\_file\_descriptor()}}
+{\footnotesize\ttfamily void write\+\_\+address\+\_\+table\+\_\+in\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor,  }\item[{\mbox{\hyperlink{structaddress__table__t}{address\+\_\+table\+\_\+t}}}]{address\+\_\+table }\end{DoxyParamCaption})}
+
+
+
+Write an address table to a file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file descriptor \\
+\hline
+{\em address\+\_\+table} & The address table \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file address\+\_\+table.\+c.
+

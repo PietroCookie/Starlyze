@@ -1,0 +1,185 @@
+.TH "code/src/global/address_table.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/global/address_table.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'address_table\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinitialize_address_table\fP (\fBaddress_table_t\fP *address_table)"
+.br
+.RI "Initialize an address table\&. "
+.ti -1c
+.RI "int \fBaddress_table_full\fP (\fBaddress_table_t\fP address_table)"
+.br
+.RI "Allows to know if an address table is full or not\&. "
+.ti -1c
+.RI "void \fBwrite_address_table_in_file_descriptor\fP (int file_descriptor, \fBaddress_table_t\fP address_table)"
+.br
+.RI "Write an address table to a file descriptor\&. "
+.ti -1c
+.RI "\fBaddress_table_t\fP \fBread_address_table_in_file_descriptor\fP (int file_descriptor)"
+.br
+.RI "Reads an address table from a file descriptor\&. "
+.ti -1c
+.RI "void \fBsave_modification_address_table\fP (int file_descriptor, \fBaddress_table_t\fP address_table, int id_table)"
+.br
+.RI "Saves changes to the address table in the file descriptor\&. "
+.ti -1c
+.RI "size_t \fBnecessary_size_address_table\fP ()"
+.br
+.RI "The necessary size of an address table\&. "
+.ti -1c
+.RI "int \fBadd_entry_in_address_table\fP (\fBaddress_table_t\fP *address_table, \fBentry_address_table_t\fP entry)"
+.br
+.RI "Adds an entry in the address table\&. "
+.ti -1c
+.RI "void \fBremove_entry_in_address_table\fP (\fBaddress_table_t\fP *address_table, int id_table)"
+.br
+.RI "Delete an entry from the address table\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int add_entry_in_address_table (\fBaddress_table_t\fP * address_table, \fBentry_address_table_t\fP entry)"
+
+.PP
+Adds an entry in the address table\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIaddress_table\fP The address table 
+.br
+\fIentry\fP The input that is addeds 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int The position of the entry in the address table or -1 if the table is fulls 
+.RE
+.PP
+
+.PP
+Definition at line 100 of file address_table\&.c\&.
+.SS "int address_table_full (\fBaddress_table_t\fP address_table)"
+
+.PP
+Allows to know if an address table is full or not\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIaddress_table\fP The address table which we want to know if it is full or not 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int True if the address table is full, false otherwise 
+.RE
+.PP
+
+.PP
+Definition at line 16 of file address_table\&.c\&.
+.SS "void initialize_address_table (\fBaddress_table_t\fP * address_table)"
+
+.PP
+Initialize an address table\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIaddress_table\fP The address table that is initialized 
+.RE
+.PP
+
+.PP
+Definition at line 6 of file address_table\&.c\&.
+.SS "size_t necessary_size_address_table ()"
+
+.PP
+The necessary size of an address table\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size_t The necessary size 
+.RE
+.PP
+
+.PP
+Definition at line 94 of file address_table\&.c\&.
+.SS "\fBaddress_table_t\fP read_address_table_in_file_descriptor (int file_descriptor)"
+
+.PP
+Reads an address table from a file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file descriptor 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBaddress_table_t\fP The address table 
+.RE
+.PP
+
+.PP
+Definition at line 47 of file address_table\&.c\&.
+.SS "void remove_entry_in_address_table (\fBaddress_table_t\fP * address_table, int id_table)"
+
+.PP
+Delete an entry from the address table\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIaddress_table\fP The address table 
+.br
+\fIid_table\fP The identifier of the entry to be deleted 
+.RE
+.PP
+
+.PP
+Definition at line 122 of file address_table\&.c\&.
+.SS "void save_modification_address_table (int file_descriptor, \fBaddress_table_t\fP address_table, int id_table)"
+
+.PP
+Saves changes to the address table in the file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file descriptor 
+.br
+\fIaddress_table\fP The address table 
+.br
+\fIid_table\fP The identifier of the table entry to be saved 
+.RE
+.PP
+
+.PP
+Definition at line 73 of file address_table\&.c\&.
+.SS "void write_address_table_in_file_descriptor (int file_descriptor, \fBaddress_table_t\fP address_table)"
+
+.PP
+Write an address table to a file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file descriptor 
+.br
+\fIaddress_table\fP The address table 
+.RE
+.PP
+
+.PP
+Definition at line 31 of file address_table\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

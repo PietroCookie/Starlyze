@@ -1,0 +1,127 @@
+\hypertarget{structgame__control__t}{}\doxysection{game\+\_\+control\+\_\+t Struct Reference}
+\label{structgame__control__t}\index{game\_control\_t@{game\_control\_t}}
+
+
+The structure with all the game information.  
+
+
+
+
+{\ttfamily \#include $<$game\+\_\+control.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} \mbox{\hyperlink{structgame__control__t_ad238c9009ee555c56b02581efadcb4ab}{world\+\_\+info}}
+\item 
+int \mbox{\hyperlink{structgame__control__t_abe89d74c05c668c53202724b0a0212a7}{number\+\_\+player}}
+\item 
+int \mbox{\hyperlink{structgame__control__t_affb9bea4e8c7c4c3f6da4d86fe02041f}{number\+\_\+total\+\_\+enemy}}
+\item 
+pthread\+\_\+cond\+\_\+t \mbox{\hyperlink{structgame__control__t_a10b94593f69822ad5b26f5e972344772}{cond\+\_\+victory}}
+\item 
+pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{structgame__control__t_ab23acc794eb5d29e55b122f5223acb23}{mutex\+\_\+victory}}
+\item 
+int \mbox{\hyperlink{structgame__control__t_a13e1f9fa2cbe2c273534246d6b54fb1f}{id\+\_\+player\+\_\+winner}}
+\item 
+\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$ \mbox{\hyperlink{structgame__control__t_a806178a7294f504423c16d6d46b8cc80}{players}}
+\item 
+\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$$\ast$ \mbox{\hyperlink{structgame__control__t_a13a4944f0247b8a90ffb5097fcaad29b}{enemy}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The structure with all the game information. 
+
+
+
+Definition at line 24 of file game\+\_\+control.\+h.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structgame__control__t_a10b94593f69822ad5b26f5e972344772}\label{structgame__control__t_a10b94593f69822ad5b26f5e972344772}} 
+\index{game\_control\_t@{game\_control\_t}!cond\_victory@{cond\_victory}}
+\index{cond\_victory@{cond\_victory}!game\_control\_t@{game\_control\_t}}
+\doxysubsubsection{\texorpdfstring{cond\_victory}{cond\_victory}}
+{\footnotesize\ttfamily pthread\+\_\+cond\+\_\+t cond\+\_\+victory}
+
+
+
+Definition at line 28 of file game\+\_\+control.\+h.
+
+\mbox{\Hypertarget{structgame__control__t_a13a4944f0247b8a90ffb5097fcaad29b}\label{structgame__control__t_a13a4944f0247b8a90ffb5097fcaad29b}} 
+\index{game\_control\_t@{game\_control\_t}!enemy@{enemy}}
+\index{enemy@{enemy}!game\_control\_t@{game\_control\_t}}
+\doxysubsubsection{\texorpdfstring{enemy}{enemy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structentity__t}{entity\+\_\+t}}$\ast$$\ast$ enemy}
+
+
+
+Definition at line 34 of file game\+\_\+control.\+h.
+
+\mbox{\Hypertarget{structgame__control__t_a13e1f9fa2cbe2c273534246d6b54fb1f}\label{structgame__control__t_a13e1f9fa2cbe2c273534246d6b54fb1f}} 
+\index{game\_control\_t@{game\_control\_t}!id\_player\_winner@{id\_player\_winner}}
+\index{id\_player\_winner@{id\_player\_winner}!game\_control\_t@{game\_control\_t}}
+\doxysubsubsection{\texorpdfstring{id\_player\_winner}{id\_player\_winner}}
+{\footnotesize\ttfamily int id\+\_\+player\+\_\+winner}
+
+
+
+Definition at line 30 of file game\+\_\+control.\+h.
+
+\mbox{\Hypertarget{structgame__control__t_ab23acc794eb5d29e55b122f5223acb23}\label{structgame__control__t_ab23acc794eb5d29e55b122f5223acb23}} 
+\index{game\_control\_t@{game\_control\_t}!mutex\_victory@{mutex\_victory}}
+\index{mutex\_victory@{mutex\_victory}!game\_control\_t@{game\_control\_t}}
+\doxysubsubsection{\texorpdfstring{mutex\_victory}{mutex\_victory}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t mutex\+\_\+victory}
+
+
+
+Definition at line 29 of file game\+\_\+control.\+h.
+
+\mbox{\Hypertarget{structgame__control__t_abe89d74c05c668c53202724b0a0212a7}\label{structgame__control__t_abe89d74c05c668c53202724b0a0212a7}} 
+\index{game\_control\_t@{game\_control\_t}!number\_player@{number\_player}}
+\index{number\_player@{number\_player}!game\_control\_t@{game\_control\_t}}
+\doxysubsubsection{\texorpdfstring{number\_player}{number\_player}}
+{\footnotesize\ttfamily int number\+\_\+player}
+
+
+
+Definition at line 26 of file game\+\_\+control.\+h.
+
+\mbox{\Hypertarget{structgame__control__t_affb9bea4e8c7c4c3f6da4d86fe02041f}\label{structgame__control__t_affb9bea4e8c7c4c3f6da4d86fe02041f}} 
+\index{game\_control\_t@{game\_control\_t}!number\_total\_enemy@{number\_total\_enemy}}
+\index{number\_total\_enemy@{number\_total\_enemy}!game\_control\_t@{game\_control\_t}}
+\doxysubsubsection{\texorpdfstring{number\_total\_enemy}{number\_total\_enemy}}
+{\footnotesize\ttfamily int number\+\_\+total\+\_\+enemy}
+
+
+
+Definition at line 27 of file game\+\_\+control.\+h.
+
+\mbox{\Hypertarget{structgame__control__t_a806178a7294f504423c16d6d46b8cc80}\label{structgame__control__t_a806178a7294f504423c16d6d46b8cc80}} 
+\index{game\_control\_t@{game\_control\_t}!players@{players}}
+\index{players@{players}!game\_control\_t@{game\_control\_t}}
+\doxysubsubsection{\texorpdfstring{players}{players}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structentity__t}{entity\+\_\+t}}$\ast$ players}
+
+
+
+Definition at line 32 of file game\+\_\+control.\+h.
+
+\mbox{\Hypertarget{structgame__control__t_ad238c9009ee555c56b02581efadcb4ab}\label{structgame__control__t_ad238c9009ee555c56b02581efadcb4ab}} 
+\index{game\_control\_t@{game\_control\_t}!world\_info@{world\_info}}
+\index{world\_info@{world\_info}!game\_control\_t@{game\_control\_t}}
+\doxysubsubsection{\texorpdfstring{world\_info}{world\_info}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} world\+\_\+info}
+
+
+
+Definition at line 25 of file game\+\_\+control.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/include/game-\/control/\mbox{\hyperlink{game__control_8h}{game\+\_\+control.\+h}}\end{DoxyCompactItemize}

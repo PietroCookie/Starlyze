@@ -1,0 +1,81 @@
+\hypertarget{level__info_8c}{}\doxysection{code/src/game-\/control/level\+\_\+info.c File Reference}
+\label{level__info_8c}\index{code/src/game-\/control/level\_info.c@{code/src/game-\/control/level\_info.c}}
+{\ttfamily \#include \char`\"{}level\+\_\+info.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{level__info_8c_a9c76725bf2f2c50fb17a10ca5883264c}{load\+\_\+level\+\_\+info}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$level\+\_\+info, int file)
+\begin{DoxyCompactList}\small\item\em Allows to load a level from a file descriptor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{level__info_8c_a58b99221fec4565640aca2aad4f376b6}{delete\+\_\+level\+\_\+info}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$level\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Deletes the information of a level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{level__info_8c_adfb2c9e795d29c4642c9deec16b03750}{load\+\_\+block\+\_\+trap}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} level\+\_\+info, \mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$list\+\_\+block\+\_\+trap)
+\begin{DoxyCompactList}\small\item\em Load the trap blocks of a level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{level__info_8c_a58b99221fec4565640aca2aad4f376b6}\label{level__info_8c_a58b99221fec4565640aca2aad4f376b6}} 
+\index{level\_info.c@{level\_info.c}!delete\_level\_info@{delete\_level\_info}}
+\index{delete\_level\_info@{delete\_level\_info}!level\_info.c@{level\_info.c}}
+\doxysubsubsection{\texorpdfstring{delete\_level\_info()}{delete\_level\_info()}}
+{\footnotesize\ttfamily void delete\+\_\+level\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$}]{level\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Deletes the information of a level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level\+\_\+info} & The information of the level you want to delete \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 61 of file level\+\_\+info.\+c.
+
+\mbox{\Hypertarget{level__info_8c_adfb2c9e795d29c4642c9deec16b03750}\label{level__info_8c_adfb2c9e795d29c4642c9deec16b03750}} 
+\index{level\_info.c@{level\_info.c}!load\_block\_trap@{load\_block\_trap}}
+\index{load\_block\_trap@{load\_block\_trap}!level\_info.c@{level\_info.c}}
+\doxysubsubsection{\texorpdfstring{load\_block\_trap()}{load\_block\_trap()}}
+{\footnotesize\ttfamily void load\+\_\+block\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}}}]{level\+\_\+info,  }\item[{\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$}]{list\+\_\+block\+\_\+trap }\end{DoxyParamCaption})}
+
+
+
+Load the trap blocks of a level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level\+\_\+info} & The level to load the trap blocks with \\
+\hline
+{\em list\+\_\+block\+\_\+trap} & The list that will contain the trap blocks \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 74 of file level\+\_\+info.\+c.
+
+\mbox{\Hypertarget{level__info_8c_a9c76725bf2f2c50fb17a10ca5883264c}\label{level__info_8c_a9c76725bf2f2c50fb17a10ca5883264c}} 
+\index{level\_info.c@{level\_info.c}!load\_level\_info@{load\_level\_info}}
+\index{load\_level\_info@{load\_level\_info}!level\_info.c@{level\_info.c}}
+\doxysubsubsection{\texorpdfstring{load\_level\_info()}{load\_level\_info()}}
+{\footnotesize\ttfamily void load\+\_\+level\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$}]{level\+\_\+info,  }\item[{int}]{file }\end{DoxyParamCaption})}
+
+
+
+Allows to load a level from a file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level\+\_\+info} & The variable that will contain the level information \\
+\hline
+{\em file} & The file descriptor \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 9 of file level\+\_\+info.\+c.
+

@@ -1,0 +1,115 @@
+\hypertarget{client__utility_8c}{}\doxysection{code/src/client/client\+\_\+utility.c File Reference}
+\label{client__utility_8c}\index{code/src/client/client\_utility.c@{code/src/client/client\_utility.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+utility.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+udp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+create\+\_\+game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+join\+\_\+game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+tcp.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{client__utility_8c_a0aea5e4390947f1759c409f1beffc93f}{display\+\_\+logo\+\_\+app}} ()
+\begin{DoxyCompactList}\small\item\em Display the logo of the application. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{client__utility_8c_a73258603161962b1761502d52c787cfd}{pseudo\+\_\+entry}} ()
+\begin{DoxyCompactList}\small\item\em Entering the user\textquotesingle{}s nickname. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{client__utility_8c_aef22ffa7386c69ac7904893821751405}{display\+\_\+menu}} (int nb\+\_\+players)
+\begin{DoxyCompactList}\small\item\em Display the menu for the client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{client__utility_8c_aca00a95a93fa57de7f9b8f545113ed6f}{handler\+\_\+menu}} (int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char \mbox{\hyperlink{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}{address\+\_\+ip}}\mbox{[}15\mbox{]}, \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} \mbox{\hyperlink{client_8c_a864dd521c2a00953ae40bce1f4ba19e3}{info\+\_\+client}}, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Allows the management of the menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client__utility_8c_a0aea5e4390947f1759c409f1beffc93f}\label{client__utility_8c_a0aea5e4390947f1759c409f1beffc93f}} 
+\index{client\_utility.c@{client\_utility.c}!display\_logo\_app@{display\_logo\_app}}
+\index{display\_logo\_app@{display\_logo\_app}!client\_utility.c@{client\_utility.c}}
+\doxysubsubsection{\texorpdfstring{display\_logo\_app()}{display\_logo\_app()}}
+{\footnotesize\ttfamily void display\+\_\+logo\+\_\+app (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Display the logo of the application. 
+
+Display the logo of the application Starlyze.
+
+Definition at line 28 of file client\+\_\+utility.\+c.
+
+\mbox{\Hypertarget{client__utility_8c_aef22ffa7386c69ac7904893821751405}\label{client__utility_8c_aef22ffa7386c69ac7904893821751405}} 
+\index{client\_utility.c@{client\_utility.c}!display\_menu@{display\_menu}}
+\index{display\_menu@{display\_menu}!client\_utility.c@{client\_utility.c}}
+\doxysubsubsection{\texorpdfstring{display\_menu()}{display\_menu()}}
+{\footnotesize\ttfamily void display\+\_\+menu (\begin{DoxyParamCaption}\item[{int}]{nb\+\_\+players }\end{DoxyParamCaption})}
+
+
+
+Display the menu for the client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb\+\_\+players} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 68 of file client\+\_\+utility.\+c.
+
+\mbox{\Hypertarget{client__utility_8c_aca00a95a93fa57de7f9b8f545113ed6f}\label{client__utility_8c_aca00a95a93fa57de7f9b8f545113ed6f}} 
+\index{client\_utility.c@{client\_utility.c}!handler\_menu@{handler\_menu}}
+\index{handler\_menu@{handler\_menu}!client\_utility.c@{client\_utility.c}}
+\doxysubsubsection{\texorpdfstring{handler\_menu()}{handler\_menu()}}
+{\footnotesize\ttfamily void handler\+\_\+menu (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char}]{address\+\_\+ip\mbox{[}15\mbox{]},  }\item[{\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}}}]{info\+\_\+client,  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Allows the management of the menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em address\+\_\+ip} & \\
+\hline
+{\em info\+\_\+client} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 86 of file client\+\_\+utility.\+c.
+
+\mbox{\Hypertarget{client__utility_8c_a73258603161962b1761502d52c787cfd}\label{client__utility_8c_a73258603161962b1761502d52c787cfd}} 
+\index{client\_utility.c@{client\_utility.c}!pseudo\_entry@{pseudo\_entry}}
+\index{pseudo\_entry@{pseudo\_entry}!client\_utility.c@{client\_utility.c}}
+\doxysubsubsection{\texorpdfstring{pseudo\_entry()}{pseudo\_entry()}}
+{\footnotesize\ttfamily char$\ast$ pseudo\+\_\+entry (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Entering the user\textquotesingle{}s nickname. 
+
+\begin{DoxyReturn}{Returns}
+char$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file client\+\_\+utility.\+c.
+

@@ -1,0 +1,132 @@
+.TH "code/src/ncurses/window.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/ncurses/window.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'window\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBwindow_t\fP * \fBwindow_create\fP (int posX, int posY, int width, int height, char *title, bool scroll)"
+.br
+.ti -1c
+.RI "void \fBwindow_delete\fP (\fBwindow_t\fP **window)"
+.br
+.ti -1c
+.RI "bool \fBwindow_isin\fP (\fBwindow_t\fP *window, int x, int y)"
+.br
+.ti -1c
+.RI "bool \fBwindow_getcoordinates\fP (\fBwindow_t\fP *window, int posx, int posy, int *x, int *y)"
+.br
+.ti -1c
+.RI "int \fBwindow_move\fP (\fBwindow_t\fP *window, int posY, int posX)"
+.br
+.ti -1c
+.RI "int \fBwindow_addch\fP (\fBwindow_t\fP *window, chtype c)"
+.br
+.ti -1c
+.RI "int \fBwindow_mvaddch\fP (\fBwindow_t\fP *window, int posY, int posX, chtype c)"
+.br
+.ti -1c
+.RI "int \fBwindow_addch_col\fP (\fBwindow_t\fP *window, unsigned int color, chtype c)"
+.br
+.ti -1c
+.RI "int \fBwindow_mvaddch_col\fP (\fBwindow_t\fP *window, int posY, int posX, unsigned int color, chtype c)"
+.br
+.ti -1c
+.RI "int \fBwindow_printw\fP (\fBwindow_t\fP *window, const char *fmt,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "int \fBwindow_printw_col\fP (\fBwindow_t\fP *window, unsigned int color, const char *fmt,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "int \fBwindow_mvprintw\fP (\fBwindow_t\fP *window, int posY, int posX, const char *fmt,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "int \fBwindow_mvprintw_col\fP (\fBwindow_t\fP *window, int posY, int posX, unsigned int color, const char *fmt,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "int \fBwindow_refresh\fP (\fBwindow_t\fP *window)"
+.br
+.ti -1c
+.RI "int \fBwindow_color\fP (\fBwindow_t\fP *window, unsigned int color)"
+.br
+.ti -1c
+.RI "int \fBwindow_erase\fP (\fBwindow_t\fP *window)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int window_addch (\fBwindow_t\fP * window, chtype c)"
+
+.PP
+Definition at line 66 of file window\&.c\&.
+.SS "int window_addch_col (\fBwindow_t\fP * window, unsigned int color, chtype c)"
+
+.PP
+Definition at line 75 of file window\&.c\&.
+.SS "int window_color (\fBwindow_t\fP * window, unsigned int color)"
+
+.PP
+Definition at line 150 of file window\&.c\&.
+.SS "\fBwindow_t\fP* window_create (int posX, int posY, int width, int height, char * title, bool scroll)"
+
+.PP
+Definition at line 3 of file window\&.c\&.
+.SS "void window_delete (\fBwindow_t\fP ** window)"
+
+.PP
+Definition at line 32 of file window\&.c\&.
+.SS "int window_erase (\fBwindow_t\fP * window)"
+
+.PP
+Definition at line 154 of file window\&.c\&.
+.SS "bool window_getcoordinates (\fBwindow_t\fP * window, int posx, int posy, int * x, int * y)"
+
+.PP
+Definition at line 49 of file window\&.c\&.
+.SS "bool window_isin (\fBwindow_t\fP * window, int x, int y)"
+
+.PP
+Definition at line 39 of file window\&.c\&.
+.SS "int window_move (\fBwindow_t\fP * window, int posY, int posX)"
+
+.PP
+Definition at line 62 of file window\&.c\&.
+.SS "int window_mvaddch (\fBwindow_t\fP * window, int posY, int posX, chtype c)"
+
+.PP
+Definition at line 70 of file window\&.c\&.
+.SS "int window_mvaddch_col (\fBwindow_t\fP * window, int posY, int posX, unsigned int color, chtype c)"
+
+.PP
+Definition at line 85 of file window\&.c\&.
+.SS "int window_mvprintw (\fBwindow_t\fP * window, int posY, int posX, const char * fmt,  \&.\&.\&.)"
+
+.PP
+Definition at line 120 of file window\&.c\&.
+.SS "int window_mvprintw_col (\fBwindow_t\fP * window, int posY, int posX, unsigned int color, const char * fmt,  \&.\&.\&.)"
+
+.PP
+Definition at line 132 of file window\&.c\&.
+.SS "int window_printw (\fBwindow_t\fP * window, const char * fmt,  \&.\&.\&.)"
+
+.PP
+Definition at line 96 of file window\&.c\&.
+.SS "int window_printw_col (\fBwindow_t\fP * window, unsigned int color, const char * fmt,  \&.\&.\&.)"
+
+.PP
+Definition at line 107 of file window\&.c\&.
+.SS "int window_refresh (\fBwindow_t\fP * window)"
+
+.PP
+Definition at line 146 of file window\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

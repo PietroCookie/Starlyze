@@ -1,0 +1,224 @@
+\hypertarget{player_8h}{}\doxysection{code/include/game-\/control/player.h File Reference}
+\label{player_8h}\index{code/include/game-\/control/player.h@{code/include/game-\/control/player.h}}
+
+
+File that manage a player.  
+
+
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structplayer__t}{player\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Reppresent a player. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structinfos__end__thread__properly__t}{infos\+\_\+end\+\_\+thread\+\_\+properly\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains informations transmit at end\+\_\+thread\+\_\+player\+\_\+properly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{player_8h_ab5c59085426e47834fc75074ee0654a5}{M\+A\+X\+\_\+\+L\+I\+F\+E\+\_\+\+P\+L\+A\+Y\+ER}}~5
+\item 
+\#define \mbox{\hyperlink{player_8h_a68633284b245cb7dc4e55063ab5daf6e}{N\+U\+M\+B\+E\+R\+\_\+\+K\+EY}}~4
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} \mbox{\hyperlink{player_8h_a622eba56801b7f9c5b4490b5c78c30b7}{game\+\_\+control\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{player_8h_af90e47c4bcdec2e262a74f9710fb3837}{initialise\+\_\+player}} (\mbox{\hyperlink{structplayer__t}{player\+\_\+t}} $\ast$player, int level, int id)
+\begin{DoxyCompactList}\small\item\em Initialize a player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player_8h_a4d98b54b2e7b1d98ae06c6850b702400}{cancel\+\_\+thread\+\_\+send\+\_\+player}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The method cancel thread\+\_\+sending\+\_\+level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player_8h_ab0ac12ed04c4253567462205c63db72e}{end\+\_\+thread\+\_\+player\+\_\+properly}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The method send the request E\+N\+D\+\_\+\+G\+A\+ME to the client player. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{player_8h_a1af5953da8dcadd2dce0d60a5e663a5e}{thread\+\_\+invincible}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The thread that makes the player invincible for three seconds. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{player_8h_a8aab43e76549c89eb1c4e88c9fe5f525}{thread\+\_\+player}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The main thread of a player. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{player_8h_a657079eedecf4ece266197f0129bd65f}{thread\+\_\+sending\+\_\+level}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The thread that sends the game information to the player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manage a player. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{player_8h_ab5c59085426e47834fc75074ee0654a5}\label{player_8h_ab5c59085426e47834fc75074ee0654a5}} 
+\index{player.h@{player.h}!MAX\_LIFE\_PLAYER@{MAX\_LIFE\_PLAYER}}
+\index{MAX\_LIFE\_PLAYER@{MAX\_LIFE\_PLAYER}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_LIFE\_PLAYER}{MAX\_LIFE\_PLAYER}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+L\+I\+F\+E\+\_\+\+P\+L\+A\+Y\+ER~5}
+
+
+
+Definition at line 15 of file player.\+h.
+
+\mbox{\Hypertarget{player_8h_a68633284b245cb7dc4e55063ab5daf6e}\label{player_8h_a68633284b245cb7dc4e55063ab5daf6e}} 
+\index{player.h@{player.h}!NUMBER\_KEY@{NUMBER\_KEY}}
+\index{NUMBER\_KEY@{NUMBER\_KEY}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_KEY}{NUMBER\_KEY}}
+{\footnotesize\ttfamily \#define N\+U\+M\+B\+E\+R\+\_\+\+K\+EY~4}
+
+
+
+Definition at line 16 of file player.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{player_8h_a622eba56801b7f9c5b4490b5c78c30b7}\label{player_8h_a622eba56801b7f9c5b4490b5c78c30b7}} 
+\index{player.h@{player.h}!game\_control\_t@{game\_control\_t}}
+\index{game\_control\_t@{game\_control\_t}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{game\_control\_t}{game\_control\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} \mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}}}
+
+
+
+Definition at line 18 of file player.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{player_8h_a4d98b54b2e7b1d98ae06c6850b702400}\label{player_8h_a4d98b54b2e7b1d98ae06c6850b702400}} 
+\index{player.h@{player.h}!cancel\_thread\_send\_player@{cancel\_thread\_send\_player}}
+\index{cancel\_thread\_send\_player@{cancel\_thread\_send\_player}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{cancel\_thread\_send\_player()}{cancel\_thread\_send\_player()}}
+{\footnotesize\ttfamily void cancel\+\_\+thread\+\_\+send\+\_\+player (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+The method cancel thread\+\_\+sending\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & The information needed by the cleaning manager \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file player.\+c.
+
+\mbox{\Hypertarget{player_8h_ab0ac12ed04c4253567462205c63db72e}\label{player_8h_ab0ac12ed04c4253567462205c63db72e}} 
+\index{player.h@{player.h}!end\_thread\_player\_properly@{end\_thread\_player\_properly}}
+\index{end\_thread\_player\_properly@{end\_thread\_player\_properly}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{end\_thread\_player\_properly()}{end\_thread\_player\_properly()}}
+{\footnotesize\ttfamily void end\+\_\+thread\+\_\+player\+\_\+properly (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+The method send the request E\+N\+D\+\_\+\+G\+A\+ME to the client player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & information needed by the cleaning manager \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 38 of file player.\+c.
+
+\mbox{\Hypertarget{player_8h_af90e47c4bcdec2e262a74f9710fb3837}\label{player_8h_af90e47c4bcdec2e262a74f9710fb3837}} 
+\index{player.h@{player.h}!initialise\_player@{initialise\_player}}
+\index{initialise\_player@{initialise\_player}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{initialise\_player()}{initialise\_player()}}
+{\footnotesize\ttfamily void initialise\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplayer__t}{player\+\_\+t}} $\ast$}]{player,  }\item[{int}]{level,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Initialize a player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & The player we initialize \\
+\hline
+{\em level} & The identifier of the level in which the player is positioned \\
+\hline
+{\em id} & Player ID \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 17 of file player.\+c.
+
+\mbox{\Hypertarget{player_8h_a1af5953da8dcadd2dce0d60a5e663a5e}\label{player_8h_a1af5953da8dcadd2dce0d60a5e663a5e}} 
+\index{player.h@{player.h}!thread\_invincible@{thread\_invincible}}
+\index{thread\_invincible@{thread\_invincible}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{thread\_invincible()}{thread\_invincible()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+invincible (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+The thread that makes the player invincible for three seconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & Information needed for the thread \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The result of this Thread -\/ there is N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file player.\+c.
+
+\mbox{\Hypertarget{player_8h_a8aab43e76549c89eb1c4e88c9fe5f525}\label{player_8h_a8aab43e76549c89eb1c4e88c9fe5f525}} 
+\index{player.h@{player.h}!thread\_player@{thread\_player}}
+\index{thread\_player@{thread\_player}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{thread\_player()}{thread\_player()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+player (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+The main thread of a player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & Information needed for the thread \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The result of this Thread -\/ there is N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file player.\+c.
+
+\mbox{\Hypertarget{player_8h_a657079eedecf4ece266197f0129bd65f}\label{player_8h_a657079eedecf4ece266197f0129bd65f}} 
+\index{player.h@{player.h}!thread\_sending\_level@{thread\_sending\_level}}
+\index{thread\_sending\_level@{thread\_sending\_level}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{thread\_sending\_level()}{thread\_sending\_level()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+sending\+\_\+level (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+The thread that sends the game information to the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & Information needed for the thread \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The result of this Thread -\/ there is N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file player.\+c.
+

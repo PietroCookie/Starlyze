@@ -1,0 +1,89 @@
+.TH "code/src/game-control/entity.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/game-control/entity.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'entity\&.h'\fP
+.br
+\fC#include 'sprite\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinitialise_entity\fP (\fBentity_t\fP *entity, \fBtype_entity_enum\fP type, int posX, int posY)"
+.br
+.RI "Initialize an entity\&. "
+.ti -1c
+.RI "int \fBposX_width_entity\fP (\fBentity_t\fP entity)"
+.br
+.RI "Allows you to obtain the width of an entity\&. "
+.ti -1c
+.RI "int \fBposY_height_entity\fP (\fBentity_t\fP entity)"
+.br
+.RI "Allows you to obtain the height of an entity\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void initialise_entity (\fBentity_t\fP * entity, \fBtype_entity_enum\fP type, int posX, int posY)"
+
+.PP
+Initialize an entity\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIentity\fP The entity that is initialized 
+.br
+\fItype\fP The type of the entitys 
+.br
+\fIposX\fP Position X of the entity 
+.br
+\fIposY\fP Position Y of the entity 
+.RE
+.PP
+
+.PP
+Definition at line 5 of file entity\&.c\&.
+.SS "int posX_width_entity (\fBentity_t\fP entity)"
+
+.PP
+Allows you to obtain the width of an entity\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIentity\fP The entity whose width we want 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int The width of the entity 
+.RE
+.PP
+
+.PP
+Definition at line 12 of file entity\&.c\&.
+.SS "int posY_height_entity (\fBentity_t\fP entity)"
+
+.PP
+Allows you to obtain the height of an entity\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIentity\fP The entity whose height we want 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int The height of the entity 
+.RE
+.PP
+
+.PP
+Definition at line 30 of file entity\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

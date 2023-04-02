@@ -1,0 +1,95 @@
+.TH "code/src/server/server_tcp.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/server/server_tcp.c \- File that manages the TCP server\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <arpa/inet\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <sys/wait\&.h>\fP
+.br
+\fC#include 'server_tcp\&.h'\fP
+.br
+\fC#include 'server_udp\&.h'\fP
+.br
+\fC#include 'function\&.h'\fP
+.br
+\fC#include 'game_control\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBcreate_socket_tcp\fP (int \fBport\fP, \fBgame_t\fP *game, int \fBsockfd\fP)"
+.br
+.RI "Create a socket tcp object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manages the TCP server\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-29
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBserver_tcp\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void create_socket_tcp (int port, \fBgame_t\fP * game, int sockfd)"
+
+.PP
+Create a socket tcp object\&. Create a socket tcp\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP 
+.br
+\fIgame\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+
+.PP
+Definition at line 35 of file server_tcp\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

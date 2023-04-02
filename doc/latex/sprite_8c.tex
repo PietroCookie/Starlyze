@@ -1,0 +1,481 @@
+\hypertarget{sprite_8c}{}\doxysection{code/src/global/sprite.c File Reference}
+\label{sprite_8c}\index{code/src/global/sprite.c@{code/src/global/sprite.c}}
+{\ttfamily \#include \char`\"{}sprite.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sprite_8c_a198fc73db4c080049f1a881c404fb078}{width\+\_\+sprite}} (\mbox{\hyperlink{sprite_8h_a7ba3a71faa89c760e419f7e89787ac77}{type\+\_\+sprite\+\_\+enum}} type\+\_\+sprite)
+\begin{DoxyCompactList}\small\item\em Allows to obtain the width of a sprite. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8c_a075a26175c31b4afca089c13e958ae23}{height\+\_\+sprite}} (\mbox{\hyperlink{sprite_8h_a7ba3a71faa89c760e419f7e89787ac77}{type\+\_\+sprite\+\_\+enum}} type\+\_\+sprite)
+\begin{DoxyCompactList}\small\item\em Allows to obtain the height of a sprite. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{sprite_8c_a6dae78185cd3052d7fa6273e42cede6e}{necessary\+\_\+size\+\_\+sprite}} ()
+\begin{DoxyCompactList}\small\item\em The size needed to save a sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_a77d74434cd542f437c45c412f4c11689}{write\+\_\+sprite\+\_\+in\+\_\+file\+\_\+descriptor}} (int file\+\_\+descriptor, \mbox{\hyperlink{structsprite__t}{sprite\+\_\+t}} sprite)
+\begin{DoxyCompactList}\small\item\em Writes a sprite to a file descriptor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_a9f6e891b5da68eaa98d37f9f64a9ff17}{read\+\_\+sprite\+\_\+in\+\_\+file\+\_\+descriptor}} (int file\+\_\+descriptor, \mbox{\hyperlink{structsprite__t}{sprite\+\_\+t}} $\ast$sprite)
+\begin{DoxyCompactList}\small\item\em Read a sprite to a file descriptor. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{sprite_8c_adefdda23b9d7f16d346fc17a18398ec4}{get\+\_\+color\+\_\+gate\+\_\+key}} (int specification)
+\begin{DoxyCompactList}\small\item\em Get the color gate key object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_afc8c684f64344614ccb0fbc09d32110a}{paint\+\_\+block}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Draw a block. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_a804fbc52381eef0062fe0481f538f08c}{paint\+\_\+ladder}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Draw a ladder. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_a2a5d98aa5956424d684909c5a6811d7b}{paint\+\_\+trap}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Draw a trap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_ae96f4e77980742cf13e2a4c0fa259e8b}{paint\+\_\+key}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY, int id\+\_\+key)
+\begin{DoxyCompactList}\small\item\em Draw a key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_ac0be947ee1a3a899b9d3ef7dedb9a32e}{paint\+\_\+gate}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY, int id\+\_\+gate)
+\begin{DoxyCompactList}\small\item\em Draw a gate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_ab3e99333f994bfa74184abce17c2e304}{paint\+\_\+door}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY, \mbox{\hyperlink{structsprite__t}{sprite\+\_\+t}} sprite)
+\begin{DoxyCompactList}\small\item\em Draw a door. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_ac300a2426388c8477a0968cd93be201b}{paint\+\_\+exit}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Draw a exit. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_a22ea18b44aeda824f9c47767930a3738}{paint\+\_\+start}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Draw a start. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_aa7436e432fc0e7a3a1620f3603993450}{paint\+\_\+robot}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Draw a robot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_af67e390ad952501d0d96c52085b05ea4}{paint\+\_\+probe}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Draw a probe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_a79d8000ae57bedde4485b7837b1f6619}{paint\+\_\+heart}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Draw a heart. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_a80f6d1fd49a5aebd2e39a0c359349777}{paint\+\_\+bomb}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY, unsigned int color)
+\begin{DoxyCompactList}\small\item\em Draw a bomb. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sprite_8c_aee4e093cb60bde736662cb9e70d91047}{paint\+\_\+player}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posX, int posY, unsigned int color)
+\begin{DoxyCompactList}\small\item\em Draw a player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sprite_8c_adefdda23b9d7f16d346fc17a18398ec4}\label{sprite_8c_adefdda23b9d7f16d346fc17a18398ec4}} 
+\index{sprite.c@{sprite.c}!get\_color\_gate\_key@{get\_color\_gate\_key}}
+\index{get\_color\_gate\_key@{get\_color\_gate\_key}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{get\_color\_gate\_key()}{get\_color\_gate\_key()}}
+{\footnotesize\ttfamily unsigned int get\+\_\+color\+\_\+gate\+\_\+key (\begin{DoxyParamCaption}\item[{int}]{specification }\end{DoxyParamCaption})}
+
+
+
+Get the color gate key object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em specification} & The specification of the gate or key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Color of the gate or key 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a075a26175c31b4afca089c13e958ae23}\label{sprite_8c_a075a26175c31b4afca089c13e958ae23}} 
+\index{sprite.c@{sprite.c}!height\_sprite@{height\_sprite}}
+\index{height\_sprite@{height\_sprite}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{height\_sprite()}{height\_sprite()}}
+{\footnotesize\ttfamily int height\+\_\+sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_a7ba3a71faa89c760e419f7e89787ac77}{type\+\_\+sprite\+\_\+enum}}}]{type\+\_\+sprite }\end{DoxyParamCaption})}
+
+
+
+Allows to obtain the height of a sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\+\_\+sprite} & The type of sprite \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The height of the sprite 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a6dae78185cd3052d7fa6273e42cede6e}\label{sprite_8c_a6dae78185cd3052d7fa6273e42cede6e}} 
+\index{sprite.c@{sprite.c}!necessary\_size\_sprite@{necessary\_size\_sprite}}
+\index{necessary\_size\_sprite@{necessary\_size\_sprite}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{necessary\_size\_sprite()}{necessary\_size\_sprite()}}
+{\footnotesize\ttfamily size\+\_\+t necessary\+\_\+size\+\_\+sprite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The size needed to save a sprite. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The necessary size 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_afc8c684f64344614ccb0fbc09d32110a}\label{sprite_8c_afc8c684f64344614ccb0fbc09d32110a}} 
+\index{sprite.c@{sprite.c}!paint\_block@{paint\_block}}
+\index{paint\_block@{paint\_block}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_block()}{paint\_block()}}
+{\footnotesize\ttfamily void paint\+\_\+block (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Draw a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the block is drawn \\
+\hline
+{\em posX} & Position X of the block \\
+\hline
+{\em posY} & Position Y of the block \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 197 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a80f6d1fd49a5aebd2e39a0c359349777}\label{sprite_8c_a80f6d1fd49a5aebd2e39a0c359349777}} 
+\index{sprite.c@{sprite.c}!paint\_bomb@{paint\_bomb}}
+\index{paint\_bomb@{paint\_bomb}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_bomb()}{paint\_bomb()}}
+{\footnotesize\ttfamily void paint\+\_\+bomb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY,  }\item[{unsigned int}]{color }\end{DoxyParamCaption})}
+
+
+
+Draw a bomb. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the bomb is drawn \\
+\hline
+{\em posX} & Position X of the bomb \\
+\hline
+{\em posY} & Position Y of the bomb \\
+\hline
+{\em color} & The color of the bomb \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 292 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_ab3e99333f994bfa74184abce17c2e304}\label{sprite_8c_ab3e99333f994bfa74184abce17c2e304}} 
+\index{sprite.c@{sprite.c}!paint\_door@{paint\_door}}
+\index{paint\_door@{paint\_door}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_door()}{paint\_door()}}
+{\footnotesize\ttfamily void paint\+\_\+door (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY,  }\item[{\mbox{\hyperlink{structsprite__t}{sprite\+\_\+t}}}]{sprite }\end{DoxyParamCaption})}
+
+
+
+Draw a door. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the door is drawn \\
+\hline
+{\em posX} & Position X of the door \\
+\hline
+{\em posY} & Position Y of the door \\
+\hline
+{\em sprite} & The sprite of the door \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 227 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_ac300a2426388c8477a0968cd93be201b}\label{sprite_8c_ac300a2426388c8477a0968cd93be201b}} 
+\index{sprite.c@{sprite.c}!paint\_exit@{paint\_exit}}
+\index{paint\_exit@{paint\_exit}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_exit()}{paint\_exit()}}
+{\footnotesize\ttfamily void paint\+\_\+exit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Draw a exit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the exit is drawn \\
+\hline
+{\em posX} & Position X of the exit \\
+\hline
+{\em posY} & Position Y of the exit \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 246 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_ac0be947ee1a3a899b9d3ef7dedb9a32e}\label{sprite_8c_ac0be947ee1a3a899b9d3ef7dedb9a32e}} 
+\index{sprite.c@{sprite.c}!paint\_gate@{paint\_gate}}
+\index{paint\_gate@{paint\_gate}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_gate()}{paint\_gate()}}
+{\footnotesize\ttfamily void paint\+\_\+gate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY,  }\item[{int}]{id\+\_\+gate }\end{DoxyParamCaption})}
+
+
+
+Draw a gate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the gate is drawn \\
+\hline
+{\em posX} & Position X of the gate \\
+\hline
+{\em posY} & Position Y of the gate \\
+\hline
+{\em id\+\_\+gate} & The identifier of the gate \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 218 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a79d8000ae57bedde4485b7837b1f6619}\label{sprite_8c_a79d8000ae57bedde4485b7837b1f6619}} 
+\index{sprite.c@{sprite.c}!paint\_heart@{paint\_heart}}
+\index{paint\_heart@{paint\_heart}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_heart()}{paint\_heart()}}
+{\footnotesize\ttfamily void paint\+\_\+heart (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Draw a heart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the heart is drawn \\
+\hline
+{\em posX} & Position X of the heart \\
+\hline
+{\em posY} & Position Y of the heart \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 288 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_ae96f4e77980742cf13e2a4c0fa259e8b}\label{sprite_8c_ae96f4e77980742cf13e2a4c0fa259e8b}} 
+\index{sprite.c@{sprite.c}!paint\_key@{paint\_key}}
+\index{paint\_key@{paint\_key}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_key()}{paint\_key()}}
+{\footnotesize\ttfamily void paint\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY,  }\item[{int}]{id\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+Draw a key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the key is drawn \\
+\hline
+{\em posX} & Position X of the key \\
+\hline
+{\em posY} & Position Y of the key \\
+\hline
+{\em id\+\_\+key} & The identifier of the keys \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 211 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a804fbc52381eef0062fe0481f538f08c}\label{sprite_8c_a804fbc52381eef0062fe0481f538f08c}} 
+\index{sprite.c@{sprite.c}!paint\_ladder@{paint\_ladder}}
+\index{paint\_ladder@{paint\_ladder}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_ladder()}{paint\_ladder()}}
+{\footnotesize\ttfamily void paint\+\_\+ladder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Draw a ladder. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the ladder is drawn \\
+\hline
+{\em posX} & Position X of the ladder \\
+\hline
+{\em posY} & Position Y of the ladder \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 201 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_aee4e093cb60bde736662cb9e70d91047}\label{sprite_8c_aee4e093cb60bde736662cb9e70d91047}} 
+\index{sprite.c@{sprite.c}!paint\_player@{paint\_player}}
+\index{paint\_player@{paint\_player}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_player()}{paint\_player()}}
+{\footnotesize\ttfamily void paint\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY,  }\item[{unsigned int}]{color }\end{DoxyParamCaption})}
+
+
+
+Draw a player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the player is drawn \\
+\hline
+{\em posX} & Position X of the player \\
+\hline
+{\em posY} & Position Y of the player \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 296 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_af67e390ad952501d0d96c52085b05ea4}\label{sprite_8c_af67e390ad952501d0d96c52085b05ea4}} 
+\index{sprite.c@{sprite.c}!paint\_probe@{paint\_probe}}
+\index{paint\_probe@{paint\_probe}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_probe()}{paint\_probe()}}
+{\footnotesize\ttfamily void paint\+\_\+probe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Draw a probe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the probe is drawn \\
+\hline
+{\em posX} & Position X of the probe \\
+\hline
+{\em posY} & Position Y of the probe \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 278 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_aa7436e432fc0e7a3a1620f3603993450}\label{sprite_8c_aa7436e432fc0e7a3a1620f3603993450}} 
+\index{sprite.c@{sprite.c}!paint\_robot@{paint\_robot}}
+\index{paint\_robot@{paint\_robot}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_robot()}{paint\_robot()}}
+{\footnotesize\ttfamily void paint\+\_\+robot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Draw a robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the robot is drawn \\
+\hline
+{\em posX} & Position X of the robot \\
+\hline
+{\em posY} & Position Y of the robot \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 260 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a22ea18b44aeda824f9c47767930a3738}\label{sprite_8c_a22ea18b44aeda824f9c47767930a3738}} 
+\index{sprite.c@{sprite.c}!paint\_start@{paint\_start}}
+\index{paint\_start@{paint\_start}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_start()}{paint\_start()}}
+{\footnotesize\ttfamily void paint\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Draw a start. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the start is drawn \\
+\hline
+{\em posX} & Position X of the start \\
+\hline
+{\em posY} & Position Y of the start \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 253 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a2a5d98aa5956424d684909c5a6811d7b}\label{sprite_8c_a2a5d98aa5956424d684909c5a6811d7b}} 
+\index{sprite.c@{sprite.c}!paint\_trap@{paint\_trap}}
+\index{paint\_trap@{paint\_trap}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{paint\_trap()}{paint\_trap()}}
+{\footnotesize\ttfamily void paint\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Draw a trap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The window in which the trap is drawn \\
+\hline
+{\em posX} & Position X of the trap \\
+\hline
+{\em posY} & Position Y of the trap \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 207 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a9f6e891b5da68eaa98d37f9f64a9ff17}\label{sprite_8c_a9f6e891b5da68eaa98d37f9f64a9ff17}} 
+\index{sprite.c@{sprite.c}!read\_sprite\_in\_file\_descriptor@{read\_sprite\_in\_file\_descriptor}}
+\index{read\_sprite\_in\_file\_descriptor@{read\_sprite\_in\_file\_descriptor}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{read\_sprite\_in\_file\_descriptor()}{read\_sprite\_in\_file\_descriptor()}}
+{\footnotesize\ttfamily void read\+\_\+sprite\+\_\+in\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor,  }\item[{\mbox{\hyperlink{structsprite__t}{sprite\+\_\+t}} $\ast$}]{sprite }\end{DoxyParamCaption})}
+
+
+
+Read a sprite to a file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file descriptor \\
+\hline
+{\em sprite} & The sprite we want to read \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 152 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a198fc73db4c080049f1a881c404fb078}\label{sprite_8c_a198fc73db4c080049f1a881c404fb078}} 
+\index{sprite.c@{sprite.c}!width\_sprite@{width\_sprite}}
+\index{width\_sprite@{width\_sprite}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{width\_sprite()}{width\_sprite()}}
+{\footnotesize\ttfamily int width\+\_\+sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_a7ba3a71faa89c760e419f7e89787ac77}{type\+\_\+sprite\+\_\+enum}}}]{type\+\_\+sprite }\end{DoxyParamCaption})}
+
+
+
+Allows to obtain the width of a sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\+\_\+sprite} & The type of sprite \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The width of the sprite 
+\end{DoxyReturn}
+
+
+Definition at line 6 of file sprite.\+c.
+
+\mbox{\Hypertarget{sprite_8c_a77d74434cd542f437c45c412f4c11689}\label{sprite_8c_a77d74434cd542f437c45c412f4c11689}} 
+\index{sprite.c@{sprite.c}!write\_sprite\_in\_file\_descriptor@{write\_sprite\_in\_file\_descriptor}}
+\index{write\_sprite\_in\_file\_descriptor@{write\_sprite\_in\_file\_descriptor}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{write\_sprite\_in\_file\_descriptor()}{write\_sprite\_in\_file\_descriptor()}}
+{\footnotesize\ttfamily void write\+\_\+sprite\+\_\+in\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor,  }\item[{\mbox{\hyperlink{structsprite__t}{sprite\+\_\+t}}}]{sprite }\end{DoxyParamCaption})}
+
+
+
+Writes a sprite to a file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file descriptor \\
+\hline
+{\em sprite} & The sprite we want to write \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 140 of file sprite.\+c.
+

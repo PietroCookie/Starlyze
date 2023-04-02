@@ -1,0 +1,126 @@
+\hypertarget{paint__tools_8c}{}\doxysection{code/src/editor/paint\+\_\+tools.c File Reference}
+\label{paint__tools_8c}\index{code/src/editor/paint\_tools.c@{code/src/editor/paint\_tools.c}}
+{\ttfamily \#include \char`\"{}paint\+\_\+tools.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}colors.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sprite.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}functions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}element\+\_\+game\+\_\+level.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{paint__tools_8c_a69dc5205fbf76f42cf6f92d5efbc5744}{select\+\_\+paint\+\_\+tool}} (\mbox{\hyperlink{structpaint__tool__t}{paint\+\_\+tool\+\_\+t}} $\ast$tool, int id\+\_\+tool)
+\begin{DoxyCompactList}\small\item\em Selects a paint\+\_\+tool based on its id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{paint__tools_8c_a395bc81bd6c63d6332e34f250dbc8548}{action\+\_\+tool}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level, \mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$game\+\_\+level, \mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$win\+\_\+infos, \mbox{\hyperlink{structpaint__tool__t}{paint\+\_\+tool\+\_\+t}} tool, int posX, int posY, int specification)
+\begin{DoxyCompactList}\small\item\em Use the tool on a square of a game\+\_\+level. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{paint__tools_8c_a1f5d97e663730acdbf4d4c27d2b60647}{select\+\_\+name\+\_\+tool}} (int id\+\_\+tool)
+\begin{DoxyCompactList}\small\item\em Selects the name of the tool according to its identifier. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{paint__tools_8c_aa5b977ef7ac00ac0bd858579c80e7d07}{print\+\_\+paint\+\_\+tool}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$win\+\_\+tools, int tool\+\_\+select, int id\+\_\+door, int id\+\_\+gate, int id\+\_\+key)
+\begin{DoxyCompactList}\small\item\em Displays the list of available tools in a window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{paint__tools_8c_a395bc81bd6c63d6332e34f250dbc8548}\label{paint__tools_8c_a395bc81bd6c63d6332e34f250dbc8548}} 
+\index{paint\_tools.c@{paint\_tools.c}!action\_tool@{action\_tool}}
+\index{action\_tool@{action\_tool}!paint\_tools.c@{paint\_tools.c}}
+\doxysubsubsection{\texorpdfstring{action\_tool()}{action\_tool()}}
+{\footnotesize\ttfamily void action\+\_\+tool (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level,  }\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$}]{game\+\_\+level,  }\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{win\+\_\+infos,  }\item[{\mbox{\hyperlink{structpaint__tool__t}{paint\+\_\+tool\+\_\+t}}}]{tool,  }\item[{int}]{posX,  }\item[{int}]{posY,  }\item[{int}]{specification }\end{DoxyParamCaption})}
+
+
+
+Use the tool on a square of a game\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+game\+\_\+level} & The file\+\_\+game\+\_\+level in which the modification is saved \\
+\hline
+{\em game\+\_\+level} & The game\+\_\+level in which the modification is made \\
+\hline
+{\em win\+\_\+infos} & The information window of the interface \\
+\hline
+{\em tool} & The tool used \\
+\hline
+{\em posX} & Position X of the modified cell \\
+\hline
+{\em posY} & Position Y of the modified cell \\
+\hline
+{\em specification} & The specification associated with the element in the box \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file paint\+\_\+tools.\+c.
+
+\mbox{\Hypertarget{paint__tools_8c_aa5b977ef7ac00ac0bd858579c80e7d07}\label{paint__tools_8c_aa5b977ef7ac00ac0bd858579c80e7d07}} 
+\index{paint\_tools.c@{paint\_tools.c}!print\_paint\_tool@{print\_paint\_tool}}
+\index{print\_paint\_tool@{print\_paint\_tool}!paint\_tools.c@{paint\_tools.c}}
+\doxysubsubsection{\texorpdfstring{print\_paint\_tool()}{print\_paint\_tool()}}
+{\footnotesize\ttfamily void print\+\_\+paint\+\_\+tool (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{win\+\_\+tools,  }\item[{int}]{tool\+\_\+select,  }\item[{int}]{id\+\_\+door,  }\item[{int}]{id\+\_\+gate,  }\item[{int}]{id\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+Displays the list of available tools in a window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em win\+\_\+tools} & The window in which the list of tools is displayed \\
+\hline
+{\em tool\+\_\+select} & The selected tool \\
+\hline
+{\em id\+\_\+door} & The identifier of the door selected to display it \\
+\hline
+{\em id\+\_\+gate} & The identifier of the portal selected to display it \\
+\hline
+{\em id\+\_\+key} & The identifier of the key selected to display its \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 190 of file paint\+\_\+tools.\+c.
+
+\mbox{\Hypertarget{paint__tools_8c_a1f5d97e663730acdbf4d4c27d2b60647}\label{paint__tools_8c_a1f5d97e663730acdbf4d4c27d2b60647}} 
+\index{paint\_tools.c@{paint\_tools.c}!select\_name\_tool@{select\_name\_tool}}
+\index{select\_name\_tool@{select\_name\_tool}!paint\_tools.c@{paint\_tools.c}}
+\doxysubsubsection{\texorpdfstring{select\_name\_tool()}{select\_name\_tool()}}
+{\footnotesize\ttfamily char$\ast$ select\+\_\+name\+\_\+tool (\begin{DoxyParamCaption}\item[{int}]{tool }\end{DoxyParamCaption})}
+
+
+
+Selects the name of the tool according to its identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tool} & The identifier of the tool whose name we want to know \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The name of the tool 
+\end{DoxyReturn}
+
+
+Definition at line 125 of file paint\+\_\+tools.\+c.
+
+\mbox{\Hypertarget{paint__tools_8c_a69dc5205fbf76f42cf6f92d5efbc5744}\label{paint__tools_8c_a69dc5205fbf76f42cf6f92d5efbc5744}} 
+\index{paint\_tools.c@{paint\_tools.c}!select\_paint\_tool@{select\_paint\_tool}}
+\index{select\_paint\_tool@{select\_paint\_tool}!paint\_tools.c@{paint\_tools.c}}
+\doxysubsubsection{\texorpdfstring{select\_paint\_tool()}{select\_paint\_tool()}}
+{\footnotesize\ttfamily int select\+\_\+paint\+\_\+tool (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpaint__tool__t}{paint\+\_\+tool\+\_\+t}} $\ast$}]{tool,  }\item[{int}]{id\+\_\+tool }\end{DoxyParamCaption})}
+
+
+
+Selects a paint\+\_\+tool based on its id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tool} & The paint\+\_\+tool in which we select \\
+\hline
+{\em id\+\_\+tool} & The id of the desired paint\+\_\+tool \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The id of the paint\+\_\+tool or -\/1 if the paint\+\_\+tool does not exist 
+\end{DoxyReturn}
+
+
+Definition at line 10 of file paint\+\_\+tools.\+c.
+

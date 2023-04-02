@@ -1,0 +1,120 @@
+.TH "code/src/server/create_game.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/server/create_game.c \- File that manages the creation of a game for the server\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include 'create_game\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBfilter_file_bin\fP (const struct dirent *entry)"
+.br
+.RI "Function to filter the names of \&.bin files\&. "
+.ti -1c
+.RI "\fBlist_world_response_t\fP \fBrecovering_existing_worlds\fP ()"
+.br
+.RI "Function to recover the list of worlds\&. "
+.ti -1c
+.RI "void \fBsave_new_game\fP (\fBlist_game_t\fP *list_game, int nb_games, int nb_participants_final, char name_world[\fBMAX_MSG\fP], \fBinfo_client_t\fP *new_client)"
+.br
+.RI "Function to create and save a new game\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manages the creation of a game for the server\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-29
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBcreate_game\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int filter_file_bin (const struct dirent * entry)"
+
+.PP
+Function to filter the names of \&.bin files\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIentry\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 
+.RE
+.PP
+
+.PP
+Definition at line 25 of file create_game\&.c\&.
+.SS "\fBlist_world_response_t\fP recovering_existing_worlds ()"
+
+.PP
+Function to recover the list of worlds\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBlist_world_response_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 42 of file create_game\&.c\&.
+.SS "void save_new_game (\fBlist_game_t\fP * list_game, int nb_games, int nb_participants_final, char name_world[MAX_MSG], \fBinfo_client_t\fP * new_client)"
+
+.PP
+Function to create and save a new game\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist_game\fP 
+.br
+\fInb_games\fP 
+.br
+\fInb_participants_final\fP 
+.br
+\fIname_world\fP 
+.br
+\fInew_client\fP 
+.RE
+.PP
+
+.PP
+Definition at line 90 of file create_game\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

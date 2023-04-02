@@ -1,0 +1,219 @@
+.TH "code/src/server/info_client.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/server/info_client.c \- File that manages the data structures of the clients\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'info_client\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinit_list_info_client\fP (\fBlist_info_client_t\fP *list)"
+.br
+.RI "Function to initialize the list of clients\&. "
+.ti -1c
+.RI "\fBinfo_client_t\fP * \fBinit_info_client\fP (int id, char pseudo[\fBMAX_MSG\fP], char *client_address, int \fBport\fP)"
+.br
+.RI "Function to initialize the information of a client\&. "
+.ti -1c
+.RI "int \fBis_empty_client\fP (\fBlist_info_client_t\fP *list)"
+.br
+.RI "Function to check if the list of clients is empty\&. "
+.ti -1c
+.RI "void \fBadd_client\fP (\fBlist_info_client_t\fP *list, \fBinfo_client_t\fP *client)"
+.br
+.RI "Function to add a client to the list of clients\&. "
+.ti -1c
+.RI "void \fBprint_list_client\fP (\fBlist_info_client_t\fP list)"
+.br
+.RI "Function to print the list of clients\&. "
+.ti -1c
+.RI "\fBinfo_client_t\fP * \fBsearch_client\fP (\fBlist_info_client_t\fP *list, int id)"
+.br
+.RI "Function to search a client in the list of clients\&. "
+.ti -1c
+.RI "void \fBdelete_client\fP (\fBlist_info_client_t\fP *list, \fBinfo_client_t\fP *client)"
+.br
+.RI "Function to delete a client from the list of clients\&. "
+.ti -1c
+.RI "void \fBdelete_list\fP (\fBlist_info_client_t\fP *list)"
+.br
+.RI "Function to delete the list of clients\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manages the data structures of the clients\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-29
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBinfo_client\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void add_client (\fBlist_info_client_t\fP * list, \fBinfo_client_t\fP * client)"
+
+.PP
+Function to add a client to the list of clients\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.br
+\fIclient\fP 
+.RE
+.PP
+
+.PP
+Definition at line 74 of file info_client\&.c\&.
+.SS "void delete_client (\fBlist_info_client_t\fP * list, \fBinfo_client_t\fP * client)"
+
+.PP
+Function to delete a client from the list of clients\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.br
+\fIclient\fP 
+.RE
+.PP
+
+.PP
+Definition at line 144 of file info_client\&.c\&.
+.SS "void delete_list (\fBlist_info_client_t\fP * list)"
+
+.PP
+Function to delete the list of clients\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.RE
+.PP
+
+.PP
+Definition at line 167 of file info_client\&.c\&.
+.SS "\fBinfo_client_t\fP* init_info_client (int id, char pseudo[MAX_MSG], char * client_address, int port)"
+
+.PP
+Function to initialize the information of a client\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIid\fP 
+.br
+\fIpseudo\fP 
+.br
+\fIclient_address\fP 
+.br
+\fIport\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+info_client_t* 
+.RE
+.PP
+
+.PP
+Definition at line 38 of file info_client\&.c\&.
+.SS "void init_list_info_client (\fBlist_info_client_t\fP * list)"
+
+.PP
+Function to initialize the list of clients\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.RE
+.PP
+
+.PP
+Definition at line 23 of file info_client\&.c\&.
+.SS "int is_empty_client (\fBlist_info_client_t\fP * list)"
+
+.PP
+Function to check if the list of clients is empty\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 
+.RE
+.PP
+
+.PP
+Definition at line 56 of file info_client\&.c\&.
+.SS "void print_list_client (\fBlist_info_client_t\fP list)"
+
+.PP
+Function to print the list of clients\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.RE
+.PP
+
+.PP
+Definition at line 100 of file info_client\&.c\&.
+.SS "\fBinfo_client_t\fP* search_client (\fBlist_info_client_t\fP * list, int id)"
+
+.PP
+Function to search a client in the list of clients\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.br
+\fIid\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+info_client_t* 
+.RE
+.PP
+
+.PP
+Definition at line 124 of file info_client\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

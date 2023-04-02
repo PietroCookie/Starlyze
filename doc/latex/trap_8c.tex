@@ -1,0 +1,241 @@
+\hypertarget{trap_8c}{}\doxysection{code/src/game-\/control/trap.c File Reference}
+\label{trap_8c}\index{code/src/game-\/control/trap.c@{code/src/game-\/control/trap.c}}
+{\ttfamily \#include \char`\"{}trap.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}level\+\_\+info.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{trap_8c_aeb4eff9d59916f71643eae746af5797f}{initialise\+\_\+trap}} (\mbox{\hyperlink{trap_8h_aacea33c6c422976e98f530251743d2f2}{trap\+\_\+t}} $\ast$trap, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Initializes a trap box. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trap_8c_a69a2166be19df53d8db730aa9f4e388d}{initialise\+\_\+list\+\_\+trap}} (\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Initialize a list of trap boxes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trap_8c_aa3c80ebb04d80a849c7155685fb1706b}{insert\+\_\+list\+\_\+trap}} (\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$list, \mbox{\hyperlink{trap_8h_aacea33c6c422976e98f530251743d2f2}{trap\+\_\+t}} $\ast$trap)
+\begin{DoxyCompactList}\small\item\em Insert a trap square into a trap block. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trap_8c_a1e47c908a36c102a49c515222105bc6b}{delete\+\_\+list\+\_\+trap}} (\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$list, \mbox{\hyperlink{trap_8h_aacea33c6c422976e98f530251743d2f2}{trap\+\_\+t}} $\ast$trap)
+\begin{DoxyCompactList}\small\item\em Removes a trap cell from a trap block. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trap_8c_ab84f28973e3b02a5a520bd87e296a1fc}{destroy\+\_\+list\+\_\+trap}} (\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Destroys a trap blocks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trap_8c_a614f50149b46b2f9469ad8f9ffc692ca}{initialise\+\_\+list\+\_\+block\+\_\+trap}} (\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$list\+\_\+block)
+\begin{DoxyCompactList}\small\item\em Initialize a block list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trap_8c_a4e96ce9702b7e7e1c39c70aa7894a16e}{insert\+\_\+list\+\_\+block\+\_\+trap}} (\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$list\+\_\+block, \mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$list\+\_\+trap)
+\begin{DoxyCompactList}\small\item\em Insert a trap block in the trap block lists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trap_8c_a133b2c711bbd3eba1ed488685975aebd}{delete\+\_\+list\+\_\+block\+\_\+trap}} (\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$list\+\_\+block, \mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$list\+\_\+trap)
+\begin{DoxyCompactList}\small\item\em Removes a trap block from a trap block list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{trap_8c_aa9294464b7ca21dac5f51b5d1718b3ca}{destroy\+\_\+list\+\_\+block\+\_\+trap}} (\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$list\+\_\+block)
+\begin{DoxyCompactList}\small\item\em Destroys a block list of traps. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{trap_8c_acc5ca8da03c718c175a75a30570da4b0}{thread\+\_\+trap\+\_\+level}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The thread that manages the trap blocks of a level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{trap_8c_a133b2c711bbd3eba1ed488685975aebd}\label{trap_8c_a133b2c711bbd3eba1ed488685975aebd}} 
+\index{trap.c@{trap.c}!delete\_list\_block\_trap@{delete\_list\_block\_trap}}
+\index{delete\_list\_block\_trap@{delete\_list\_block\_trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{delete\_list\_block\_trap()}{delete\_list\_block\_trap()}}
+{\footnotesize\ttfamily void delete\+\_\+list\+\_\+block\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$}]{list\+\_\+block,  }\item[{\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$}]{list\+\_\+trap }\end{DoxyParamCaption})}
+
+
+
+Removes a trap block from a trap block list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+block} & The list of blocks in which you want to delete a block of traps \\
+\hline
+{\em list\+\_\+trap} & The trap block that we removes \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file trap.\+c.
+
+\mbox{\Hypertarget{trap_8c_a1e47c908a36c102a49c515222105bc6b}\label{trap_8c_a1e47c908a36c102a49c515222105bc6b}} 
+\index{trap.c@{trap.c}!delete\_list\_trap@{delete\_list\_trap}}
+\index{delete\_list\_trap@{delete\_list\_trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{delete\_list\_trap()}{delete\_list\_trap()}}
+{\footnotesize\ttfamily void delete\+\_\+list\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{trap_8h_aacea33c6c422976e98f530251743d2f2}{trap\+\_\+t}} $\ast$}]{trap }\end{DoxyParamCaption})}
+
+
+
+Removes a trap cell from a trap block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The trap block in which the trap box is remove \\
+\hline
+{\em trap} & The trap box that is remove \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file trap.\+c.
+
+\mbox{\Hypertarget{trap_8c_aa9294464b7ca21dac5f51b5d1718b3ca}\label{trap_8c_aa9294464b7ca21dac5f51b5d1718b3ca}} 
+\index{trap.c@{trap.c}!destroy\_list\_block\_trap@{destroy\_list\_block\_trap}}
+\index{destroy\_list\_block\_trap@{destroy\_list\_block\_trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{destroy\_list\_block\_trap()}{destroy\_list\_block\_trap()}}
+{\footnotesize\ttfamily void destroy\+\_\+list\+\_\+block\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$}]{list\+\_\+block }\end{DoxyParamCaption})}
+
+
+
+Destroys a block list of traps. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+block} & The block list of traps that you want to destroy \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 80 of file trap.\+c.
+
+\mbox{\Hypertarget{trap_8c_ab84f28973e3b02a5a520bd87e296a1fc}\label{trap_8c_ab84f28973e3b02a5a520bd87e296a1fc}} 
+\index{trap.c@{trap.c}!destroy\_list\_trap@{destroy\_list\_trap}}
+\index{destroy\_list\_trap@{destroy\_list\_trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{destroy\_list\_trap()}{destroy\_list\_trap()}}
+{\footnotesize\ttfamily void destroy\+\_\+list\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Destroys a trap blocks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The trap block that you want to remove \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file trap.\+c.
+
+\mbox{\Hypertarget{trap_8c_a614f50149b46b2f9469ad8f9ffc692ca}\label{trap_8c_a614f50149b46b2f9469ad8f9ffc692ca}} 
+\index{trap.c@{trap.c}!initialise\_list\_block\_trap@{initialise\_list\_block\_trap}}
+\index{initialise\_list\_block\_trap@{initialise\_list\_block\_trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{initialise\_list\_block\_trap()}{initialise\_list\_block\_trap()}}
+{\footnotesize\ttfamily void initialise\+\_\+list\+\_\+block\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$}]{list\+\_\+block }\end{DoxyParamCaption})}
+
+
+
+Initialize a block list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+block} & The list of blocks we want to initialize \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 57 of file trap.\+c.
+
+\mbox{\Hypertarget{trap_8c_a69a2166be19df53d8db730aa9f4e388d}\label{trap_8c_a69a2166be19df53d8db730aa9f4e388d}} 
+\index{trap.c@{trap.c}!initialise\_list\_trap@{initialise\_list\_trap}}
+\index{initialise\_list\_trap@{initialise\_list\_trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{initialise\_list\_trap()}{initialise\_list\_trap()}}
+{\footnotesize\ttfamily void initialise\+\_\+list\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Initialize a list of trap boxes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list of trap boxes that we initialize \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file trap.\+c.
+
+\mbox{\Hypertarget{trap_8c_aeb4eff9d59916f71643eae746af5797f}\label{trap_8c_aeb4eff9d59916f71643eae746af5797f}} 
+\index{trap.c@{trap.c}!initialise\_trap@{initialise\_trap}}
+\index{initialise\_trap@{initialise\_trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{initialise\_trap()}{initialise\_trap()}}
+{\footnotesize\ttfamily void initialise\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trap_8h_aacea33c6c422976e98f530251743d2f2}{trap\+\_\+t}} $\ast$}]{trap,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Initializes a trap box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em trap} & The trap box that is initialized \\
+\hline
+{\em posX} & Position X of the trap box \\
+\hline
+{\em posY} & Position Y of the trap box \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 12 of file trap.\+c.
+
+\mbox{\Hypertarget{trap_8c_a4e96ce9702b7e7e1c39c70aa7894a16e}\label{trap_8c_a4e96ce9702b7e7e1c39c70aa7894a16e}} 
+\index{trap.c@{trap.c}!insert\_list\_block\_trap@{insert\_list\_block\_trap}}
+\index{insert\_list\_block\_trap@{insert\_list\_block\_trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{insert\_list\_block\_trap()}{insert\_list\_block\_trap()}}
+{\footnotesize\ttfamily void insert\+\_\+list\+\_\+block\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$}]{list\+\_\+block,  }\item[{\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$}]{list\+\_\+trap }\end{DoxyParamCaption})}
+
+
+
+Insert a trap block in the trap block lists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+block} & The block list in which we add a trap block \\
+\hline
+{\em list\+\_\+trap} & The trap block that is added \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 61 of file trap.\+c.
+
+\mbox{\Hypertarget{trap_8c_aa3c80ebb04d80a849c7155685fb1706b}\label{trap_8c_aa3c80ebb04d80a849c7155685fb1706b}} 
+\index{trap.c@{trap.c}!insert\_list\_trap@{insert\_list\_trap}}
+\index{insert\_list\_trap@{insert\_list\_trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{insert\_list\_trap()}{insert\_list\_trap()}}
+{\footnotesize\ttfamily void insert\+\_\+list\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trap_8h_aac9b4d234f99f5e9fe50c77487eae752}{list\+\_\+trap\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{trap_8h_aacea33c6c422976e98f530251743d2f2}{trap\+\_\+t}} $\ast$}]{trap }\end{DoxyParamCaption})}
+
+
+
+Insert a trap square into a trap block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The trap block in which the trap box is added \\
+\hline
+{\em trap} & The trap box that is added \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 23 of file trap.\+c.
+
+\mbox{\Hypertarget{trap_8c_acc5ca8da03c718c175a75a30570da4b0}\label{trap_8c_acc5ca8da03c718c175a75a30570da4b0}} 
+\index{trap.c@{trap.c}!thread\_trap\_level@{thread\_trap\_level}}
+\index{thread\_trap\_level@{thread\_trap\_level}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{thread\_trap\_level()}{thread\_trap\_level()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+trap\+\_\+level (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+The thread that manages the trap blocks of a level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & The information needed for the thread \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The result of this Thread -\/ there is N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file trap.\+c.
+

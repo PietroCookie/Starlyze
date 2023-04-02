@@ -1,0 +1,200 @@
+\hypertarget{game__control_8h}{}\doxysection{code/include/game-\/control/game\+\_\+control.h File Reference}
+\label{game__control_8h}\index{code/include/game-\/control/game\_control.h@{code/include/game-\/control/game\_control.h}}
+
+
+File that manage a game\+\_\+control.  
+
+
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}world\+\_\+info.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}entity.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The structure with all the game information. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structenemy__infos__thread__t}{enemy\+\_\+infos\+\_\+thread\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The information transmitted to an enemy\textquotesingle{}s thread. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structplayer__infos__thread__t}{player\+\_\+infos\+\_\+thread\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The information transmitted to a player\textquotesingle{}s thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} \mbox{\hyperlink{game__control_8h_a622eba56801b7f9c5b4490b5c78c30b7}{game\+\_\+control\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The structure with all the game information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{game__control_8h_a70b67cdbe0517f8405685bc7f5c136b9}{handler\+\_\+exit}} (int signum)
+\begin{DoxyCompactList}\small\item\em The manager when receiving the S\+I\+G\+I\+NT signal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__control_8h_a66126e30bfc779ece10fd207afe098ab}{game\+\_\+control}} (int num\+\_\+player, int socket\+\_\+game, char $\ast$name\+\_\+world)
+\begin{DoxyCompactList}\small\item\em Starts a game, the associated threads and also waits for player connections. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__control_8h_af3d7d10cce9682fb75bb3e8c4e7f19c4}{delete\+\_\+game\+\_\+control}} (\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$game\+\_\+control\+\_\+infos)
+\begin{DoxyCompactList}\small\item\em Removes the game manager. \end{DoxyCompactList}\item 
+pthread\+\_\+t $\ast$ \mbox{\hyperlink{game__control_8h_ab7772e4e435db930d34471bb72e2cac0}{launch\+\_\+enemy}} (\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$game\+\_\+control\+\_\+infos)
+\begin{DoxyCompactList}\small\item\em Launch enemy threads. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__control_8h_ae49f6d0c549f13ef49adf3e37d3e7929}{load\+\_\+enemy\+\_\+world}} (\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$game\+\_\+control\+\_\+infos)
+\begin{DoxyCompactList}\small\item\em Charge the enemies of the world. \end{DoxyCompactList}\item 
+pthread\+\_\+t $\ast$ \mbox{\hyperlink{game__control_8h_acdc8b9ad85e0858903ac1f2f235d69e2}{launch\+\_\+players}} (\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$game\+\_\+control\+\_\+infos, int socket\+\_\+game, int $\ast$socket\+\_\+client)
+\begin{DoxyCompactList}\small\item\em Launch player threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manage a game\+\_\+control. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{game__control_8h_a622eba56801b7f9c5b4490b5c78c30b7}\label{game__control_8h_a622eba56801b7f9c5b4490b5c78c30b7}} 
+\index{game\_control.h@{game\_control.h}!game\_control\_t@{game\_control\_t}}
+\index{game\_control\_t@{game\_control\_t}!game\_control.h@{game\_control.h}}
+\doxysubsubsection{\texorpdfstring{game\_control\_t}{game\_control\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} \mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}}}
+
+
+
+The structure with all the game information. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{game__control_8h_af3d7d10cce9682fb75bb3e8c4e7f19c4}\label{game__control_8h_af3d7d10cce9682fb75bb3e8c4e7f19c4}} 
+\index{game\_control.h@{game\_control.h}!delete\_game\_control@{delete\_game\_control}}
+\index{delete\_game\_control@{delete\_game\_control}!game\_control.h@{game\_control.h}}
+\doxysubsubsection{\texorpdfstring{delete\_game\_control()}{delete\_game\_control()}}
+{\footnotesize\ttfamily void delete\+\_\+game\+\_\+control (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$}]{game\+\_\+control\+\_\+infos }\end{DoxyParamCaption})}
+
+
+
+Removes the game manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+control\+\_\+infos} & The manager to be deleted \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 162 of file game\+\_\+control.\+c.
+
+\mbox{\Hypertarget{game__control_8h_a66126e30bfc779ece10fd207afe098ab}\label{game__control_8h_a66126e30bfc779ece10fd207afe098ab}} 
+\index{game\_control.h@{game\_control.h}!game\_control@{game\_control}}
+\index{game\_control@{game\_control}!game\_control.h@{game\_control.h}}
+\doxysubsubsection{\texorpdfstring{game\_control()}{game\_control()}}
+{\footnotesize\ttfamily void game\+\_\+control (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+player,  }\item[{int}]{socket\+\_\+game,  }\item[{char $\ast$}]{name\+\_\+world }\end{DoxyParamCaption})}
+
+
+
+Starts a game, the associated threads and also waits for player connections. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+player} & The number of players \\
+\hline
+{\em socket\+\_\+game} & The socket of the game \\
+\hline
+{\em name\+\_\+world} & The name of the world \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 35 of file game\+\_\+control.\+c.
+
+\mbox{\Hypertarget{game__control_8h_a70b67cdbe0517f8405685bc7f5c136b9}\label{game__control_8h_a70b67cdbe0517f8405685bc7f5c136b9}} 
+\index{game\_control.h@{game\_control.h}!handler\_exit@{handler\_exit}}
+\index{handler\_exit@{handler\_exit}!game\_control.h@{game\_control.h}}
+\doxysubsubsection{\texorpdfstring{handler\_exit()}{handler\_exit()}}
+{\footnotesize\ttfamily void handler\+\_\+exit (\begin{DoxyParamCaption}\item[{int}]{signum }\end{DoxyParamCaption})}
+
+
+
+The manager when receiving the S\+I\+G\+I\+NT signal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em signum} & The received signal \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file game\+\_\+control.\+c.
+
+\mbox{\Hypertarget{game__control_8h_ab7772e4e435db930d34471bb72e2cac0}\label{game__control_8h_ab7772e4e435db930d34471bb72e2cac0}} 
+\index{game\_control.h@{game\_control.h}!launch\_enemy@{launch\_enemy}}
+\index{launch\_enemy@{launch\_enemy}!game\_control.h@{game\_control.h}}
+\doxysubsubsection{\texorpdfstring{launch\_enemy()}{launch\_enemy()}}
+{\footnotesize\ttfamily pthread\+\_\+t$\ast$ launch\+\_\+enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$}]{game\+\_\+control\+\_\+infos }\end{DoxyParamCaption})}
+
+
+
+Launch enemy threads. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+control\+\_\+infos} & The game manager \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pthread\+\_\+t$\ast$ Enemies\textquotesingle{} threads 
+\end{DoxyReturn}
+
+
+Definition at line 181 of file game\+\_\+control.\+c.
+
+\mbox{\Hypertarget{game__control_8h_acdc8b9ad85e0858903ac1f2f235d69e2}\label{game__control_8h_acdc8b9ad85e0858903ac1f2f235d69e2}} 
+\index{game\_control.h@{game\_control.h}!launch\_players@{launch\_players}}
+\index{launch\_players@{launch\_players}!game\_control.h@{game\_control.h}}
+\doxysubsubsection{\texorpdfstring{launch\_players()}{launch\_players()}}
+{\footnotesize\ttfamily pthread\+\_\+t$\ast$ launch\+\_\+players (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$}]{game\+\_\+control\+\_\+infos,  }\item[{int}]{socket\+\_\+game,  }\item[{int $\ast$}]{socket\+\_\+client }\end{DoxyParamCaption})}
+
+
+
+Launch player threads. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+control\+\_\+infos} & The game manager \\
+\hline
+{\em socket\+\_\+game} & The game socket \\
+\hline
+{\em socket\+\_\+client} & The table that will contain the players\textquotesingle{} sockets \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pthread\+\_\+t$\ast$ Players\textquotesingle{} threads 
+\end{DoxyReturn}
+
+
+Definition at line 260 of file game\+\_\+control.\+c.
+
+\mbox{\Hypertarget{game__control_8h_ae49f6d0c549f13ef49adf3e37d3e7929}\label{game__control_8h_ae49f6d0c549f13ef49adf3e37d3e7929}} 
+\index{game\_control.h@{game\_control.h}!load\_enemy\_world@{load\_enemy\_world}}
+\index{load\_enemy\_world@{load\_enemy\_world}!game\_control.h@{game\_control.h}}
+\doxysubsubsection{\texorpdfstring{load\_enemy\_world()}{load\_enemy\_world()}}
+{\footnotesize\ttfamily void load\+\_\+enemy\+\_\+world (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$}]{game\+\_\+control\+\_\+infos }\end{DoxyParamCaption})}
+
+
+
+Charge the enemies of the world. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+control\+\_\+infos} & The game manager \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 217 of file game\+\_\+control.\+c.
+

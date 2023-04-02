@@ -1,0 +1,306 @@
+\hypertarget{game_8h}{}\doxysection{code/include/global/game.h File Reference}
+\label{game_8h}\index{code/include/global/game.h@{code/include/global/game.h}}
+
+
+File that manages the data structures of the games.  
+
+
+{\ttfamily \#include \char`\"{}info\+\_\+client.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgame__t}{game\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the information of a game. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the list of games. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structgame__without__players__t}{game\+\_\+without\+\_\+players\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the information of a game without the list of players. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structlist__game__without__pointers__t}{list\+\_\+game\+\_\+without\+\_\+pointers\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the list of games without the list of players. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{game_8h_aa24597a54a085c6c2c33b64138f09eff}{M\+A\+X\+\_\+\+M\+SG}}~255
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structgame__t}{game\+\_\+t}} \mbox{\hyperlink{game_8h_a4b4ce1f3b7db5fed333b7457623ece8c}{game\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$ \mbox{\hyperlink{game_8h_a0648b909463023508a610976dd2bdb10}{init\+\_\+list\+\_\+game}} (int nb\+\_\+games)
+\begin{DoxyCompactList}\small\item\em Initialize the list of games. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgame__t}{game\+\_\+t}} $\ast$ \mbox{\hyperlink{game_8h_a9204e2038ad2134a5d54ee793249ea45}{init\+\_\+game}} (int id, int nb\+\_\+participants\+\_\+final, int nb\+\_\+participants\+\_\+actual, char name\+\_\+world\mbox{[}\mbox{\hyperlink{server__udp_8h_aa24597a54a085c6c2c33b64138f09eff}{M\+A\+X\+\_\+\+M\+SG}}\mbox{]}, \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$new\+\_\+client)
+\begin{DoxyCompactList}\small\item\em Initialize a game. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8h_a3aa2c967caf9fffa036ced92e801ede5}{is\+\_\+empty\+\_\+game}} (\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Check if the list of games is empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8h_aa4889d744497661be3ec7aab22d080aa}{add\+\_\+game}} (\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$list, \mbox{\hyperlink{structgame__t}{game\+\_\+t}} $\ast$game)
+\begin{DoxyCompactList}\small\item\em Add a game to the list of games. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8h_a1a04fa82dd7f5e82d830bbf3da62d65d}{print\+\_\+list\+\_\+game}} (\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} list)
+\begin{DoxyCompactList}\small\item\em Print the list of games. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgame__t}{game\+\_\+t}} $\ast$ \mbox{\hyperlink{game_8h_a9533721a9535ddc2d0ebe2cdc083d23c}{search\+\_\+game}} (\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$list, int id)
+\begin{DoxyCompactList}\small\item\em Search a game in the list of games. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8h_a915ddc9446ed604f02fc3e57cecb4eab}{delete\+\_\+game}} (\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$list, \mbox{\hyperlink{structgame__t}{game\+\_\+t}} $\ast$game)
+\begin{DoxyCompactList}\small\item\em Delete a game from the list of games. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8h_ab7c47ac27de3676d7eafd8b5ef1ba635}{delete\+\_\+list\+\_\+game}} (\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Delete the list of games. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlist__game__without__pointers__t}{list\+\_\+game\+\_\+without\+\_\+pointers\+\_\+t}} \mbox{\hyperlink{game_8h_a40c472995b71739cc9e0730463ab478c}{convert\+\_\+struct\+\_\+game\+\_\+to\+\_\+game\+\_\+without\+\_\+players}} (\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Convert a structure game to a structure game without players. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages the data structures of the games. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{game_8h_aa24597a54a085c6c2c33b64138f09eff}\label{game_8h_aa24597a54a085c6c2c33b64138f09eff}} 
+\index{game.h@{game.h}!MAX\_MSG@{MAX\_MSG}}
+\index{MAX\_MSG@{MAX\_MSG}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_MSG}{MAX\_MSG}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+M\+SG~255}
+
+
+
+Definition at line 17 of file game.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{game_8h_a4b4ce1f3b7db5fed333b7457623ece8c}\label{game_8h_a4b4ce1f3b7db5fed333b7457623ece8c}} 
+\index{game.h@{game.h}!game\_t@{game\_t}}
+\index{game\_t@{game\_t}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{game\_t}{game\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgame__t}{game\+\_\+t}} \mbox{\hyperlink{structgame__t}{game\+\_\+t}}}
+
+
+
+Definition at line 33 of file game.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{game_8h_aa4889d744497661be3ec7aab22d080aa}\label{game_8h_aa4889d744497661be3ec7aab22d080aa}} 
+\index{game.h@{game.h}!add\_game@{add\_game}}
+\index{add\_game@{add\_game}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{add\_game()}{add\_game()}}
+{\footnotesize\ttfamily void add\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{structgame__t}{game\+\_\+t}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Add a game to the list of games. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+{\em game} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 82 of file game.\+c.
+
+\mbox{\Hypertarget{game_8h_a40c472995b71739cc9e0730463ab478c}\label{game_8h_a40c472995b71739cc9e0730463ab478c}} 
+\index{game.h@{game.h}!convert\_struct\_game\_to\_game\_without\_players@{convert\_struct\_game\_to\_game\_without\_players}}
+\index{convert\_struct\_game\_to\_game\_without\_players@{convert\_struct\_game\_to\_game\_without\_players}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{convert\_struct\_game\_to\_game\_without\_players()}{convert\_struct\_game\_to\_game\_without\_players()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlist__game__without__pointers__t}{list\+\_\+game\+\_\+without\+\_\+pointers\+\_\+t}} convert\+\_\+struct\+\_\+game\+\_\+to\+\_\+game\+\_\+without\+\_\+players (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Convert a structure game to a structure game without players. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structlist__game__without__pointers__t}{list\+\_\+game\+\_\+without\+\_\+pointers\+\_\+t}}
+\end{DoxyReturn}
+Convert a structure game to a structure game without players.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structlist__game__without__pointers__t}{list\+\_\+game\+\_\+without\+\_\+pointers\+\_\+t}} 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file game.\+c.
+
+\mbox{\Hypertarget{game_8h_a915ddc9446ed604f02fc3e57cecb4eab}\label{game_8h_a915ddc9446ed604f02fc3e57cecb4eab}} 
+\index{game.h@{game.h}!delete\_game@{delete\_game}}
+\index{delete\_game@{delete\_game}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{delete\_game()}{delete\_game()}}
+{\footnotesize\ttfamily void delete\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{structgame__t}{game\+\_\+t}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Delete a game from the list of games. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+{\em game} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 149 of file game.\+c.
+
+\mbox{\Hypertarget{game_8h_ab7c47ac27de3676d7eafd8b5ef1ba635}\label{game_8h_ab7c47ac27de3676d7eafd8b5ef1ba635}} 
+\index{game.h@{game.h}!delete\_list\_game@{delete\_list\_game}}
+\index{delete\_list\_game@{delete\_list\_game}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{delete\_list\_game()}{delete\_list\_game()}}
+{\footnotesize\ttfamily void delete\+\_\+list\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Delete the list of games. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 171 of file game.\+c.
+
+\mbox{\Hypertarget{game_8h_a9204e2038ad2134a5d54ee793249ea45}\label{game_8h_a9204e2038ad2134a5d54ee793249ea45}} 
+\index{game.h@{game.h}!init\_game@{init\_game}}
+\index{init\_game@{init\_game}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{init\_game()}{init\_game()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgame__t}{game\+\_\+t}}$\ast$ init\+\_\+game (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{nb\+\_\+participants\+\_\+final,  }\item[{int}]{nb\+\_\+participants\+\_\+actual,  }\item[{char}]{name\+\_\+world\mbox{[}\+M\+A\+X\+\_\+\+M\+S\+G\mbox{]},  }\item[{\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$}]{new\+\_\+client }\end{DoxyParamCaption})}
+
+
+
+Initialize a game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+{\em nb\+\_\+participants\+\_\+final} & \\
+\hline
+{\em nb\+\_\+participants\+\_\+actual} & \\
+\hline
+{\em name\+\_\+world} & \\
+\hline
+{\em new\+\_\+client} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+game\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 43 of file game.\+c.
+
+\mbox{\Hypertarget{game_8h_a0648b909463023508a610976dd2bdb10}\label{game_8h_a0648b909463023508a610976dd2bdb10}} 
+\index{game.h@{game.h}!init\_list\_game@{init\_list\_game}}
+\index{init\_list\_game@{init\_list\_game}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{init\_list\_game()}{init\_list\_game()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}}$\ast$ init\+\_\+list\+\_\+game (\begin{DoxyParamCaption}\item[{int}]{nb\+\_\+games }\end{DoxyParamCaption})}
+
+
+
+Initialize the list of games. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb\+\_\+games} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\+\_\+game\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file game.\+c.
+
+\mbox{\Hypertarget{game_8h_a3aa2c967caf9fffa036ced92e801ede5}\label{game_8h_a3aa2c967caf9fffa036ced92e801ede5}} 
+\index{game.h@{game.h}!is\_empty\_game@{is\_empty\_game}}
+\index{is\_empty\_game@{is\_empty\_game}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{is\_empty\_game()}{is\_empty\_game()}}
+{\footnotesize\ttfamily int is\+\_\+empty\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Check if the list of games is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file game.\+c.
+
+\mbox{\Hypertarget{game_8h_a1a04fa82dd7f5e82d830bbf3da62d65d}\label{game_8h_a1a04fa82dd7f5e82d830bbf3da62d65d}} 
+\index{game.h@{game.h}!print\_list\_game@{print\_list\_game}}
+\index{print\_list\_game@{print\_list\_game}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{print\_list\_game()}{print\_list\_game()}}
+{\footnotesize\ttfamily void print\+\_\+list\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}}}]{list }\end{DoxyParamCaption})}
+
+
+
+Print the list of games. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 107 of file game.\+c.
+
+\mbox{\Hypertarget{game_8h_a9533721a9535ddc2d0ebe2cdc083d23c}\label{game_8h_a9533721a9535ddc2d0ebe2cdc083d23c}} 
+\index{game.h@{game.h}!search\_game@{search\_game}}
+\index{search\_game@{search\_game}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{search\_game()}{search\_game()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgame__t}{game\+\_\+t}}$\ast$ search\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$}]{list,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Search a game in the list of games. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+game\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 129 of file game.\+c.
+

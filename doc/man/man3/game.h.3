@@ -1,0 +1,300 @@
+.TH "code/include/global/game.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/global/game.h \- File that manages the data structures of the games\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'info_client\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBgame_t\fP"
+.br
+.RI "Structure that contains the information of a game\&. "
+.ti -1c
+.RI "struct \fBlist_game_t\fP"
+.br
+.RI "Structure that contains the list of games\&. "
+.ti -1c
+.RI "struct \fBgame_without_players_t\fP"
+.br
+.RI "Structure that contains the information of a game without the list of players\&. "
+.ti -1c
+.RI "struct \fBlist_game_without_pointers_t\fP"
+.br
+.RI "Structure that contains the list of games without the list of players\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_MSG\fP   255"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBgame_t\fP \fBgame_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBlist_game_t\fP * \fBinit_list_game\fP (int nb_games)"
+.br
+.RI "Initialize the list of games\&. "
+.ti -1c
+.RI "\fBgame_t\fP * \fBinit_game\fP (int id, int nb_participants_final, int nb_participants_actual, char name_world[\fBMAX_MSG\fP], \fBinfo_client_t\fP *new_client)"
+.br
+.RI "Initialize a game\&. "
+.ti -1c
+.RI "int \fBis_empty_game\fP (\fBlist_game_t\fP *list)"
+.br
+.RI "Check if the list of games is empty\&. "
+.ti -1c
+.RI "void \fBadd_game\fP (\fBlist_game_t\fP *list, \fBgame_t\fP *game)"
+.br
+.RI "Add a game to the list of games\&. "
+.ti -1c
+.RI "void \fBprint_list_game\fP (\fBlist_game_t\fP list)"
+.br
+.RI "Print the list of games\&. "
+.ti -1c
+.RI "\fBgame_t\fP * \fBsearch_game\fP (\fBlist_game_t\fP *list, int id)"
+.br
+.RI "Search a game in the list of games\&. "
+.ti -1c
+.RI "void \fBdelete_game\fP (\fBlist_game_t\fP *list, \fBgame_t\fP *game)"
+.br
+.RI "Delete a game from the list of games\&. "
+.ti -1c
+.RI "void \fBdelete_list_game\fP (\fBlist_game_t\fP *list)"
+.br
+.RI "Delete the list of games\&. "
+.ti -1c
+.RI "\fBlist_game_without_pointers_t\fP \fBconvert_struct_game_to_game_without_players\fP (\fBlist_game_t\fP *list)"
+.br
+.RI "Convert a structure game to a structure game without players\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manages the data structures of the games\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-29
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBgame\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MAX_MSG   255"
+
+.PP
+Definition at line 17 of file game\&.h\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fBgame_t\fP \fBgame_t\fP"
+
+.PP
+Definition at line 33 of file game\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "void add_game (\fBlist_game_t\fP * list, \fBgame_t\fP * game)"
+
+.PP
+Add a game to the list of games\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.br
+\fIgame\fP 
+.RE
+.PP
+
+.PP
+Definition at line 82 of file game\&.c\&.
+.SS "\fBlist_game_without_pointers_t\fP convert_struct_game_to_game_without_players (\fBlist_game_t\fP * list)"
+
+.PP
+Convert a structure game to a structure game without players\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBlist_game_without_pointers_t\fP
+.RE
+.PP
+Convert a structure game to a structure game without players\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBlist_game_without_pointers_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 189 of file game\&.c\&.
+.SS "void delete_game (\fBlist_game_t\fP * list, \fBgame_t\fP * game)"
+
+.PP
+Delete a game from the list of games\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.br
+\fIgame\fP 
+.RE
+.PP
+
+.PP
+Definition at line 149 of file game\&.c\&.
+.SS "void delete_list_game (\fBlist_game_t\fP * list)"
+
+.PP
+Delete the list of games\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.RE
+.PP
+
+.PP
+Definition at line 171 of file game\&.c\&.
+.SS "\fBgame_t\fP* init_game (int id, int nb_participants_final, int nb_participants_actual, char name_world[MAX_MSG], \fBinfo_client_t\fP * new_client)"
+
+.PP
+Initialize a game\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIid\fP 
+.br
+\fInb_participants_final\fP 
+.br
+\fInb_participants_actual\fP 
+.br
+\fIname_world\fP 
+.br
+\fInew_client\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+game_t* 
+.RE
+.PP
+
+.PP
+Definition at line 43 of file game\&.c\&.
+.SS "\fBlist_game_t\fP* init_list_game (int nb_games)"
+
+.PP
+Initialize the list of games\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInb_games\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+list_game_t* 
+.RE
+.PP
+
+.PP
+Definition at line 25 of file game\&.c\&.
+.SS "int is_empty_game (\fBlist_game_t\fP * list)"
+
+.PP
+Check if the list of games is empty\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 
+.RE
+.PP
+
+.PP
+Definition at line 64 of file game\&.c\&.
+.SS "void print_list_game (\fBlist_game_t\fP list)"
+
+.PP
+Print the list of games\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.RE
+.PP
+
+.PP
+Definition at line 107 of file game\&.c\&.
+.SS "\fBgame_t\fP* search_game (\fBlist_game_t\fP * list, int id)"
+
+.PP
+Search a game in the list of games\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP 
+.br
+\fIid\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+game_t* 
+.RE
+.PP
+
+.PP
+Definition at line 129 of file game\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

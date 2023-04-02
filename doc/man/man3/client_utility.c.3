@@ -1,0 +1,130 @@
+.TH "code/src/client/client_utility.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/client/client_utility.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include 'client_utility\&.h'\fP
+.br
+\fC#include 'client_udp\&.h'\fP
+.br
+\fC#include 'client_create_game\&.h'\fP
+.br
+\fC#include 'client_join_game\&.h'\fP
+.br
+\fC#include 'client_tcp\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBdisplay_logo_app\fP ()"
+.br
+.RI "Display the logo of the application\&. "
+.ti -1c
+.RI "char * \fBpseudo_entry\fP ()"
+.br
+.RI "Entering the user's nickname\&. "
+.ti -1c
+.RI "void \fBdisplay_menu\fP (int nb_players)"
+.br
+.RI "Display the menu for the client\&. "
+.ti -1c
+.RI "void \fBhandler_menu\fP (int \fBport\fP, char \fBaddress_ip\fP[15], \fBinfo_client_t\fP \fBinfo_client\fP, int \fBsockfd\fP)"
+.br
+.RI "Allows the management of the menu\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-28
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBclient_utility\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void display_logo_app ()"
+
+.PP
+Display the logo of the application\&. Display the logo of the application Starlyze\&.
+.PP
+Definition at line 28 of file client_utility\&.c\&.
+.SS "void display_menu (int nb_players)"
+
+.PP
+Display the menu for the client\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInb_players\fP 
+.RE
+.PP
+
+.PP
+Definition at line 68 of file client_utility\&.c\&.
+.SS "void handler_menu (int port, char address_ip[15], \fBinfo_client_t\fP info_client, int sockfd)"
+
+.PP
+Allows the management of the menu\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP 
+.br
+\fIaddress_ip\fP 
+.br
+\fIinfo_client\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+
+.PP
+Definition at line 86 of file client_utility\&.c\&.
+.SS "char* pseudo_entry ()"
+
+.PP
+Entering the user's nickname\&. 
+.PP
+\fBReturns\fP
+.RS 4
+char* 
+.RE
+.PP
+
+.PP
+Definition at line 44 of file client_utility\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

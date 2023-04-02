@@ -1,0 +1,340 @@
+.TH "code/src/game-control/move_world.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/game-control/move_world.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'move_world\&.h'\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'game_control\&.h'\fP
+.br
+\fC#include 'sprite\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void * \fBthread_wait_item\fP (void *arg)"
+.br
+.RI "The thread managing the reappearance of an item after a random time\&. "
+.ti -1c
+.RI "int \fBmove_level\fP (\fBgame_control_t\fP *game_control_info, int id_level, \fBentity_t\fP *entity_move, \fBdirection_enum\fP direction)"
+.br
+.RI "Move an entity within a level or between levels\&. "
+.ti -1c
+.RI "void \fBreset_player\fP (\fBworld_info_t\fP world_info, \fBentity_t\fP *player)"
+.br
+.RI "Resets a player to the beginning of the world by emptying his inventory\&. "
+.ti -1c
+.RI "void \fBcheck_victory\fP (\fBgame_control_t\fP *game_control_info, \fBentity_t\fP player)"
+.br
+.RI "Checks if a player has won the game\&. "
+.ti -1c
+.RI "int \fBcheck_validation_move\fP (\fBlevel_info_t\fP *level, int posX_dest, int posY_dest, int posX_width, int posY_height, \fBentity_t\fP *entity_move)"
+.br
+.RI "Checks the validity of a move\&. "
+.ti -1c
+.RI "int \fBcheck_validation_move_enemy\fP (\fBlevel_info_t\fP *level, int posX_dest, int posY_dest, int posX_width, int posY_height, \fBentity_t\fP *entity_move)"
+.br
+.RI "Checks the validity of a move of enemy\&. "
+.ti -1c
+.RI "int \fBcheck_validation_move_player\fP (\fBlevel_info_t\fP *level, int posX_dest, int posY_dest, int posX_width, int posY_height, \fBentity_t\fP *entity_move)"
+.br
+.RI "Checks the validity of a move of player\&. "
+.ti -1c
+.RI "\fBentity_t\fP * \fBcheck_collision\fP (\fBentity_t\fP *entity_collision, \fBentity_t\fP *collider, int number_collider, int level)"
+.br
+.RI "Checks for collisions of an entity on a level\&. "
+.ti -1c
+.RI "void \fBtake_item\fP (\fBlevel_info_t\fP *level, \fBplayer_t\fP *player, int posX, int posY, int posX_width, int posY_height)"
+.br
+.RI "Allows to check if a player is on the position of an item and to recover it if necessarys\&. "
+.ti -1c
+.RI "void \fBenter_door\fP (\fBworld_info_t\fP *world_info, \fBentity_t\fP *player)"
+.br
+.RI "Allows to pass a door and to change level\&. "
+.ti -1c
+.RI "void \fBdrop_bomb\fP (\fBgame_control_t\fP *\fBgame_control\fP, \fBentity_t\fP *player)"
+.br
+.RI "Allows a player to place a bomb\&. "
+.ti -1c
+.RI "void * \fBthread_explose_bomb\fP (void *arg)"
+.br
+.RI "The thread that manages the explosion of a bomb\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "void * \fBp_thread_invincible\fP = \fBthread_invincible\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "\fBentity_t\fP* check_collision (\fBentity_t\fP * collision, \fBentity_t\fP * collider, int number_collider, int level)"
+
+.PP
+Checks for collisions of an entity on a level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcollision\fP The entity whose collisions we want to check 
+.br
+\fIcollider\fP Table of colliding entities 
+.br
+\fInumber_collider\fP The number of entities that can collide 
+.br
+\fIlevel\fP The identifier of the level in which the collisions are checked 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+entity_t* The entity with which we collided or NULL if there is none 
+.RE
+.PP
+
+.PP
+Definition at line 261 of file move_world\&.c\&.
+.SS "int check_validation_move (\fBlevel_info_t\fP * level, int posX_dest, int posY_dest, int posX_width, int posY_height, \fBentity_t\fP * entity_move)"
+
+.PP
+Checks the validity of a move\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP The level in which we move 
+.br
+\fIposX_dest\fP Position X of displacement 
+.br
+\fIposY_dest\fP Position Y of displacement 
+.br
+\fIposX_width\fP Position X of displacement considering the width of the entity 
+.br
+\fIposY_height\fP Position Y of displacement considering the height of the entity 
+.br
+\fIentity_move\fP The entity whose displacement is being checked 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int If the move is validated or not 
+.RE
+.PP
+
+.PP
+Definition at line 179 of file move_world\&.c\&.
+.SS "int check_validation_move_enemy (\fBlevel_info_t\fP * level, int posX_dest, int posY_dest, int posX_width, int posY_height, \fBentity_t\fP * entity_move)"
+
+.PP
+Checks the validity of a move of enemy\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP The level in which we move 
+.br
+\fIposX_dest\fP Position X of displacement 
+.br
+\fIposY_dest\fP Position Y of displacement 
+.br
+\fIposX_width\fP Position X of displacement considering the width of the enemy 
+.br
+\fIposY_height\fP Position Y of displacement considering the height of the enemy 
+.br
+\fIentity_move\fP The enemy whose displacement is being checked 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int If the move is validated or not 
+.RE
+.PP
+
+.PP
+Definition at line 207 of file move_world\&.c\&.
+.SS "int check_validation_move_player (\fBlevel_info_t\fP * level, int posX_dest, int posY_dest, int posX_width, int posY_height, \fBentity_t\fP * entity_move)"
+
+.PP
+Checks the validity of a move of player\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP The level in which we move 
+.br
+\fIposX_dest\fP Position X of displacement 
+.br
+\fIposY_dest\fP Position Y of displacement 
+.br
+\fIposX_width\fP Position X of displacement considering the width of the player 
+.br
+\fIposY_height\fP Position Y of displacement considering the height of the player 
+.br
+\fIentity_move\fP The player whose displacement is being checked 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int If the move is validated or not 
+.RE
+.PP
+
+.PP
+Definition at line 234 of file move_world\&.c\&.
+.SS "void check_victory (\fBgame_control_t\fP * game_control_info, \fBentity_t\fP player)"
+
+.PP
+Checks if a player has won the game\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_control_info\fP The game manager 
+.br
+\fIplayer\fP The player who we want to know if he won 
+.RE
+.PP
+
+.PP
+Definition at line 165 of file move_world\&.c\&.
+.SS "void drop_bomb (\fBgame_control_t\fP * game_control, \fBentity_t\fP * player)"
+
+.PP
+Allows a player to place a bomb\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_control\fP The game manager 
+.br
+\fIplayer\fP The player who places a bombs 
+.RE
+.PP
+
+.PP
+Definition at line 413 of file move_world\&.c\&.
+.SS "void enter_door (\fBworld_info_t\fP * world_info, \fBentity_t\fP * player)"
+
+.PP
+Allows to pass a door and to change level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIworld_info\fP The informations of the world 
+.br
+\fIplayer\fP The player who borrows a doors 
+.RE
+.PP
+
+.PP
+Definition at line 336 of file move_world\&.c\&.
+.SS "int move_level (\fBgame_control_t\fP * game_control_info, int id_level, \fBentity_t\fP * entity_move, \fBdirection_enum\fP direction)"
+
+.PP
+Move an entity within a level or between levels\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_control_info\fP The game manager 
+.br
+\fIid_level\fP The identifier of the level in which the entity we are moving is 
+.br
+\fIentity_move\fP The entity that is moved 
+.br
+\fIdirection\fP Direction of the entity 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int If the trip went wells 
+.RE
+.PP
+
+.PP
+Definition at line 25 of file move_world\&.c\&.
+.SS "void reset_player (\fBworld_info_t\fP world_info, \fBentity_t\fP * player)"
+
+.PP
+Resets a player to the beginning of the world by emptying his inventory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIworld_info\fP Information from a world 
+.br
+\fIplayer\fP The player whose position and inventory are reset in the world 
+.RE
+.PP
+
+.PP
+Definition at line 139 of file move_world\&.c\&.
+.SS "void take_item (\fBlevel_info_t\fP * level, \fBplayer_t\fP * player, int posX_dest, int posY_dest, int posX_width, int posY_height)"
+
+.PP
+Allows to check if a player is on the position of an item and to recover it if necessarys\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP The level at which the item potential is checked and recovered 
+.br
+\fIplayer\fP The player who will retrieve the item 
+.br
+\fIposX_dest\fP Position X of the player 
+.br
+\fIposY_dest\fP Position Y of the player 
+.br
+\fIposX_width\fP Position X of the player considering the width of the player 
+.br
+\fIposY_height\fP Position Y of the player considering the height of the player 
+.RE
+.PP
+
+.PP
+Definition at line 289 of file move_world\&.c\&.
+.SS "void* thread_explose_bomb (void * arg)"
+
+.PP
+The thread that manages the explosion of a bomb\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP The information needed for the thread 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void* The result of this Thread - there is NULL 
+.RE
+.PP
+
+.PP
+Definition at line 464 of file move_world\&.c\&.
+.SS "void* thread_wait_item (void * arg)"
+
+.PP
+The thread managing the reappearance of an item after a random time\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP The necessary thread information 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void* The result of this Thread - there is NULL 
+.RE
+.PP
+
+.PP
+Definition at line 11 of file move_world\&.c\&.
+.SH "Variable Documentation"
+.PP 
+.SS "void* p_thread_invincible = \fBthread_invincible\fP"
+
+.PP
+Definition at line 9 of file move_world\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

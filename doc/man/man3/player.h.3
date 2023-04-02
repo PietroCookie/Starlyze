@@ -1,0 +1,213 @@
+.TH "code/include/game-control/player.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/game-control/player.h \- File that manage a player\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBplayer_t\fP"
+.br
+.RI "Reppresent a player\&. "
+.ti -1c
+.RI "struct \fBinfos_end_thread_properly_t\fP"
+.br
+.RI "Structure that contains informations transmit at end_thread_player_properly\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_LIFE_PLAYER\fP   5"
+.br
+.ti -1c
+.RI "#define \fBNUMBER_KEY\fP   4"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBgame_control_t\fP \fBgame_control_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinitialise_player\fP (\fBplayer_t\fP *player, int level, int id)"
+.br
+.RI "Initialize a player\&. "
+.ti -1c
+.RI "void \fBcancel_thread_send_player\fP (void *arg)"
+.br
+.RI "The method cancel thread_sending_level\&. "
+.ti -1c
+.RI "void \fBend_thread_player_properly\fP (void *arg)"
+.br
+.RI "The method send the request END_GAME to the client player\&. "
+.ti -1c
+.RI "void * \fBthread_invincible\fP (void *arg)"
+.br
+.RI "The thread that makes the player invincible for three seconds\&. "
+.ti -1c
+.RI "void * \fBthread_player\fP (void *arg)"
+.br
+.RI "The main thread of a player\&. "
+.ti -1c
+.RI "void * \fBthread_sending_level\fP (void *arg)"
+.br
+.RI "The thread that sends the game information to the player\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manage a player\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-30
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBplayer\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MAX_LIFE_PLAYER   5"
+
+.PP
+Definition at line 15 of file player\&.h\&.
+.SS "#define NUMBER_KEY   4"
+
+.PP
+Definition at line 16 of file player\&.h\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fBgame_control_t\fP \fBgame_control_t\fP"
+
+.PP
+Definition at line 18 of file player\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "void cancel_thread_send_player (void * arg)"
+
+.PP
+The method cancel thread_sending_level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP The information needed by the cleaning manager 
+.RE
+.PP
+
+.PP
+Definition at line 30 of file player\&.c\&.
+.SS "void end_thread_player_properly (void * arg)"
+
+.PP
+The method send the request END_GAME to the client player\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIThe\fP information needed by the cleaning manager 
+.RE
+.PP
+
+.PP
+Definition at line 38 of file player\&.c\&.
+.SS "void initialise_player (\fBplayer_t\fP * player, int level, int id)"
+
+.PP
+Initialize a player\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIplayer\fP The player we initialize 
+.br
+\fIlevel\fP The identifier of the level in which the player is positioned 
+.br
+\fIid\fP Player ID 
+.RE
+.PP
+
+.PP
+Definition at line 17 of file player\&.c\&.
+.SS "void* thread_invincible (void * arg)"
+
+.PP
+The thread that makes the player invincible for three seconds\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP Information needed for the thread 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void* The result of this Thread - there is NULL 
+.RE
+.PP
+
+.PP
+Definition at line 57 of file player\&.c\&.
+.SS "void* thread_player (void * arg)"
+
+.PP
+The main thread of a player\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP Information needed for the thread 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void* The result of this Thread - there is NULL 
+.RE
+.PP
+
+.PP
+Definition at line 68 of file player\&.c\&.
+.SS "void* thread_sending_level (void * arg)"
+
+.PP
+The thread that sends the game information to the player\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP Information needed for the thread 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void* The result of this Thread - there is NULL 
+.RE
+.PP
+
+.PP
+Definition at line 128 of file player\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

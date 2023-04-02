@@ -1,0 +1,57 @@
+.TH "code/src/display_game/level_display.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/display_game/level_display.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'level_display\&.h'\fP
+.br
+\fC#include 'level_info\&.h'\fP
+.br
+\fC#include 'sprite\&.h'\fP
+.br
+\fC#include 'entity\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBconvert_level_info\fP (int id_level, \fBlevel_display_t\fP *level_display, \fBlevel_info_t\fP level_info, \fBentity_t\fP *enemies, int number_enemies, \fBentity_t\fP *players, int number_players)"
+.br
+.RI "Convert the state of a level with its entities into a minimal level\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void convert_level_info (int id_level, \fBlevel_display_t\fP * level_display, \fBlevel_info_t\fP level_info, \fBentity_t\fP * enemies, int number_enemies, \fBentity_t\fP * players, int number_players)"
+
+.PP
+Convert the state of a level with its entities into a minimal level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIid_level\fP Id of the level 
+.br
+\fIlevel_display\fP The variable in which the minimum level will be contained 
+.br
+\fIlevel_info\fP The level info 
+.br
+\fIenemies\fP Enemies presents in the level 
+.br
+\fInumber_enemies\fP Number enemies presents in the level 
+.br
+\fIplayers\fP Players presents in the level 
+.br
+\fInumber_players\fP Number players presents int the level 
+.RE
+.PP
+
+.PP
+Definition at line 9 of file level_display\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

@@ -1,0 +1,178 @@
+.TH "code/include/editor/interface.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/editor/interface.h \- File that manage a interface of editor\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <locale\&.h>\fP
+.br
+\fC#include 'window\&.h'\fP
+.br
+\fC#include 'paint_tools\&.h'\fP
+.br
+\fC#include 'game_level\&.h'\fP
+.br
+\fC#include 'file_game_level\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBinterface_t\fP"
+.br
+.RI "Structure representing the interface of an editor\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBDEFAULT_WIDTH_INTERFACE_GAME\fP   62"
+.br
+.ti -1c
+.RI "#define \fBDEFAULT_HEIGHT_INTERFACE_GAME\fP   22"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinterface_dimensions\fP (unsigned short width, unsigned short height)"
+.br
+.ti -1c
+.RI "\fBinterface_t\fP * \fBinterface_create\fP ()"
+.br
+.RI "Create interface\&. "
+.ti -1c
+.RI "void \fBinterface_delete\fP (\fBinterface_t\fP **interface)"
+.br
+.RI "Delete interface\&. "
+.ti -1c
+.RI "void \fBinterface_actions\fP (\fBinterface_t\fP *interface, int c)"
+.br
+.RI "Manage actions of the user\&. "
+.ti -1c
+.RI "void \fBrefresh_win_tools\fP (\fBinterface_t\fP *interface)"
+.br
+.RI "Refresh window tool\&. "
+.ti -1c
+.RI "void \fBrefresh_win_level\fP (\fBinterface_t\fP *interface)"
+.br
+.RI "Refresh window level\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manage a interface of editor\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-30
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBinterface\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define DEFAULT_HEIGHT_INTERFACE_GAME   22"
+
+.PP
+Definition at line 23 of file interface\&.h\&.
+.SS "#define DEFAULT_WIDTH_INTERFACE_GAME   62"
+
+.PP
+Definition at line 22 of file interface\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "void interface_actions (\fBinterface_t\fP * interface, int c)"
+
+.PP
+Manage actions of the user\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP the interface 
+.br
+\fIc\fP the pressed key 
+.RE
+.PP
+
+.PP
+Definition at line 63 of file interface\&.c\&.
+.SS "\fBinterface_t\fP* interface_create ()"
+
+.PP
+Create interface\&. 
+.PP
+\fBReturns\fP
+.RS 4
+interface_t* created interface 
+.RE
+.PP
+
+.SS "void interface_delete (\fBinterface_t\fP ** interface)"
+
+.PP
+Delete interface\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP interface to delete 
+.RE
+.PP
+
+.PP
+Definition at line 51 of file interface\&.c\&.
+.SS "void interface_dimensions (unsigned short width, unsigned short height)"
+Check terminal dimensions\&. 
+.PP
+Definition at line 9 of file interface\&.c\&.
+.SS "void refresh_win_level (\fBinterface_t\fP * interface)"
+
+.PP
+Refresh window level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP The interface 
+.RE
+.PP
+
+.PP
+Definition at line 171 of file interface\&.c\&.
+.SS "void refresh_win_tools (\fBinterface_t\fP * interface)"
+
+.PP
+Refresh window tool\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP The interface 
+.RE
+.PP
+
+.PP
+Definition at line 150 of file interface\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

@@ -1,0 +1,185 @@
+.TH "code/src/editor/game_level.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/editor/game_level.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'game_level\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinitialise_game_level\fP (\fBgame_level_t\fP *game_level)"
+.br
+.RI "Initialise the game_level\&. "
+.ti -1c
+.RI "void \fBdelete_game_level\fP (\fBgame_level_t\fP *game_level)"
+.br
+.RI "Delete a game_level from memory\&. "
+.ti -1c
+.RI "void \fBadd_element_map_in_case\fP (\fBgame_level_t\fP *game_level, \fBelement_game_level_t\fP *element)"
+.br
+.RI "Adds an element to the game_level\&. "
+.ti -1c
+.RI "void \fBdelete_element_map_in_case\fP (\fBgame_level_t\fP *game_level, int posX, int posY)"
+.br
+.RI "Remove an element from a game_levels\&. "
+.ti -1c
+.RI "size_t \fBnecessary_size_game_level\fP (\fBgame_level_t\fP game_level)"
+.br
+.RI "Calculate the necessary size for save a game_level in file\&. "
+.ti -1c
+.RI "void \fBsave_modification_game_level_in_file_descriptor\fP (int file_descriptor, off_t position, \fBgame_level_t\fP game_level, int posX, int posY)"
+.br
+.RI "Save a modification of game_level to a file\&. "
+.ti -1c
+.RI "void \fBwrite_game_level_in_file_descriptor\fP (int file_descriptor, \fBgame_level_t\fP game_level)"
+.br
+.RI "writes a game_level to a file "
+.ti -1c
+.RI "void \fBread_game_level_in_file_descriptor\fP (int file_descriptor, \fBgame_level_t\fP *game_level)"
+.br
+.RI "read a game_level to a file "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void add_element_map_in_case (\fBgame_level_t\fP * game_level, \fBelement_game_level_t\fP * element)"
+
+.PP
+Adds an element to the game_level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_level\fP The game_level in which we add an element 
+.br
+\fIelement\fP The element that is added 
+.RE
+.PP
+
+.PP
+Definition at line 27 of file game_level\&.c\&.
+.SS "void delete_element_map_in_case (\fBgame_level_t\fP * game_level, int posX, int posY)"
+
+.PP
+Remove an element from a game_levels\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_level\fP The game_level in which we delete the element 
+.br
+\fIposX\fP Position X of the element to be deleted 
+.br
+\fIposY\fP Position Y of the element to be deleted 
+.RE
+.PP
+
+.PP
+Definition at line 40 of file game_level\&.c\&.
+.SS "void delete_game_level (\fBgame_level_t\fP * game_level)"
+
+.PP
+Delete a game_level from memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_level\fP The game_level that will be deleted from memory 
+.RE
+.PP
+
+.PP
+Definition at line 15 of file game_level\&.c\&.
+.SS "void initialise_game_level (\fBgame_level_t\fP * game_level)"
+
+.PP
+Initialise the game_level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_level\fP The variable that will contain the game_level 
+.RE
+.PP
+
+.PP
+Definition at line 7 of file game_level\&.c\&.
+.SS "size_t necessary_size_game_level (\fBgame_level_t\fP game_level)"
+
+.PP
+Calculate the necessary size for save a game_level in file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_level\fP The game_level whose size we want to know 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+size_t The size necessary 
+.RE
+.PP
+
+.PP
+Definition at line 52 of file game_level\&.c\&.
+.SS "void read_game_level_in_file_descriptor (int file_descriptor, \fBgame_level_t\fP * game_level)"
+
+.PP
+read a game_level to a file 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file in which we read the game_level 
+.br
+\fIgame_level\fP The game_level to read 
+.RE
+.PP
+
+.PP
+Definition at line 97 of file game_level\&.c\&.
+.SS "void save_modification_game_level_in_file_descriptor (int file_descriptor, off_t position, \fBgame_level_t\fP game_level, int posX, int posY)"
+
+.PP
+Save a modification of game_level to a file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file descriptor in which the game_level is stored 
+.br
+\fIposition\fP The position in the file at which the game_level is written 
+.br
+\fIgame_level\fP The game_level has recorded 
+.br
+\fIposX\fP Position X of the modified element to be saved in the file 
+.br
+\fIposY\fP Position Y of the modified element to be saved in the file 
+.RE
+.PP
+
+.PP
+Definition at line 60 of file game_level\&.c\&.
+.SS "void write_game_level_in_file_descriptor (int file_descriptor, \fBgame_level_t\fP game_level)"
+
+.PP
+writes a game_level to a file 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file in which we write the game_level 
+.br
+\fIgame_level\fP The game_level to write 
+.RE
+.PP
+
+.PP
+Definition at line 76 of file game_level\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

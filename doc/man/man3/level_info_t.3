@@ -1,0 +1,77 @@
+.TH "level_info_t" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+level_info_t \- The structure representing the information of a level\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <level_info\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBsprite_t\fP \fBmap\fP [\fBWIDTH_LEVEL\fP][\fBHEIGHT_LEVEL\fP]"
+.br
+.ti -1c
+.RI "int \fBnumber_enemy\fP"
+.br
+.ti -1c
+.RI "int \fBrobot\fP [\fBNUMBER_ROBOT\fP]"
+.br
+.ti -1c
+.RI "int \fBprobe\fP [\fBNUMBER_PROBE\fP]"
+.br
+.ti -1c
+.RI "\fBlist_block_trap_t\fP \fBlist_block_trap\fP"
+.br
+.ti -1c
+.RI "int \fBnumber_mutex_zone\fP"
+.br
+.ti -1c
+.RI "pthread_mutex_t * \fBmutex_zone\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The structure representing the information of a level\&. 
+
+
+.PP
+Definition at line 34 of file level_info\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "\fBlist_block_trap_t\fP list_block_trap"
+
+.PP
+Definition at line 41 of file level_info\&.h\&.
+.SS "\fBsprite_t\fP map[\fBWIDTH_LEVEL\fP][\fBHEIGHT_LEVEL\fP]"
+
+.PP
+Definition at line 36 of file level_info\&.h\&.
+.SS "pthread_mutex_t* mutex_zone"
+
+.PP
+Definition at line 44 of file level_info\&.h\&.
+.SS "int number_enemy"
+
+.PP
+Definition at line 38 of file level_info\&.h\&.
+.SS "int number_mutex_zone"
+
+.PP
+Definition at line 43 of file level_info\&.h\&.
+.SS "int probe[\fBNUMBER_PROBE\fP]"
+
+.PP
+Definition at line 40 of file level_info\&.h\&.
+.SS "int robot[\fBNUMBER_ROBOT\fP]"
+
+.PP
+Definition at line 39 of file level_info\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

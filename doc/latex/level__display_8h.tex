@@ -1,0 +1,148 @@
+\hypertarget{level__display_8h}{}\doxysection{code/include/display\+\_\+game/level\+\_\+display.h File Reference}
+\label{level__display_8h}\index{code/include/display\_game/level\_display.h@{code/include/display\_game/level\_display.h}}
+
+
+This file allows to define the methods and structures to display the state of a level.  
+
+
+{\ttfamily \#include \char`\"{}level\+\_\+info.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}entity.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlevel__display__t}{level\+\_\+display\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure represent a minimal version of a level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}{I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON}}~100
+\item 
+\#define \mbox{\hyperlink{level__display_8h_ab06097541d0e7b755337cf4ed90a16ed}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+D\+O\+OR}}~100
+\item 
+\#define \mbox{\hyperlink{level__display_8h_a64fcf0fa65170626011b9ab368443aee}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+G\+A\+TE}}~(\mbox{\hyperlink{level__display_8h_ab06097541d0e7b755337cf4ed90a16ed}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+D\+O\+OR}} + \mbox{\hyperlink{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}{I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON}})
+\item 
+\#define \mbox{\hyperlink{level__display_8h_a8675570a14fa23c1a69cf79d81e00248}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+K\+EY}}~(\mbox{\hyperlink{level__display_8h_a64fcf0fa65170626011b9ab368443aee}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+G\+A\+TE}} + \mbox{\hyperlink{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}{I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON}})
+\item 
+\#define \mbox{\hyperlink{level__display_8h_a2b2280e009baef1fca9125d27775688a}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+P\+L\+A\+Y\+E\+RS}}~(\mbox{\hyperlink{level__display_8h_a8675570a14fa23c1a69cf79d81e00248}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+K\+EY}} + \mbox{\hyperlink{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}{I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON}})
+\item 
+\#define \mbox{\hyperlink{level__display_8h_af2183ee27b23e62e7ca696bee3156461}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+B\+O\+MB}}~(\mbox{\hyperlink{level__display_8h_a2b2280e009baef1fca9125d27775688a}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+P\+L\+A\+Y\+E\+RS}} + \mbox{\hyperlink{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}{I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{level__display_8h_ae53f185265e98e778e2c60b7288f2856}{convert\+\_\+level\+\_\+info}} (int id\+\_\+level, \mbox{\hyperlink{structlevel__display__t}{level\+\_\+display\+\_\+t}} $\ast$level\+\_\+display, \mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} level\+\_\+info, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$enemies, int number\+\_\+enemies, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$players, int number\+\_\+players)
+\begin{DoxyCompactList}\small\item\em Convert the state of a level with its entities into a minimal level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file allows to define the methods and structures to display the state of a level. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}\label{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}} 
+\index{level\_display.h@{level\_display.h}!INTERVALLE\_SPECIFICATION@{INTERVALLE\_SPECIFICATION}}
+\index{INTERVALLE\_SPECIFICATION@{INTERVALLE\_SPECIFICATION}!level\_display.h@{level\_display.h}}
+\doxysubsubsection{\texorpdfstring{INTERVALLE\_SPECIFICATION}{INTERVALLE\_SPECIFICATION}}
+{\footnotesize\ttfamily \#define I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON~100}
+
+
+
+Definition at line 18 of file level\+\_\+display.\+h.
+
+\mbox{\Hypertarget{level__display_8h_af2183ee27b23e62e7ca696bee3156461}\label{level__display_8h_af2183ee27b23e62e7ca696bee3156461}} 
+\index{level\_display.h@{level\_display.h}!SPECIFICATION\_BOMB@{SPECIFICATION\_BOMB}}
+\index{SPECIFICATION\_BOMB@{SPECIFICATION\_BOMB}!level\_display.h@{level\_display.h}}
+\doxysubsubsection{\texorpdfstring{SPECIFICATION\_BOMB}{SPECIFICATION\_BOMB}}
+{\footnotesize\ttfamily \#define S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+B\+O\+MB~(\mbox{\hyperlink{level__display_8h_a2b2280e009baef1fca9125d27775688a}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+P\+L\+A\+Y\+E\+RS}} + \mbox{\hyperlink{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}{I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON}})}
+
+
+
+Definition at line 24 of file level\+\_\+display.\+h.
+
+\mbox{\Hypertarget{level__display_8h_ab06097541d0e7b755337cf4ed90a16ed}\label{level__display_8h_ab06097541d0e7b755337cf4ed90a16ed}} 
+\index{level\_display.h@{level\_display.h}!SPECIFICATION\_DOOR@{SPECIFICATION\_DOOR}}
+\index{SPECIFICATION\_DOOR@{SPECIFICATION\_DOOR}!level\_display.h@{level\_display.h}}
+\doxysubsubsection{\texorpdfstring{SPECIFICATION\_DOOR}{SPECIFICATION\_DOOR}}
+{\footnotesize\ttfamily \#define S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+D\+O\+OR~100}
+
+
+
+Definition at line 20 of file level\+\_\+display.\+h.
+
+\mbox{\Hypertarget{level__display_8h_a64fcf0fa65170626011b9ab368443aee}\label{level__display_8h_a64fcf0fa65170626011b9ab368443aee}} 
+\index{level\_display.h@{level\_display.h}!SPECIFICATION\_GATE@{SPECIFICATION\_GATE}}
+\index{SPECIFICATION\_GATE@{SPECIFICATION\_GATE}!level\_display.h@{level\_display.h}}
+\doxysubsubsection{\texorpdfstring{SPECIFICATION\_GATE}{SPECIFICATION\_GATE}}
+{\footnotesize\ttfamily \#define S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+G\+A\+TE~(\mbox{\hyperlink{level__display_8h_ab06097541d0e7b755337cf4ed90a16ed}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+D\+O\+OR}} + \mbox{\hyperlink{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}{I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON}})}
+
+
+
+Definition at line 21 of file level\+\_\+display.\+h.
+
+\mbox{\Hypertarget{level__display_8h_a8675570a14fa23c1a69cf79d81e00248}\label{level__display_8h_a8675570a14fa23c1a69cf79d81e00248}} 
+\index{level\_display.h@{level\_display.h}!SPECIFICATION\_KEY@{SPECIFICATION\_KEY}}
+\index{SPECIFICATION\_KEY@{SPECIFICATION\_KEY}!level\_display.h@{level\_display.h}}
+\doxysubsubsection{\texorpdfstring{SPECIFICATION\_KEY}{SPECIFICATION\_KEY}}
+{\footnotesize\ttfamily \#define S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+K\+EY~(\mbox{\hyperlink{level__display_8h_a64fcf0fa65170626011b9ab368443aee}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+G\+A\+TE}} + \mbox{\hyperlink{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}{I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON}})}
+
+
+
+Definition at line 22 of file level\+\_\+display.\+h.
+
+\mbox{\Hypertarget{level__display_8h_a2b2280e009baef1fca9125d27775688a}\label{level__display_8h_a2b2280e009baef1fca9125d27775688a}} 
+\index{level\_display.h@{level\_display.h}!SPECIFICATION\_PLAYERS@{SPECIFICATION\_PLAYERS}}
+\index{SPECIFICATION\_PLAYERS@{SPECIFICATION\_PLAYERS}!level\_display.h@{level\_display.h}}
+\doxysubsubsection{\texorpdfstring{SPECIFICATION\_PLAYERS}{SPECIFICATION\_PLAYERS}}
+{\footnotesize\ttfamily \#define S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+P\+L\+A\+Y\+E\+RS~(\mbox{\hyperlink{level__display_8h_a8675570a14fa23c1a69cf79d81e00248}{S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+\+K\+EY}} + \mbox{\hyperlink{level__display_8h_aa1b9c68155c2bd414d02af93222c9bc0}{I\+N\+T\+E\+R\+V\+A\+L\+L\+E\+\_\+\+S\+P\+E\+C\+I\+F\+I\+C\+A\+T\+I\+ON}})}
+
+
+
+Definition at line 23 of file level\+\_\+display.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{level__display_8h_ae53f185265e98e778e2c60b7288f2856}\label{level__display_8h_ae53f185265e98e778e2c60b7288f2856}} 
+\index{level\_display.h@{level\_display.h}!convert\_level\_info@{convert\_level\_info}}
+\index{convert\_level\_info@{convert\_level\_info}!level\_display.h@{level\_display.h}}
+\doxysubsubsection{\texorpdfstring{convert\_level\_info()}{convert\_level\_info()}}
+{\footnotesize\ttfamily void convert\+\_\+level\+\_\+info (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+level,  }\item[{\mbox{\hyperlink{structlevel__display__t}{level\+\_\+display\+\_\+t}} $\ast$}]{level\+\_\+display,  }\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}}}]{level\+\_\+info,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{enemies,  }\item[{int}]{number\+\_\+enemies,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{players,  }\item[{int}]{number\+\_\+players }\end{DoxyParamCaption})}
+
+
+
+Convert the state of a level with its entities into a minimal level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+level} & Id of the level \\
+\hline
+{\em level\+\_\+display} & The variable in which the minimum level will be contained \\
+\hline
+{\em level\+\_\+info} & The level info \\
+\hline
+{\em enemies} & Enemies presents in the level \\
+\hline
+{\em number\+\_\+enemies} & Number enemies presents in the level \\
+\hline
+{\em players} & Players presents in the level \\
+\hline
+{\em number\+\_\+players} & Number players presents int the level \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 9 of file level\+\_\+display.\+c.
+

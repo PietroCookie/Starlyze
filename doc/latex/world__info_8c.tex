@@ -1,0 +1,59 @@
+\hypertarget{world__info_8c}{}\doxysection{code/src/game-\/control/world\+\_\+info.c File Reference}
+\label{world__info_8c}\index{code/src/game-\/control/world\_info.c@{code/src/game-\/control/world\_info.c}}
+{\ttfamily \#include \char`\"{}world\+\_\+info.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}address\+\_\+table.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sprite.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{world__info_8c_a317dd9915a41a2ceec0720fdae8a4fc2}{load\+\_\+world\+\_\+info}} (\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$world\+\_\+info, char $\ast$name\+\_\+world)
+\begin{DoxyCompactList}\small\item\em Load a world. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{world__info_8c_a9daeef08b20a2e963a7f53d67028e1dc}{delete\+\_\+world\+\_\+info}} (\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$world\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Delete a world from memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{world__info_8c_a9daeef08b20a2e963a7f53d67028e1dc}\label{world__info_8c_a9daeef08b20a2e963a7f53d67028e1dc}} 
+\index{world\_info.c@{world\_info.c}!delete\_world\_info@{delete\_world\_info}}
+\index{delete\_world\_info@{delete\_world\_info}!world\_info.c@{world\_info.c}}
+\doxysubsubsection{\texorpdfstring{delete\_world\_info()}{delete\_world\_info()}}
+{\footnotesize\ttfamily void delete\+\_\+world\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$}]{world\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Delete a world from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+\_\+info} & The world we want to suppress \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 98 of file world\+\_\+info.\+c.
+
+\mbox{\Hypertarget{world__info_8c_a317dd9915a41a2ceec0720fdae8a4fc2}\label{world__info_8c_a317dd9915a41a2ceec0720fdae8a4fc2}} 
+\index{world\_info.c@{world\_info.c}!load\_world\_info@{load\_world\_info}}
+\index{load\_world\_info@{load\_world\_info}!world\_info.c@{world\_info.c}}
+\doxysubsubsection{\texorpdfstring{load\_world\_info()}{load\_world\_info()}}
+{\footnotesize\ttfamily void load\+\_\+world\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$}]{world\+\_\+info,  }\item[{char $\ast$}]{name\+\_\+world }\end{DoxyParamCaption})}
+
+
+
+Load a world. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+\_\+info} & The variable that will contain the world\textquotesingle{}s information \\
+\hline
+{\em name\+\_\+world} & The name of the world that we charge \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 11 of file world\+\_\+info.\+c.
+

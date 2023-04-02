@@ -1,0 +1,201 @@
+\hypertarget{window_8c}{}\doxysection{code/src/ncurses/window.c File Reference}
+\label{window_8c}\index{code/src/ncurses/window.c@{code/src/ncurses/window.c}}
+{\ttfamily \#include \char`\"{}window.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$ \mbox{\hyperlink{window_8c_a3dc3e13f0c9c8fae71a18a79f775c869}{window\+\_\+create}} (int posX, int posY, int width, int height, char $\ast$title, bool scroll)
+\item 
+void \mbox{\hyperlink{window_8c_a796fcb4f0d134923fe0a9154550a0384}{window\+\_\+delete}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$$\ast$window)
+\item 
+bool \mbox{\hyperlink{window_8c_a834c1cacfb5b89bbf480b2ed92edbbb5}{window\+\_\+isin}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int x, int y)
+\item 
+bool \mbox{\hyperlink{window_8c_abe1b0d6bc64cf93ee5e699af0dfb7e8f}{window\+\_\+getcoordinates}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posx, int posy, int $\ast$x, int $\ast$y)
+\item 
+int \mbox{\hyperlink{window_8c_a17764a28d251113731ecf9e99101ba4e}{window\+\_\+move}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posY, int posX)
+\item 
+int \mbox{\hyperlink{window_8c_a6f9526f0654f24b3bf354b9295b9e0d4}{window\+\_\+addch}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, chtype c)
+\item 
+int \mbox{\hyperlink{window_8c_acbbc7914485b0dee30389f8042b45bec}{window\+\_\+mvaddch}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posY, int posX, chtype c)
+\item 
+int \mbox{\hyperlink{window_8c_a621742437a381c86b0092a5cfad8ebf9}{window\+\_\+addch\+\_\+col}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, unsigned int color, chtype c)
+\item 
+int \mbox{\hyperlink{window_8c_ad2d9b0aaf340d46ab160b0c9074c31c0}{window\+\_\+mvaddch\+\_\+col}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posY, int posX, unsigned int color, chtype c)
+\item 
+int \mbox{\hyperlink{window_8c_ad3b77bb3aed0ac5b35411a3fc4345346}{window\+\_\+printw}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, const char $\ast$fmt,...)
+\item 
+int \mbox{\hyperlink{window_8c_a96e2c8f1908306c9970ae05d3b681327}{window\+\_\+printw\+\_\+col}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, unsigned int color, const char $\ast$fmt,...)
+\item 
+int \mbox{\hyperlink{window_8c_abf5a063a698b48d71405c50e7b43d1e3}{window\+\_\+mvprintw}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posY, int posX, const char $\ast$fmt,...)
+\item 
+int \mbox{\hyperlink{window_8c_a75644f9b2beba8f05ece357ecacec463}{window\+\_\+mvprintw\+\_\+col}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, int posY, int posX, unsigned int color, const char $\ast$fmt,...)
+\item 
+int \mbox{\hyperlink{window_8c_a1760171de82151243675ca0b9fb66931}{window\+\_\+refresh}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window)
+\item 
+int \mbox{\hyperlink{window_8c_a2ea74f51725fda2ae861c01d00a6c1a8}{window\+\_\+color}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window, unsigned int color)
+\item 
+int \mbox{\hyperlink{window_8c_a8564dd3952b96558e378ab050952bd21}{window\+\_\+erase}} (\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$window)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{window_8c_a6f9526f0654f24b3bf354b9295b9e0d4}\label{window_8c_a6f9526f0654f24b3bf354b9295b9e0d4}} 
+\index{window.c@{window.c}!window\_addch@{window\_addch}}
+\index{window\_addch@{window\_addch}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_addch()}{window\_addch()}}
+{\footnotesize\ttfamily int window\+\_\+addch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{chtype}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line 66 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a621742437a381c86b0092a5cfad8ebf9}\label{window_8c_a621742437a381c86b0092a5cfad8ebf9}} 
+\index{window.c@{window.c}!window\_addch\_col@{window\_addch\_col}}
+\index{window\_addch\_col@{window\_addch\_col}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_addch\_col()}{window\_addch\_col()}}
+{\footnotesize\ttfamily int window\+\_\+addch\+\_\+col (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{unsigned int}]{color,  }\item[{chtype}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line 75 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a2ea74f51725fda2ae861c01d00a6c1a8}\label{window_8c_a2ea74f51725fda2ae861c01d00a6c1a8}} 
+\index{window.c@{window.c}!window\_color@{window\_color}}
+\index{window\_color@{window\_color}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_color()}{window\_color()}}
+{\footnotesize\ttfamily int window\+\_\+color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{unsigned int}]{color }\end{DoxyParamCaption})}
+
+
+
+Definition at line 150 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a3dc3e13f0c9c8fae71a18a79f775c869}\label{window_8c_a3dc3e13f0c9c8fae71a18a79f775c869}} 
+\index{window.c@{window.c}!window\_create@{window\_create}}
+\index{window\_create@{window\_create}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_create()}{window\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structwindow__t}{window\+\_\+t}}$\ast$ window\+\_\+create (\begin{DoxyParamCaption}\item[{int}]{posX,  }\item[{int}]{posY,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{char $\ast$}]{title,  }\item[{bool}]{scroll }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a796fcb4f0d134923fe0a9154550a0384}\label{window_8c_a796fcb4f0d134923fe0a9154550a0384}} 
+\index{window.c@{window.c}!window\_delete@{window\_delete}}
+\index{window\_delete@{window\_delete}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_delete()}{window\_delete()}}
+{\footnotesize\ttfamily void window\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$$\ast$}]{window }\end{DoxyParamCaption})}
+
+
+
+Definition at line 32 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a8564dd3952b96558e378ab050952bd21}\label{window_8c_a8564dd3952b96558e378ab050952bd21}} 
+\index{window.c@{window.c}!window\_erase@{window\_erase}}
+\index{window\_erase@{window\_erase}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_erase()}{window\_erase()}}
+{\footnotesize\ttfamily int window\+\_\+erase (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window }\end{DoxyParamCaption})}
+
+
+
+Definition at line 154 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_abe1b0d6bc64cf93ee5e699af0dfb7e8f}\label{window_8c_abe1b0d6bc64cf93ee5e699af0dfb7e8f}} 
+\index{window.c@{window.c}!window\_getcoordinates@{window\_getcoordinates}}
+\index{window\_getcoordinates@{window\_getcoordinates}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_getcoordinates()}{window\_getcoordinates()}}
+{\footnotesize\ttfamily bool window\+\_\+getcoordinates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posx,  }\item[{int}]{posy,  }\item[{int $\ast$}]{x,  }\item[{int $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line 49 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a834c1cacfb5b89bbf480b2ed92edbbb5}\label{window_8c_a834c1cacfb5b89bbf480b2ed92edbbb5}} 
+\index{window.c@{window.c}!window\_isin@{window\_isin}}
+\index{window\_isin@{window\_isin}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_isin()}{window\_isin()}}
+{\footnotesize\ttfamily bool window\+\_\+isin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line 39 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a17764a28d251113731ecf9e99101ba4e}\label{window_8c_a17764a28d251113731ecf9e99101ba4e}} 
+\index{window.c@{window.c}!window\_move@{window\_move}}
+\index{window\_move@{window\_move}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_move()}{window\_move()}}
+{\footnotesize\ttfamily int window\+\_\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posY,  }\item[{int}]{posX }\end{DoxyParamCaption})}
+
+
+
+Definition at line 62 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_acbbc7914485b0dee30389f8042b45bec}\label{window_8c_acbbc7914485b0dee30389f8042b45bec}} 
+\index{window.c@{window.c}!window\_mvaddch@{window\_mvaddch}}
+\index{window\_mvaddch@{window\_mvaddch}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_mvaddch()}{window\_mvaddch()}}
+{\footnotesize\ttfamily int window\+\_\+mvaddch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posY,  }\item[{int}]{posX,  }\item[{chtype}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line 70 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_ad2d9b0aaf340d46ab160b0c9074c31c0}\label{window_8c_ad2d9b0aaf340d46ab160b0c9074c31c0}} 
+\index{window.c@{window.c}!window\_mvaddch\_col@{window\_mvaddch\_col}}
+\index{window\_mvaddch\_col@{window\_mvaddch\_col}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_mvaddch\_col()}{window\_mvaddch\_col()}}
+{\footnotesize\ttfamily int window\+\_\+mvaddch\+\_\+col (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posY,  }\item[{int}]{posX,  }\item[{unsigned int}]{color,  }\item[{chtype}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line 85 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_abf5a063a698b48d71405c50e7b43d1e3}\label{window_8c_abf5a063a698b48d71405c50e7b43d1e3}} 
+\index{window.c@{window.c}!window\_mvprintw@{window\_mvprintw}}
+\index{window\_mvprintw@{window\_mvprintw}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_mvprintw()}{window\_mvprintw()}}
+{\footnotesize\ttfamily int window\+\_\+mvprintw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posY,  }\item[{int}]{posX,  }\item[{const char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 120 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a75644f9b2beba8f05ece357ecacec463}\label{window_8c_a75644f9b2beba8f05ece357ecacec463}} 
+\index{window.c@{window.c}!window\_mvprintw\_col@{window\_mvprintw\_col}}
+\index{window\_mvprintw\_col@{window\_mvprintw\_col}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_mvprintw\_col()}{window\_mvprintw\_col()}}
+{\footnotesize\ttfamily int window\+\_\+mvprintw\+\_\+col (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{int}]{posY,  }\item[{int}]{posX,  }\item[{unsigned int}]{color,  }\item[{const char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 132 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_ad3b77bb3aed0ac5b35411a3fc4345346}\label{window_8c_ad3b77bb3aed0ac5b35411a3fc4345346}} 
+\index{window.c@{window.c}!window\_printw@{window\_printw}}
+\index{window\_printw@{window\_printw}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_printw()}{window\_printw()}}
+{\footnotesize\ttfamily int window\+\_\+printw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{const char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 96 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a96e2c8f1908306c9970ae05d3b681327}\label{window_8c_a96e2c8f1908306c9970ae05d3b681327}} 
+\index{window.c@{window.c}!window\_printw\_col@{window\_printw\_col}}
+\index{window\_printw\_col@{window\_printw\_col}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_printw\_col()}{window\_printw\_col()}}
+{\footnotesize\ttfamily int window\+\_\+printw\+\_\+col (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window,  }\item[{unsigned int}]{color,  }\item[{const char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 107 of file window.\+c.
+
+\mbox{\Hypertarget{window_8c_a1760171de82151243675ca0b9fb66931}\label{window_8c_a1760171de82151243675ca0b9fb66931}} 
+\index{window.c@{window.c}!window\_refresh@{window\_refresh}}
+\index{window\_refresh@{window\_refresh}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{window\_refresh()}{window\_refresh()}}
+{\footnotesize\ttfamily int window\+\_\+refresh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structwindow__t}{window\+\_\+t}} $\ast$}]{window }\end{DoxyParamCaption})}
+
+
+
+Definition at line 146 of file window.\+c.
+

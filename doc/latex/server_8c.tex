@@ -1,0 +1,108 @@
+\hypertarget{server_8c}{}\doxysection{code/src/server.c File Reference}
+\label{server_8c}\index{code/src/server.c@{code/src/server.c}}
+
+
+File that manages the server.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}network\+\_\+request.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}server\+\_\+udp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}create\+\_\+game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}info\+\_\+client.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}function.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{server_8c_a3597cd9be1dec938cefd909341192d7e}{handler}} (int signum)
+\begin{DoxyCompactList}\small\item\em Function to handle the signal. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{server_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{server_8c_a6c0af9f2e97842405fb15ed952ef2976}{stop}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages the server. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{server_8c_a3597cd9be1dec938cefd909341192d7e}\label{server_8c_a3597cd9be1dec938cefd909341192d7e}} 
+\index{server.c@{server.c}!handler@{handler}}
+\index{handler@{handler}!server.c@{server.c}}
+\doxysubsubsection{\texorpdfstring{handler()}{handler()}}
+{\footnotesize\ttfamily void handler (\begin{DoxyParamCaption}\item[{int}]{signum }\end{DoxyParamCaption})}
+
+
+
+Function to handle the signal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em signum} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 34 of file server.\+c.
+
+\mbox{\Hypertarget{server_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{server_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{server.c@{server.c}!main@{main}}
+\index{main@{main}!server.c@{server.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file server.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{server_8c_a6c0af9f2e97842405fb15ed952ef2976}\label{server_8c_a6c0af9f2e97842405fb15ed952ef2976}} 
+\index{server.c@{server.c}!stop@{stop}}
+\index{stop@{stop}!server.c@{server.c}}
+\doxysubsubsection{\texorpdfstring{stop}{stop}}
+{\footnotesize\ttfamily int stop = 0}
+
+
+
+Definition at line 27 of file server.\+c.
+

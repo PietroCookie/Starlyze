@@ -1,0 +1,85 @@
+\hypertarget{enemy_8c}{}\doxysection{code/src/game-\/control/enemy.c File Reference}
+\label{enemy_8c}\index{code/src/game-\/control/enemy.c@{code/src/game-\/control/enemy.c}}
+{\ttfamily \#include \char`\"{}enemy.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}game\+\_\+control.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}move\+\_\+world.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}entity.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{enemy_8c_a0a3b37c9abec53b86766f94170e69c2a}{initialise\+\_\+enemy}} (\mbox{\hyperlink{structenemy__t}{enemy\+\_\+t}} $\ast$enemy, \mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}} type)
+\begin{DoxyCompactList}\small\item\em Initialize an enemy. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{enemy_8c_a62b3ba15615ce55a70266f672b5dcf5a}{thread\+\_\+enemy}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em thread of operation of an enemy \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{enemy_8c_aa0fe3c9611783a7311c9639e4a145698}{direction\+\_\+alea}} (\mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}} type\+\_\+enemy)
+\begin{DoxyCompactList}\small\item\em Gets a random direction depending on the type of an enemy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{enemy_8c_aa0fe3c9611783a7311c9639e4a145698}\label{enemy_8c_aa0fe3c9611783a7311c9639e4a145698}} 
+\index{enemy.c@{enemy.c}!direction\_alea@{direction\_alea}}
+\index{direction\_alea@{direction\_alea}!enemy.c@{enemy.c}}
+\doxysubsubsection{\texorpdfstring{direction\_alea()}{direction\_alea()}}
+{\footnotesize\ttfamily int direction\+\_\+alea (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}}}]{type\+\_\+enemy }\end{DoxyParamCaption})}
+
+
+
+Gets a random direction depending on the type of an enemy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\+\_\+enemy} & The type of the enemy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The random direction 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file enemy.\+c.
+
+\mbox{\Hypertarget{enemy_8c_a0a3b37c9abec53b86766f94170e69c2a}\label{enemy_8c_a0a3b37c9abec53b86766f94170e69c2a}} 
+\index{enemy.c@{enemy.c}!initialise\_enemy@{initialise\_enemy}}
+\index{initialise\_enemy@{initialise\_enemy}!enemy.c@{enemy.c}}
+\doxysubsubsection{\texorpdfstring{initialise\_enemy()}{initialise\_enemy()}}
+{\footnotesize\ttfamily void initialise\+\_\+enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structenemy__t}{enemy\+\_\+t}} $\ast$}]{enemy,  }\item[{\mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Initialize an enemy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enemy} & Enemy initialized \\
+\hline
+{\em type} & The type of the enemy \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 11 of file enemy.\+c.
+
+\mbox{\Hypertarget{enemy_8c_a62b3ba15615ce55a70266f672b5dcf5a}\label{enemy_8c_a62b3ba15615ce55a70266f672b5dcf5a}} 
+\index{enemy.c@{enemy.c}!thread\_enemy@{thread\_enemy}}
+\index{thread\_enemy@{thread\_enemy}!enemy.c@{enemy.c}}
+\doxysubsubsection{\texorpdfstring{thread\_enemy()}{thread\_enemy()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+enemy (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+thread of operation of an enemy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & The necessary information in the form of the \mbox{\hyperlink{structenemy__infos__thread__t}{enemy\+\_\+infos\+\_\+thread\+\_\+t}} structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The result of this Thread -\/ there is N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 15 of file enemy.\+c.
+

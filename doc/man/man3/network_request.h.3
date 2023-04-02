@@ -1,0 +1,172 @@
+.TH "code/include/global/network_request.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/global/network_request.h \- File that manages the requests and responses of the network between the client and the server\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'server_udp\&.h'\fP
+.br
+\fC#include 'create_game\&.h'\fP
+.br
+\fC#include 'game\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "union \fBcontent_request_client_udp_t\fP"
+.br
+.RI "Structure that contains the content of the request of the client\&. "
+.ti -1c
+.RI "struct \fBrequest_client_udp_t\fP"
+.br
+.RI "Structure that contains the request of the client\&. "
+.ti -1c
+.RI "union \fBcontent_response_server_t\fP"
+.br
+.RI "Structure that contains the content of the response of the server\&. "
+.ti -1c
+.RI "struct \fBresponse_server_udp_t\fP"
+.br
+.RI "Structure that contains the response of the server\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_MSG\fP   255"
+.br
+.ti -1c
+.RI "#define \fBCLIENT_FIRST_CONNEXION_SEND_PSEUDO\fP   1"
+.br
+.ti -1c
+.RI "#define \fBCLIENT_NB_CLIENTS\fP   2"
+.br
+.ti -1c
+.RI "#define \fBCLIENT_DISCONNECTION\fP   3"
+.br
+.ti -1c
+.RI "#define \fBCLIENT_LIST_PLAYERS\fP   4"
+.br
+.ti -1c
+.RI "#define \fBCLIENT_RECOVERING_LIST_WORLDS\fP   5"
+.br
+.ti -1c
+.RI "#define \fBCLIENT_START_GAMES\fP   6"
+.br
+.ti -1c
+.RI "#define \fBCLIENT_SEND_LIST_GAME\fP   7"
+.br
+.ti -1c
+.RI "#define \fBCLIENT_JOIN_GAME\fP   8"
+.br
+.ti -1c
+.RI "#define \fBCLIENT_WAITING_FOR_GAME_START\fP   9"
+.br
+.ti -1c
+.RI "#define \fBSERVER_SEND_ID_CLIENTS\fP   1"
+.br
+.ti -1c
+.RI "#define \fBSERVER_SEND_NB_CLIENTS\fP   2"
+.br
+.ti -1c
+.RI "#define \fBSERVER_SEND_LIST_GAMES\fP   3"
+.br
+.ti -1c
+.RI "#define \fBSERVER_SEND_NO_GAMES\fP   4"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manages the requests and responses of the network between the client and the server\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-29
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBnetwork_request\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CLIENT_DISCONNECTION   3"
+
+.PP
+Definition at line 24 of file network_request\&.h\&.
+.SS "#define CLIENT_FIRST_CONNEXION_SEND_PSEUDO   1"
+
+.PP
+Definition at line 22 of file network_request\&.h\&.
+.SS "#define CLIENT_JOIN_GAME   8"
+
+.PP
+Definition at line 29 of file network_request\&.h\&.
+.SS "#define CLIENT_LIST_PLAYERS   4"
+
+.PP
+Definition at line 25 of file network_request\&.h\&.
+.SS "#define CLIENT_NB_CLIENTS   2"
+
+.PP
+Definition at line 23 of file network_request\&.h\&.
+.SS "#define CLIENT_RECOVERING_LIST_WORLDS   5"
+
+.PP
+Definition at line 26 of file network_request\&.h\&.
+.SS "#define CLIENT_SEND_LIST_GAME   7"
+
+.PP
+Definition at line 28 of file network_request\&.h\&.
+.SS "#define CLIENT_START_GAMES   6"
+
+.PP
+Definition at line 27 of file network_request\&.h\&.
+.SS "#define CLIENT_WAITING_FOR_GAME_START   9"
+
+.PP
+Definition at line 30 of file network_request\&.h\&.
+.SS "#define MAX_MSG   255"
+
+.PP
+Definition at line 19 of file network_request\&.h\&.
+.SS "#define SERVER_SEND_ID_CLIENTS   1"
+
+.PP
+Definition at line 33 of file network_request\&.h\&.
+.SS "#define SERVER_SEND_LIST_GAMES   3"
+
+.PP
+Definition at line 35 of file network_request\&.h\&.
+.SS "#define SERVER_SEND_NB_CLIENTS   2"
+
+.PP
+Definition at line 34 of file network_request\&.h\&.
+.SS "#define SERVER_SEND_NO_GAMES   4"
+
+.PP
+Definition at line 36 of file network_request\&.h\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

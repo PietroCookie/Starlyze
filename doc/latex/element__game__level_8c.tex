@@ -1,0 +1,82 @@
+\hypertarget{element__game__level_8c}{}\doxysection{code/src/editor/element\+\_\+game\+\_\+level.c File Reference}
+\label{element__game__level_8c}\index{code/src/editor/element\_game\_level.c@{code/src/editor/element\_game\_level.c}}
+{\ttfamily \#include \char`\"{}element\+\_\+game\+\_\+level.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{element__game__level_8c_a46d56f4dcdb6f56206bcc987fd775866}{necessary\+\_\+size\+\_\+element\+\_\+game\+\_\+level}} ()
+\begin{DoxyCompactList}\small\item\em Calculate the necessary size for save an element of game\+\_\+level in file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{element__game__level_8c_a3c43dac0cc12def0099004fcddd506c7}{write\+\_\+element\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor}} (int file\+\_\+descriptor, \mbox{\hyperlink{structelement__game__level__t}{element\+\_\+game\+\_\+level\+\_\+t}} element\+\_\+game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Write an element game\+\_\+level in file descriptor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structelement__game__level__t}{element\+\_\+game\+\_\+level\+\_\+t}} $\ast$ \mbox{\hyperlink{element__game__level_8c_a4ec10114f095fe4a6fba6a611ba1c376}{read\+\_\+element\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor}} (int file\+\_\+descriptor, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Read an element game\+\_\+level in file descriptor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{element__game__level_8c_a46d56f4dcdb6f56206bcc987fd775866}\label{element__game__level_8c_a46d56f4dcdb6f56206bcc987fd775866}} 
+\index{element\_game\_level.c@{element\_game\_level.c}!necessary\_size\_element\_game\_level@{necessary\_size\_element\_game\_level}}
+\index{necessary\_size\_element\_game\_level@{necessary\_size\_element\_game\_level}!element\_game\_level.c@{element\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{necessary\_size\_element\_game\_level()}{necessary\_size\_element\_game\_level()}}
+{\footnotesize\ttfamily size\+\_\+t necessary\+\_\+size\+\_\+element\+\_\+game\+\_\+level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculate the necessary size for save an element of game\+\_\+level in file. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size necessary 
+\end{DoxyReturn}
+
+
+Definition at line 7 of file element\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{element__game__level_8c_a4ec10114f095fe4a6fba6a611ba1c376}\label{element__game__level_8c_a4ec10114f095fe4a6fba6a611ba1c376}} 
+\index{element\_game\_level.c@{element\_game\_level.c}!read\_element\_game\_level\_in\_file\_descriptor@{read\_element\_game\_level\_in\_file\_descriptor}}
+\index{read\_element\_game\_level\_in\_file\_descriptor@{read\_element\_game\_level\_in\_file\_descriptor}!element\_game\_level.c@{element\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{read\_element\_game\_level\_in\_file\_descriptor()}{read\_element\_game\_level\_in\_file\_descriptor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structelement__game__level__t}{element\+\_\+game\+\_\+level\+\_\+t}}$\ast$ read\+\_\+element\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Read an element game\+\_\+level in file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file descriptor in which we read \\
+\hline
+{\em posX} & Position X of the element in game\+\_\+level \\
+\hline
+{\em posY} & Position Y of the element in game\+\_\+level \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+element\+\_\+game\+\_\+level\+\_\+t$\ast$ The variable that will contain the element read 
+\end{DoxyReturn}
+
+
+Definition at line 15 of file element\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{element__game__level_8c_a3c43dac0cc12def0099004fcddd506c7}\label{element__game__level_8c_a3c43dac0cc12def0099004fcddd506c7}} 
+\index{element\_game\_level.c@{element\_game\_level.c}!write\_element\_game\_level\_in\_file\_descriptor@{write\_element\_game\_level\_in\_file\_descriptor}}
+\index{write\_element\_game\_level\_in\_file\_descriptor@{write\_element\_game\_level\_in\_file\_descriptor}!element\_game\_level.c@{element\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{write\_element\_game\_level\_in\_file\_descriptor()}{write\_element\_game\_level\_in\_file\_descriptor()}}
+{\footnotesize\ttfamily void write\+\_\+element\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor,  }\item[{\mbox{\hyperlink{structelement__game__level__t}{element\+\_\+game\+\_\+level\+\_\+t}}}]{element\+\_\+game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Write an element game\+\_\+level in file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file descriptor in which we write \\
+\hline
+{\em element\+\_\+game\+\_\+level} & The element of game\+\_\+level to write \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 11 of file element\+\_\+game\+\_\+level.\+c.
+

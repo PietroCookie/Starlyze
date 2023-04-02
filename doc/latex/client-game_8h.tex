@@ -1,0 +1,87 @@
+\hypertarget{client-game_8h}{}\doxysection{code/include/client-\/game/client-\/game.h File Reference}
+\label{client-game_8h}\index{code/include/client-\/game/client-\/game.h@{code/include/client-\/game/client-\/game.h}}
+
+
+File that manages the client in a game.  
+
+
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}interface\+\_\+game.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structclient__game__infos__thread__t}{client\+\_\+game\+\_\+infos\+\_\+thread\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains informations transmit at thread\+\_\+display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{client-game_8h_adfa5e14c205515f99fefd508bd30b5e7}{connection\+\_\+game}} (char $\ast$address, int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}})
+\begin{DoxyCompactList}\small\item\em Creates a T\+CP socket for the connection to the game server and connects it. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{client-game_8h_a0600569733a80f0ecb65cc2f936a55a1}{thread\+\_\+display}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The thread that receive and displays the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages the client in a game. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client-game_8h_adfa5e14c205515f99fefd508bd30b5e7}\label{client-game_8h_adfa5e14c205515f99fefd508bd30b5e7}} 
+\index{client-\/game.h@{client-\/game.h}!connection\_game@{connection\_game}}
+\index{connection\_game@{connection\_game}!client-\/game.h@{client-\/game.h}}
+\doxysubsubsection{\texorpdfstring{connection\_game()}{connection\_game()}}
+{\footnotesize\ttfamily int connection\+\_\+game (\begin{DoxyParamCaption}\item[{char $\ast$}]{address,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Creates a T\+CP socket for the connection to the game server and connects it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & The address of the game server \\
+\hline
+{\em port} & The port of the game server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The file descriptor of the socket 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file client-\/game.\+c.
+
+\mbox{\Hypertarget{client-game_8h_a0600569733a80f0ecb65cc2f936a55a1}\label{client-game_8h_a0600569733a80f0ecb65cc2f936a55a1}} 
+\index{client-\/game.h@{client-\/game.h}!thread\_display@{thread\_display}}
+\index{thread\_display@{thread\_display}!client-\/game.h@{client-\/game.h}}
+\doxysubsubsection{\texorpdfstring{thread\_display()}{thread\_display()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+display (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+The thread that receive and displays the game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & a pointer to a \mbox{\hyperlink{structclient__game__infos__thread__t}{client\+\_\+game\+\_\+infos\+\_\+thread\+\_\+t}} structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The result of this Thread -\/ there is N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 46 of file client-\/game.\+c.
+

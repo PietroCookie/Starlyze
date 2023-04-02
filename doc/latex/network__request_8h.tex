@@ -1,0 +1,212 @@
+\hypertarget{network__request_8h}{}\doxysection{code/include/global/network\+\_\+request.h File Reference}
+\label{network__request_8h}\index{code/include/global/network\_request.h@{code/include/global/network\_request.h}}
+
+
+File that manages the requests and responses of the network between the client and the server.  
+
+
+{\ttfamily \#include \char`\"{}server\+\_\+udp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}create\+\_\+game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}game.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unioncontent__request__client__udp__t}{content\+\_\+request\+\_\+client\+\_\+udp\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the content of the request of the client. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrequest__client__udp__t}{request\+\_\+client\+\_\+udp\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the request of the client. \end{DoxyCompactList}\item 
+union \mbox{\hyperlink{unioncontent__response__server__t}{content\+\_\+response\+\_\+server\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the content of the response of the server. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structresponse__server__udp__t}{response\+\_\+server\+\_\+udp\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the response of the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{network__request_8h_aa24597a54a085c6c2c33b64138f09eff}{M\+A\+X\+\_\+\+M\+SG}}~255
+\item 
+\#define \mbox{\hyperlink{network__request_8h_a9be9af282af24e189d05669a373a154b}{C\+L\+I\+E\+N\+T\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+O\+N\+N\+E\+X\+I\+O\+N\+\_\+\+S\+E\+N\+D\+\_\+\+P\+S\+E\+U\+DO}}~1
+\item 
+\#define \mbox{\hyperlink{network__request_8h_a6e0d29b1e8e4c291260b14a1f698027c}{C\+L\+I\+E\+N\+T\+\_\+\+N\+B\+\_\+\+C\+L\+I\+E\+N\+TS}}~2
+\item 
+\#define \mbox{\hyperlink{network__request_8h_a041ce59115f2d01069a64dece2654096}{C\+L\+I\+E\+N\+T\+\_\+\+D\+I\+S\+C\+O\+N\+N\+E\+C\+T\+I\+ON}}~3
+\item 
+\#define \mbox{\hyperlink{network__request_8h_a3bcf49a2d41ca03f2853e5a472602a2e}{C\+L\+I\+E\+N\+T\+\_\+\+L\+I\+S\+T\+\_\+\+P\+L\+A\+Y\+E\+RS}}~4
+\item 
+\#define \mbox{\hyperlink{network__request_8h_a475633137683f6088ee52b7eb6b83bd9}{C\+L\+I\+E\+N\+T\+\_\+\+R\+E\+C\+O\+V\+E\+R\+I\+N\+G\+\_\+\+L\+I\+S\+T\+\_\+\+W\+O\+R\+L\+DS}}~5
+\item 
+\#define \mbox{\hyperlink{network__request_8h_a05173534a22ec69343a7a844f6d73a4b}{C\+L\+I\+E\+N\+T\+\_\+\+S\+T\+A\+R\+T\+\_\+\+G\+A\+M\+ES}}~6
+\item 
+\#define \mbox{\hyperlink{network__request_8h_ae0008ac10701185945b00930077ed046}{C\+L\+I\+E\+N\+T\+\_\+\+S\+E\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+G\+A\+ME}}~7
+\item 
+\#define \mbox{\hyperlink{network__request_8h_ab61e90f6834d20bc46fbac66c7951330}{C\+L\+I\+E\+N\+T\+\_\+\+J\+O\+I\+N\+\_\+\+G\+A\+ME}}~8
+\item 
+\#define \mbox{\hyperlink{network__request_8h_afbeaf5c91506581bb833cedf8fd5b150}{C\+L\+I\+E\+N\+T\+\_\+\+W\+A\+I\+T\+I\+N\+G\+\_\+\+F\+O\+R\+\_\+\+G\+A\+M\+E\+\_\+\+S\+T\+A\+RT}}~9
+\item 
+\#define \mbox{\hyperlink{network__request_8h_a525c2bbbf21216307d1854bd65198c62}{S\+E\+R\+V\+E\+R\+\_\+\+S\+E\+N\+D\+\_\+\+I\+D\+\_\+\+C\+L\+I\+E\+N\+TS}}~1
+\item 
+\#define \mbox{\hyperlink{network__request_8h_a681e7d6b2fc20c49ba6296a4e152b943}{S\+E\+R\+V\+E\+R\+\_\+\+S\+E\+N\+D\+\_\+\+N\+B\+\_\+\+C\+L\+I\+E\+N\+TS}}~2
+\item 
+\#define \mbox{\hyperlink{network__request_8h_aecc2bf9facc9f9b552da1f3e8253d241}{S\+E\+R\+V\+E\+R\+\_\+\+S\+E\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+G\+A\+M\+ES}}~3
+\item 
+\#define \mbox{\hyperlink{network__request_8h_a78375831072a449149d8049562180cf1}{S\+E\+R\+V\+E\+R\+\_\+\+S\+E\+N\+D\+\_\+\+N\+O\+\_\+\+G\+A\+M\+ES}}~4
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages the requests and responses of the network between the client and the server. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{network__request_8h_a041ce59115f2d01069a64dece2654096}\label{network__request_8h_a041ce59115f2d01069a64dece2654096}} 
+\index{network\_request.h@{network\_request.h}!CLIENT\_DISCONNECTION@{CLIENT\_DISCONNECTION}}
+\index{CLIENT\_DISCONNECTION@{CLIENT\_DISCONNECTION}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_DISCONNECTION}{CLIENT\_DISCONNECTION}}
+{\footnotesize\ttfamily \#define C\+L\+I\+E\+N\+T\+\_\+\+D\+I\+S\+C\+O\+N\+N\+E\+C\+T\+I\+ON~3}
+
+
+
+Definition at line 24 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_a9be9af282af24e189d05669a373a154b}\label{network__request_8h_a9be9af282af24e189d05669a373a154b}} 
+\index{network\_request.h@{network\_request.h}!CLIENT\_FIRST\_CONNEXION\_SEND\_PSEUDO@{CLIENT\_FIRST\_CONNEXION\_SEND\_PSEUDO}}
+\index{CLIENT\_FIRST\_CONNEXION\_SEND\_PSEUDO@{CLIENT\_FIRST\_CONNEXION\_SEND\_PSEUDO}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_FIRST\_CONNEXION\_SEND\_PSEUDO}{CLIENT\_FIRST\_CONNEXION\_SEND\_PSEUDO}}
+{\footnotesize\ttfamily \#define C\+L\+I\+E\+N\+T\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+O\+N\+N\+E\+X\+I\+O\+N\+\_\+\+S\+E\+N\+D\+\_\+\+P\+S\+E\+U\+DO~1}
+
+
+
+Definition at line 22 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_ab61e90f6834d20bc46fbac66c7951330}\label{network__request_8h_ab61e90f6834d20bc46fbac66c7951330}} 
+\index{network\_request.h@{network\_request.h}!CLIENT\_JOIN\_GAME@{CLIENT\_JOIN\_GAME}}
+\index{CLIENT\_JOIN\_GAME@{CLIENT\_JOIN\_GAME}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_JOIN\_GAME}{CLIENT\_JOIN\_GAME}}
+{\footnotesize\ttfamily \#define C\+L\+I\+E\+N\+T\+\_\+\+J\+O\+I\+N\+\_\+\+G\+A\+ME~8}
+
+
+
+Definition at line 29 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_a3bcf49a2d41ca03f2853e5a472602a2e}\label{network__request_8h_a3bcf49a2d41ca03f2853e5a472602a2e}} 
+\index{network\_request.h@{network\_request.h}!CLIENT\_LIST\_PLAYERS@{CLIENT\_LIST\_PLAYERS}}
+\index{CLIENT\_LIST\_PLAYERS@{CLIENT\_LIST\_PLAYERS}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_LIST\_PLAYERS}{CLIENT\_LIST\_PLAYERS}}
+{\footnotesize\ttfamily \#define C\+L\+I\+E\+N\+T\+\_\+\+L\+I\+S\+T\+\_\+\+P\+L\+A\+Y\+E\+RS~4}
+
+
+
+Definition at line 25 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_a6e0d29b1e8e4c291260b14a1f698027c}\label{network__request_8h_a6e0d29b1e8e4c291260b14a1f698027c}} 
+\index{network\_request.h@{network\_request.h}!CLIENT\_NB\_CLIENTS@{CLIENT\_NB\_CLIENTS}}
+\index{CLIENT\_NB\_CLIENTS@{CLIENT\_NB\_CLIENTS}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_NB\_CLIENTS}{CLIENT\_NB\_CLIENTS}}
+{\footnotesize\ttfamily \#define C\+L\+I\+E\+N\+T\+\_\+\+N\+B\+\_\+\+C\+L\+I\+E\+N\+TS~2}
+
+
+
+Definition at line 23 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_a475633137683f6088ee52b7eb6b83bd9}\label{network__request_8h_a475633137683f6088ee52b7eb6b83bd9}} 
+\index{network\_request.h@{network\_request.h}!CLIENT\_RECOVERING\_LIST\_WORLDS@{CLIENT\_RECOVERING\_LIST\_WORLDS}}
+\index{CLIENT\_RECOVERING\_LIST\_WORLDS@{CLIENT\_RECOVERING\_LIST\_WORLDS}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_RECOVERING\_LIST\_WORLDS}{CLIENT\_RECOVERING\_LIST\_WORLDS}}
+{\footnotesize\ttfamily \#define C\+L\+I\+E\+N\+T\+\_\+\+R\+E\+C\+O\+V\+E\+R\+I\+N\+G\+\_\+\+L\+I\+S\+T\+\_\+\+W\+O\+R\+L\+DS~5}
+
+
+
+Definition at line 26 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_ae0008ac10701185945b00930077ed046}\label{network__request_8h_ae0008ac10701185945b00930077ed046}} 
+\index{network\_request.h@{network\_request.h}!CLIENT\_SEND\_LIST\_GAME@{CLIENT\_SEND\_LIST\_GAME}}
+\index{CLIENT\_SEND\_LIST\_GAME@{CLIENT\_SEND\_LIST\_GAME}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_SEND\_LIST\_GAME}{CLIENT\_SEND\_LIST\_GAME}}
+{\footnotesize\ttfamily \#define C\+L\+I\+E\+N\+T\+\_\+\+S\+E\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+G\+A\+ME~7}
+
+
+
+Definition at line 28 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_a05173534a22ec69343a7a844f6d73a4b}\label{network__request_8h_a05173534a22ec69343a7a844f6d73a4b}} 
+\index{network\_request.h@{network\_request.h}!CLIENT\_START\_GAMES@{CLIENT\_START\_GAMES}}
+\index{CLIENT\_START\_GAMES@{CLIENT\_START\_GAMES}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_START\_GAMES}{CLIENT\_START\_GAMES}}
+{\footnotesize\ttfamily \#define C\+L\+I\+E\+N\+T\+\_\+\+S\+T\+A\+R\+T\+\_\+\+G\+A\+M\+ES~6}
+
+
+
+Definition at line 27 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_afbeaf5c91506581bb833cedf8fd5b150}\label{network__request_8h_afbeaf5c91506581bb833cedf8fd5b150}} 
+\index{network\_request.h@{network\_request.h}!CLIENT\_WAITING\_FOR\_GAME\_START@{CLIENT\_WAITING\_FOR\_GAME\_START}}
+\index{CLIENT\_WAITING\_FOR\_GAME\_START@{CLIENT\_WAITING\_FOR\_GAME\_START}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_WAITING\_FOR\_GAME\_START}{CLIENT\_WAITING\_FOR\_GAME\_START}}
+{\footnotesize\ttfamily \#define C\+L\+I\+E\+N\+T\+\_\+\+W\+A\+I\+T\+I\+N\+G\+\_\+\+F\+O\+R\+\_\+\+G\+A\+M\+E\+\_\+\+S\+T\+A\+RT~9}
+
+
+
+Definition at line 30 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_aa24597a54a085c6c2c33b64138f09eff}\label{network__request_8h_aa24597a54a085c6c2c33b64138f09eff}} 
+\index{network\_request.h@{network\_request.h}!MAX\_MSG@{MAX\_MSG}}
+\index{MAX\_MSG@{MAX\_MSG}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_MSG}{MAX\_MSG}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+M\+SG~255}
+
+
+
+Definition at line 19 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_a525c2bbbf21216307d1854bd65198c62}\label{network__request_8h_a525c2bbbf21216307d1854bd65198c62}} 
+\index{network\_request.h@{network\_request.h}!SERVER\_SEND\_ID\_CLIENTS@{SERVER\_SEND\_ID\_CLIENTS}}
+\index{SERVER\_SEND\_ID\_CLIENTS@{SERVER\_SEND\_ID\_CLIENTS}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{SERVER\_SEND\_ID\_CLIENTS}{SERVER\_SEND\_ID\_CLIENTS}}
+{\footnotesize\ttfamily \#define S\+E\+R\+V\+E\+R\+\_\+\+S\+E\+N\+D\+\_\+\+I\+D\+\_\+\+C\+L\+I\+E\+N\+TS~1}
+
+
+
+Definition at line 33 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_aecc2bf9facc9f9b552da1f3e8253d241}\label{network__request_8h_aecc2bf9facc9f9b552da1f3e8253d241}} 
+\index{network\_request.h@{network\_request.h}!SERVER\_SEND\_LIST\_GAMES@{SERVER\_SEND\_LIST\_GAMES}}
+\index{SERVER\_SEND\_LIST\_GAMES@{SERVER\_SEND\_LIST\_GAMES}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{SERVER\_SEND\_LIST\_GAMES}{SERVER\_SEND\_LIST\_GAMES}}
+{\footnotesize\ttfamily \#define S\+E\+R\+V\+E\+R\+\_\+\+S\+E\+N\+D\+\_\+\+L\+I\+S\+T\+\_\+\+G\+A\+M\+ES~3}
+
+
+
+Definition at line 35 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_a681e7d6b2fc20c49ba6296a4e152b943}\label{network__request_8h_a681e7d6b2fc20c49ba6296a4e152b943}} 
+\index{network\_request.h@{network\_request.h}!SERVER\_SEND\_NB\_CLIENTS@{SERVER\_SEND\_NB\_CLIENTS}}
+\index{SERVER\_SEND\_NB\_CLIENTS@{SERVER\_SEND\_NB\_CLIENTS}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{SERVER\_SEND\_NB\_CLIENTS}{SERVER\_SEND\_NB\_CLIENTS}}
+{\footnotesize\ttfamily \#define S\+E\+R\+V\+E\+R\+\_\+\+S\+E\+N\+D\+\_\+\+N\+B\+\_\+\+C\+L\+I\+E\+N\+TS~2}
+
+
+
+Definition at line 34 of file network\+\_\+request.\+h.
+
+\mbox{\Hypertarget{network__request_8h_a78375831072a449149d8049562180cf1}\label{network__request_8h_a78375831072a449149d8049562180cf1}} 
+\index{network\_request.h@{network\_request.h}!SERVER\_SEND\_NO\_GAMES@{SERVER\_SEND\_NO\_GAMES}}
+\index{SERVER\_SEND\_NO\_GAMES@{SERVER\_SEND\_NO\_GAMES}!network\_request.h@{network\_request.h}}
+\doxysubsubsection{\texorpdfstring{SERVER\_SEND\_NO\_GAMES}{SERVER\_SEND\_NO\_GAMES}}
+{\footnotesize\ttfamily \#define S\+E\+R\+V\+E\+R\+\_\+\+S\+E\+N\+D\+\_\+\+N\+O\+\_\+\+G\+A\+M\+ES~4}
+
+
+
+Definition at line 36 of file network\+\_\+request.\+h.
+

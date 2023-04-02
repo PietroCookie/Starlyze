@@ -1,0 +1,166 @@
+\hypertarget{interface__game_8h}{}\doxysection{code/include/display\+\_\+game/interface\+\_\+game.h File Reference}
+\label{interface__game_8h}\index{code/include/display\_game/interface\_game.h@{code/include/display\_game/interface\_game.h}}
+
+
+This file manages the ncurses interface for the game display.  
+
+
+{\ttfamily \#include \char`\"{}window.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}level\+\_\+display.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}player.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structinterface__game__t}{interface\+\_\+game\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The structure of the interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{interface__game_8h_add2eb88d522cc3ce216f6f5a51ea6d96}{D\+E\+F\+A\+U\+L\+T\+\_\+\+W\+I\+D\+T\+H\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+G\+A\+ME}}~62
+\item 
+\#define \mbox{\hyperlink{interface__game_8h_a0dd25bd07cd5fc4a4826112730b62fe4}{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+E\+I\+G\+H\+T\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+G\+A\+ME}}~22
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interface__game_8h_a7a04617b2ce55ecd8f5f246e01f824d9}{interface\+\_\+dimensions\+\_\+game}} (unsigned short width, unsigned short height)
+\item 
+\mbox{\hyperlink{structinterface__game__t}{interface\+\_\+game\+\_\+t}} $\ast$ \mbox{\hyperlink{interface__game_8h_a724e254dc1e5a647abf05b7be8695b5c}{interface\+\_\+game\+\_\+create}} ()
+\begin{DoxyCompactList}\small\item\em Create interface. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__game_8h_a13e87fd6e6c8109d1d86f5afbbcd9fc3}{interface\+\_\+game\+\_\+delete}} (\mbox{\hyperlink{structinterface__game__t}{interface\+\_\+game\+\_\+t}} $\ast$$\ast$interface)
+\begin{DoxyCompactList}\small\item\em Delete interface. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__game_8h_aa41abe2bd41a68b02c57a3e56a6d2e0d}{refresh\+\_\+win\+\_\+level\+\_\+game}} (\mbox{\hyperlink{structinterface__game__t}{interface\+\_\+game\+\_\+t}} $\ast$interface, \mbox{\hyperlink{structlevel__display__t}{level\+\_\+display\+\_\+t}} level\+\_\+display)
+\begin{DoxyCompactList}\small\item\em Refresh the window of level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface__game_8h_a5755ba183ee227f2f3f024013276385f}{refresh\+\_\+win\+\_\+infos}} (\mbox{\hyperlink{structinterface__game__t}{interface\+\_\+game\+\_\+t}} $\ast$interface, \mbox{\hyperlink{structplayer__t}{player\+\_\+t}} player)
+\begin{DoxyCompactList}\small\item\em Refresh the window of information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file manages the ncurses interface for the game display. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{interface__game_8h_a0dd25bd07cd5fc4a4826112730b62fe4}\label{interface__game_8h_a0dd25bd07cd5fc4a4826112730b62fe4}} 
+\index{interface\_game.h@{interface\_game.h}!DEFAULT\_HEIGHT\_INTERFACE\_GAME@{DEFAULT\_HEIGHT\_INTERFACE\_GAME}}
+\index{DEFAULT\_HEIGHT\_INTERFACE\_GAME@{DEFAULT\_HEIGHT\_INTERFACE\_GAME}!interface\_game.h@{interface\_game.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_HEIGHT\_INTERFACE\_GAME}{DEFAULT\_HEIGHT\_INTERFACE\_GAME}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+E\+I\+G\+H\+T\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+G\+A\+ME~22}
+
+
+
+Definition at line 20 of file interface\+\_\+game.\+h.
+
+\mbox{\Hypertarget{interface__game_8h_add2eb88d522cc3ce216f6f5a51ea6d96}\label{interface__game_8h_add2eb88d522cc3ce216f6f5a51ea6d96}} 
+\index{interface\_game.h@{interface\_game.h}!DEFAULT\_WIDTH\_INTERFACE\_GAME@{DEFAULT\_WIDTH\_INTERFACE\_GAME}}
+\index{DEFAULT\_WIDTH\_INTERFACE\_GAME@{DEFAULT\_WIDTH\_INTERFACE\_GAME}!interface\_game.h@{interface\_game.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_WIDTH\_INTERFACE\_GAME}{DEFAULT\_WIDTH\_INTERFACE\_GAME}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+W\+I\+D\+T\+H\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+G\+A\+ME~62}
+
+
+
+Definition at line 19 of file interface\+\_\+game.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{interface__game_8h_a7a04617b2ce55ecd8f5f246e01f824d9}\label{interface__game_8h_a7a04617b2ce55ecd8f5f246e01f824d9}} 
+\index{interface\_game.h@{interface\_game.h}!interface\_dimensions\_game@{interface\_dimensions\_game}}
+\index{interface\_dimensions\_game@{interface\_dimensions\_game}!interface\_game.h@{interface\_game.h}}
+\doxysubsubsection{\texorpdfstring{interface\_dimensions\_game()}{interface\_dimensions\_game()}}
+{\footnotesize\ttfamily void interface\+\_\+dimensions\+\_\+game (\begin{DoxyParamCaption}\item[{unsigned short}]{width,  }\item[{unsigned short}]{height }\end{DoxyParamCaption})}
+
+Check terminal dimensions. 
+
+Definition at line 14 of file interface\+\_\+game.\+c.
+
+\mbox{\Hypertarget{interface__game_8h_a724e254dc1e5a647abf05b7be8695b5c}\label{interface__game_8h_a724e254dc1e5a647abf05b7be8695b5c}} 
+\index{interface\_game.h@{interface\_game.h}!interface\_game\_create@{interface\_game\_create}}
+\index{interface\_game\_create@{interface\_game\_create}!interface\_game.h@{interface\_game.h}}
+\doxysubsubsection{\texorpdfstring{interface\_game\_create()}{interface\_game\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structinterface__game__t}{interface\+\_\+game\+\_\+t}}$\ast$ interface\+\_\+game\+\_\+create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create interface. 
+
+\begin{DoxyReturn}{Returns}
+interface\+\_\+t$\ast$ created interface 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file interface\+\_\+game.\+c.
+
+\mbox{\Hypertarget{interface__game_8h_a13e87fd6e6c8109d1d86f5afbbcd9fc3}\label{interface__game_8h_a13e87fd6e6c8109d1d86f5afbbcd9fc3}} 
+\index{interface\_game.h@{interface\_game.h}!interface\_game\_delete@{interface\_game\_delete}}
+\index{interface\_game\_delete@{interface\_game\_delete}!interface\_game.h@{interface\_game.h}}
+\doxysubsubsection{\texorpdfstring{interface\_game\_delete()}{interface\_game\_delete()}}
+{\footnotesize\ttfamily void interface\+\_\+game\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinterface__game__t}{interface\+\_\+game\+\_\+t}} $\ast$$\ast$}]{interface }\end{DoxyParamCaption})}
+
+
+
+Delete interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interface} & interface to delete \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 43 of file interface\+\_\+game.\+c.
+
+\mbox{\Hypertarget{interface__game_8h_a5755ba183ee227f2f3f024013276385f}\label{interface__game_8h_a5755ba183ee227f2f3f024013276385f}} 
+\index{interface\_game.h@{interface\_game.h}!refresh\_win\_infos@{refresh\_win\_infos}}
+\index{refresh\_win\_infos@{refresh\_win\_infos}!interface\_game.h@{interface\_game.h}}
+\doxysubsubsection{\texorpdfstring{refresh\_win\_infos()}{refresh\_win\_infos()}}
+{\footnotesize\ttfamily void refresh\+\_\+win\+\_\+infos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinterface__game__t}{interface\+\_\+game\+\_\+t}} $\ast$}]{interface,  }\item[{\mbox{\hyperlink{structplayer__t}{player\+\_\+t}}}]{player }\end{DoxyParamCaption})}
+
+
+
+Refresh the window of information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interface} & The interface to refresh \\
+\hline
+{\em player} & The player whose information should be displayed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 101 of file interface\+\_\+game.\+c.
+
+\mbox{\Hypertarget{interface__game_8h_aa41abe2bd41a68b02c57a3e56a6d2e0d}\label{interface__game_8h_aa41abe2bd41a68b02c57a3e56a6d2e0d}} 
+\index{interface\_game.h@{interface\_game.h}!refresh\_win\_level\_game@{refresh\_win\_level\_game}}
+\index{refresh\_win\_level\_game@{refresh\_win\_level\_game}!interface\_game.h@{interface\_game.h}}
+\doxysubsubsection{\texorpdfstring{refresh\_win\_level\_game()}{refresh\_win\_level\_game()}}
+{\footnotesize\ttfamily void refresh\+\_\+win\+\_\+level\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinterface__game__t}{interface\+\_\+game\+\_\+t}} $\ast$}]{interface,  }\item[{\mbox{\hyperlink{structlevel__display__t}{level\+\_\+display\+\_\+t}}}]{level\+\_\+display }\end{DoxyParamCaption})}
+
+
+
+Refresh the window of level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interface} & The interface to refresh \\
+\hline
+{\em level\+\_\+display} & state of the game \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 52 of file interface\+\_\+game.\+c.
+

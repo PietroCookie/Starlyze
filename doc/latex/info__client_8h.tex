@@ -1,0 +1,262 @@
+\hypertarget{info__client_8h}{}\doxysection{code/include/server/info\+\_\+client.h File Reference}
+\label{info__client_8h}\index{code/include/server/info\_client.h@{code/include/server/info\_client.h}}
+
+
+File that manages the information of the clients with data structures.  
+
+
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the information of a client. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure that contains the list of clients. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{info__client_8h_aa24597a54a085c6c2c33b64138f09eff}{M\+A\+X\+\_\+\+M\+SG}}~255
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} \mbox{\hyperlink{info__client_8h_ab6056e26d4fe5e9a6dfaf92bdeb23e77}{info\+\_\+client\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{info__client_8h_a622d894b8bca664ea39eb9523906f8b3}{init\+\_\+list\+\_\+info\+\_\+client}} (\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Function to initialize the list of clients. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$ \mbox{\hyperlink{info__client_8h_a9afc11e36b3b8361ecc6710dc535278c}{init\+\_\+info\+\_\+client}} (int id, char pseudo\mbox{[}\mbox{\hyperlink{server__udp_8h_aa24597a54a085c6c2c33b64138f09eff}{M\+A\+X\+\_\+\+M\+SG}}\mbox{]}, char $\ast$client\+\_\+address, int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}})
+\begin{DoxyCompactList}\small\item\em Function to initialize the information of a client. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{info__client_8h_aca835105d2f27c1bab4c58e92268dda2}{is\+\_\+empty\+\_\+client}} (\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Function to check if the list of clients is empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{info__client_8h_a76e408439cb55eafa5c6a1de1adfe234}{add\+\_\+client}} (\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$list, \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$client)
+\begin{DoxyCompactList}\small\item\em Function to add a client to the list of clients. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{info__client_8h_a9eb0bcfd997c36b6418027df0540a3a6}{print\+\_\+list\+\_\+client}} (\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} list)
+\begin{DoxyCompactList}\small\item\em Function to print the list of clients. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$ \mbox{\hyperlink{info__client_8h_ac380280d01302e76f5ebb5d5643d1031}{search\+\_\+client}} (\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$list, int id)
+\begin{DoxyCompactList}\small\item\em Function to search a client in the list of clients. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{info__client_8h_a6891eb97bd1a725c41f27faa5c208dce}{delete\+\_\+client}} (\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$list, \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$client)
+\begin{DoxyCompactList}\small\item\em Function to delete a client from the list of clients. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{info__client_8h_a8ada362226fcdae18b351b2bef6b96c9}{delete\+\_\+list}} (\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Function to delete the list of clients. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages the information of the clients with data structures. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{info__client_8h_aa24597a54a085c6c2c33b64138f09eff}\label{info__client_8h_aa24597a54a085c6c2c33b64138f09eff}} 
+\index{info\_client.h@{info\_client.h}!MAX\_MSG@{MAX\_MSG}}
+\index{MAX\_MSG@{MAX\_MSG}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_MSG}{MAX\_MSG}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+M\+SG~255}
+
+
+
+Definition at line 15 of file info\+\_\+client.\+h.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{info__client_8h_ab6056e26d4fe5e9a6dfaf92bdeb23e77}\label{info__client_8h_ab6056e26d4fe5e9a6dfaf92bdeb23e77}} 
+\index{info\_client.h@{info\_client.h}!info\_client\_t@{info\_client\_t}}
+\index{info\_client\_t@{info\_client\_t}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{info\_client\_t}{info\_client\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}}}
+
+
+
+Definition at line 30 of file info\+\_\+client.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{info__client_8h_a76e408439cb55eafa5c6a1de1adfe234}\label{info__client_8h_a76e408439cb55eafa5c6a1de1adfe234}} 
+\index{info\_client.h@{info\_client.h}!add\_client@{add\_client}}
+\index{add\_client@{add\_client}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{add\_client()}{add\_client()}}
+{\footnotesize\ttfamily void add\+\_\+client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$}]{client }\end{DoxyParamCaption})}
+
+
+
+Function to add a client to the list of clients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+{\em client} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 74 of file info\+\_\+client.\+c.
+
+\mbox{\Hypertarget{info__client_8h_a6891eb97bd1a725c41f27faa5c208dce}\label{info__client_8h_a6891eb97bd1a725c41f27faa5c208dce}} 
+\index{info\_client.h@{info\_client.h}!delete\_client@{delete\_client}}
+\index{delete\_client@{delete\_client}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{delete\_client()}{delete\_client()}}
+{\footnotesize\ttfamily void delete\+\_\+client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$}]{list,  }\item[{\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$}]{client }\end{DoxyParamCaption})}
+
+
+
+Function to delete a client from the list of clients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+{\em client} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 144 of file info\+\_\+client.\+c.
+
+\mbox{\Hypertarget{info__client_8h_a8ada362226fcdae18b351b2bef6b96c9}\label{info__client_8h_a8ada362226fcdae18b351b2bef6b96c9}} 
+\index{info\_client.h@{info\_client.h}!delete\_list@{delete\_list}}
+\index{delete\_list@{delete\_list}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{delete\_list()}{delete\_list()}}
+{\footnotesize\ttfamily void delete\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Function to delete the list of clients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 167 of file info\+\_\+client.\+c.
+
+\mbox{\Hypertarget{info__client_8h_a9afc11e36b3b8361ecc6710dc535278c}\label{info__client_8h_a9afc11e36b3b8361ecc6710dc535278c}} 
+\index{info\_client.h@{info\_client.h}!init\_info\_client@{init\_info\_client}}
+\index{init\_info\_client@{init\_info\_client}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{init\_info\_client()}{init\_info\_client()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}}$\ast$ init\+\_\+info\+\_\+client (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{char}]{pseudo\mbox{[}\+M\+A\+X\+\_\+\+M\+S\+G\mbox{]},  }\item[{char $\ast$}]{client\+\_\+address,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Function to initialize the information of a client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+{\em pseudo} & \\
+\hline
+{\em client\+\_\+address} & \\
+\hline
+{\em port} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+info\+\_\+client\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file info\+\_\+client.\+c.
+
+\mbox{\Hypertarget{info__client_8h_a622d894b8bca664ea39eb9523906f8b3}\label{info__client_8h_a622d894b8bca664ea39eb9523906f8b3}} 
+\index{info\_client.h@{info\_client.h}!init\_list\_info\_client@{init\_list\_info\_client}}
+\index{init\_list\_info\_client@{init\_list\_info\_client}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{init\_list\_info\_client()}{init\_list\_info\_client()}}
+{\footnotesize\ttfamily void init\+\_\+list\+\_\+info\+\_\+client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Function to initialize the list of clients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 23 of file info\+\_\+client.\+c.
+
+\mbox{\Hypertarget{info__client_8h_aca835105d2f27c1bab4c58e92268dda2}\label{info__client_8h_aca835105d2f27c1bab4c58e92268dda2}} 
+\index{info\_client.h@{info\_client.h}!is\_empty\_client@{is\_empty\_client}}
+\index{is\_empty\_client@{is\_empty\_client}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{is\_empty\_client()}{is\_empty\_client()}}
+{\footnotesize\ttfamily int is\+\_\+empty\+\_\+client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Function to check if the list of clients is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file info\+\_\+client.\+c.
+
+\mbox{\Hypertarget{info__client_8h_a9eb0bcfd997c36b6418027df0540a3a6}\label{info__client_8h_a9eb0bcfd997c36b6418027df0540a3a6}} 
+\index{info\_client.h@{info\_client.h}!print\_list\_client@{print\_list\_client}}
+\index{print\_list\_client@{print\_list\_client}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{print\_list\_client()}{print\_list\_client()}}
+{\footnotesize\ttfamily void print\+\_\+list\+\_\+client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}}}]{list }\end{DoxyParamCaption})}
+
+
+
+Function to print the list of clients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 100 of file info\+\_\+client.\+c.
+
+\mbox{\Hypertarget{info__client_8h_ac380280d01302e76f5ebb5d5643d1031}\label{info__client_8h_ac380280d01302e76f5ebb5d5643d1031}} 
+\index{info\_client.h@{info\_client.h}!search\_client@{search\_client}}
+\index{search\_client@{search\_client}!info\_client.h@{info\_client.h}}
+\doxysubsubsection{\texorpdfstring{search\_client()}{search\_client()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}}$\ast$ search\+\_\+client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$}]{list,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function to search a client in the list of clients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & \\
+\hline
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+info\+\_\+client\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 124 of file info\+\_\+client.\+c.
+

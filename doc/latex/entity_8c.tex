@@ -1,0 +1,85 @@
+\hypertarget{entity_8c}{}\doxysection{code/src/game-\/control/entity.c File Reference}
+\label{entity_8c}\index{code/src/game-\/control/entity.c@{code/src/game-\/control/entity.c}}
+{\ttfamily \#include \char`\"{}entity.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sprite.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{entity_8c_ae8b069fcf2934b3bc90fb1004677be42}{initialise\+\_\+entity}} (\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$entity, \mbox{\hyperlink{entity_8h_a568e9c93d74d50d9ab9c88631a6f37ed}{type\+\_\+entity\+\_\+enum}} type, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Initialize an entity. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{entity_8c_a2f85545ec9a7d57c79cf1328b0f1b741}{pos\+X\+\_\+width\+\_\+entity}} (\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} entity)
+\begin{DoxyCompactList}\small\item\em Allows you to obtain the width of an entity. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{entity_8c_ad01476248d042ca5d92933d2f3cbd2af}{pos\+Y\+\_\+height\+\_\+entity}} (\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} entity)
+\begin{DoxyCompactList}\small\item\em Allows you to obtain the height of an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{entity_8c_ae8b069fcf2934b3bc90fb1004677be42}\label{entity_8c_ae8b069fcf2934b3bc90fb1004677be42}} 
+\index{entity.c@{entity.c}!initialise\_entity@{initialise\_entity}}
+\index{initialise\_entity@{initialise\_entity}!entity.c@{entity.c}}
+\doxysubsubsection{\texorpdfstring{initialise\_entity()}{initialise\_entity()}}
+{\footnotesize\ttfamily void initialise\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{entity,  }\item[{\mbox{\hyperlink{entity_8h_a568e9c93d74d50d9ab9c88631a6f37ed}{type\+\_\+entity\+\_\+enum}}}]{type,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Initialize an entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity that is initialized \\
+\hline
+{\em type} & The type of the entitys \\
+\hline
+{\em posX} & Position X of the entity \\
+\hline
+{\em posY} & Position Y of the entity \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5 of file entity.\+c.
+
+\mbox{\Hypertarget{entity_8c_a2f85545ec9a7d57c79cf1328b0f1b741}\label{entity_8c_a2f85545ec9a7d57c79cf1328b0f1b741}} 
+\index{entity.c@{entity.c}!posX\_width\_entity@{posX\_width\_entity}}
+\index{posX\_width\_entity@{posX\_width\_entity}!entity.c@{entity.c}}
+\doxysubsubsection{\texorpdfstring{posX\_width\_entity()}{posX\_width\_entity()}}
+{\footnotesize\ttfamily int pos\+X\+\_\+width\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}}}]{entity }\end{DoxyParamCaption})}
+
+
+
+Allows you to obtain the width of an entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity whose width we want \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The width of the entity 
+\end{DoxyReturn}
+
+
+Definition at line 12 of file entity.\+c.
+
+\mbox{\Hypertarget{entity_8c_ad01476248d042ca5d92933d2f3cbd2af}\label{entity_8c_ad01476248d042ca5d92933d2f3cbd2af}} 
+\index{entity.c@{entity.c}!posY\_height\_entity@{posY\_height\_entity}}
+\index{posY\_height\_entity@{posY\_height\_entity}!entity.c@{entity.c}}
+\doxysubsubsection{\texorpdfstring{posY\_height\_entity()}{posY\_height\_entity()}}
+{\footnotesize\ttfamily int pos\+Y\+\_\+height\+\_\+entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}}}]{entity }\end{DoxyParamCaption})}
+
+
+
+Allows you to obtain the height of an entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity whose height we want \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The height of the entity 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file entity.\+c.
+

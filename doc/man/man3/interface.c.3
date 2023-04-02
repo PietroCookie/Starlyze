@@ -1,0 +1,112 @@
+.TH "code/src/editor/interface.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/editor/interface.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'interface\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'functions\&.h'\fP
+.br
+\fC#include 'sprite\&.h'\fP
+.br
+\fC#include 'game_level\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinterface_dimensions\fP (unsigned short width, unsigned short height)"
+.br
+.ti -1c
+.RI "\fBinterface_t\fP * \fBinterface_create\fP (char *name_file_game)"
+.br
+.ti -1c
+.RI "void \fBinterface_delete\fP (\fBinterface_t\fP **interface)"
+.br
+.RI "Delete interface\&. "
+.ti -1c
+.RI "void \fBinterface_actions\fP (\fBinterface_t\fP *interface, int c)"
+.br
+.RI "Manage actions of the user\&. "
+.ti -1c
+.RI "void \fBrefresh_win_tools\fP (\fBinterface_t\fP *interface)"
+.br
+.RI "Refresh window tool\&. "
+.ti -1c
+.RI "void \fBrefresh_win_level\fP (\fBinterface_t\fP *interface)"
+.br
+.RI "Refresh window level\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void interface_actions (\fBinterface_t\fP * interface, int c)"
+
+.PP
+Manage actions of the user\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP the interface 
+.br
+\fIc\fP the pressed key 
+.RE
+.PP
+
+.PP
+Definition at line 63 of file interface\&.c\&.
+.SS "\fBinterface_t\fP* interface_create (char * name_file_game)"
+
+.PP
+Definition at line 19 of file interface\&.c\&.
+.SS "void interface_delete (\fBinterface_t\fP ** interface)"
+
+.PP
+Delete interface\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP interface to delete 
+.RE
+.PP
+
+.PP
+Definition at line 51 of file interface\&.c\&.
+.SS "void interface_dimensions (unsigned short width, unsigned short height)"
+Check terminal dimensions\&. 
+.PP
+Definition at line 9 of file interface\&.c\&.
+.SS "void refresh_win_level (\fBinterface_t\fP * interface)"
+
+.PP
+Refresh window level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP The interface 
+.RE
+.PP
+
+.PP
+Definition at line 171 of file interface\&.c\&.
+.SS "void refresh_win_tools (\fBinterface_t\fP * interface)"
+
+.PP
+Refresh window tool\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP The interface 
+.RE
+.PP
+
+.PP
+Definition at line 150 of file interface\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

@@ -1,0 +1,158 @@
+\hypertarget{client__create__game_8h}{}\doxysection{code/include/client/client\+\_\+create\+\_\+game.h File Reference}
+\label{client__create__game_8h}\index{code/include/client/client\_create\_game.h@{code/include/client/client\_create\_game.h}}
+
+
+.h file of the client allowing the creation of a game  
+
+
+{\ttfamily \#include \char`\"{}create\+\_\+game.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{client__create__game_8h_aa895d5da09bdff081b7af9ed550eb713}{\+\_\+\+\_\+\+C\+L\+E\+I\+N\+T\+\_\+\+C\+R\+E\+A\+T\+E\+\_\+\+G\+A\+M\+E\+\_\+\+H\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structlist__world__response__t}{list\+\_\+world\+\_\+response\+\_\+t}} \mbox{\hyperlink{client__create__game_8h_aeaf709e60ed46c1bb53a5c2e704d88e9}{receive\+\_\+list\+\_\+world}} (int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char \mbox{\hyperlink{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}{address\+\_\+ip}}\mbox{[}15\mbox{]}, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Receive the list of the worlds from the server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{client__create__game_8h_a14aa6db254515def29058d0ae0eaf608}{send\+\_\+settings\+\_\+game}} (int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char \mbox{\hyperlink{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}{address\+\_\+ip}}\mbox{[}15\mbox{]}, int choice\+\_\+world, int nb\+\_\+players\+\_\+game, int id\+\_\+client, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Send the settings of the game to the server. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{client__create__game_8h_a172dc1f7cb12636e14a959b618fa659f}{handler\+\_\+create\+\_\+game}} (\mbox{\hyperlink{structlist__world__response__t}{list\+\_\+world\+\_\+response\+\_\+t}} list\+\_\+world, int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char \mbox{\hyperlink{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}{address\+\_\+ip}}\mbox{[}15\mbox{]}, int id\+\_\+client, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Menu managing the creation of a game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+.h file of the client allowing the creation of a game 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{client__create__game_8h_aa895d5da09bdff081b7af9ed550eb713}\label{client__create__game_8h_aa895d5da09bdff081b7af9ed550eb713}} 
+\index{client\_create\_game.h@{client\_create\_game.h}!\_\_CLEINT\_CREATE\_GAME\_H\_\_@{\_\_CLEINT\_CREATE\_GAME\_H\_\_}}
+\index{\_\_CLEINT\_CREATE\_GAME\_H\_\_@{\_\_CLEINT\_CREATE\_GAME\_H\_\_}!client\_create\_game.h@{client\_create\_game.h}}
+\doxysubsubsection{\texorpdfstring{\_\_CLEINT\_CREATE\_GAME\_H\_\_}{\_\_CLEINT\_CREATE\_GAME\_H\_\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+C\+L\+E\+I\+N\+T\+\_\+\+C\+R\+E\+A\+T\+E\+\_\+\+G\+A\+M\+E\+\_\+\+H\+\_\+\+\_\+}
+
+
+
+Definition at line 13 of file client\+\_\+create\+\_\+game.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client__create__game_8h_a172dc1f7cb12636e14a959b618fa659f}\label{client__create__game_8h_a172dc1f7cb12636e14a959b618fa659f}} 
+\index{client\_create\_game.h@{client\_create\_game.h}!handler\_create\_game@{handler\_create\_game}}
+\index{handler\_create\_game@{handler\_create\_game}!client\_create\_game.h@{client\_create\_game.h}}
+\doxysubsubsection{\texorpdfstring{handler\_create\_game()}{handler\_create\_game()}}
+{\footnotesize\ttfamily int handler\+\_\+create\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__world__response__t}{list\+\_\+world\+\_\+response\+\_\+t}}}]{list\+\_\+world,  }\item[{int}]{port,  }\item[{char}]{address\+\_\+ip\mbox{[}15\mbox{]},  }\item[{int}]{id\+\_\+client,  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Menu managing the creation of a game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+world} & \\
+\hline
+{\em port} & \\
+\hline
+{\em address\+\_\+ip} & \\
+\hline
+{\em id\+\_\+client} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+Menu managing the creation of a game.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+world} & \\
+\hline
+{\em port} & \\
+\hline
+{\em address\+\_\+ip} & \\
+\hline
+{\em id\+\_\+client} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file client\+\_\+create\+\_\+game.\+c.
+
+\mbox{\Hypertarget{client__create__game_8h_aeaf709e60ed46c1bb53a5c2e704d88e9}\label{client__create__game_8h_aeaf709e60ed46c1bb53a5c2e704d88e9}} 
+\index{client\_create\_game.h@{client\_create\_game.h}!receive\_list\_world@{receive\_list\_world}}
+\index{receive\_list\_world@{receive\_list\_world}!client\_create\_game.h@{client\_create\_game.h}}
+\doxysubsubsection{\texorpdfstring{receive\_list\_world()}{receive\_list\_world()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlist__world__response__t}{list\+\_\+world\+\_\+response\+\_\+t}} receive\+\_\+list\+\_\+world (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char}]{address\+\_\+ip\mbox{[}15\mbox{]},  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Receive the list of the worlds from the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em address\+\_\+ip} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structlist__world__response__t}{list\+\_\+world\+\_\+response\+\_\+t}} 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file client\+\_\+create\+\_\+game.\+c.
+
+\mbox{\Hypertarget{client__create__game_8h_a14aa6db254515def29058d0ae0eaf608}\label{client__create__game_8h_a14aa6db254515def29058d0ae0eaf608}} 
+\index{client\_create\_game.h@{client\_create\_game.h}!send\_settings\_game@{send\_settings\_game}}
+\index{send\_settings\_game@{send\_settings\_game}!client\_create\_game.h@{client\_create\_game.h}}
+\doxysubsubsection{\texorpdfstring{send\_settings\_game()}{send\_settings\_game()}}
+{\footnotesize\ttfamily void send\+\_\+settings\+\_\+game (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char}]{address\+\_\+ip\mbox{[}15\mbox{]},  }\item[{int}]{choice\+\_\+world,  }\item[{int}]{nb\+\_\+players\+\_\+game,  }\item[{int}]{id\+\_\+client,  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Send the settings of the game to the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em address\+\_\+ip} & \\
+\hline
+{\em choice\+\_\+world} & \\
+\hline
+{\em nb\+\_\+players\+\_\+game} & \\
+\hline
+{\em id\+\_\+client} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 89 of file client\+\_\+create\+\_\+game.\+c.
+

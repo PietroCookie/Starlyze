@@ -1,0 +1,144 @@
+.TH "code/include/game-control/enemy.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/game-control/enemy.h \- File that manage an enemy\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'sprite\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBenemy_t\fP"
+.br
+.RI "Represents an enemys\&. "
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBtype_enemy_enum\fP { \fBROBOT\fP = 1, \fBPROBE\fP = 2 }"
+.br
+.RI "The type of an enemy\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinitialise_enemy\fP (\fBenemy_t\fP *enemy, \fBtype_enemy_enum\fP type)"
+.br
+.RI "Initialize an enemy\&. "
+.ti -1c
+.RI "void * \fBthread_enemy\fP (void *arg)"
+.br
+.RI "thread of operation of an enemy "
+.ti -1c
+.RI "int \fBdirection_alea\fP (\fBtype_enemy_enum\fP type_enemy)"
+.br
+.RI "Gets a random direction depending on the type of an enemy\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manage an enemy\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-30
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBenemy\&.h\fP\&.
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBtype_enemy_enum\fP"
+
+.PP
+The type of an enemy\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIROBOT \fP\fP
+.TP
+\fB\fIPROBE \fP\fP
+.PP
+Definition at line 21 of file enemy\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "int direction_alea (\fBtype_enemy_enum\fP type_enemy)"
+
+.PP
+Gets a random direction depending on the type of an enemy\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype_enemy\fP The type of the enemy 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int The random direction 
+.RE
+.PP
+
+.PP
+Definition at line 66 of file enemy\&.c\&.
+.SS "void initialise_enemy (\fBenemy_t\fP * enemy, \fBtype_enemy_enum\fP type)"
+
+.PP
+Initialize an enemy\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIenemy\fP Enemy initialized 
+.br
+\fItype\fP The type of the enemy 
+.RE
+.PP
+
+.PP
+Definition at line 11 of file enemy\&.c\&.
+.SS "void* thread_enemy (void * arg)"
+
+.PP
+thread of operation of an enemy 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP The necessary information in the form of the \fBenemy_infos_thread_t\fP structure 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void* The result of this Thread - there is NULL 
+.RE
+.PP
+
+.PP
+Definition at line 15 of file enemy\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

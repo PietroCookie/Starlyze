@@ -1,0 +1,84 @@
+.TH "game_control_t" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+game_control_t \- The structure with all the game information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <game_control\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBworld_info_t\fP \fBworld_info\fP"
+.br
+.ti -1c
+.RI "int \fBnumber_player\fP"
+.br
+.ti -1c
+.RI "int \fBnumber_total_enemy\fP"
+.br
+.ti -1c
+.RI "pthread_cond_t \fBcond_victory\fP"
+.br
+.ti -1c
+.RI "pthread_mutex_t \fBmutex_victory\fP"
+.br
+.ti -1c
+.RI "int \fBid_player_winner\fP"
+.br
+.ti -1c
+.RI "\fBentity_t\fP * \fBplayers\fP"
+.br
+.ti -1c
+.RI "\fBentity_t\fP ** \fBenemy\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The structure with all the game information\&. 
+
+
+.PP
+Definition at line 24 of file game_control\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "pthread_cond_t cond_victory"
+
+.PP
+Definition at line 28 of file game_control\&.h\&.
+.SS "\fBentity_t\fP** enemy"
+
+.PP
+Definition at line 34 of file game_control\&.h\&.
+.SS "int id_player_winner"
+
+.PP
+Definition at line 30 of file game_control\&.h\&.
+.SS "pthread_mutex_t mutex_victory"
+
+.PP
+Definition at line 29 of file game_control\&.h\&.
+.SS "int number_player"
+
+.PP
+Definition at line 26 of file game_control\&.h\&.
+.SS "int number_total_enemy"
+
+.PP
+Definition at line 27 of file game_control\&.h\&.
+.SS "\fBentity_t\fP* players"
+
+.PP
+Definition at line 32 of file game_control\&.h\&.
+.SS "\fBworld_info_t\fP world_info"
+
+.PP
+Definition at line 25 of file game_control\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

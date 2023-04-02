@@ -1,0 +1,119 @@
+.TH "code/src/client/client_join_game.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/client/client_join_game.c \- File that manages when a customer joins an already created game\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <arpa/inet\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'client_join_game\&.h'\fP
+.br
+\fC#include 'network_request\&.h'\fP
+.br
+\fC#include 'client_utility\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBlist_game_without_pointers_t\fP \fBreceive_list_games_on_hold\fP (int \fBport\fP, char ip_server[15], int \fBsockfd\fP)"
+.br
+.RI "Receive the list of games on hold from the server\&. "
+.ti -1c
+.RI "void \fBjoin_game\fP (int \fBport\fP, char ip_server[15], int choice_game, int id_client)"
+.br
+.RI "Sends the request to the server to join a game\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manages when a customer joins an already created game\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-28
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBclient_join_game\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void join_game (int port, char ip_server[15], int choice_game, int id_client)"
+
+.PP
+Sends the request to the server to join a game\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP 
+.br
+\fIip_server\fP 
+.br
+\fIchoice_game\fP 
+.br
+\fIid_client\fP 
+.RE
+.PP
+
+.PP
+Definition at line 85 of file client_join_game\&.c\&.
+.SS "\fBlist_game_without_pointers_t\fP receive_list_games_on_hold (int port, char ip_server[15], int sockfd)"
+
+.PP
+Receive the list of games on hold from the server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP 
+.br
+\fIip_server\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBlist_game_without_pointers_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 34 of file client_join_game\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

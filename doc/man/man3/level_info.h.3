@@ -1,0 +1,172 @@
+.TH "code/include/game-control/level_info.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/game-control/level_info.h \- File that manage a level_info\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include 'sprite\&.h'\fP
+.br
+\fC#include 'trap\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBlevel_info_t\fP"
+.br
+.RI "The structure representing the information of a level\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBNUMBER_ROBOT\fP   10"
+.br
+.ti -1c
+.RI "#define \fBNUMBER_PROBE\fP   10"
+.br
+.ti -1c
+.RI "#define \fBNUMBER_TRAP\fP   40"
+.br
+.ti -1c
+.RI "#define \fBWIDTH_LEVEL\fP   60"
+.br
+.ti -1c
+.RI "#define \fBHEIGHT_LEVEL\fP   20"
+.br
+.ti -1c
+.RI "#define \fBWIDTH_ZONE_LEVEL\fP   5"
+.br
+.ti -1c
+.RI "#define \fBHEIGHT_ZONE_LEVEL\fP   5"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBload_level_info\fP (\fBlevel_info_t\fP *level_info, int file)"
+.br
+.RI "Allows to load a level from a file descriptor\&. "
+.ti -1c
+.RI "void \fBdelete_level_info\fP (\fBlevel_info_t\fP *level_info)"
+.br
+.RI "Deletes the information of a level\&. "
+.ti -1c
+.RI "void \fBload_block_trap\fP (\fBlevel_info_t\fP level_info, \fBlist_block_trap_t\fP *list_block_trap)"
+.br
+.RI "Load the trap blocks of a level\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manage a level_info\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-30
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBlevel_info\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define HEIGHT_LEVEL   20"
+
+.PP
+Definition at line 25 of file level_info\&.h\&.
+.SS "#define HEIGHT_ZONE_LEVEL   5"
+
+.PP
+Definition at line 28 of file level_info\&.h\&.
+.SS "#define NUMBER_PROBE   10"
+
+.PP
+Definition at line 21 of file level_info\&.h\&.
+.SS "#define NUMBER_ROBOT   10"
+
+.PP
+Definition at line 20 of file level_info\&.h\&.
+.SS "#define NUMBER_TRAP   40"
+
+.PP
+Definition at line 22 of file level_info\&.h\&.
+.SS "#define WIDTH_LEVEL   60"
+
+.PP
+Definition at line 24 of file level_info\&.h\&.
+.SS "#define WIDTH_ZONE_LEVEL   5"
+
+.PP
+Definition at line 27 of file level_info\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "void delete_level_info (\fBlevel_info_t\fP * level_info)"
+
+.PP
+Deletes the information of a level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel_info\fP The information of the level you want to delete 
+.RE
+.PP
+
+.PP
+Definition at line 61 of file level_info\&.c\&.
+.SS "void load_block_trap (\fBlevel_info_t\fP level_info, \fBlist_block_trap_t\fP * list_block_trap)"
+
+.PP
+Load the trap blocks of a level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel_info\fP The level to load the trap blocks with 
+.br
+\fIlist_block_trap\fP The list that will contain the trap blocks 
+.RE
+.PP
+
+.PP
+Definition at line 74 of file level_info\&.c\&.
+.SS "void load_level_info (\fBlevel_info_t\fP * level_info, int file)"
+
+.PP
+Allows to load a level from a file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel_info\fP The variable that will contain the level information 
+.br
+\fIfile\fP The file descriptor 
+.RE
+.PP
+
+.PP
+Definition at line 9 of file level_info\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

@@ -1,0 +1,65 @@
+\hypertarget{client__tcp_8c}{}\doxysection{code/src/client/client\+\_\+tcp.c File Reference}
+\label{client__tcp_8c}\index{code/src/client/client\_tcp.c@{code/src/client/client\_tcp.c}}
+
+
+Files that manages the T\+CP client.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+tcp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}functions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}client-\/game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}interface\+\_\+game.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{client__tcp_8c_aa8320af1b0f69d447debb47f88e7d004}{connect\+\_\+to\+\_\+server\+\_\+with\+\_\+tcp}} (int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char \mbox{\hyperlink{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}{address\+\_\+ip}}\mbox{[}15\mbox{]})
+\begin{DoxyCompactList}\small\item\em Connect to the server with T\+CP. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Files that manages the T\+CP client. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client__tcp_8c_aa8320af1b0f69d447debb47f88e7d004}\label{client__tcp_8c_aa8320af1b0f69d447debb47f88e7d004}} 
+\index{client\_tcp.c@{client\_tcp.c}!connect\_to\_server\_with\_tcp@{connect\_to\_server\_with\_tcp}}
+\index{connect\_to\_server\_with\_tcp@{connect\_to\_server\_with\_tcp}!client\_tcp.c@{client\_tcp.c}}
+\doxysubsubsection{\texorpdfstring{connect\_to\_server\_with\_tcp()}{connect\_to\_server\_with\_tcp()}}
+{\footnotesize\ttfamily void connect\+\_\+to\+\_\+server\+\_\+with\+\_\+tcp (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char}]{address\+\_\+ip\mbox{[}15\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Connect to the server with T\+CP. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em address\+\_\+ip} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 35 of file client\+\_\+tcp.\+c.
+

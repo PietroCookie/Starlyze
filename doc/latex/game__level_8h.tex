@@ -1,0 +1,256 @@
+\hypertarget{game__level_8h}{}\doxysection{code/include/editor/game\+\_\+level.h File Reference}
+\label{game__level_8h}\index{code/include/editor/game\_level.h@{code/include/editor/game\_level.h}}
+
+
+File that manage a game\+\_\+level.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}element\+\_\+game\+\_\+level.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Represent a game\+\_\+level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{game__level_8h_a17dab4ac276874cebdf7d29e26d13e5f}{W\+I\+D\+T\+H\+\_\+\+L\+E\+V\+E\+L\+\_\+\+G\+A\+ME}}~60
+\item 
+\#define \mbox{\hyperlink{game__level_8h_a118c81015919237a375638efbc8e154b}{H\+E\+I\+G\+H\+T\+\_\+\+L\+E\+V\+E\+L\+\_\+\+G\+A\+ME}}~20
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{game__level_8h_a484d65bdbd98d82888404d67b9fbc708}{initialise\+\_\+game\+\_\+level}} (\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Initialise the game\+\_\+level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__level_8h_a09c5858e9913cd212772f53d6726c708}{delete\+\_\+game\+\_\+level}} (\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Delete a game\+\_\+level from memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__level_8h_a8c21c46396633300140ea91e3965c791}{add\+\_\+element\+\_\+map\+\_\+in\+\_\+case}} (\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$game\+\_\+level, \mbox{\hyperlink{structelement__game__level__t}{element\+\_\+game\+\_\+level\+\_\+t}} $\ast$element)
+\begin{DoxyCompactList}\small\item\em Adds an element to the game\+\_\+level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__level_8h_a26a871f974fb76b64aec521c41346caf}{delete\+\_\+element\+\_\+map\+\_\+in\+\_\+case}} (\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$game\+\_\+level, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Remove an element from a game\+\_\+levels. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{game__level_8h_a31e2d8b0824426ceec3e1820b341d77e}{necessary\+\_\+size\+\_\+game\+\_\+level}} (\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Calculate the necessary size for save a game\+\_\+level in file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__level_8h_aada803298443b40364d786c060fb54b5}{save\+\_\+modification\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor}} (int file\+\_\+descriptor, off\+\_\+t position, \mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} game\+\_\+level, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Save a modification of game\+\_\+level to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__level_8h_a4efbfcdba24eeeda1095927ac5629600}{write\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor}} (int file\+\_\+descriptor, \mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em writes a game\+\_\+level to a file \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game__level_8h_a839f9f87886f66b5a4ca1aa210b1fb9e}{read\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor}} (int file\+\_\+descriptor, \mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em read a game\+\_\+level to a file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manage a game\+\_\+level. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{game__level_8h_a118c81015919237a375638efbc8e154b}\label{game__level_8h_a118c81015919237a375638efbc8e154b}} 
+\index{game\_level.h@{game\_level.h}!HEIGHT\_LEVEL\_GAME@{HEIGHT\_LEVEL\_GAME}}
+\index{HEIGHT\_LEVEL\_GAME@{HEIGHT\_LEVEL\_GAME}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{HEIGHT\_LEVEL\_GAME}{HEIGHT\_LEVEL\_GAME}}
+{\footnotesize\ttfamily \#define H\+E\+I\+G\+H\+T\+\_\+\+L\+E\+V\+E\+L\+\_\+\+G\+A\+ME~20}
+
+
+
+Definition at line 19 of file game\+\_\+level.\+h.
+
+\mbox{\Hypertarget{game__level_8h_a17dab4ac276874cebdf7d29e26d13e5f}\label{game__level_8h_a17dab4ac276874cebdf7d29e26d13e5f}} 
+\index{game\_level.h@{game\_level.h}!WIDTH\_LEVEL\_GAME@{WIDTH\_LEVEL\_GAME}}
+\index{WIDTH\_LEVEL\_GAME@{WIDTH\_LEVEL\_GAME}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{WIDTH\_LEVEL\_GAME}{WIDTH\_LEVEL\_GAME}}
+{\footnotesize\ttfamily \#define W\+I\+D\+T\+H\+\_\+\+L\+E\+V\+E\+L\+\_\+\+G\+A\+ME~60}
+
+
+
+Definition at line 18 of file game\+\_\+level.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{game__level_8h_a8c21c46396633300140ea91e3965c791}\label{game__level_8h_a8c21c46396633300140ea91e3965c791}} 
+\index{game\_level.h@{game\_level.h}!add\_element\_map\_in\_case@{add\_element\_map\_in\_case}}
+\index{add\_element\_map\_in\_case@{add\_element\_map\_in\_case}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{add\_element\_map\_in\_case()}{add\_element\_map\_in\_case()}}
+{\footnotesize\ttfamily void add\+\_\+element\+\_\+map\+\_\+in\+\_\+case (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$}]{game\+\_\+level,  }\item[{\mbox{\hyperlink{structelement__game__level__t}{element\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{element }\end{DoxyParamCaption})}
+
+
+
+Adds an element to the game\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+level} & The game\+\_\+level in which we add an element \\
+\hline
+{\em element} & The element that is added \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 27 of file game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{game__level_8h_a26a871f974fb76b64aec521c41346caf}\label{game__level_8h_a26a871f974fb76b64aec521c41346caf}} 
+\index{game\_level.h@{game\_level.h}!delete\_element\_map\_in\_case@{delete\_element\_map\_in\_case}}
+\index{delete\_element\_map\_in\_case@{delete\_element\_map\_in\_case}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{delete\_element\_map\_in\_case()}{delete\_element\_map\_in\_case()}}
+{\footnotesize\ttfamily void delete\+\_\+element\+\_\+map\+\_\+in\+\_\+case (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$}]{game\+\_\+level,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Remove an element from a game\+\_\+levels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+level} & The game\+\_\+level in which we delete the element \\
+\hline
+{\em posX} & Position X of the element to be deleted \\
+\hline
+{\em posY} & Position Y of the element to be deleted \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{game__level_8h_a09c5858e9913cd212772f53d6726c708}\label{game__level_8h_a09c5858e9913cd212772f53d6726c708}} 
+\index{game\_level.h@{game\_level.h}!delete\_game\_level@{delete\_game\_level}}
+\index{delete\_game\_level@{delete\_game\_level}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{delete\_game\_level()}{delete\_game\_level()}}
+{\footnotesize\ttfamily void delete\+\_\+game\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$}]{game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Delete a game\+\_\+level from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+level} & The game\+\_\+level that will be deleted from memory \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{game__level_8h_a484d65bdbd98d82888404d67b9fbc708}\label{game__level_8h_a484d65bdbd98d82888404d67b9fbc708}} 
+\index{game\_level.h@{game\_level.h}!initialise\_game\_level@{initialise\_game\_level}}
+\index{initialise\_game\_level@{initialise\_game\_level}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{initialise\_game\_level()}{initialise\_game\_level()}}
+{\footnotesize\ttfamily void initialise\+\_\+game\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$}]{game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Initialise the game\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+level} & The variable that will contain the game\+\_\+level \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 7 of file game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{game__level_8h_a31e2d8b0824426ceec3e1820b341d77e}\label{game__level_8h_a31e2d8b0824426ceec3e1820b341d77e}} 
+\index{game\_level.h@{game\_level.h}!necessary\_size\_game\_level@{necessary\_size\_game\_level}}
+\index{necessary\_size\_game\_level@{necessary\_size\_game\_level}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{necessary\_size\_game\_level()}{necessary\_size\_game\_level()}}
+{\footnotesize\ttfamily size\+\_\+t necessary\+\_\+size\+\_\+game\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}}}]{game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Calculate the necessary size for save a game\+\_\+level in file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+level} & The game\+\_\+level whose size we want to know \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size necessary 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{game__level_8h_a839f9f87886f66b5a4ca1aa210b1fb9e}\label{game__level_8h_a839f9f87886f66b5a4ca1aa210b1fb9e}} 
+\index{game\_level.h@{game\_level.h}!read\_game\_level\_in\_file\_descriptor@{read\_game\_level\_in\_file\_descriptor}}
+\index{read\_game\_level\_in\_file\_descriptor@{read\_game\_level\_in\_file\_descriptor}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{read\_game\_level\_in\_file\_descriptor()}{read\_game\_level\_in\_file\_descriptor()}}
+{\footnotesize\ttfamily void read\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor,  }\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$}]{game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+read a game\+\_\+level to a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file in which we read the game\+\_\+level \\
+\hline
+{\em game\+\_\+level} & The game\+\_\+level to read \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 97 of file game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{game__level_8h_aada803298443b40364d786c060fb54b5}\label{game__level_8h_aada803298443b40364d786c060fb54b5}} 
+\index{game\_level.h@{game\_level.h}!save\_modification\_game\_level\_in\_file\_descriptor@{save\_modification\_game\_level\_in\_file\_descriptor}}
+\index{save\_modification\_game\_level\_in\_file\_descriptor@{save\_modification\_game\_level\_in\_file\_descriptor}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{save\_modification\_game\_level\_in\_file\_descriptor()}{save\_modification\_game\_level\_in\_file\_descriptor()}}
+{\footnotesize\ttfamily void save\+\_\+modification\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor,  }\item[{off\+\_\+t}]{position,  }\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}}}]{game\+\_\+level,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Save a modification of game\+\_\+level to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file descriptor in which the game\+\_\+level is stored \\
+\hline
+{\em position} & The position in the file at which the game\+\_\+level is written \\
+\hline
+{\em game\+\_\+level} & The game\+\_\+level has recorded \\
+\hline
+{\em posX} & Position X of the modified element to be saved in the file \\
+\hline
+{\em posY} & Position Y of the modified element to be saved in the file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 60 of file game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{game__level_8h_a4efbfcdba24eeeda1095927ac5629600}\label{game__level_8h_a4efbfcdba24eeeda1095927ac5629600}} 
+\index{game\_level.h@{game\_level.h}!write\_game\_level\_in\_file\_descriptor@{write\_game\_level\_in\_file\_descriptor}}
+\index{write\_game\_level\_in\_file\_descriptor@{write\_game\_level\_in\_file\_descriptor}!game\_level.h@{game\_level.h}}
+\doxysubsubsection{\texorpdfstring{write\_game\_level\_in\_file\_descriptor()}{write\_game\_level\_in\_file\_descriptor()}}
+{\footnotesize\ttfamily void write\+\_\+game\+\_\+level\+\_\+in\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{file\+\_\+descriptor,  }\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}}}]{game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+writes a game\+\_\+level to a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+descriptor} & The file in which we write the game\+\_\+level \\
+\hline
+{\em game\+\_\+level} & The game\+\_\+level to write \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 76 of file game\+\_\+level.\+c.
+

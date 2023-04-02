@@ -1,0 +1,46 @@
+\hypertarget{level__display_8c}{}\doxysection{code/src/display\+\_\+game/level\+\_\+display.c File Reference}
+\label{level__display_8c}\index{code/src/display\_game/level\_display.c@{code/src/display\_game/level\_display.c}}
+{\ttfamily \#include \char`\"{}level\+\_\+display.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}level\+\_\+info.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sprite.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}entity.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{level__display_8c_ae53f185265e98e778e2c60b7288f2856}{convert\+\_\+level\+\_\+info}} (int id\+\_\+level, \mbox{\hyperlink{structlevel__display__t}{level\+\_\+display\+\_\+t}} $\ast$level\+\_\+display, \mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} level\+\_\+info, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$enemies, int number\+\_\+enemies, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$players, int number\+\_\+players)
+\begin{DoxyCompactList}\small\item\em Convert the state of a level with its entities into a minimal level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{level__display_8c_ae53f185265e98e778e2c60b7288f2856}\label{level__display_8c_ae53f185265e98e778e2c60b7288f2856}} 
+\index{level\_display.c@{level\_display.c}!convert\_level\_info@{convert\_level\_info}}
+\index{convert\_level\_info@{convert\_level\_info}!level\_display.c@{level\_display.c}}
+\doxysubsubsection{\texorpdfstring{convert\_level\_info()}{convert\_level\_info()}}
+{\footnotesize\ttfamily void convert\+\_\+level\+\_\+info (\begin{DoxyParamCaption}\item[{int}]{id\+\_\+level,  }\item[{\mbox{\hyperlink{structlevel__display__t}{level\+\_\+display\+\_\+t}} $\ast$}]{level\+\_\+display,  }\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}}}]{level\+\_\+info,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{enemies,  }\item[{int}]{number\+\_\+enemies,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{players,  }\item[{int}]{number\+\_\+players }\end{DoxyParamCaption})}
+
+
+
+Convert the state of a level with its entities into a minimal level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+level} & Id of the level \\
+\hline
+{\em level\+\_\+display} & The variable in which the minimum level will be contained \\
+\hline
+{\em level\+\_\+info} & The level info \\
+\hline
+{\em enemies} & Enemies presents in the level \\
+\hline
+{\em number\+\_\+enemies} & Number enemies presents in the level \\
+\hline
+{\em players} & Players presents in the level \\
+\hline
+{\em number\+\_\+players} & Number players presents int the level \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 9 of file level\+\_\+display.\+c.
+

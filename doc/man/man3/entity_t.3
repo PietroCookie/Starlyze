@@ -1,0 +1,78 @@
+.TH "entity_t" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+entity_t \- A game entity\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <entity\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "int \fBposX\fP"
+.br
+.ti -1c
+.RI "int \fBposY\fP"
+.br
+.ti -1c
+.RI "\fBtype_entity_enum\fP \fBtype\fP"
+.br
+.ti -1c
+.RI "int \fBfreeze\fP"
+.br
+.ti -1c
+.RI "union {"
+.br
+.ti -1c
+.RI "   \fBplayer_t\fP \fBplayer\fP"
+.br
+.ti -1c
+.RI "   \fBenemy_t\fP \fBenemy\fP"
+.br
+.ti -1c
+.RI "}; "
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A game entity\&. 
+
+
+.PP
+Definition at line 32 of file entity\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "union { \&.\&.\&. } "
+
+.SS "\fBenemy_t\fP enemy"
+
+.PP
+Definition at line 39 of file entity\&.h\&.
+.SS "int freeze"
+
+.PP
+Definition at line 36 of file entity\&.h\&.
+.SS "\fBplayer_t\fP player"
+
+.PP
+Definition at line 38 of file entity\&.h\&.
+.SS "int posX"
+
+.PP
+Definition at line 33 of file entity\&.h\&.
+.SS "int posY"
+
+.PP
+Definition at line 34 of file entity\&.h\&.
+.SS "\fBtype_entity_enum\fP type"
+
+.PP
+Definition at line 35 of file entity\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

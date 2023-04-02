@@ -1,0 +1,148 @@
+.TH "code/include/server/server_udp.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/server/server_udp.h \- File that manages the UDP server\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'info_client\&.h'\fP
+.br
+\fC#include 'game\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_MSG\fP   255"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsave_new_client\fP (\fBlist_info_client_t\fP *connected_clients, char pseudo[\fBMAX_MSG\fP], char *client_adress, int nb_client, int \fBport\fP)"
+.br
+.RI "Function to save a new client\&. "
+.ti -1c
+.RI "void \fBadd_client_at_game\fP (\fBlist_game_t\fP *list_game, int id_game, \fBinfo_client_t\fP *client_to_join, int \fBport\fP, int \fBsockfd\fP)"
+.br
+.RI "Function to add a client to a game specified by its id\&. "
+.ti -1c
+.RI "void \fBsend_tcp_socket\fP (int \fBport\fP, int port_tcp, \fBgame_t\fP *game, int \fBsockfd\fP)"
+.br
+.RI "Function to send a message with TCP Port to a client\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manages the UDP server\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-29
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBserver_udp\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MAX_MSG   255"
+
+.PP
+Definition at line 18 of file server_udp\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "void add_client_at_game (\fBlist_game_t\fP * list_game, int id_game, \fBinfo_client_t\fP * client_to_join, int port, int sockfd)"
+
+.PP
+Function to add a client to a game specified by its id\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist_game\fP 
+.br
+\fIid_game\fP 
+.br
+\fIclient_to_join\fP 
+.br
+\fIport\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+
+.PP
+Definition at line 52 of file server_udp\&.c\&.
+.SS "void save_new_client (\fBlist_info_client_t\fP * connected_clients, char pseudo[MAX_MSG], char * client_address, int nb_client, int port)"
+
+.PP
+Function to save a new client\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIconnected_clients\fP 
+.br
+\fIpseudo\fP 
+.br
+\fIclient_adress\fP 
+.br
+\fInb_client\fP 
+.br
+\fIport\fP 
+.br
+\fIconnected_clients\fP 
+.br
+\fIpseudo\fP 
+.br
+\fIclient_address\fP 
+.br
+\fInb_client\fP 
+.br
+\fIport\fP 
+.RE
+.PP
+
+.PP
+Definition at line 36 of file server_udp\&.c\&.
+.SS "void send_tcp_socket (int port, int port_tcp, \fBgame_t\fP * game, int sockfd)"
+
+.PP
+Function to send a message with TCP Port to a client\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP 
+.br
+\fIport_tcp\fP 
+.br
+\fIgame\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+
+.PP
+Definition at line 72 of file server_udp\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

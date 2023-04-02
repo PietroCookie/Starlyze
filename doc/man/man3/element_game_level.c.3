@@ -1,0 +1,88 @@
+.TH "code/src/editor/element_game_level.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/editor/element_game_level.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'element_game_level\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBnecessary_size_element_game_level\fP ()"
+.br
+.RI "Calculate the necessary size for save an element of game_level in file\&. "
+.ti -1c
+.RI "void \fBwrite_element_game_level_in_file_descriptor\fP (int file_descriptor, \fBelement_game_level_t\fP element_game_level)"
+.br
+.RI "Write an element game_level in file descriptor\&. "
+.ti -1c
+.RI "\fBelement_game_level_t\fP * \fBread_element_game_level_in_file_descriptor\fP (int file_descriptor, int posX, int posY)"
+.br
+.RI "Read an element game_level in file descriptor\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "size_t necessary_size_element_game_level ()"
+
+.PP
+Calculate the necessary size for save an element of game_level in file\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size_t The size necessary 
+.RE
+.PP
+
+.PP
+Definition at line 7 of file element_game_level\&.c\&.
+.SS "\fBelement_game_level_t\fP* read_element_game_level_in_file_descriptor (int file_descriptor, int posX, int posY)"
+
+.PP
+Read an element game_level in file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file descriptor in which we read 
+.br
+\fIposX\fP Position X of the element in game_level 
+.br
+\fIposY\fP Position Y of the element in game_level 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+element_game_level_t* The variable that will contain the element read 
+.RE
+.PP
+
+.PP
+Definition at line 15 of file element_game_level\&.c\&.
+.SS "void write_element_game_level_in_file_descriptor (int file_descriptor, \fBelement_game_level_t\fP element_game_level)"
+
+.PP
+Write an element game_level in file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file descriptor in which we write 
+.br
+\fIelement_game_level\fP The element of game_level to write 
+.RE
+.PP
+
+.PP
+Definition at line 11 of file element_game_level\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

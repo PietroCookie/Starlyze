@@ -1,0 +1,113 @@
+.TH "code/src/display_game/interface_game.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/display_game/interface_game.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'interface_game\&.h'\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include 'window\&.h'\fP
+.br
+\fC#include 'paint_tools\&.h'\fP
+.br
+\fC#include 'colors\&.h'\fP
+.br
+\fC#include 'functions\&.h'\fP
+.br
+\fC#include 'level_display\&.h'\fP
+.br
+\fC#include 'sprite\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinterface_dimensions_game\fP (unsigned short width, unsigned short height)"
+.br
+.ti -1c
+.RI "\fBinterface_game_t\fP * \fBinterface_game_create\fP ()"
+.br
+.RI "Create interface\&. "
+.ti -1c
+.RI "void \fBinterface_game_delete\fP (\fBinterface_game_t\fP **interface)"
+.br
+.RI "Delete interface\&. "
+.ti -1c
+.RI "void \fBrefresh_win_level_game\fP (\fBinterface_game_t\fP *interface, \fBlevel_display_t\fP level_display)"
+.br
+.RI "Refresh the window of level\&. "
+.ti -1c
+.RI "void \fBrefresh_win_infos\fP (\fBinterface_game_t\fP *interface, \fBplayer_t\fP player)"
+.br
+.RI "Refresh the window of information\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void interface_dimensions_game (unsigned short width, unsigned short height)"
+Check terminal dimensions\&. 
+.PP
+Definition at line 14 of file interface_game\&.c\&.
+.SS "\fBinterface_game_t\fP* interface_game_create ()"
+
+.PP
+Create interface\&. 
+.PP
+\fBReturns\fP
+.RS 4
+interface_t* created interface 
+.RE
+.PP
+
+.PP
+Definition at line 24 of file interface_game\&.c\&.
+.SS "void interface_game_delete (\fBinterface_game_t\fP ** interface)"
+
+.PP
+Delete interface\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP interface to delete 
+.RE
+.PP
+
+.PP
+Definition at line 43 of file interface_game\&.c\&.
+.SS "void refresh_win_infos (\fBinterface_game_t\fP * interface, \fBplayer_t\fP player)"
+
+.PP
+Refresh the window of information\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP The interface to refresh 
+.br
+\fIplayer\fP The player whose information should be displayed 
+.RE
+.PP
+
+.PP
+Definition at line 101 of file interface_game\&.c\&.
+.SS "void refresh_win_level_game (\fBinterface_game_t\fP * interface, \fBlevel_display_t\fP level_display)"
+
+.PP
+Refresh the window of level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinterface\fP The interface to refresh 
+.br
+\fIlevel_display\fP state of the game 
+.RE
+.PP
+
+.PP
+Definition at line 52 of file interface_game\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

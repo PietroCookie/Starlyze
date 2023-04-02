@@ -1,0 +1,68 @@
+.TH "code/src/game-control/world_info.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/game-control/world_info.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'world_info\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <fcntl\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include 'address_table\&.h'\fP
+.br
+\fC#include 'sprite\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBload_world_info\fP (\fBworld_info_t\fP *world_info, char *name_world)"
+.br
+.RI "Load a world\&. "
+.ti -1c
+.RI "void \fBdelete_world_info\fP (\fBworld_info_t\fP *world_info)"
+.br
+.RI "Delete a world from memory\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void delete_world_info (\fBworld_info_t\fP * world_info)"
+
+.PP
+Delete a world from memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIworld_info\fP The world we want to suppress 
+.RE
+.PP
+
+.PP
+Definition at line 98 of file world_info\&.c\&.
+.SS "void load_world_info (\fBworld_info_t\fP * world_info, char * name_world)"
+
+.PP
+Load a world\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIworld_info\fP The variable that will contain the world's information 
+.br
+\fIname_world\fP The name of the world that we charge 
+.RE
+.PP
+
+.PP
+Definition at line 11 of file world_info\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

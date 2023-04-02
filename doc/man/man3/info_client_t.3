@@ -1,0 +1,70 @@
+.TH "info_client_t" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+info_client_t \- Structure that contains the information of a client\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <info_client\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "int \fBid\fP"
+.br
+.ti -1c
+.RI "char \fBpseudo\fP [\fBMAX_MSG\fP]"
+.br
+.ti -1c
+.RI "char * \fBclient_address\fP"
+.br
+.ti -1c
+.RI "int \fBport\fP"
+.br
+.ti -1c
+.RI "struct \fBinfo_client_t\fP * \fBnext\fP"
+.br
+.ti -1c
+.RI "struct \fBinfo_client_t\fP * \fBprev\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Structure that contains the information of a client\&. 
+
+
+.PP
+Definition at line 21 of file info_client\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "char* client_address"
+
+.PP
+Definition at line 25 of file info_client\&.h\&.
+.SS "int id"
+
+.PP
+Definition at line 23 of file info_client\&.h\&.
+.SS "struct \fBinfo_client_t\fP* next"
+
+.PP
+Definition at line 27 of file info_client\&.h\&.
+.SS "int port"
+
+.PP
+Definition at line 26 of file info_client\&.h\&.
+.SS "struct \fBinfo_client_t\fP* prev"
+
+.PP
+Definition at line 28 of file info_client\&.h\&.
+.SS "char pseudo[\fBMAX_MSG\fP]"
+
+.PP
+Definition at line 24 of file info_client\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

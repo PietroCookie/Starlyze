@@ -1,0 +1,106 @@
+\hypertarget{create__game_8c}{}\doxysection{code/src/server/create\+\_\+game.c File Reference}
+\label{create__game_8c}\index{code/src/server/create\_game.c@{code/src/server/create\_game.c}}
+
+
+File that manages the creation of a game for the server.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}create\+\_\+game.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{create__game_8c_a77937a890b15a823e773f06f2d0f407b}{filter\+\_\+file\+\_\+bin}} (const struct dirent $\ast$entry)
+\begin{DoxyCompactList}\small\item\em Function to filter the names of .bin files. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlist__world__response__t}{list\+\_\+world\+\_\+response\+\_\+t}} \mbox{\hyperlink{create__game_8c_a7c0d6aade4a6f37100c2ecc67d97c313}{recovering\+\_\+existing\+\_\+worlds}} ()
+\begin{DoxyCompactList}\small\item\em Function to recover the list of worlds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{create__game_8c_a16a2d20bab407b5c55e9b0c79f2b1bf0}{save\+\_\+new\+\_\+game}} (\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$list\+\_\+game, int nb\+\_\+games, int nb\+\_\+participants\+\_\+final, char name\+\_\+world\mbox{[}\mbox{\hyperlink{server__udp_8h_aa24597a54a085c6c2c33b64138f09eff}{M\+A\+X\+\_\+\+M\+SG}}\mbox{]}, \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$new\+\_\+client)
+\begin{DoxyCompactList}\small\item\em Function to create and save a new game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages the creation of a game for the server. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{create__game_8c_a77937a890b15a823e773f06f2d0f407b}\label{create__game_8c_a77937a890b15a823e773f06f2d0f407b}} 
+\index{create\_game.c@{create\_game.c}!filter\_file\_bin@{filter\_file\_bin}}
+\index{filter\_file\_bin@{filter\_file\_bin}!create\_game.c@{create\_game.c}}
+\doxysubsubsection{\texorpdfstring{filter\_file\_bin()}{filter\_file\_bin()}}
+{\footnotesize\ttfamily int filter\+\_\+file\+\_\+bin (\begin{DoxyParamCaption}\item[{const struct dirent $\ast$}]{entry }\end{DoxyParamCaption})}
+
+
+
+Function to filter the names of .bin files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entry} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file create\+\_\+game.\+c.
+
+\mbox{\Hypertarget{create__game_8c_a7c0d6aade4a6f37100c2ecc67d97c313}\label{create__game_8c_a7c0d6aade4a6f37100c2ecc67d97c313}} 
+\index{create\_game.c@{create\_game.c}!recovering\_existing\_worlds@{recovering\_existing\_worlds}}
+\index{recovering\_existing\_worlds@{recovering\_existing\_worlds}!create\_game.c@{create\_game.c}}
+\doxysubsubsection{\texorpdfstring{recovering\_existing\_worlds()}{recovering\_existing\_worlds()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlist__world__response__t}{list\+\_\+world\+\_\+response\+\_\+t}} recovering\+\_\+existing\+\_\+worlds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to recover the list of worlds. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structlist__world__response__t}{list\+\_\+world\+\_\+response\+\_\+t}} 
+\end{DoxyReturn}
+
+
+Definition at line 42 of file create\+\_\+game.\+c.
+
+\mbox{\Hypertarget{create__game_8c_a16a2d20bab407b5c55e9b0c79f2b1bf0}\label{create__game_8c_a16a2d20bab407b5c55e9b0c79f2b1bf0}} 
+\index{create\_game.c@{create\_game.c}!save\_new\_game@{save\_new\_game}}
+\index{save\_new\_game@{save\_new\_game}!create\_game.c@{create\_game.c}}
+\doxysubsubsection{\texorpdfstring{save\_new\_game()}{save\_new\_game()}}
+{\footnotesize\ttfamily void save\+\_\+new\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$}]{list\+\_\+game,  }\item[{int}]{nb\+\_\+games,  }\item[{int}]{nb\+\_\+participants\+\_\+final,  }\item[{char}]{name\+\_\+world\mbox{[}\+M\+A\+X\+\_\+\+M\+S\+G\mbox{]},  }\item[{\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$}]{new\+\_\+client }\end{DoxyParamCaption})}
+
+
+
+Function to create and save a new game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+game} & \\
+\hline
+{\em nb\+\_\+games} & \\
+\hline
+{\em nb\+\_\+participants\+\_\+final} & \\
+\hline
+{\em name\+\_\+world} & \\
+\hline
+{\em new\+\_\+client} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 90 of file create\+\_\+game.\+c.
+

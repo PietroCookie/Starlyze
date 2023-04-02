@@ -1,0 +1,99 @@
+\hypertarget{world__info_8h}{}\doxysection{code/include/game-\/control/world\+\_\+info.h File Reference}
+\label{world__info_8h}\index{code/include/game-\/control/world\_info.h@{code/include/game-\/control/world\_info.h}}
+
+
+File that manage world\+\_\+info.  
+
+
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}level\+\_\+info.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Represents the information of a world. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{world__info_8h_a6e9844e767ae1c027f9cfb2cf0803997}{N\+U\+M\+B\+E\+R\+\_\+\+D\+O\+OR}}~99
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{world__info_8h_a317dd9915a41a2ceec0720fdae8a4fc2}{load\+\_\+world\+\_\+info}} (\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$world\+\_\+info, char $\ast$name\+\_\+world)
+\begin{DoxyCompactList}\small\item\em Load a world. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{world__info_8h_a9daeef08b20a2e963a7f53d67028e1dc}{delete\+\_\+world\+\_\+info}} (\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$world\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Delete a world from memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manage world\+\_\+info. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/31
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{world__info_8h_a6e9844e767ae1c027f9cfb2cf0803997}\label{world__info_8h_a6e9844e767ae1c027f9cfb2cf0803997}} 
+\index{world\_info.h@{world\_info.h}!NUMBER\_DOOR@{NUMBER\_DOOR}}
+\index{NUMBER\_DOOR@{NUMBER\_DOOR}!world\_info.h@{world\_info.h}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_DOOR}{NUMBER\_DOOR}}
+{\footnotesize\ttfamily \#define N\+U\+M\+B\+E\+R\+\_\+\+D\+O\+OR~99}
+
+
+
+Definition at line 19 of file world\+\_\+info.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{world__info_8h_a9daeef08b20a2e963a7f53d67028e1dc}\label{world__info_8h_a9daeef08b20a2e963a7f53d67028e1dc}} 
+\index{world\_info.h@{world\_info.h}!delete\_world\_info@{delete\_world\_info}}
+\index{delete\_world\_info@{delete\_world\_info}!world\_info.h@{world\_info.h}}
+\doxysubsubsection{\texorpdfstring{delete\_world\_info()}{delete\_world\_info()}}
+{\footnotesize\ttfamily void delete\+\_\+world\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$}]{world\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Delete a world from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+\_\+info} & The world we want to suppress \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 98 of file world\+\_\+info.\+c.
+
+\mbox{\Hypertarget{world__info_8h_a317dd9915a41a2ceec0720fdae8a4fc2}\label{world__info_8h_a317dd9915a41a2ceec0720fdae8a4fc2}} 
+\index{world\_info.h@{world\_info.h}!load\_world\_info@{load\_world\_info}}
+\index{load\_world\_info@{load\_world\_info}!world\_info.h@{world\_info.h}}
+\doxysubsubsection{\texorpdfstring{load\_world\_info()}{load\_world\_info()}}
+{\footnotesize\ttfamily void load\+\_\+world\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$}]{world\+\_\+info,  }\item[{char $\ast$}]{name\+\_\+world }\end{DoxyParamCaption})}
+
+
+
+Load a world. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+\_\+info} & The variable that will contain the world\textquotesingle{}s information \\
+\hline
+{\em name\+\_\+world} & The name of the world that we charge \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 11 of file world\+\_\+info.\+c.
+

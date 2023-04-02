@@ -1,0 +1,364 @@
+\hypertarget{move__world_8c}{}\doxysection{code/src/game-\/control/move\+\_\+world.c File Reference}
+\label{move__world_8c}\index{code/src/game-\/control/move\_world.c@{code/src/game-\/control/move\_world.c}}
+{\ttfamily \#include \char`\"{}move\+\_\+world.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}game\+\_\+control.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sprite.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{move__world_8c_a8861a91ecef476027172008cf74276b2}{thread\+\_\+wait\+\_\+item}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The thread managing the reappearance of an item after a random time. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{move__world_8c_a8e95e4241cfd4a92ada2b9c7daec7e66}{move\+\_\+level}} (\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$game\+\_\+control\+\_\+info, int id\+\_\+level, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$entity\+\_\+move, \mbox{\hyperlink{move__world_8h_ae846c6457f3d41c69f5f313e396f9f4c}{direction\+\_\+enum}} direction)
+\begin{DoxyCompactList}\small\item\em Move an entity within a level or between levels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move__world_8c_abe92152de8668ec46c1945058174e920}{reset\+\_\+player}} (\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} world\+\_\+info, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$player)
+\begin{DoxyCompactList}\small\item\em Resets a player to the beginning of the world by emptying his inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move__world_8c_ad4c74514db5da1174405de5b72329183}{check\+\_\+victory}} (\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$game\+\_\+control\+\_\+info, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} player)
+\begin{DoxyCompactList}\small\item\em Checks if a player has won the game. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{move__world_8c_aae5d3386eb251397ff7ccf5e4648514d}{check\+\_\+validation\+\_\+move}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$level, int pos\+X\+\_\+dest, int pos\+Y\+\_\+dest, int pos\+X\+\_\+width, int pos\+Y\+\_\+height, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$entity\+\_\+move)
+\begin{DoxyCompactList}\small\item\em Checks the validity of a move. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{move__world_8c_ab7292c18e0f380d647a9a6291896dcc6}{check\+\_\+validation\+\_\+move\+\_\+enemy}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$level, int pos\+X\+\_\+dest, int pos\+Y\+\_\+dest, int pos\+X\+\_\+width, int pos\+Y\+\_\+height, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$entity\+\_\+move)
+\begin{DoxyCompactList}\small\item\em Checks the validity of a move of enemy. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{move__world_8c_a41ba97f2900d0d610ad240edaf1a6b2c}{check\+\_\+validation\+\_\+move\+\_\+player}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$level, int pos\+X\+\_\+dest, int pos\+Y\+\_\+dest, int pos\+X\+\_\+width, int pos\+Y\+\_\+height, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$entity\+\_\+move)
+\begin{DoxyCompactList}\small\item\em Checks the validity of a move of player. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$ \mbox{\hyperlink{move__world_8c_a7818108b3203f0d4540aa3867af2d2b6}{check\+\_\+collision}} (\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$entity\+\_\+collision, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$collider, int number\+\_\+collider, int level)
+\begin{DoxyCompactList}\small\item\em Checks for collisions of an entity on a level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move__world_8c_ae91013212ed76c16a7da6f6c28d53f17}{take\+\_\+item}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$level, \mbox{\hyperlink{structplayer__t}{player\+\_\+t}} $\ast$player, int posX, int posY, int pos\+X\+\_\+width, int pos\+Y\+\_\+height)
+\begin{DoxyCompactList}\small\item\em Allows to check if a player is on the position of an item and to recover it if necessarys. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move__world_8c_a92cb6c875cf4b30feec6e5952dd88200}{enter\+\_\+door}} (\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$world\+\_\+info, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$player)
+\begin{DoxyCompactList}\small\item\em Allows to pass a door and to change level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move__world_8c_a7932b578e048b2ae4bf42aa448c34ff9}{drop\+\_\+bomb}} (\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$\mbox{\hyperlink{game__control_8c_a66126e30bfc779ece10fd207afe098ab}{game\+\_\+control}}, \mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$player)
+\begin{DoxyCompactList}\small\item\em Allows a player to place a bomb. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{move__world_8c_a1d81196b1f4bbc178e9b26d0517f5632}{thread\+\_\+explose\+\_\+bomb}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The thread that manages the explosion of a bomb. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{move__world_8c_aae5e202c7fc8ddd5d9f893e5d9f8cc68}{p\+\_\+thread\+\_\+invincible}} = \mbox{\hyperlink{player_8c_a1af5953da8dcadd2dce0d60a5e663a5e}{thread\+\_\+invincible}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{move__world_8c_a7818108b3203f0d4540aa3867af2d2b6}\label{move__world_8c_a7818108b3203f0d4540aa3867af2d2b6}} 
+\index{move\_world.c@{move\_world.c}!check\_collision@{check\_collision}}
+\index{check\_collision@{check\_collision}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{check\_collision()}{check\_collision()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structentity__t}{entity\+\_\+t}}$\ast$ check\+\_\+collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{collision,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{collider,  }\item[{int}]{number\+\_\+collider,  }\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+Checks for collisions of an entity on a level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collision} & The entity whose collisions we want to check \\
+\hline
+{\em collider} & Table of colliding entities \\
+\hline
+{\em number\+\_\+collider} & The number of entities that can collide \\
+\hline
+{\em level} & The identifier of the level in which the collisions are checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+entity\+\_\+t$\ast$ The entity with which we collided or N\+U\+LL if there is none 
+\end{DoxyReturn}
+
+
+Definition at line 261 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_aae5d3386eb251397ff7ccf5e4648514d}\label{move__world_8c_aae5d3386eb251397ff7ccf5e4648514d}} 
+\index{move\_world.c@{move\_world.c}!check\_validation\_move@{check\_validation\_move}}
+\index{check\_validation\_move@{check\_validation\_move}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{check\_validation\_move()}{check\_validation\_move()}}
+{\footnotesize\ttfamily int check\+\_\+validation\+\_\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$}]{level,  }\item[{int}]{pos\+X\+\_\+dest,  }\item[{int}]{pos\+Y\+\_\+dest,  }\item[{int}]{pos\+X\+\_\+width,  }\item[{int}]{pos\+Y\+\_\+height,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{entity\+\_\+move }\end{DoxyParamCaption})}
+
+
+
+Checks the validity of a move. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level in which we move \\
+\hline
+{\em pos\+X\+\_\+dest} & Position X of displacement \\
+\hline
+{\em pos\+Y\+\_\+dest} & Position Y of displacement \\
+\hline
+{\em pos\+X\+\_\+width} & Position X of displacement considering the width of the entity \\
+\hline
+{\em pos\+Y\+\_\+height} & Position Y of displacement considering the height of the entity \\
+\hline
+{\em entity\+\_\+move} & The entity whose displacement is being checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int If the move is validated or not 
+\end{DoxyReturn}
+
+
+Definition at line 179 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_ab7292c18e0f380d647a9a6291896dcc6}\label{move__world_8c_ab7292c18e0f380d647a9a6291896dcc6}} 
+\index{move\_world.c@{move\_world.c}!check\_validation\_move\_enemy@{check\_validation\_move\_enemy}}
+\index{check\_validation\_move\_enemy@{check\_validation\_move\_enemy}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{check\_validation\_move\_enemy()}{check\_validation\_move\_enemy()}}
+{\footnotesize\ttfamily int check\+\_\+validation\+\_\+move\+\_\+enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$}]{level,  }\item[{int}]{pos\+X\+\_\+dest,  }\item[{int}]{pos\+Y\+\_\+dest,  }\item[{int}]{pos\+X\+\_\+width,  }\item[{int}]{pos\+Y\+\_\+height,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{entity\+\_\+move }\end{DoxyParamCaption})}
+
+
+
+Checks the validity of a move of enemy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level in which we move \\
+\hline
+{\em pos\+X\+\_\+dest} & Position X of displacement \\
+\hline
+{\em pos\+Y\+\_\+dest} & Position Y of displacement \\
+\hline
+{\em pos\+X\+\_\+width} & Position X of displacement considering the width of the enemy \\
+\hline
+{\em pos\+Y\+\_\+height} & Position Y of displacement considering the height of the enemy \\
+\hline
+{\em entity\+\_\+move} & The enemy whose displacement is being checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int If the move is validated or not 
+\end{DoxyReturn}
+
+
+Definition at line 207 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_a41ba97f2900d0d610ad240edaf1a6b2c}\label{move__world_8c_a41ba97f2900d0d610ad240edaf1a6b2c}} 
+\index{move\_world.c@{move\_world.c}!check\_validation\_move\_player@{check\_validation\_move\_player}}
+\index{check\_validation\_move\_player@{check\_validation\_move\_player}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{check\_validation\_move\_player()}{check\_validation\_move\_player()}}
+{\footnotesize\ttfamily int check\+\_\+validation\+\_\+move\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$}]{level,  }\item[{int}]{pos\+X\+\_\+dest,  }\item[{int}]{pos\+Y\+\_\+dest,  }\item[{int}]{pos\+X\+\_\+width,  }\item[{int}]{pos\+Y\+\_\+height,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{entity\+\_\+move }\end{DoxyParamCaption})}
+
+
+
+Checks the validity of a move of player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level in which we move \\
+\hline
+{\em pos\+X\+\_\+dest} & Position X of displacement \\
+\hline
+{\em pos\+Y\+\_\+dest} & Position Y of displacement \\
+\hline
+{\em pos\+X\+\_\+width} & Position X of displacement considering the width of the player \\
+\hline
+{\em pos\+Y\+\_\+height} & Position Y of displacement considering the height of the player \\
+\hline
+{\em entity\+\_\+move} & The player whose displacement is being checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int If the move is validated or not 
+\end{DoxyReturn}
+
+
+Definition at line 234 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_ad4c74514db5da1174405de5b72329183}\label{move__world_8c_ad4c74514db5da1174405de5b72329183}} 
+\index{move\_world.c@{move\_world.c}!check\_victory@{check\_victory}}
+\index{check\_victory@{check\_victory}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{check\_victory()}{check\_victory()}}
+{\footnotesize\ttfamily void check\+\_\+victory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$}]{game\+\_\+control\+\_\+info,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}}}]{player }\end{DoxyParamCaption})}
+
+
+
+Checks if a player has won the game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+control\+\_\+info} & The game manager \\
+\hline
+{\em player} & The player who we want to know if he won \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 165 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_a7932b578e048b2ae4bf42aa448c34ff9}\label{move__world_8c_a7932b578e048b2ae4bf42aa448c34ff9}} 
+\index{move\_world.c@{move\_world.c}!drop\_bomb@{drop\_bomb}}
+\index{drop\_bomb@{drop\_bomb}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{drop\_bomb()}{drop\_bomb()}}
+{\footnotesize\ttfamily void drop\+\_\+bomb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$}]{game\+\_\+control,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Allows a player to place a bomb. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+control} & The game manager \\
+\hline
+{\em player} & The player who places a bombs \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 413 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_a92cb6c875cf4b30feec6e5952dd88200}\label{move__world_8c_a92cb6c875cf4b30feec6e5952dd88200}} 
+\index{move\_world.c@{move\_world.c}!enter\_door@{enter\_door}}
+\index{enter\_door@{enter\_door}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{enter\_door()}{enter\_door()}}
+{\footnotesize\ttfamily void enter\+\_\+door (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}} $\ast$}]{world\+\_\+info,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Allows to pass a door and to change level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+\_\+info} & The informations of the world \\
+\hline
+{\em player} & The player who borrows a doors \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 336 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_a8e95e4241cfd4a92ada2b9c7daec7e66}\label{move__world_8c_a8e95e4241cfd4a92ada2b9c7daec7e66}} 
+\index{move\_world.c@{move\_world.c}!move\_level@{move\_level}}
+\index{move\_level@{move\_level}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{move\_level()}{move\_level()}}
+{\footnotesize\ttfamily int move\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame__control__t}{game\+\_\+control\+\_\+t}} $\ast$}]{game\+\_\+control\+\_\+info,  }\item[{int}]{id\+\_\+level,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{entity\+\_\+move,  }\item[{\mbox{\hyperlink{move__world_8h_ae846c6457f3d41c69f5f313e396f9f4c}{direction\+\_\+enum}}}]{direction }\end{DoxyParamCaption})}
+
+
+
+Move an entity within a level or between levels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+control\+\_\+info} & The game manager \\
+\hline
+{\em id\+\_\+level} & The identifier of the level in which the entity we are moving is \\
+\hline
+{\em entity\+\_\+move} & The entity that is moved \\
+\hline
+{\em direction} & Direction of the entity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int If the trip went wells 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_abe92152de8668ec46c1945058174e920}\label{move__world_8c_abe92152de8668ec46c1945058174e920}} 
+\index{move\_world.c@{move\_world.c}!reset\_player@{reset\_player}}
+\index{reset\_player@{reset\_player}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{reset\_player()}{reset\_player()}}
+{\footnotesize\ttfamily void reset\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structworld__info__t}{world\+\_\+info\+\_\+t}}}]{world\+\_\+info,  }\item[{\mbox{\hyperlink{structentity__t}{entity\+\_\+t}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Resets a player to the beginning of the world by emptying his inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+\_\+info} & Information from a world \\
+\hline
+{\em player} & The player whose position and inventory are reset in the world \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 139 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_ae91013212ed76c16a7da6f6c28d53f17}\label{move__world_8c_ae91013212ed76c16a7da6f6c28d53f17}} 
+\index{move\_world.c@{move\_world.c}!take\_item@{take\_item}}
+\index{take\_item@{take\_item}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{take\_item()}{take\_item()}}
+{\footnotesize\ttfamily void take\+\_\+item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$}]{level,  }\item[{\mbox{\hyperlink{structplayer__t}{player\+\_\+t}} $\ast$}]{player,  }\item[{int}]{pos\+X\+\_\+dest,  }\item[{int}]{pos\+Y\+\_\+dest,  }\item[{int}]{pos\+X\+\_\+width,  }\item[{int}]{pos\+Y\+\_\+height }\end{DoxyParamCaption})}
+
+
+
+Allows to check if a player is on the position of an item and to recover it if necessarys. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The level at which the item potential is checked and recovered \\
+\hline
+{\em player} & The player who will retrieve the item \\
+\hline
+{\em pos\+X\+\_\+dest} & Position X of the player \\
+\hline
+{\em pos\+Y\+\_\+dest} & Position Y of the player \\
+\hline
+{\em pos\+X\+\_\+width} & Position X of the player considering the width of the player \\
+\hline
+{\em pos\+Y\+\_\+height} & Position Y of the player considering the height of the player \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 289 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_a1d81196b1f4bbc178e9b26d0517f5632}\label{move__world_8c_a1d81196b1f4bbc178e9b26d0517f5632}} 
+\index{move\_world.c@{move\_world.c}!thread\_explose\_bomb@{thread\_explose\_bomb}}
+\index{thread\_explose\_bomb@{thread\_explose\_bomb}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{thread\_explose\_bomb()}{thread\_explose\_bomb()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+explose\+\_\+bomb (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+The thread that manages the explosion of a bomb. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & The information needed for the thread \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The result of this Thread -\/ there is N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 464 of file move\+\_\+world.\+c.
+
+\mbox{\Hypertarget{move__world_8c_a8861a91ecef476027172008cf74276b2}\label{move__world_8c_a8861a91ecef476027172008cf74276b2}} 
+\index{move\_world.c@{move\_world.c}!thread\_wait\_item@{thread\_wait\_item}}
+\index{thread\_wait\_item@{thread\_wait\_item}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{thread\_wait\_item()}{thread\_wait\_item()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+wait\+\_\+item (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+The thread managing the reappearance of an item after a random time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & The necessary thread information \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The result of this Thread -\/ there is N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 11 of file move\+\_\+world.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{move__world_8c_aae5e202c7fc8ddd5d9f893e5d9f8cc68}\label{move__world_8c_aae5e202c7fc8ddd5d9f893e5d9f8cc68}} 
+\index{move\_world.c@{move\_world.c}!p\_thread\_invincible@{p\_thread\_invincible}}
+\index{p\_thread\_invincible@{p\_thread\_invincible}!move\_world.c@{move\_world.c}}
+\doxysubsubsection{\texorpdfstring{p\_thread\_invincible}{p\_thread\_invincible}}
+{\footnotesize\ttfamily void$\ast$ p\+\_\+thread\+\_\+invincible = \mbox{\hyperlink{player_8c_a1af5953da8dcadd2dce0d60a5e663a5e}{thread\+\_\+invincible}}}
+
+
+
+Definition at line 9 of file move\+\_\+world.\+c.
+

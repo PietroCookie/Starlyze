@@ -1,0 +1,195 @@
+\hypertarget{level__info_8h}{}\doxysection{code/include/game-\/control/level\+\_\+info.h File Reference}
+\label{level__info_8h}\index{code/include/game-\/control/level\_info.h@{code/include/game-\/control/level\_info.h}}
+
+
+File that manage a level\+\_\+info.  
+
+
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}sprite.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}trap.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The structure representing the information of a level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{level__info_8h_a8a7868427c4141a0d820365d95adf2d2}{N\+U\+M\+B\+E\+R\+\_\+\+R\+O\+B\+OT}}~10
+\item 
+\#define \mbox{\hyperlink{level__info_8h_a40cda57ba02f2bddea0f36c60e0af34e}{N\+U\+M\+B\+E\+R\+\_\+\+P\+R\+O\+BE}}~10
+\item 
+\#define \mbox{\hyperlink{level__info_8h_ae9f47d67112769b2ab5ba9d2b73cbc97}{N\+U\+M\+B\+E\+R\+\_\+\+T\+R\+AP}}~40
+\item 
+\#define \mbox{\hyperlink{level__info_8h_adc97c716c8d04c38feb53751d8ce452d}{W\+I\+D\+T\+H\+\_\+\+L\+E\+V\+EL}}~60
+\item 
+\#define \mbox{\hyperlink{level__info_8h_a2075b525f330f737271850f550ad59de}{H\+E\+I\+G\+H\+T\+\_\+\+L\+E\+V\+EL}}~20
+\item 
+\#define \mbox{\hyperlink{level__info_8h_a0a4e2d94ca3c41fdd92aa67243645e80}{W\+I\+D\+T\+H\+\_\+\+Z\+O\+N\+E\+\_\+\+L\+E\+V\+EL}}~5
+\item 
+\#define \mbox{\hyperlink{level__info_8h_adf22693fe6ec9707f5166c21ded8ff65}{H\+E\+I\+G\+H\+T\+\_\+\+Z\+O\+N\+E\+\_\+\+L\+E\+V\+EL}}~5
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{level__info_8h_a9c76725bf2f2c50fb17a10ca5883264c}{load\+\_\+level\+\_\+info}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$level\+\_\+info, int file)
+\begin{DoxyCompactList}\small\item\em Allows to load a level from a file descriptor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{level__info_8h_a58b99221fec4565640aca2aad4f376b6}{delete\+\_\+level\+\_\+info}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$level\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Deletes the information of a level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{level__info_8h_adfb2c9e795d29c4642c9deec16b03750}{load\+\_\+block\+\_\+trap}} (\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} level\+\_\+info, \mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$list\+\_\+block\+\_\+trap)
+\begin{DoxyCompactList}\small\item\em Load the trap blocks of a level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manage a level\+\_\+info. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{level__info_8h_a2075b525f330f737271850f550ad59de}\label{level__info_8h_a2075b525f330f737271850f550ad59de}} 
+\index{level\_info.h@{level\_info.h}!HEIGHT\_LEVEL@{HEIGHT\_LEVEL}}
+\index{HEIGHT\_LEVEL@{HEIGHT\_LEVEL}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{HEIGHT\_LEVEL}{HEIGHT\_LEVEL}}
+{\footnotesize\ttfamily \#define H\+E\+I\+G\+H\+T\+\_\+\+L\+E\+V\+EL~20}
+
+
+
+Definition at line 25 of file level\+\_\+info.\+h.
+
+\mbox{\Hypertarget{level__info_8h_adf22693fe6ec9707f5166c21ded8ff65}\label{level__info_8h_adf22693fe6ec9707f5166c21ded8ff65}} 
+\index{level\_info.h@{level\_info.h}!HEIGHT\_ZONE\_LEVEL@{HEIGHT\_ZONE\_LEVEL}}
+\index{HEIGHT\_ZONE\_LEVEL@{HEIGHT\_ZONE\_LEVEL}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{HEIGHT\_ZONE\_LEVEL}{HEIGHT\_ZONE\_LEVEL}}
+{\footnotesize\ttfamily \#define H\+E\+I\+G\+H\+T\+\_\+\+Z\+O\+N\+E\+\_\+\+L\+E\+V\+EL~5}
+
+
+
+Definition at line 28 of file level\+\_\+info.\+h.
+
+\mbox{\Hypertarget{level__info_8h_a40cda57ba02f2bddea0f36c60e0af34e}\label{level__info_8h_a40cda57ba02f2bddea0f36c60e0af34e}} 
+\index{level\_info.h@{level\_info.h}!NUMBER\_PROBE@{NUMBER\_PROBE}}
+\index{NUMBER\_PROBE@{NUMBER\_PROBE}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_PROBE}{NUMBER\_PROBE}}
+{\footnotesize\ttfamily \#define N\+U\+M\+B\+E\+R\+\_\+\+P\+R\+O\+BE~10}
+
+
+
+Definition at line 21 of file level\+\_\+info.\+h.
+
+\mbox{\Hypertarget{level__info_8h_a8a7868427c4141a0d820365d95adf2d2}\label{level__info_8h_a8a7868427c4141a0d820365d95adf2d2}} 
+\index{level\_info.h@{level\_info.h}!NUMBER\_ROBOT@{NUMBER\_ROBOT}}
+\index{NUMBER\_ROBOT@{NUMBER\_ROBOT}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_ROBOT}{NUMBER\_ROBOT}}
+{\footnotesize\ttfamily \#define N\+U\+M\+B\+E\+R\+\_\+\+R\+O\+B\+OT~10}
+
+
+
+Definition at line 20 of file level\+\_\+info.\+h.
+
+\mbox{\Hypertarget{level__info_8h_ae9f47d67112769b2ab5ba9d2b73cbc97}\label{level__info_8h_ae9f47d67112769b2ab5ba9d2b73cbc97}} 
+\index{level\_info.h@{level\_info.h}!NUMBER\_TRAP@{NUMBER\_TRAP}}
+\index{NUMBER\_TRAP@{NUMBER\_TRAP}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_TRAP}{NUMBER\_TRAP}}
+{\footnotesize\ttfamily \#define N\+U\+M\+B\+E\+R\+\_\+\+T\+R\+AP~40}
+
+
+
+Definition at line 22 of file level\+\_\+info.\+h.
+
+\mbox{\Hypertarget{level__info_8h_adc97c716c8d04c38feb53751d8ce452d}\label{level__info_8h_adc97c716c8d04c38feb53751d8ce452d}} 
+\index{level\_info.h@{level\_info.h}!WIDTH\_LEVEL@{WIDTH\_LEVEL}}
+\index{WIDTH\_LEVEL@{WIDTH\_LEVEL}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{WIDTH\_LEVEL}{WIDTH\_LEVEL}}
+{\footnotesize\ttfamily \#define W\+I\+D\+T\+H\+\_\+\+L\+E\+V\+EL~60}
+
+
+
+Definition at line 24 of file level\+\_\+info.\+h.
+
+\mbox{\Hypertarget{level__info_8h_a0a4e2d94ca3c41fdd92aa67243645e80}\label{level__info_8h_a0a4e2d94ca3c41fdd92aa67243645e80}} 
+\index{level\_info.h@{level\_info.h}!WIDTH\_ZONE\_LEVEL@{WIDTH\_ZONE\_LEVEL}}
+\index{WIDTH\_ZONE\_LEVEL@{WIDTH\_ZONE\_LEVEL}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{WIDTH\_ZONE\_LEVEL}{WIDTH\_ZONE\_LEVEL}}
+{\footnotesize\ttfamily \#define W\+I\+D\+T\+H\+\_\+\+Z\+O\+N\+E\+\_\+\+L\+E\+V\+EL~5}
+
+
+
+Definition at line 27 of file level\+\_\+info.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{level__info_8h_a58b99221fec4565640aca2aad4f376b6}\label{level__info_8h_a58b99221fec4565640aca2aad4f376b6}} 
+\index{level\_info.h@{level\_info.h}!delete\_level\_info@{delete\_level\_info}}
+\index{delete\_level\_info@{delete\_level\_info}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{delete\_level\_info()}{delete\_level\_info()}}
+{\footnotesize\ttfamily void delete\+\_\+level\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$}]{level\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Deletes the information of a level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level\+\_\+info} & The information of the level you want to delete \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 61 of file level\+\_\+info.\+c.
+
+\mbox{\Hypertarget{level__info_8h_adfb2c9e795d29c4642c9deec16b03750}\label{level__info_8h_adfb2c9e795d29c4642c9deec16b03750}} 
+\index{level\_info.h@{level\_info.h}!load\_block\_trap@{load\_block\_trap}}
+\index{load\_block\_trap@{load\_block\_trap}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{load\_block\_trap()}{load\_block\_trap()}}
+{\footnotesize\ttfamily void load\+\_\+block\+\_\+trap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}}}]{level\+\_\+info,  }\item[{\mbox{\hyperlink{structlist__block__trap__t}{list\+\_\+block\+\_\+trap\+\_\+t}} $\ast$}]{list\+\_\+block\+\_\+trap }\end{DoxyParamCaption})}
+
+
+
+Load the trap blocks of a level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level\+\_\+info} & The level to load the trap blocks with \\
+\hline
+{\em list\+\_\+block\+\_\+trap} & The list that will contain the trap blocks \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 74 of file level\+\_\+info.\+c.
+
+\mbox{\Hypertarget{level__info_8h_a9c76725bf2f2c50fb17a10ca5883264c}\label{level__info_8h_a9c76725bf2f2c50fb17a10ca5883264c}} 
+\index{level\_info.h@{level\_info.h}!load\_level\_info@{load\_level\_info}}
+\index{load\_level\_info@{load\_level\_info}!level\_info.h@{level\_info.h}}
+\doxysubsubsection{\texorpdfstring{load\_level\_info()}{load\_level\_info()}}
+{\footnotesize\ttfamily void load\+\_\+level\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevel__info__t}{level\+\_\+info\+\_\+t}} $\ast$}]{level\+\_\+info,  }\item[{int}]{file }\end{DoxyParamCaption})}
+
+
+
+Allows to load a level from a file descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level\+\_\+info} & The variable that will contain the level information \\
+\hline
+{\em file} & The file descriptor \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 9 of file level\+\_\+info.\+c.
+

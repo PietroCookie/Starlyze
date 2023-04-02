@@ -1,0 +1,212 @@
+.TH "code/src/editor/file_game_level.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/editor/file_game_level.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'file_game_level\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include <fcntl\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBgame_level_t\fP \fBopen_file_game_level\fP (const char *name_file, \fBfile_game_level_t\fP *file_game_level)"
+.br
+.RI "Open a file of game_level\&. "
+.ti -1c
+.RI "void \fBdelete_file_game_level\fP (\fBfile_game_level_t\fP *file_game_level)"
+.br
+.RI "Delete in memeory the file of game_level (not storage) "
+.ti -1c
+.RI "void \fBadd_address_table\fP (\fBfile_game_level_t\fP *file_game_level)"
+.br
+.RI "Add an address table in file of game_level\&. "
+.ti -1c
+.RI "void \fBadd_address_table_void\fP (\fBfile_game_level_t\fP *file_game_level)"
+.br
+.RI "Add an address table of void in file of game_level\&. "
+.ti -1c
+.RI "void \fBfirst_save_game_level_in_file\fP (\fBfile_game_level_t\fP *file_game_level, \fBgame_level_t\fP game_level)"
+.br
+.RI "For the first backup of a game_level in file of game_level\&. "
+.ti -1c
+.RI "void \fBsave_modification_game_level\fP (\fBfile_game_level_t\fP *file_game_level, \fBgame_level_t\fP game_level, int posX, int posY)"
+.br
+.RI "Save the modification of a game level in the file\&. "
+.ti -1c
+.RI "void \fBdelete_game_level_in_file\fP (\fBfile_game_level_t\fP *file_game_level)"
+.br
+.RI "Delete a game_level in file\&. Delete its entry in the address table and add it to the void table\&. "
+.ti -1c
+.RI "void \fBload_level_in_file\fP (\fBfile_game_level_t\fP *file_game_level, \fBgame_level_t\fP *game_level, int next)"
+.br
+.RI "Load a game_level from the \&.world file in memory\&. "
+.ti -1c
+.RI "int \fBsearch_position_free\fP (\fBfile_game_level_t\fP *file_game_level, size_t size_necessary)"
+.br
+.ti -1c
+.RI "int \fBsearch_void_entry_address_table\fP (\fBfile_game_level_t\fP *file_game_level)"
+.br
+.RI "Search for an empty location in the game file stored in the void tables and large enough\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void add_address_table (\fBfile_game_level_t\fP * file_game_level)"
+
+.PP
+Add an address table in file of game_level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_game_level\fP The file of game_level to which we add an address table 
+.RE
+.PP
+
+.PP
+Definition at line 58 of file file_game_level\&.c\&.
+.SS "void add_address_table_void (\fBfile_game_level_t\fP * file_game_level)"
+
+.PP
+Add an address table of void in file of game_level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_game_level\fP The file of game_level to which we add an address table of void 
+.RE
+.PP
+
+.PP
+Definition at line 103 of file file_game_level\&.c\&.
+.SS "void delete_file_game_level (\fBfile_game_level_t\fP * file_game_level)"
+
+.PP
+Delete in memeory the file of game_level (not storage) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_game_level\fP The file of game_level that will be destroy in memory 
+.RE
+.PP
+
+.PP
+Definition at line 51 of file file_game_level\&.c\&.
+.SS "void delete_game_level_in_file (\fBfile_game_level_t\fP * file_game_level)"
+
+.PP
+Delete a game_level in file\&. Delete its entry in the address table and add it to the void table\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_game_level\fP The file that contains the game_level deleted 
+.RE
+.PP
+
+.PP
+Definition at line 202 of file file_game_level\&.c\&.
+.SS "void first_save_game_level_in_file (\fBfile_game_level_t\fP * file_game_level, \fBgame_level_t\fP game_level)"
+
+.PP
+For the first backup of a game_level in file of game_level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_game_level\fP The file of game_level in which we save 
+.br
+\fIgame_level\fP The game_level that will be saved 
+.RE
+.PP
+
+.PP
+Definition at line 157 of file file_game_level\&.c\&.
+.SS "void load_level_in_file (\fBfile_game_level_t\fP * file_game_level, \fBgame_level_t\fP * game_level, int next)"
+
+.PP
+Load a game_level from the \&.world file in memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_game_level\fP The game file containing the information 
+.br
+\fIgame_level\fP The variable in which we load the game_level 
+.br
+\fInext\fP Indicates whether to load the next (1) or previous (-1) file 
+.RE
+.PP
+
+.PP
+Definition at line 227 of file file_game_level\&.c\&.
+.SS "\fBgame_level_t\fP open_file_game_level (const char * name_file, \fBfile_game_level_t\fP * file_game_level)"
+
+.PP
+Open a file of game_level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname_file\fP The name of the file 
+.br
+\fIfile_game_level\fP The variable that will contain the file of game_level 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBgame_level_t\fP The game level contained in the file of game_level 
+.RE
+.PP
+
+.PP
+Definition at line 8 of file file_game_level\&.c\&.
+.SS "void save_modification_game_level (\fBfile_game_level_t\fP * file_game_level, \fBgame_level_t\fP game_level, int posX, int posY)"
+
+.PP
+Save the modification of a game level in the file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_game_level\fP The file of game_level in which we save 
+.br
+\fIgame_level\fP The game_level that will be saved 
+.br
+\fIposX\fP Position X of the element that will be modified in the file 
+.br
+\fIposY\fP Position Y of the element that will be modified in the file 
+.RE
+.PP
+
+.PP
+Definition at line 198 of file file_game_level\&.c\&.
+.SS "int search_position_free (\fBfile_game_level_t\fP * file_game_level, size_t size_necessary)"
+
+.PP
+Definition at line 288 of file file_game_level\&.c\&.
+.SS "int search_void_entry_address_table (\fBfile_game_level_t\fP * file_game_level)"
+
+.PP
+Search for an empty location in the game file stored in the void tables and large enough\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_game_level\fP The file in which the empty location is searched 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int The position in the vacuum table currently in memory of a corresponding location\&. -1 otherwise 
+.RE
+.PP
+
+.PP
+Definition at line 319 of file file_game_level\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

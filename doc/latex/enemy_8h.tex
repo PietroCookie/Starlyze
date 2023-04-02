@@ -1,0 +1,141 @@
+\hypertarget{enemy_8h}{}\doxysection{code/include/game-\/control/enemy.h File Reference}
+\label{enemy_8h}\index{code/include/game-\/control/enemy.h@{code/include/game-\/control/enemy.h}}
+
+
+File that manage an enemy.  
+
+
+{\ttfamily \#include \char`\"{}sprite.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structenemy__t}{enemy\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Represents an enemys. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}} \{ \mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8faabea9be20feeb2150a8ffbd68625beb4}{R\+O\+B\+OT}} = 1, 
+\mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8fa41b03acee1a867d08bcfac687aef2f21}{P\+R\+O\+BE}} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em The type of an enemy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{enemy_8h_a0a3b37c9abec53b86766f94170e69c2a}{initialise\+\_\+enemy}} (\mbox{\hyperlink{structenemy__t}{enemy\+\_\+t}} $\ast$enemy, \mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}} type)
+\begin{DoxyCompactList}\small\item\em Initialize an enemy. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{enemy_8h_a62b3ba15615ce55a70266f672b5dcf5a}{thread\+\_\+enemy}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em thread of operation of an enemy \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{enemy_8h_aa0fe3c9611783a7311c9639e4a145698}{direction\+\_\+alea}} (\mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}} type\+\_\+enemy)
+\begin{DoxyCompactList}\small\item\em Gets a random direction depending on the type of an enemy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manage an enemy. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}\label{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}} 
+\index{enemy.h@{enemy.h}!type\_enemy\_enum@{type\_enemy\_enum}}
+\index{type\_enemy\_enum@{type\_enemy\_enum}!enemy.h@{enemy.h}}
+\doxysubsubsection{\texorpdfstring{type\_enemy\_enum}{type\_enemy\_enum}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}}}
+
+
+
+The type of an enemy. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ROBOT@{ROBOT}!enemy.h@{enemy.h}}\index{enemy.h@{enemy.h}!ROBOT@{ROBOT}}}\mbox{\Hypertarget{enemy_8h_ac4bbd1add180b291396a63acfde69d8faabea9be20feeb2150a8ffbd68625beb4}\label{enemy_8h_ac4bbd1add180b291396a63acfde69d8faabea9be20feeb2150a8ffbd68625beb4}} 
+R\+O\+B\+OT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PROBE@{PROBE}!enemy.h@{enemy.h}}\index{enemy.h@{enemy.h}!PROBE@{PROBE}}}\mbox{\Hypertarget{enemy_8h_ac4bbd1add180b291396a63acfde69d8fa41b03acee1a867d08bcfac687aef2f21}\label{enemy_8h_ac4bbd1add180b291396a63acfde69d8fa41b03acee1a867d08bcfac687aef2f21}} 
+P\+R\+O\+BE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 21 of file enemy.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{enemy_8h_aa0fe3c9611783a7311c9639e4a145698}\label{enemy_8h_aa0fe3c9611783a7311c9639e4a145698}} 
+\index{enemy.h@{enemy.h}!direction\_alea@{direction\_alea}}
+\index{direction\_alea@{direction\_alea}!enemy.h@{enemy.h}}
+\doxysubsubsection{\texorpdfstring{direction\_alea()}{direction\_alea()}}
+{\footnotesize\ttfamily int direction\+\_\+alea (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}}}]{type\+\_\+enemy }\end{DoxyParamCaption})}
+
+
+
+Gets a random direction depending on the type of an enemy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\+\_\+enemy} & The type of the enemy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The random direction 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file enemy.\+c.
+
+\mbox{\Hypertarget{enemy_8h_a0a3b37c9abec53b86766f94170e69c2a}\label{enemy_8h_a0a3b37c9abec53b86766f94170e69c2a}} 
+\index{enemy.h@{enemy.h}!initialise\_enemy@{initialise\_enemy}}
+\index{initialise\_enemy@{initialise\_enemy}!enemy.h@{enemy.h}}
+\doxysubsubsection{\texorpdfstring{initialise\_enemy()}{initialise\_enemy()}}
+{\footnotesize\ttfamily void initialise\+\_\+enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structenemy__t}{enemy\+\_\+t}} $\ast$}]{enemy,  }\item[{\mbox{\hyperlink{enemy_8h_ac4bbd1add180b291396a63acfde69d8f}{type\+\_\+enemy\+\_\+enum}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Initialize an enemy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enemy} & Enemy initialized \\
+\hline
+{\em type} & The type of the enemy \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 11 of file enemy.\+c.
+
+\mbox{\Hypertarget{enemy_8h_a62b3ba15615ce55a70266f672b5dcf5a}\label{enemy_8h_a62b3ba15615ce55a70266f672b5dcf5a}} 
+\index{enemy.h@{enemy.h}!thread\_enemy@{thread\_enemy}}
+\index{thread\_enemy@{thread\_enemy}!enemy.h@{enemy.h}}
+\doxysubsubsection{\texorpdfstring{thread\_enemy()}{thread\_enemy()}}
+{\footnotesize\ttfamily void$\ast$ thread\+\_\+enemy (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+thread of operation of an enemy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & The necessary information in the form of the \mbox{\hyperlink{structenemy__infos__thread__t}{enemy\+\_\+infos\+\_\+thread\+\_\+t}} structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The result of this Thread -\/ there is N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 15 of file enemy.\+c.
+

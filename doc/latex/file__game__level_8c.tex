@@ -1,0 +1,234 @@
+\hypertarget{file__game__level_8c}{}\doxysection{code/src/editor/file\+\_\+game\+\_\+level.c File Reference}
+\label{file__game__level_8c}\index{code/src/editor/file\_game\_level.c@{code/src/editor/file\_game\_level.c}}
+{\ttfamily \#include \char`\"{}file\+\_\+game\+\_\+level.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} \mbox{\hyperlink{file__game__level_8c_aaedf2677468ff9695c989fbfbf8e5c3f}{open\+\_\+file\+\_\+game\+\_\+level}} (const char $\ast$name\+\_\+file, \mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Open a file of game\+\_\+level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__game__level_8c_a64a836612ca8412818e2929bb8c697f3}{delete\+\_\+file\+\_\+game\+\_\+level}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Delete in memeory the file of game\+\_\+level (not storage) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__game__level_8c_a93b8e53ae05c4edbdb2fd3ac4d4fbe21}{add\+\_\+address\+\_\+table}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Add an address table in file of game\+\_\+level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__game__level_8c_a7f3a9482575e344e5279d82ab533618d}{add\+\_\+address\+\_\+table\+\_\+void}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Add an address table of void in file of game\+\_\+level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__game__level_8c_a854d7b152eaee1064f5cb58a2d950211}{first\+\_\+save\+\_\+game\+\_\+level\+\_\+in\+\_\+file}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level, \mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em For the first backup of a game\+\_\+level in file of game\+\_\+level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__game__level_8c_a224addcb5bce374c81b30c074e97b200}{save\+\_\+modification\+\_\+game\+\_\+level}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level, \mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} game\+\_\+level, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Save the modification of a game level in the file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__game__level_8c_a89285ecfa77fb4407206bae91248fea4}{delete\+\_\+game\+\_\+level\+\_\+in\+\_\+file}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Delete a game\+\_\+level in file. Delete its entry in the address table and add it to the void table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file__game__level_8c_a23e8816b25e232807bdfec1026df07da}{load\+\_\+level\+\_\+in\+\_\+file}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level, \mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$game\+\_\+level, int next)
+\begin{DoxyCompactList}\small\item\em Load a game\+\_\+level from the .world file in memory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file__game__level_8c_a7377881a76016bda59f92bdf98ae92d5}{search\+\_\+position\+\_\+free}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level, size\+\_\+t size\+\_\+necessary)
+\item 
+int \mbox{\hyperlink{file__game__level_8c_ae56a4c3343a781b84ea41e1f1d3bb642}{search\+\_\+void\+\_\+entry\+\_\+address\+\_\+table}} (\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$file\+\_\+game\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Search for an empty location in the game file stored in the void tables and large enough. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{file__game__level_8c_a93b8e53ae05c4edbdb2fd3ac4d4fbe21}\label{file__game__level_8c_a93b8e53ae05c4edbdb2fd3ac4d4fbe21}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!add\_address\_table@{add\_address\_table}}
+\index{add\_address\_table@{add\_address\_table}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{add\_address\_table()}{add\_address\_table()}}
+{\footnotesize\ttfamily void add\+\_\+address\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Add an address table in file of game\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+game\+\_\+level} & The file of game\+\_\+level to which we add an address table \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 58 of file file\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{file__game__level_8c_a7f3a9482575e344e5279d82ab533618d}\label{file__game__level_8c_a7f3a9482575e344e5279d82ab533618d}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!add\_address\_table\_void@{add\_address\_table\_void}}
+\index{add\_address\_table\_void@{add\_address\_table\_void}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{add\_address\_table\_void()}{add\_address\_table\_void()}}
+{\footnotesize\ttfamily void add\+\_\+address\+\_\+table\+\_\+void (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Add an address table of void in file of game\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+game\+\_\+level} & The file of game\+\_\+level to which we add an address table of void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 103 of file file\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{file__game__level_8c_a64a836612ca8412818e2929bb8c697f3}\label{file__game__level_8c_a64a836612ca8412818e2929bb8c697f3}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!delete\_file\_game\_level@{delete\_file\_game\_level}}
+\index{delete\_file\_game\_level@{delete\_file\_game\_level}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{delete\_file\_game\_level()}{delete\_file\_game\_level()}}
+{\footnotesize\ttfamily void delete\+\_\+file\+\_\+game\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Delete in memeory the file of game\+\_\+level (not storage) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+game\+\_\+level} & The file of game\+\_\+level that will be destroy in memory \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file file\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{file__game__level_8c_a89285ecfa77fb4407206bae91248fea4}\label{file__game__level_8c_a89285ecfa77fb4407206bae91248fea4}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!delete\_game\_level\_in\_file@{delete\_game\_level\_in\_file}}
+\index{delete\_game\_level\_in\_file@{delete\_game\_level\_in\_file}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{delete\_game\_level\_in\_file()}{delete\_game\_level\_in\_file()}}
+{\footnotesize\ttfamily void delete\+\_\+game\+\_\+level\+\_\+in\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Delete a game\+\_\+level in file. Delete its entry in the address table and add it to the void table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+game\+\_\+level} & The file that contains the game\+\_\+level deleted \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 202 of file file\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{file__game__level_8c_a854d7b152eaee1064f5cb58a2d950211}\label{file__game__level_8c_a854d7b152eaee1064f5cb58a2d950211}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!first\_save\_game\_level\_in\_file@{first\_save\_game\_level\_in\_file}}
+\index{first\_save\_game\_level\_in\_file@{first\_save\_game\_level\_in\_file}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{first\_save\_game\_level\_in\_file()}{first\_save\_game\_level\_in\_file()}}
+{\footnotesize\ttfamily void first\+\_\+save\+\_\+game\+\_\+level\+\_\+in\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level,  }\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}}}]{game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+For the first backup of a game\+\_\+level in file of game\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+game\+\_\+level} & The file of game\+\_\+level in which we save \\
+\hline
+{\em game\+\_\+level} & The game\+\_\+level that will be saved \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 157 of file file\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{file__game__level_8c_a23e8816b25e232807bdfec1026df07da}\label{file__game__level_8c_a23e8816b25e232807bdfec1026df07da}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!load\_level\_in\_file@{load\_level\_in\_file}}
+\index{load\_level\_in\_file@{load\_level\_in\_file}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{load\_level\_in\_file()}{load\_level\_in\_file()}}
+{\footnotesize\ttfamily void load\+\_\+level\+\_\+in\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level,  }\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} $\ast$}]{game\+\_\+level,  }\item[{int}]{next }\end{DoxyParamCaption})}
+
+
+
+Load a game\+\_\+level from the .world file in memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+game\+\_\+level} & The game file containing the information \\
+\hline
+{\em game\+\_\+level} & The variable in which we load the game\+\_\+level \\
+\hline
+{\em next} & Indicates whether to load the next (1) or previous (-\/1) file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 227 of file file\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{file__game__level_8c_aaedf2677468ff9695c989fbfbf8e5c3f}\label{file__game__level_8c_aaedf2677468ff9695c989fbfbf8e5c3f}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!open\_file\_game\_level@{open\_file\_game\_level}}
+\index{open\_file\_game\_level@{open\_file\_game\_level}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{open\_file\_game\_level()}{open\_file\_game\_level()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} open\+\_\+file\+\_\+game\+\_\+level (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name\+\_\+file,  }\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Open a file of game\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+\_\+file} & The name of the file \\
+\hline
+{\em file\+\_\+game\+\_\+level} & The variable that will contain the file of game\+\_\+level \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}} The game level contained in the file of game\+\_\+level 
+\end{DoxyReturn}
+
+
+Definition at line 8 of file file\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{file__game__level_8c_a224addcb5bce374c81b30c074e97b200}\label{file__game__level_8c_a224addcb5bce374c81b30c074e97b200}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!save\_modification\_game\_level@{save\_modification\_game\_level}}
+\index{save\_modification\_game\_level@{save\_modification\_game\_level}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{save\_modification\_game\_level()}{save\_modification\_game\_level()}}
+{\footnotesize\ttfamily void save\+\_\+modification\+\_\+game\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level,  }\item[{\mbox{\hyperlink{structgame__level__t}{game\+\_\+level\+\_\+t}}}]{game\+\_\+level,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Save the modification of a game level in the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+game\+\_\+level} & The file of game\+\_\+level in which we save \\
+\hline
+{\em game\+\_\+level} & The game\+\_\+level that will be saved \\
+\hline
+{\em posX} & Position X of the element that will be modified in the file \\
+\hline
+{\em posY} & Position Y of the element that will be modified in the file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 198 of file file\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{file__game__level_8c_a7377881a76016bda59f92bdf98ae92d5}\label{file__game__level_8c_a7377881a76016bda59f92bdf98ae92d5}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!search\_position\_free@{search\_position\_free}}
+\index{search\_position\_free@{search\_position\_free}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{search\_position\_free()}{search\_position\_free()}}
+{\footnotesize\ttfamily int search\+\_\+position\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level,  }\item[{size\+\_\+t}]{size\+\_\+necessary }\end{DoxyParamCaption})}
+
+
+
+Definition at line 288 of file file\+\_\+game\+\_\+level.\+c.
+
+\mbox{\Hypertarget{file__game__level_8c_ae56a4c3343a781b84ea41e1f1d3bb642}\label{file__game__level_8c_ae56a4c3343a781b84ea41e1f1d3bb642}} 
+\index{file\_game\_level.c@{file\_game\_level.c}!search\_void\_entry\_address\_table@{search\_void\_entry\_address\_table}}
+\index{search\_void\_entry\_address\_table@{search\_void\_entry\_address\_table}!file\_game\_level.c@{file\_game\_level.c}}
+\doxysubsubsection{\texorpdfstring{search\_void\_entry\_address\_table()}{search\_void\_entry\_address\_table()}}
+{\footnotesize\ttfamily int search\+\_\+void\+\_\+entry\+\_\+address\+\_\+table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__game__level__t}{file\+\_\+game\+\_\+level\+\_\+t}} $\ast$}]{file\+\_\+game\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Search for an empty location in the game file stored in the void tables and large enough. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+game\+\_\+level} & The file in which the empty location is searched \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The position in the vacuum table currently in memory of a corresponding location. -\/1 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 319 of file file\+\_\+game\+\_\+level.\+c.
+

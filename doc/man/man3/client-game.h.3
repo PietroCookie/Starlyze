@@ -1,0 +1,106 @@
+.TH "code/include/client-game/client-game.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/client-game/client-game.h \- File that manages the client in a game\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include 'interface_game\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBclient_game_infos_thread_t\fP"
+.br
+.RI "Structure that contains informations transmit at thread_display\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBconnection_game\fP (char *address, int \fBport\fP)"
+.br
+.RI "Creates a TCP socket for the connection to the game server and connects it\&. "
+.ti -1c
+.RI "void * \fBthread_display\fP (void *arg)"
+.br
+.RI "The thread that receive and displays the game\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manages the client in a game\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-30
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBclient\-game\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int connection_game (char * address, int port)"
+
+.PP
+Creates a TCP socket for the connection to the game server and connects it\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIaddress\fP The address of the game server 
+.br
+\fIport\fP The port of the game server 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int The file descriptor of the socket 
+.RE
+.PP
+
+.PP
+Definition at line 17 of file client\-game\&.c\&.
+.SS "void* thread_display (void * arg)"
+
+.PP
+The thread that receive and displays the game\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP a pointer to a \fBclient_game_infos_thread_t\fP structure 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void* The result of this Thread - there is NULL 
+.RE
+.PP
+
+.PP
+Definition at line 46 of file client\-game\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

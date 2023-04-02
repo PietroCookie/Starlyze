@@ -1,0 +1,71 @@
+.TH "request_send_player_t" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+request_send_player_t \- The request that the server sends to the player\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <request_exchange\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBtype_request_send_player_enum\fP \fBtype_request\fP"
+.br
+.ti -1c
+.RI "\fBlevel_display_t\fP \fBlevel_display\fP"
+.br
+.ti -1c
+.RI "union {"
+.br
+.ti -1c
+.RI "   int \fBsecond_freeze\fP"
+.br
+.ti -1c
+.RI "   char \fBmessage\fP [50]"
+.br
+.ti -1c
+.RI "}; "
+.br
+.ti -1c
+.RI "\fBplayer_t\fP \fBplayer\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The request that the server sends to the player\&. 
+
+
+.PP
+Definition at line 27 of file request_exchange\&.h\&.
+.SH "Field Documentation"
+.PP 
+.SS "union { \&.\&.\&. } "
+
+.SS "\fBlevel_display_t\fP level_display"
+
+.PP
+Definition at line 30 of file request_exchange\&.h\&.
+.SS "char message[50]"
+
+.PP
+Definition at line 33 of file request_exchange\&.h\&.
+.SS "\fBplayer_t\fP player"
+
+.PP
+Definition at line 35 of file request_exchange\&.h\&.
+.SS "int second_freeze"
+
+.PP
+Definition at line 32 of file request_exchange\&.h\&.
+.SS "\fBtype_request_send_player_enum\fP type_request"
+
+.PP
+Definition at line 29 of file request_exchange\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

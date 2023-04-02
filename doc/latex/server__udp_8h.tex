@@ -1,0 +1,145 @@
+\hypertarget{server__udp_8h}{}\doxysection{code/include/server/server\+\_\+udp.h File Reference}
+\label{server__udp_8h}\index{code/include/server/server\_udp.h@{code/include/server/server\_udp.h}}
+
+
+File that manages the U\+DP server.  
+
+
+{\ttfamily \#include \char`\"{}info\+\_\+client.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}game.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{server__udp_8h_aa24597a54a085c6c2c33b64138f09eff}{M\+A\+X\+\_\+\+M\+SG}}~255
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{server__udp_8h_aad50fd56c80e01a74c849f9db83031ab}{save\+\_\+new\+\_\+client}} (\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$connected\+\_\+clients, char pseudo\mbox{[}\mbox{\hyperlink{server__udp_8h_aa24597a54a085c6c2c33b64138f09eff}{M\+A\+X\+\_\+\+M\+SG}}\mbox{]}, char $\ast$client\+\_\+adress, int nb\+\_\+client, int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}})
+\begin{DoxyCompactList}\small\item\em Function to save a new client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{server__udp_8h_a130a0f06fba92012c79ecd8cc671f60f}{add\+\_\+client\+\_\+at\+\_\+game}} (\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$list\+\_\+game, int id\+\_\+game, \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$client\+\_\+to\+\_\+join, int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Function to add a client to a game specified by its id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{server__udp_8h_a2b9de37a9338bc69c0460e4c778d19dd}{send\+\_\+tcp\+\_\+socket}} (int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, int port\+\_\+tcp, \mbox{\hyperlink{structgame__t}{game\+\_\+t}} $\ast$game, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Function to send a message with T\+CP Port to a client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages the U\+DP server. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{server__udp_8h_aa24597a54a085c6c2c33b64138f09eff}\label{server__udp_8h_aa24597a54a085c6c2c33b64138f09eff}} 
+\index{server\_udp.h@{server\_udp.h}!MAX\_MSG@{MAX\_MSG}}
+\index{MAX\_MSG@{MAX\_MSG}!server\_udp.h@{server\_udp.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_MSG}{MAX\_MSG}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+M\+SG~255}
+
+
+
+Definition at line 18 of file server\+\_\+udp.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{server__udp_8h_a130a0f06fba92012c79ecd8cc671f60f}\label{server__udp_8h_a130a0f06fba92012c79ecd8cc671f60f}} 
+\index{server\_udp.h@{server\_udp.h}!add\_client\_at\_game@{add\_client\_at\_game}}
+\index{add\_client\_at\_game@{add\_client\_at\_game}!server\_udp.h@{server\_udp.h}}
+\doxysubsubsection{\texorpdfstring{add\_client\_at\_game()}{add\_client\_at\_game()}}
+{\footnotesize\ttfamily void add\+\_\+client\+\_\+at\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__game__t}{list\+\_\+game\+\_\+t}} $\ast$}]{list\+\_\+game,  }\item[{int}]{id\+\_\+game,  }\item[{\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} $\ast$}]{client\+\_\+to\+\_\+join,  }\item[{int}]{port,  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Function to add a client to a game specified by its id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+\_\+game} & \\
+\hline
+{\em id\+\_\+game} & \\
+\hline
+{\em client\+\_\+to\+\_\+join} & \\
+\hline
+{\em port} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 52 of file server\+\_\+udp.\+c.
+
+\mbox{\Hypertarget{server__udp_8h_aad50fd56c80e01a74c849f9db83031ab}\label{server__udp_8h_aad50fd56c80e01a74c849f9db83031ab}} 
+\index{server\_udp.h@{server\_udp.h}!save\_new\_client@{save\_new\_client}}
+\index{save\_new\_client@{save\_new\_client}!server\_udp.h@{server\_udp.h}}
+\doxysubsubsection{\texorpdfstring{save\_new\_client()}{save\_new\_client()}}
+{\footnotesize\ttfamily void save\+\_\+new\+\_\+client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlist__info__client__t}{list\+\_\+info\+\_\+client\+\_\+t}} $\ast$}]{connected\+\_\+clients,  }\item[{char}]{pseudo\mbox{[}\+M\+A\+X\+\_\+\+M\+S\+G\mbox{]},  }\item[{char $\ast$}]{client\+\_\+address,  }\item[{int}]{nb\+\_\+client,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Function to save a new client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connected\+\_\+clients} & \\
+\hline
+{\em pseudo} & \\
+\hline
+{\em client\+\_\+adress} & \\
+\hline
+{\em nb\+\_\+client} & \\
+\hline
+{\em port} & \\
+\hline
+{\em connected\+\_\+clients} & \\
+\hline
+{\em pseudo} & \\
+\hline
+{\em client\+\_\+address} & \\
+\hline
+{\em nb\+\_\+client} & \\
+\hline
+{\em port} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file server\+\_\+udp.\+c.
+
+\mbox{\Hypertarget{server__udp_8h_a2b9de37a9338bc69c0460e4c778d19dd}\label{server__udp_8h_a2b9de37a9338bc69c0460e4c778d19dd}} 
+\index{server\_udp.h@{server\_udp.h}!send\_tcp\_socket@{send\_tcp\_socket}}
+\index{send\_tcp\_socket@{send\_tcp\_socket}!server\_udp.h@{server\_udp.h}}
+\doxysubsubsection{\texorpdfstring{send\_tcp\_socket()}{send\_tcp\_socket()}}
+{\footnotesize\ttfamily void send\+\_\+tcp\+\_\+socket (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{int}]{port\+\_\+tcp,  }\item[{\mbox{\hyperlink{structgame__t}{game\+\_\+t}} $\ast$}]{game,  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Function to send a message with T\+CP Port to a client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em port\+\_\+tcp} & \\
+\hline
+{\em game} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 72 of file server\+\_\+udp.\+c.
+

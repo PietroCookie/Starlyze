@@ -1,0 +1,85 @@
+.TH "code/src/game-control/level_info.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/game-control/level_info.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'level_info\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBload_level_info\fP (\fBlevel_info_t\fP *level_info, int file)"
+.br
+.RI "Allows to load a level from a file descriptor\&. "
+.ti -1c
+.RI "void \fBdelete_level_info\fP (\fBlevel_info_t\fP *level_info)"
+.br
+.RI "Deletes the information of a level\&. "
+.ti -1c
+.RI "void \fBload_block_trap\fP (\fBlevel_info_t\fP level_info, \fBlist_block_trap_t\fP *list_block_trap)"
+.br
+.RI "Load the trap blocks of a level\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void delete_level_info (\fBlevel_info_t\fP * level_info)"
+
+.PP
+Deletes the information of a level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel_info\fP The information of the level you want to delete 
+.RE
+.PP
+
+.PP
+Definition at line 61 of file level_info\&.c\&.
+.SS "void load_block_trap (\fBlevel_info_t\fP level_info, \fBlist_block_trap_t\fP * list_block_trap)"
+
+.PP
+Load the trap blocks of a level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel_info\fP The level to load the trap blocks with 
+.br
+\fIlist_block_trap\fP The list that will contain the trap blocks 
+.RE
+.PP
+
+.PP
+Definition at line 74 of file level_info\&.c\&.
+.SS "void load_level_info (\fBlevel_info_t\fP * level_info, int file)"
+
+.PP
+Allows to load a level from a file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel_info\fP The variable that will contain the level information 
+.br
+\fIfile\fP The file descriptor 
+.RE
+.PP
+
+.PP
+Definition at line 9 of file level_info\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

@@ -1,0 +1,426 @@
+.TH "code/src/global/sprite.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/global/sprite.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'sprite\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBwidth_sprite\fP (\fBtype_sprite_enum\fP type_sprite)"
+.br
+.RI "Allows to obtain the width of a sprite\&. "
+.ti -1c
+.RI "int \fBheight_sprite\fP (\fBtype_sprite_enum\fP type_sprite)"
+.br
+.RI "Allows to obtain the height of a sprite\&. "
+.ti -1c
+.RI "size_t \fBnecessary_size_sprite\fP ()"
+.br
+.RI "The size needed to save a sprite\&. "
+.ti -1c
+.RI "void \fBwrite_sprite_in_file_descriptor\fP (int file_descriptor, \fBsprite_t\fP sprite)"
+.br
+.RI "Writes a sprite to a file descriptor\&. "
+.ti -1c
+.RI "void \fBread_sprite_in_file_descriptor\fP (int file_descriptor, \fBsprite_t\fP *sprite)"
+.br
+.RI "Read a sprite to a file descriptor\&. "
+.ti -1c
+.RI "unsigned int \fBget_color_gate_key\fP (int specification)"
+.br
+.RI "Get the color gate key object\&. "
+.ti -1c
+.RI "void \fBpaint_block\fP (\fBwindow_t\fP *window, int posX, int posY)"
+.br
+.RI "Draw a block\&. "
+.ti -1c
+.RI "void \fBpaint_ladder\fP (\fBwindow_t\fP *window, int posX, int posY)"
+.br
+.RI "Draw a ladder\&. "
+.ti -1c
+.RI "void \fBpaint_trap\fP (\fBwindow_t\fP *window, int posX, int posY)"
+.br
+.RI "Draw a trap\&. "
+.ti -1c
+.RI "void \fBpaint_key\fP (\fBwindow_t\fP *window, int posX, int posY, int id_key)"
+.br
+.RI "Draw a key\&. "
+.ti -1c
+.RI "void \fBpaint_gate\fP (\fBwindow_t\fP *window, int posX, int posY, int id_gate)"
+.br
+.RI "Draw a gate\&. "
+.ti -1c
+.RI "void \fBpaint_door\fP (\fBwindow_t\fP *window, int posX, int posY, \fBsprite_t\fP sprite)"
+.br
+.RI "Draw a door\&. "
+.ti -1c
+.RI "void \fBpaint_exit\fP (\fBwindow_t\fP *window, int posX, int posY)"
+.br
+.RI "Draw a exit\&. "
+.ti -1c
+.RI "void \fBpaint_start\fP (\fBwindow_t\fP *window, int posX, int posY)"
+.br
+.RI "Draw a start\&. "
+.ti -1c
+.RI "void \fBpaint_robot\fP (\fBwindow_t\fP *window, int posX, int posY)"
+.br
+.RI "Draw a robot\&. "
+.ti -1c
+.RI "void \fBpaint_probe\fP (\fBwindow_t\fP *window, int posX, int posY)"
+.br
+.RI "Draw a probe\&. "
+.ti -1c
+.RI "void \fBpaint_heart\fP (\fBwindow_t\fP *window, int posX, int posY)"
+.br
+.RI "Draw a heart\&. "
+.ti -1c
+.RI "void \fBpaint_bomb\fP (\fBwindow_t\fP *window, int posX, int posY, unsigned int color)"
+.br
+.RI "Draw a bomb\&. "
+.ti -1c
+.RI "void \fBpaint_player\fP (\fBwindow_t\fP *window, int posX, int posY, unsigned int color)"
+.br
+.RI "Draw a player\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "unsigned int get_color_gate_key (int specification)"
+
+.PP
+Get the color gate key object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIspecification\fP The specification of the gate or key 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+unsigned int Color of the gate or key 
+.RE
+.PP
+
+.PP
+Definition at line 164 of file sprite\&.c\&.
+.SS "int height_sprite (\fBtype_sprite_enum\fP type_sprite)"
+
+.PP
+Allows to obtain the height of a sprite\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype_sprite\fP The type of sprite 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int The height of the sprite 
+.RE
+.PP
+
+.PP
+Definition at line 71 of file sprite\&.c\&.
+.SS "size_t necessary_size_sprite ()"
+
+.PP
+The size needed to save a sprite\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size_t The necessary size 
+.RE
+.PP
+
+.PP
+Definition at line 136 of file sprite\&.c\&.
+.SS "void paint_block (\fBwindow_t\fP * window, int posX, int posY)"
+
+.PP
+Draw a block\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the block is drawn 
+.br
+\fIposX\fP Position X of the block 
+.br
+\fIposY\fP Position Y of the block 
+.RE
+.PP
+
+.PP
+Definition at line 197 of file sprite\&.c\&.
+.SS "void paint_bomb (\fBwindow_t\fP * window, int posX, int posY, unsigned int color)"
+
+.PP
+Draw a bomb\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the bomb is drawn 
+.br
+\fIposX\fP Position X of the bomb 
+.br
+\fIposY\fP Position Y of the bomb 
+.br
+\fIcolor\fP The color of the bomb 
+.RE
+.PP
+
+.PP
+Definition at line 292 of file sprite\&.c\&.
+.SS "void paint_door (\fBwindow_t\fP * window, int posX, int posY, \fBsprite_t\fP sprite)"
+
+.PP
+Draw a door\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the door is drawn 
+.br
+\fIposX\fP Position X of the door 
+.br
+\fIposY\fP Position Y of the door 
+.br
+\fIsprite\fP The sprite of the door 
+.RE
+.PP
+
+.PP
+Definition at line 227 of file sprite\&.c\&.
+.SS "void paint_exit (\fBwindow_t\fP * window, int posX, int posY)"
+
+.PP
+Draw a exit\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the exit is drawn 
+.br
+\fIposX\fP Position X of the exit 
+.br
+\fIposY\fP Position Y of the exit 
+.RE
+.PP
+
+.PP
+Definition at line 246 of file sprite\&.c\&.
+.SS "void paint_gate (\fBwindow_t\fP * window, int posX, int posY, int id_gate)"
+
+.PP
+Draw a gate\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the gate is drawn 
+.br
+\fIposX\fP Position X of the gate 
+.br
+\fIposY\fP Position Y of the gate 
+.br
+\fIid_gate\fP The identifier of the gate 
+.RE
+.PP
+
+.PP
+Definition at line 218 of file sprite\&.c\&.
+.SS "void paint_heart (\fBwindow_t\fP * window, int posX, int posY)"
+
+.PP
+Draw a heart\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the heart is drawn 
+.br
+\fIposX\fP Position X of the heart 
+.br
+\fIposY\fP Position Y of the heart 
+.RE
+.PP
+
+.PP
+Definition at line 288 of file sprite\&.c\&.
+.SS "void paint_key (\fBwindow_t\fP * window, int posX, int posY, int id_key)"
+
+.PP
+Draw a key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the key is drawn 
+.br
+\fIposX\fP Position X of the key 
+.br
+\fIposY\fP Position Y of the key 
+.br
+\fIid_key\fP The identifier of the keys 
+.RE
+.PP
+
+.PP
+Definition at line 211 of file sprite\&.c\&.
+.SS "void paint_ladder (\fBwindow_t\fP * window, int posX, int posY)"
+
+.PP
+Draw a ladder\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the ladder is drawn 
+.br
+\fIposX\fP Position X of the ladder 
+.br
+\fIposY\fP Position Y of the ladder 
+.RE
+.PP
+
+.PP
+Definition at line 201 of file sprite\&.c\&.
+.SS "void paint_player (\fBwindow_t\fP * window, int posX, int posY, unsigned int color)"
+
+.PP
+Draw a player\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the player is drawn 
+.br
+\fIposX\fP Position X of the player 
+.br
+\fIposY\fP Position Y of the player 
+.RE
+.PP
+
+.PP
+Definition at line 296 of file sprite\&.c\&.
+.SS "void paint_probe (\fBwindow_t\fP * window, int posX, int posY)"
+
+.PP
+Draw a probe\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the probe is drawn 
+.br
+\fIposX\fP Position X of the probe 
+.br
+\fIposY\fP Position Y of the probe 
+.RE
+.PP
+
+.PP
+Definition at line 278 of file sprite\&.c\&.
+.SS "void paint_robot (\fBwindow_t\fP * window, int posX, int posY)"
+
+.PP
+Draw a robot\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the robot is drawn 
+.br
+\fIposX\fP Position X of the robot 
+.br
+\fIposY\fP Position Y of the robot 
+.RE
+.PP
+
+.PP
+Definition at line 260 of file sprite\&.c\&.
+.SS "void paint_start (\fBwindow_t\fP * window, int posX, int posY)"
+
+.PP
+Draw a start\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the start is drawn 
+.br
+\fIposX\fP Position X of the start 
+.br
+\fIposY\fP Position Y of the start 
+.RE
+.PP
+
+.PP
+Definition at line 253 of file sprite\&.c\&.
+.SS "void paint_trap (\fBwindow_t\fP * window, int posX, int posY)"
+
+.PP
+Draw a trap\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwindow\fP The window in which the trap is drawn 
+.br
+\fIposX\fP Position X of the trap 
+.br
+\fIposY\fP Position Y of the trap 
+.RE
+.PP
+
+.PP
+Definition at line 207 of file sprite\&.c\&.
+.SS "void read_sprite_in_file_descriptor (int file_descriptor, \fBsprite_t\fP * sprite)"
+
+.PP
+Read a sprite to a file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file descriptor 
+.br
+\fIsprite\fP The sprite we want to read 
+.RE
+.PP
+
+.PP
+Definition at line 152 of file sprite\&.c\&.
+.SS "int width_sprite (\fBtype_sprite_enum\fP type_sprite)"
+
+.PP
+Allows to obtain the width of a sprite\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype_sprite\fP The type of sprite 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int The width of the sprite 
+.RE
+.PP
+
+.PP
+Definition at line 6 of file sprite\&.c\&.
+.SS "void write_sprite_in_file_descriptor (int file_descriptor, \fBsprite_t\fP sprite)"
+
+.PP
+Writes a sprite to a file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_descriptor\fP The file descriptor 
+.br
+\fIsprite\fP The sprite we want to write 
+.RE
+.PP
+
+.PP
+Definition at line 140 of file sprite\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

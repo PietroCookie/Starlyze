@@ -1,0 +1,155 @@
+\hypertarget{client__udp_8c}{}\doxysection{code/src/client/client\+\_\+udp.c File Reference}
+\label{client__udp_8c}\index{code/src/client/client\_udp.c@{code/src/client/client\_udp.c}}
+
+
+File that manages the U\+DP client.  
+
+
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+udp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+tcp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}network\+\_\+request.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{client__udp_8c_a0306406dae68bf8458df7f3c3c74aa03}{send\+\_\+pseudo\+\_\+to\+\_\+server}} (char $\ast$pseudo, int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char \mbox{\hyperlink{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}{address\+\_\+ip}}\mbox{[}15\mbox{]}, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Send the pseudo to the server. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{client__udp_8c_aab0142f7f3bb3dd61bbb0152ff85cf2c}{receive\+\_\+response\+\_\+nb\+\_\+clients}} (int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char \mbox{\hyperlink{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}{address\+\_\+ip}}\mbox{[}15\mbox{]}, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Send the request for disconnection to the server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{client__udp_8c_a3fab0147a36743ad463d3ad4721986f7}{send\+\_\+request\+\_\+to\+\_\+client\+\_\+disconnection}} (\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} \mbox{\hyperlink{client_8c_a864dd521c2a00953ae40bce1f4ba19e3}{info\+\_\+client}}, int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char \mbox{\hyperlink{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}{address\+\_\+ip}}\mbox{[}15\mbox{]}, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Send the request for disconnection to the server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{client__udp_8c_ac75449e785b1ea3c24638115c9a2e918}{receive\+\_\+port\+\_\+tcp\+\_\+of\+\_\+server}} (int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char ip\+\_\+server\mbox{[}15\mbox{]}, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Receive the port of the socket T\+CP server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages the U\+DP client. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client__udp_8c_ac75449e785b1ea3c24638115c9a2e918}\label{client__udp_8c_ac75449e785b1ea3c24638115c9a2e918}} 
+\index{client\_udp.c@{client\_udp.c}!receive\_port\_tcp\_of\_server@{receive\_port\_tcp\_of\_server}}
+\index{receive\_port\_tcp\_of\_server@{receive\_port\_tcp\_of\_server}!client\_udp.c@{client\_udp.c}}
+\doxysubsubsection{\texorpdfstring{receive\_port\_tcp\_of\_server()}{receive\_port\_tcp\_of\_server()}}
+{\footnotesize\ttfamily void receive\+\_\+port\+\_\+tcp\+\_\+of\+\_\+server (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char}]{ip\+\_\+server\mbox{[}15\mbox{]},  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Receive the port of the socket T\+CP server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em ip\+\_\+server} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 183 of file client\+\_\+udp.\+c.
+
+\mbox{\Hypertarget{client__udp_8c_aab0142f7f3bb3dd61bbb0152ff85cf2c}\label{client__udp_8c_aab0142f7f3bb3dd61bbb0152ff85cf2c}} 
+\index{client\_udp.c@{client\_udp.c}!receive\_response\_nb\_clients@{receive\_response\_nb\_clients}}
+\index{receive\_response\_nb\_clients@{receive\_response\_nb\_clients}!client\_udp.c@{client\_udp.c}}
+\doxysubsubsection{\texorpdfstring{receive\_response\_nb\_clients()}{receive\_response\_nb\_clients()}}
+{\footnotesize\ttfamily int receive\+\_\+response\+\_\+nb\+\_\+clients (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char}]{address\+\_\+ip\mbox{[}15\mbox{]},  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Send the request for disconnection to the server. 
+
+Receive the number of clients connected to the server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em address\+\_\+ip} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 97 of file client\+\_\+udp.\+c.
+
+\mbox{\Hypertarget{client__udp_8c_a0306406dae68bf8458df7f3c3c74aa03}\label{client__udp_8c_a0306406dae68bf8458df7f3c3c74aa03}} 
+\index{client\_udp.c@{client\_udp.c}!send\_pseudo\_to\_server@{send\_pseudo\_to\_server}}
+\index{send\_pseudo\_to\_server@{send\_pseudo\_to\_server}!client\_udp.c@{client\_udp.c}}
+\doxysubsubsection{\texorpdfstring{send\_pseudo\_to\_server()}{send\_pseudo\_to\_server()}}
+{\footnotesize\ttfamily int send\+\_\+pseudo\+\_\+to\+\_\+server (\begin{DoxyParamCaption}\item[{char $\ast$}]{pseudo,  }\item[{int}]{port,  }\item[{char}]{address\+\_\+ip\mbox{[}15\mbox{]},  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Send the pseudo to the server. 
+
+Send the pseudo of the client to the server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pseudo} & \\
+\hline
+{\em port} & \\
+\hline
+{\em address\+\_\+ip} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file client\+\_\+udp.\+c.
+
+\mbox{\Hypertarget{client__udp_8c_a3fab0147a36743ad463d3ad4721986f7}\label{client__udp_8c_a3fab0147a36743ad463d3ad4721986f7}} 
+\index{client\_udp.c@{client\_udp.c}!send\_request\_to\_client\_disconnection@{send\_request\_to\_client\_disconnection}}
+\index{send\_request\_to\_client\_disconnection@{send\_request\_to\_client\_disconnection}!client\_udp.c@{client\_udp.c}}
+\doxysubsubsection{\texorpdfstring{send\_request\_to\_client\_disconnection()}{send\_request\_to\_client\_disconnection()}}
+{\footnotesize\ttfamily void send\+\_\+request\+\_\+to\+\_\+client\+\_\+disconnection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}}}]{info\+\_\+client,  }\item[{int}]{port,  }\item[{char}]{address\+\_\+ip\mbox{[}15\mbox{]},  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Send the request for disconnection to the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info\+\_\+client} & \\
+\hline
+{\em port} & \\
+\hline
+{\em address\+\_\+ip} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 149 of file client\+\_\+udp.\+c.
+

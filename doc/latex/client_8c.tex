@@ -1,0 +1,142 @@
+\hypertarget{client_8c}{}\doxysection{code/src/client.c File Reference}
+\label{client_8c}\index{code/src/client.c@{code/src/client.c}}
+
+
+File that manages the client.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+utility.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}client\+\_\+udp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}network\+\_\+request.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{client_8c_ab10c0c50c02a59ae9bd74c78c49b559d}{sigint\+\_\+handler}} (int signum)
+\begin{DoxyCompactList}\small\item\em Function to handle the S\+I\+G\+I\+NT signal. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{client_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}
+\item 
+int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}}
+\item 
+char \mbox{\hyperlink{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}{address\+\_\+ip}} \mbox{[}15\mbox{]}
+\item 
+\mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} \mbox{\hyperlink{client_8c_a864dd521c2a00953ae40bce1f4ba19e3}{info\+\_\+client}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages the client. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{client_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{client.c@{client.c}!main@{main}}
+\index{main@{main}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file client.\+c.
+
+\mbox{\Hypertarget{client_8c_ab10c0c50c02a59ae9bd74c78c49b559d}\label{client_8c_ab10c0c50c02a59ae9bd74c78c49b559d}} 
+\index{client.c@{client.c}!sigint\_handler@{sigint\_handler}}
+\index{sigint\_handler@{sigint\_handler}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{sigint\_handler()}{sigint\_handler()}}
+{\footnotesize\ttfamily void sigint\+\_\+handler (\begin{DoxyParamCaption}\item[{int}]{signum }\end{DoxyParamCaption})}
+
+
+
+Function to handle the S\+I\+G\+I\+NT signal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em signum} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file client.\+c.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}\label{client_8c_aa9a41fb3fe5f6763c09b14c0a6f43fde}} 
+\index{client.c@{client.c}!address\_ip@{address\_ip}}
+\index{address\_ip@{address\_ip}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{address\_ip}{address\_ip}}
+{\footnotesize\ttfamily char address\+\_\+ip\mbox{[}15\mbox{]}}
+
+
+
+Definition at line 28 of file client.\+c.
+
+\mbox{\Hypertarget{client_8c_a864dd521c2a00953ae40bce1f4ba19e3}\label{client_8c_a864dd521c2a00953ae40bce1f4ba19e3}} 
+\index{client.c@{client.c}!info\_client@{info\_client}}
+\index{info\_client@{info\_client}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{info\_client}{info\_client}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structinfo__client__t}{info\+\_\+client\+\_\+t}} info\+\_\+client}
+
+
+
+Definition at line 29 of file client.\+c.
+
+\mbox{\Hypertarget{client_8c_a63c89c04d1feae07ca35558055155ffb}\label{client_8c_a63c89c04d1feae07ca35558055155ffb}} 
+\index{client.c@{client.c}!port@{port}}
+\index{port@{port}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily int port}
+
+
+
+Definition at line 27 of file client.\+c.
+
+\mbox{\Hypertarget{client_8c_ad2c8fb3df3a737e0685e902870a611d2}\label{client_8c_ad2c8fb3df3a737e0685e902870a611d2}} 
+\index{client.c@{client.c}!sockfd@{sockfd}}
+\index{sockfd@{sockfd}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{sockfd}{sockfd}}
+{\footnotesize\ttfamily int sockfd}
+
+
+
+Definition at line 27 of file client.\+c.
+

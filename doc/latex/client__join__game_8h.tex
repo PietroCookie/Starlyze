@@ -1,0 +1,86 @@
+\hypertarget{client__join__game_8h}{}\doxysection{code/include/client/client\+\_\+join\+\_\+game.h File Reference}
+\label{client__join__game_8h}\index{code/include/client/client\_join\_game.h@{code/include/client/client\_join\_game.h}}
+
+
+File that manages when a customer joins an already created game.  
+
+
+{\ttfamily \#include \char`\"{}game.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structlist__game__without__pointers__t}{list\+\_\+game\+\_\+without\+\_\+pointers\+\_\+t}} \mbox{\hyperlink{client__join__game_8h_a13e8a38e8bac42bc28dba06eb688de10}{receive\+\_\+list\+\_\+games\+\_\+on\+\_\+hold}} (int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char ip\+\_\+server\mbox{[}15\mbox{]}, int \mbox{\hyperlink{client_8c_ad2c8fb3df3a737e0685e902870a611d2}{sockfd}})
+\begin{DoxyCompactList}\small\item\em Receive the list of games on hold from the server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{client__join__game_8h_ad86471b6373114df291c9cb1acdb623f}{join\+\_\+game}} (int \mbox{\hyperlink{client_8c_a63c89c04d1feae07ca35558055155ffb}{port}}, char ip\+\_\+server\mbox{[}15\mbox{]}, int choice\+\_\+game, int id\+\_\+client)
+\begin{DoxyCompactList}\small\item\em Sends the request to the server to join a game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manages when a customer joins an already created game. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client__join__game_8h_ad86471b6373114df291c9cb1acdb623f}\label{client__join__game_8h_ad86471b6373114df291c9cb1acdb623f}} 
+\index{client\_join\_game.h@{client\_join\_game.h}!join\_game@{join\_game}}
+\index{join\_game@{join\_game}!client\_join\_game.h@{client\_join\_game.h}}
+\doxysubsubsection{\texorpdfstring{join\_game()}{join\_game()}}
+{\footnotesize\ttfamily void join\+\_\+game (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char}]{ip\+\_\+server\mbox{[}15\mbox{]},  }\item[{int}]{choice\+\_\+game,  }\item[{int}]{id\+\_\+client }\end{DoxyParamCaption})}
+
+
+
+Sends the request to the server to join a game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em ip\+\_\+server} & \\
+\hline
+{\em choice\+\_\+game} & \\
+\hline
+{\em id\+\_\+client} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 85 of file client\+\_\+join\+\_\+game.\+c.
+
+\mbox{\Hypertarget{client__join__game_8h_a13e8a38e8bac42bc28dba06eb688de10}\label{client__join__game_8h_a13e8a38e8bac42bc28dba06eb688de10}} 
+\index{client\_join\_game.h@{client\_join\_game.h}!receive\_list\_games\_on\_hold@{receive\_list\_games\_on\_hold}}
+\index{receive\_list\_games\_on\_hold@{receive\_list\_games\_on\_hold}!client\_join\_game.h@{client\_join\_game.h}}
+\doxysubsubsection{\texorpdfstring{receive\_list\_games\_on\_hold()}{receive\_list\_games\_on\_hold()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlist__game__without__pointers__t}{list\+\_\+game\+\_\+without\+\_\+pointers\+\_\+t}} receive\+\_\+list\+\_\+games\+\_\+on\+\_\+hold (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char}]{ip\+\_\+server\mbox{[}15\mbox{]},  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+
+
+Receive the list of games on hold from the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em ip\+\_\+server} & \\
+\hline
+{\em sockfd} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structlist__game__without__pointers__t}{list\+\_\+game\+\_\+without\+\_\+pointers\+\_\+t}} 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file client\+\_\+join\+\_\+game.\+c.
+

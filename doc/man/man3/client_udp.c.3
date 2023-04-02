@@ -1,0 +1,168 @@
+.TH "code/src/client/client_udp.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/client/client_udp.c \- File that manages the UDP client\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <arpa/inet\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'client_udp\&.h'\fP
+.br
+\fC#include 'client_tcp\&.h'\fP
+.br
+\fC#include 'network_request\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBsend_pseudo_to_server\fP (char *pseudo, int \fBport\fP, char \fBaddress_ip\fP[15], int \fBsockfd\fP)"
+.br
+.RI "Send the pseudo to the server\&. "
+.ti -1c
+.RI "int \fBreceive_response_nb_clients\fP (int \fBport\fP, char \fBaddress_ip\fP[15], int \fBsockfd\fP)"
+.br
+.RI "Send the request for disconnection to the server\&. "
+.ti -1c
+.RI "void \fBsend_request_to_client_disconnection\fP (\fBinfo_client_t\fP \fBinfo_client\fP, int \fBport\fP, char \fBaddress_ip\fP[15], int \fBsockfd\fP)"
+.br
+.RI "Send the request for disconnection to the server\&. "
+.ti -1c
+.RI "void \fBreceive_port_tcp_of_server\fP (int \fBport\fP, char ip_server[15], int \fBsockfd\fP)"
+.br
+.RI "Receive the port of the socket TCP server\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manages the UDP client\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-28
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBclient_udp\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void receive_port_tcp_of_server (int port, char ip_server[15], int sockfd)"
+
+.PP
+Receive the port of the socket TCP server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP 
+.br
+\fIip_server\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+
+.PP
+Definition at line 183 of file client_udp\&.c\&.
+.SS "int receive_response_nb_clients (int port, char address_ip[15], int sockfd)"
+
+.PP
+Send the request for disconnection to the server\&. Receive the number of clients connected to the server\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP 
+.br
+\fIaddress_ip\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 
+.RE
+.PP
+
+.PP
+Definition at line 97 of file client_udp\&.c\&.
+.SS "int send_pseudo_to_server (char * pseudo, int port, char address_ip[15], int sockfd)"
+
+.PP
+Send the pseudo to the server\&. Send the pseudo of the client to the server\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIpseudo\fP 
+.br
+\fIport\fP 
+.br
+\fIaddress_ip\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 
+.RE
+.PP
+
+.PP
+Definition at line 35 of file client_udp\&.c\&.
+.SS "void send_request_to_client_disconnection (\fBinfo_client_t\fP info_client, int port, char address_ip[15], int sockfd)"
+
+.PP
+Send the request for disconnection to the server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinfo_client\fP 
+.br
+\fIport\fP 
+.br
+\fIaddress_ip\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+
+.PP
+Definition at line 149 of file client_udp\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

@@ -1,0 +1,183 @@
+\hypertarget{interface_8h}{}\doxysection{code/include/editor/interface.h File Reference}
+\label{interface_8h}\index{code/include/editor/interface.h@{code/include/editor/interface.h}}
+
+
+File that manage a interface of editor.  
+
+
+{\ttfamily \#include $<$locale.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}window.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}paint\+\_\+tools.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}game\+\_\+level.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}file\+\_\+game\+\_\+level.\+h\char`\"{}}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structinterface__t}{interface\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure representing the interface of an editor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{interface_8h_add2eb88d522cc3ce216f6f5a51ea6d96}{D\+E\+F\+A\+U\+L\+T\+\_\+\+W\+I\+D\+T\+H\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+G\+A\+ME}}~62
+\item 
+\#define \mbox{\hyperlink{interface_8h_a0dd25bd07cd5fc4a4826112730b62fe4}{D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+E\+I\+G\+H\+T\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+G\+A\+ME}}~22
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interface_8h_a770cdfe6238236816be5fe9c866664fe}{interface\+\_\+dimensions}} (unsigned short width, unsigned short height)
+\item 
+\mbox{\hyperlink{structinterface__t}{interface\+\_\+t}} $\ast$ \mbox{\hyperlink{interface_8h_a235389c221702f910722ce696b3380a1}{interface\+\_\+create}} ()
+\begin{DoxyCompactList}\small\item\em Create interface. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_8h_a9f90b7a864aea157c1d8bb0df0b8cae7}{interface\+\_\+delete}} (\mbox{\hyperlink{structinterface__t}{interface\+\_\+t}} $\ast$$\ast$interface)
+\begin{DoxyCompactList}\small\item\em Delete interface. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_8h_abab0cec29bb95384d2cebad3359086be}{interface\+\_\+actions}} (\mbox{\hyperlink{structinterface__t}{interface\+\_\+t}} $\ast$interface, int c)
+\begin{DoxyCompactList}\small\item\em Manage actions of the user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_8h_a1fea95914d2e387cc49b8149dc36c22a}{refresh\+\_\+win\+\_\+tools}} (\mbox{\hyperlink{structinterface__t}{interface\+\_\+t}} $\ast$interface)
+\begin{DoxyCompactList}\small\item\em Refresh window tool. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_8h_acf6de357574fbfa379ed4b085be78773}{refresh\+\_\+win\+\_\+level}} (\mbox{\hyperlink{structinterface__t}{interface\+\_\+t}} $\ast$interface)
+\begin{DoxyCompactList}\small\item\em Refresh window level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File that manage a interface of editor. 
+
+\begin{DoxyAuthor}{Author}
+H\+A\+D\+ID Hocine \& C\+H\+E\+M\+IN Pierre 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{interface_8h_a0dd25bd07cd5fc4a4826112730b62fe4}\label{interface_8h_a0dd25bd07cd5fc4a4826112730b62fe4}} 
+\index{interface.h@{interface.h}!DEFAULT\_HEIGHT\_INTERFACE\_GAME@{DEFAULT\_HEIGHT\_INTERFACE\_GAME}}
+\index{DEFAULT\_HEIGHT\_INTERFACE\_GAME@{DEFAULT\_HEIGHT\_INTERFACE\_GAME}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_HEIGHT\_INTERFACE\_GAME}{DEFAULT\_HEIGHT\_INTERFACE\_GAME}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+H\+E\+I\+G\+H\+T\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+G\+A\+ME~22}
+
+
+
+Definition at line 23 of file interface.\+h.
+
+\mbox{\Hypertarget{interface_8h_add2eb88d522cc3ce216f6f5a51ea6d96}\label{interface_8h_add2eb88d522cc3ce216f6f5a51ea6d96}} 
+\index{interface.h@{interface.h}!DEFAULT\_WIDTH\_INTERFACE\_GAME@{DEFAULT\_WIDTH\_INTERFACE\_GAME}}
+\index{DEFAULT\_WIDTH\_INTERFACE\_GAME@{DEFAULT\_WIDTH\_INTERFACE\_GAME}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_WIDTH\_INTERFACE\_GAME}{DEFAULT\_WIDTH\_INTERFACE\_GAME}}
+{\footnotesize\ttfamily \#define D\+E\+F\+A\+U\+L\+T\+\_\+\+W\+I\+D\+T\+H\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+G\+A\+ME~62}
+
+
+
+Definition at line 22 of file interface.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{interface_8h_abab0cec29bb95384d2cebad3359086be}\label{interface_8h_abab0cec29bb95384d2cebad3359086be}} 
+\index{interface.h@{interface.h}!interface\_actions@{interface\_actions}}
+\index{interface\_actions@{interface\_actions}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{interface\_actions()}{interface\_actions()}}
+{\footnotesize\ttfamily void interface\+\_\+actions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinterface__t}{interface\+\_\+t}} $\ast$}]{interface,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Manage actions of the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interface} & the interface \\
+\hline
+{\em c} & the pressed key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 63 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a235389c221702f910722ce696b3380a1}\label{interface_8h_a235389c221702f910722ce696b3380a1}} 
+\index{interface.h@{interface.h}!interface\_create@{interface\_create}}
+\index{interface\_create@{interface\_create}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{interface\_create()}{interface\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structinterface__t}{interface\+\_\+t}}$\ast$ interface\+\_\+create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create interface. 
+
+\begin{DoxyReturn}{Returns}
+interface\+\_\+t$\ast$ created interface 
+\end{DoxyReturn}
+\mbox{\Hypertarget{interface_8h_a9f90b7a864aea157c1d8bb0df0b8cae7}\label{interface_8h_a9f90b7a864aea157c1d8bb0df0b8cae7}} 
+\index{interface.h@{interface.h}!interface\_delete@{interface\_delete}}
+\index{interface\_delete@{interface\_delete}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{interface\_delete()}{interface\_delete()}}
+{\footnotesize\ttfamily void interface\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinterface__t}{interface\+\_\+t}} $\ast$$\ast$}]{interface }\end{DoxyParamCaption})}
+
+
+
+Delete interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interface} & interface to delete \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a770cdfe6238236816be5fe9c866664fe}\label{interface_8h_a770cdfe6238236816be5fe9c866664fe}} 
+\index{interface.h@{interface.h}!interface\_dimensions@{interface\_dimensions}}
+\index{interface\_dimensions@{interface\_dimensions}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{interface\_dimensions()}{interface\_dimensions()}}
+{\footnotesize\ttfamily void interface\+\_\+dimensions (\begin{DoxyParamCaption}\item[{unsigned short}]{width,  }\item[{unsigned short}]{height }\end{DoxyParamCaption})}
+
+Check terminal dimensions. 
+
+Definition at line 9 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_acf6de357574fbfa379ed4b085be78773}\label{interface_8h_acf6de357574fbfa379ed4b085be78773}} 
+\index{interface.h@{interface.h}!refresh\_win\_level@{refresh\_win\_level}}
+\index{refresh\_win\_level@{refresh\_win\_level}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{refresh\_win\_level()}{refresh\_win\_level()}}
+{\footnotesize\ttfamily void refresh\+\_\+win\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinterface__t}{interface\+\_\+t}} $\ast$}]{interface }\end{DoxyParamCaption})}
+
+
+
+Refresh window level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interface} & The interface \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 171 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a1fea95914d2e387cc49b8149dc36c22a}\label{interface_8h_a1fea95914d2e387cc49b8149dc36c22a}} 
+\index{interface.h@{interface.h}!refresh\_win\_tools@{refresh\_win\_tools}}
+\index{refresh\_win\_tools@{refresh\_win\_tools}!interface.h@{interface.h}}
+\doxysubsubsection{\texorpdfstring{refresh\_win\_tools()}{refresh\_win\_tools()}}
+{\footnotesize\ttfamily void refresh\+\_\+win\+\_\+tools (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinterface__t}{interface\+\_\+t}} $\ast$}]{interface }\end{DoxyParamCaption})}
+
+
+
+Refresh window tool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interface} & The interface \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 150 of file interface.\+c.
+

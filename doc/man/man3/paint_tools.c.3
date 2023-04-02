@@ -1,0 +1,130 @@
+.TH "code/src/editor/paint_tools.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/editor/paint_tools.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'paint_tools\&.h'\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include 'colors\&.h'\fP
+.br
+\fC#include 'sprite\&.h'\fP
+.br
+\fC#include 'functions\&.h'\fP
+.br
+\fC#include 'element_game_level\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBselect_paint_tool\fP (\fBpaint_tool_t\fP *tool, int id_tool)"
+.br
+.RI "Selects a paint_tool based on its id\&. "
+.ti -1c
+.RI "void \fBaction_tool\fP (\fBfile_game_level_t\fP *file_game_level, \fBgame_level_t\fP *game_level, \fBwindow_t\fP *win_infos, \fBpaint_tool_t\fP tool, int posX, int posY, int specification)"
+.br
+.RI "Use the tool on a square of a game_level\&. "
+.ti -1c
+.RI "char * \fBselect_name_tool\fP (int id_tool)"
+.br
+.RI "Selects the name of the tool according to its identifier\&. "
+.ti -1c
+.RI "void \fBprint_paint_tool\fP (\fBwindow_t\fP *win_tools, int tool_select, int id_door, int id_gate, int id_key)"
+.br
+.RI "Displays the list of available tools in a window\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void action_tool (\fBfile_game_level_t\fP * file_game_level, \fBgame_level_t\fP * game_level, \fBwindow_t\fP * win_infos, \fBpaint_tool_t\fP tool, int posX, int posY, int specification)"
+
+.PP
+Use the tool on a square of a game_level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile_game_level\fP The file_game_level in which the modification is saved 
+.br
+\fIgame_level\fP The game_level in which the modification is made 
+.br
+\fIwin_infos\fP The information window of the interface 
+.br
+\fItool\fP The tool used 
+.br
+\fIposX\fP Position X of the modified cell 
+.br
+\fIposY\fP Position Y of the modified cell 
+.br
+\fIspecification\fP The specification associated with the element in the box 
+.RE
+.PP
+
+.PP
+Definition at line 21 of file paint_tools\&.c\&.
+.SS "void print_paint_tool (\fBwindow_t\fP * win_tools, int tool_select, int id_door, int id_gate, int id_key)"
+
+.PP
+Displays the list of available tools in a window\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwin_tools\fP The window in which the list of tools is displayed 
+.br
+\fItool_select\fP The selected tool 
+.br
+\fIid_door\fP The identifier of the door selected to display it 
+.br
+\fIid_gate\fP The identifier of the portal selected to display it 
+.br
+\fIid_key\fP The identifier of the key selected to display its 
+.RE
+.PP
+
+.PP
+Definition at line 190 of file paint_tools\&.c\&.
+.SS "char* select_name_tool (int tool)"
+
+.PP
+Selects the name of the tool according to its identifier\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItool\fP The identifier of the tool whose name we want to know 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+char* The name of the tool 
+.RE
+.PP
+
+.PP
+Definition at line 125 of file paint_tools\&.c\&.
+.SS "int select_paint_tool (\fBpaint_tool_t\fP * tool, int id_tool)"
+
+.PP
+Selects a paint_tool based on its id\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItool\fP The paint_tool in which we select 
+.br
+\fIid_tool\fP The id of the desired paint_tool 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int The id of the paint_tool or -1 if the paint_tool does not exist 
+.RE
+.PP
+
+.PP
+Definition at line 10 of file paint_tools\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

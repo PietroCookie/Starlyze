@@ -1,0 +1,137 @@
+.TH "code/include/display_game/level_display.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/display_game/level_display.h \- This file allows to define the methods and structures to display the state of a level\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'level_info\&.h'\fP
+.br
+\fC#include 'entity\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBlevel_display_t\fP"
+.br
+.RI "Structure represent a minimal version of a level\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBINTERVALLE_SPECIFICATION\fP   100"
+.br
+.ti -1c
+.RI "#define \fBSPECIFICATION_DOOR\fP   100"
+.br
+.ti -1c
+.RI "#define \fBSPECIFICATION_GATE\fP   (\fBSPECIFICATION_DOOR\fP + \fBINTERVALLE_SPECIFICATION\fP)"
+.br
+.ti -1c
+.RI "#define \fBSPECIFICATION_KEY\fP   (\fBSPECIFICATION_GATE\fP + \fBINTERVALLE_SPECIFICATION\fP)"
+.br
+.ti -1c
+.RI "#define \fBSPECIFICATION_PLAYERS\fP   (\fBSPECIFICATION_KEY\fP + \fBINTERVALLE_SPECIFICATION\fP)"
+.br
+.ti -1c
+.RI "#define \fBSPECIFICATION_BOMB\fP   (\fBSPECIFICATION_PLAYERS\fP + \fBINTERVALLE_SPECIFICATION\fP)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBconvert_level_info\fP (int id_level, \fBlevel_display_t\fP *level_display, \fBlevel_info_t\fP level_info, \fBentity_t\fP *enemies, int number_enemies, \fBentity_t\fP *players, int number_players)"
+.br
+.RI "Convert the state of a level with its entities into a minimal level\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file allows to define the methods and structures to display the state of a level\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-30
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBlevel_display\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define INTERVALLE_SPECIFICATION   100"
+
+.PP
+Definition at line 18 of file level_display\&.h\&.
+.SS "#define SPECIFICATION_BOMB   (\fBSPECIFICATION_PLAYERS\fP + \fBINTERVALLE_SPECIFICATION\fP)"
+
+.PP
+Definition at line 24 of file level_display\&.h\&.
+.SS "#define SPECIFICATION_DOOR   100"
+
+.PP
+Definition at line 20 of file level_display\&.h\&.
+.SS "#define SPECIFICATION_GATE   (\fBSPECIFICATION_DOOR\fP + \fBINTERVALLE_SPECIFICATION\fP)"
+
+.PP
+Definition at line 21 of file level_display\&.h\&.
+.SS "#define SPECIFICATION_KEY   (\fBSPECIFICATION_GATE\fP + \fBINTERVALLE_SPECIFICATION\fP)"
+
+.PP
+Definition at line 22 of file level_display\&.h\&.
+.SS "#define SPECIFICATION_PLAYERS   (\fBSPECIFICATION_KEY\fP + \fBINTERVALLE_SPECIFICATION\fP)"
+
+.PP
+Definition at line 23 of file level_display\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "void convert_level_info (int id_level, \fBlevel_display_t\fP * level_display, \fBlevel_info_t\fP level_info, \fBentity_t\fP * enemies, int number_enemies, \fBentity_t\fP * players, int number_players)"
+
+.PP
+Convert the state of a level with its entities into a minimal level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIid_level\fP Id of the level 
+.br
+\fIlevel_display\fP The variable in which the minimum level will be contained 
+.br
+\fIlevel_info\fP The level info 
+.br
+\fIenemies\fP Enemies presents in the level 
+.br
+\fInumber_enemies\fP Number enemies presents in the level 
+.br
+\fIplayers\fP Players presents in the level 
+.br
+\fInumber_players\fP Number players presents int the level 
+.RE
+.PP
+
+.PP
+Definition at line 9 of file level_display\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

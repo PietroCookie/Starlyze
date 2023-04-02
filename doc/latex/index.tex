@@ -1,0 +1,131 @@
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{starlyze-remove-bg.png}
+\doxyfigcaption{alt text}
+\end{DoxyImage}
+  
+
+\DoxyHorRuler{0}
+
+
+\doxyparagraph*{S\+T\+A\+R\+L\+Y\+ZE is a project of I\+N\+F\+O0601 and I\+N\+F\+O0604 at the University of Reims Champagne-\/\+Ardenne}
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{langage-c.svg}
+\doxyfigcaption{alt text}
+\end{DoxyImage}
+  
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{ncurses.svg}
+\doxyfigcaption{alt text}
+\end{DoxyImage}
+  
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{compiler.svg}
+\doxyfigcaption{alt text}
+\end{DoxyImage}
+  \hypertarget{index_autotoc_md0}{}\doxysubsection{What is Starlyze ?}\label{index_autotoc_md0}
+{\bfseries{Starlyze}} is a networked multiplayer platform game in which each player controls a character and moves him through a world containing several levels. The objective is to reach the exit before the other players by collecting the keys to pass the portals, while avoiding the enemies, traps and bombs of the opponents.
+
+Players start simultaneously and can only move to the right or left, up and down the ladders. Enemies also move, and there are \char`\"{}life\char`\"{} and \char`\"{}bomb\char`\"{} items scattered throughout the world. The levels also have doors, blocks, traps and portals of different colors for which players must collect keys.
+
+Players have 5 lives, can lose lives by falling, coming into contact with enemies or being hit by a bomb. When a player loses a life, they become invincible for 3 seconds. If a player loses all their lives, they can start over at the beginning but lose all their progress.\hypertarget{index_autotoc_md1}{}\doxysubsection{Application of Starlyze}\label{index_autotoc_md1}
+Starlyze has 3 parts\+:
+\begin{DoxyItemize}
+\item {\bfseries{A world editor}}\+: allows you to create worlds and save them in a file
+\item {\bfseries{A game server}}\+: allows to launch a game and to manage the clients\textquotesingle{} connections
+\item {\bfseries{A game client}}\+: allows to play the game
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysubsection{How to compile Starlyze ?}\label{index_autotoc_md2}
+\hypertarget{index_autotoc_md3}{}\doxysubsubsection{Requirements}\label{index_autotoc_md3}
+
+\begin{DoxyItemize}
+\item {\bfseries{G\+CC}} (version 7.\+3.\+0 or higher)
+\item {\bfseries{Ncurses}} (version 6.\+1 or higher)
+\end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysubsubsection{Compilation}\label{index_autotoc_md4}
+To compile the project, you must first go to the project\textquotesingle{}s root directory and then run the following command\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md5}{}\doxysubsection{How to use Starlyze ?}\label{index_autotoc_md5}
+\hypertarget{index_autotoc_md6}{}\doxysubsubsection{$<$strong$>$\+World Editor$<$/strong$>$}\label{index_autotoc_md6}
+In order to create a world with different levels within it. You need to launch a terminal at the root of the code/ folder.
+
+To launch the world editor, you must run the following command\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/bin/editor name\_world.world}
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item name\+\_\+world.\+world \+: the name of the world you want to create
+\end{DoxyItemize}
+
+For what follows, the programs should be run in the following order\+: \hypertarget{index_autotoc_md7}{}\doxysubsubsection{$<$strong$>$\+Server$<$/strong$>$}\label{index_autotoc_md7}
+To launch the server, you must run the following command\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/bin/server port}
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item port \+: the port on which the server will listen
+\end{DoxyItemize}
+
+{\itshape {\bfseries{Example\+:}}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/bin/server 2048}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md8}{}\doxysubsubsection{$<$strong$>$\+Client$<$/strong$>$}\label{index_autotoc_md8}
+To launch the client and play of game, you must run the following command\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/bin/client address\_ip port}
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item address\+\_\+ip \+: the address of the server
+\item port \+: the port on which the server is listening
+\end{DoxyItemize}
+
+{\itshape {\bfseries{Example\+:}}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/bin/client 127.0.0.1 2048}
+\end{DoxyCode}
+
+
+Once the client is launched, simply follow the instructions on the screen.
+
+{\bfseries{Game control\+:}} ~\newline
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Z}} \+: move up
+\item {\bfseries{Q}} \+: move left
+\item {\bfseries{S}} \+: move down
+\item {\bfseries{D}} \+: move right
+\item {\bfseries{G}} \+: place a bomb
+\item {\bfseries{E}} \+: go through a door
+\item {\bfseries{N}} \+: quit the game
+\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysubsection{Authors}\label{index_autotoc_md9}
+
+\begin{DoxyItemize}
+\item {\bfseries{H\+A\+D\+ID Hocine}} -\/ @hocine280
+\item {\bfseries{C\+H\+E\+M\+IN Pierre}} -\/ @\+Pietro\+Cookie 
+\end{DoxyItemize}

@@ -1,0 +1,151 @@
+.TH "code/src/client/client_create_game.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/client/client_create_game.c \- \&.c file of the client allowing the creation of a game  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <arpa/inet\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'client_create_game\&.h'\fP
+.br
+\fC#include 'network_request\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBlist_world_response_t\fP \fBreceive_list_world\fP (int \fBport\fP, char \fBaddress_ip\fP[15], int \fBsockfd\fP)"
+.br
+.RI "Receive the list of the worlds from the server\&. "
+.ti -1c
+.RI "void \fBsend_settings_game\fP (int \fBport\fP, char \fBaddress_ip\fP[15], int choice_world, int nb_players_game, int id_client, int \fBsockfd\fP)"
+.br
+.RI "Send the settings of the game to the server\&. "
+.ti -1c
+.RI "int \fBhandler_create_game\fP (\fBlist_world_response_t\fP list_world, int \fBport\fP, char \fBaddress_ip\fP[15], int id_client, int \fBsockfd\fP)"
+.br
+.RI "Handler of the creation of a game\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\&.c file of the client allowing the creation of a game 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-28
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBclient_create_game\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int handler_create_game (\fBlist_world_response_t\fP list_world, int port, char address_ip[15], int id_client, int sockfd)"
+
+.PP
+Handler of the creation of a game\&. Menu managing the creation of a game\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist_world\fP 
+.br
+\fIport\fP 
+.br
+\fIaddress_ip\fP 
+.br
+\fIid_client\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int 
+.RE
+.PP
+
+.PP
+Definition at line 128 of file client_create_game\&.c\&.
+.SS "\fBlist_world_response_t\fP receive_list_world (int port, char address_ip[15], int sockfd)"
+
+.PP
+Receive the list of the worlds from the server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP 
+.br
+\fIaddress_ip\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBlist_world_response_t\fP 
+.RE
+.PP
+
+.PP
+Definition at line 33 of file client_create_game\&.c\&.
+.SS "void send_settings_game (int port, char address_ip[15], int choice_world, int nb_players_game, int id_client, int sockfd)"
+
+.PP
+Send the settings of the game to the server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP 
+.br
+\fIaddress_ip\fP 
+.br
+\fIchoice_world\fP 
+.br
+\fInb_players_game\fP 
+.br
+\fIid_client\fP 
+.br
+\fIsockfd\fP 
+.RE
+.PP
+
+.PP
+Definition at line 89 of file client_create_game\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

@@ -1,0 +1,270 @@
+.TH "code/include/game-control/trap.h" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/include/game-control/trap.h \- File that manage a trap\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBSTrap\fP"
+.br
+.RI "A square of a trap\&. "
+.ti -1c
+.RI "struct \fBSList_trap\fP"
+.br
+.RI "A trap block, which is a list of trap boxess\&. "
+.ti -1c
+.RI "struct \fBlist_block_trap_t\fP"
+.br
+.RI "A list of trap blocks\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBSTrap\fP \fBtrap_t\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBSList_trap\fP \fBlist_trap_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinitialise_trap\fP (\fBtrap_t\fP *trap, int posX, int posY)"
+.br
+.RI "Initializes a trap box\&. "
+.ti -1c
+.RI "void \fBinitialise_list_trap\fP (\fBlist_trap_t\fP *list)"
+.br
+.RI "Initialize a list of trap boxes\&. "
+.ti -1c
+.RI "void \fBinsert_list_trap\fP (\fBlist_trap_t\fP *list, \fBtrap_t\fP *trap)"
+.br
+.RI "Insert a trap square into a trap block\&. "
+.ti -1c
+.RI "void \fBdelete_list_trap\fP (\fBlist_trap_t\fP *list, \fBtrap_t\fP *trap)"
+.br
+.RI "Removes a trap cell from a trap block\&. "
+.ti -1c
+.RI "void \fBdestroy_list_trap\fP (\fBlist_trap_t\fP *list)"
+.br
+.RI "Destroys a trap blocks\&. "
+.ti -1c
+.RI "void \fBinitialise_list_block_trap\fP (\fBlist_block_trap_t\fP *list_block)"
+.br
+.RI "Initialize a block list\&. "
+.ti -1c
+.RI "void \fBinsert_list_block_trap\fP (\fBlist_block_trap_t\fP *list_block, \fBlist_trap_t\fP *list_trap)"
+.br
+.RI "Insert a trap block in the trap block lists\&. "
+.ti -1c
+.RI "void \fBdelete_list_block_trap\fP (\fBlist_block_trap_t\fP *list_block, \fBlist_trap_t\fP *list_trap)"
+.br
+.RI "Removes a trap block from a trap block list\&. "
+.ti -1c
+.RI "void \fBdestroy_list_block_trap\fP (\fBlist_block_trap_t\fP *list_block)"
+.br
+.RI "Destroys a block list of traps\&. "
+.ti -1c
+.RI "void * \fBthread_trap_level\fP (void *arg)"
+.br
+.RI "The thread that manages the trap blocks of a level\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+File that manage a trap\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+HADID Hocine & CHEMIN Pierre 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2023-03-30
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2023 
+.RE
+.PP
+
+.PP
+Definition in file \fBtrap\&.h\fP\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fBSList_trap\fP \fBlist_trap_t\fP"
+
+.PP
+Definition at line 36 of file trap\&.h\&.
+.SS "typedef struct \fBSTrap\fP \fBtrap_t\fP"
+
+.PP
+Definition at line 25 of file trap\&.h\&.
+.SH "Function Documentation"
+.PP 
+.SS "void delete_list_block_trap (\fBlist_block_trap_t\fP * list_block, \fBlist_trap_t\fP * list_trap)"
+
+.PP
+Removes a trap block from a trap block list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist_block\fP The list of blocks in which you want to delete a block of traps 
+.br
+\fIlist_trap\fP The trap block that we removes 
+.RE
+.PP
+
+.PP
+Definition at line 66 of file trap\&.c\&.
+.SS "void delete_list_trap (\fBlist_trap_t\fP * list, \fBtrap_t\fP * trap)"
+
+.PP
+Removes a trap cell from a trap block\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP The trap block in which the trap box is remove 
+.br
+\fItrap\fP The trap box that is remove 
+.RE
+.PP
+
+.PP
+Definition at line 28 of file trap\&.c\&.
+.SS "void destroy_list_block_trap (\fBlist_block_trap_t\fP * list_block)"
+
+.PP
+Destroys a block list of traps\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist_block\fP The block list of traps that you want to destroy 
+.RE
+.PP
+
+.PP
+Definition at line 80 of file trap\&.c\&.
+.SS "void destroy_list_trap (\fBlist_trap_t\fP * list)"
+
+.PP
+Destroys a trap blocks\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP The trap block that you want to remove 
+.RE
+.PP
+
+.PP
+Definition at line 42 of file trap\&.c\&.
+.SS "void initialise_list_block_trap (\fBlist_block_trap_t\fP * list_block)"
+
+.PP
+Initialize a block list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist_block\fP The list of blocks we want to initialize 
+.RE
+.PP
+
+.PP
+Definition at line 57 of file trap\&.c\&.
+.SS "void initialise_list_trap (\fBlist_trap_t\fP * list)"
+
+.PP
+Initialize a list of trap boxes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP The list of trap boxes that we initialize 
+.RE
+.PP
+
+.PP
+Definition at line 18 of file trap\&.c\&.
+.SS "void initialise_trap (\fBtrap_t\fP * trap, int posX, int posY)"
+
+.PP
+Initializes a trap box\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItrap\fP The trap box that is initialized 
+.br
+\fIposX\fP Position X of the trap box 
+.br
+\fIposY\fP Position Y of the trap box 
+.RE
+.PP
+
+.PP
+Definition at line 12 of file trap\&.c\&.
+.SS "void insert_list_block_trap (\fBlist_block_trap_t\fP * list_block, \fBlist_trap_t\fP * list_trap)"
+
+.PP
+Insert a trap block in the trap block lists\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist_block\fP The block list in which we add a trap block 
+.br
+\fIlist_trap\fP The trap block that is added 
+.RE
+.PP
+
+.PP
+Definition at line 61 of file trap\&.c\&.
+.SS "void insert_list_trap (\fBlist_trap_t\fP * list, \fBtrap_t\fP * trap)"
+
+.PP
+Insert a trap square into a trap block\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP The trap block in which the trap box is added 
+.br
+\fItrap\fP The trap box that is added 
+.RE
+.PP
+
+.PP
+Definition at line 23 of file trap\&.c\&.
+.SS "void* thread_trap_level (void * arg)"
+
+.PP
+The thread that manages the trap blocks of a level\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP The information needed for the thread 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void* The result of this Thread - there is NULL 
+.RE
+.PP
+
+.PP
+Definition at line 96 of file trap\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

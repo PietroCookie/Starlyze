@@ -1,0 +1,208 @@
+.TH "code/src/game-control/game_control.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/game-control/game_control.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'game_control\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <pthread\&.h>\fP
+.br
+\fC#include <locale\&.h>\fP
+.br
+\fC#include <signal\&.h>\fP
+.br
+\fC#include <time\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <arpa/inet\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include 'world_info\&.h'\fP
+.br
+\fC#include 'level_info\&.h'\fP
+.br
+\fC#include 'move_world\&.h'\fP
+.br
+\fC#include 'entity\&.h'\fP
+.br
+\fC#include 'player\&.h'\fP
+.br
+\fC#include 'enemy\&.h'\fP
+.br
+\fC#include 'trap\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBhandler_exit\fP (int signum)"
+.br
+.RI "The manager when receiving the SIGINT signal\&. "
+.ti -1c
+.RI "void \fBgame_control\fP (int num_player, int socket_game, char *name_world)"
+.br
+.RI "Starts a game, the associated threads and also waits for player connections\&. "
+.ti -1c
+.RI "void \fBdelete_game_control\fP (\fBgame_control_t\fP *game_control_infos)"
+.br
+.RI "Removes the game manager\&. "
+.ti -1c
+.RI "pthread_t * \fBlaunch_enemy\fP (\fBgame_control_t\fP *game_control_infos)"
+.br
+.RI "Launch enemy threads\&. "
+.ti -1c
+.RI "void \fBload_enemy_world\fP (\fBgame_control_t\fP *game_control_infos)"
+.br
+.RI "Charge the enemies of the world\&. "
+.ti -1c
+.RI "pthread_t * \fBlaunch_players\fP (\fBgame_control_t\fP *game_control_infos, int socket_game, int *socket_client)"
+.br
+.RI "Launch player threads\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "void * \fBp_thread_player\fP = \fBthread_player\fP"
+.br
+.ti -1c
+.RI "void * \fBp_thread_enemy\fP = \fBthread_enemy\fP"
+.br
+.ti -1c
+.RI "void * \fBp_thread_trap_level\fP = \fBthread_trap_level\fP"
+.br
+.ti -1c
+.RI "bool \fBquit\fP = FALSE"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void delete_game_control (\fBgame_control_t\fP * game_control_infos)"
+
+.PP
+Removes the game manager\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_control_infos\fP The manager to be deleted 
+.RE
+.PP
+
+.PP
+Definition at line 162 of file game_control\&.c\&.
+.SS "void game_control (int num_player, int socket_game, char * name_world)"
+
+.PP
+Starts a game, the associated threads and also waits for player connections\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInum_player\fP The number of players 
+.br
+\fIsocket_game\fP The socket of the game 
+.br
+\fIname_world\fP The name of the world 
+.RE
+.PP
+
+.PP
+Definition at line 35 of file game_control\&.c\&.
+.SS "void handler_exit (int signum)"
+
+.PP
+The manager when receiving the SIGINT signal\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsignum\fP The received signal 
+.RE
+.PP
+
+.PP
+Definition at line 31 of file game_control\&.c\&.
+.SS "pthread_t* launch_enemy (\fBgame_control_t\fP * game_control_infos)"
+
+.PP
+Launch enemy threads\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_control_infos\fP The game manager 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+pthread_t* Enemies' threads 
+.RE
+.PP
+
+.PP
+Definition at line 181 of file game_control\&.c\&.
+.SS "pthread_t* launch_players (\fBgame_control_t\fP * game_control_infos, int socket_game, int * socket_client)"
+
+.PP
+Launch player threads\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_control_infos\fP The game manager 
+.br
+\fIsocket_game\fP The game socket 
+.br
+\fIsocket_client\fP The table that will contain the players' sockets 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+pthread_t* Players' threads 
+.RE
+.PP
+
+.PP
+Definition at line 260 of file game_control\&.c\&.
+.SS "void load_enemy_world (\fBgame_control_t\fP * game_control_infos)"
+
+.PP
+Charge the enemies of the world\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgame_control_infos\fP The game manager 
+.RE
+.PP
+
+.PP
+Definition at line 217 of file game_control\&.c\&.
+.SH "Variable Documentation"
+.PP 
+.SS "void* p_thread_enemy = \fBthread_enemy\fP"
+
+.PP
+Definition at line 26 of file game_control\&.c\&.
+.SS "void* p_thread_player = \fBthread_player\fP"
+
+.PP
+Definition at line 25 of file game_control\&.c\&.
+.SS "void* p_thread_trap_level = \fBthread_trap_level\fP"
+
+.PP
+Definition at line 27 of file game_control\&.c\&.
+.SS "bool quit = FALSE"
+
+.PP
+Definition at line 29 of file game_control\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

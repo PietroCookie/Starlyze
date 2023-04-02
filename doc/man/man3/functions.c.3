@@ -1,0 +1,59 @@
+.TH "code/src/ncurses/functions.c" 3 "Sun Apr 2 2023" "Version 1.0" "Starlyze" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+code/src/ncurses/functions.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'functions\&.h'\fP
+.br
+\fC#include <ncurses\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBncurses_init\fP ()"
+.br
+.ti -1c
+.RI "void \fBncurses_stop\fP ()"
+.br
+.ti -1c
+.RI "void \fBncurses_colors\fP ()"
+.br
+.ti -1c
+.RI "void \fBncurses_init_mouse\fP ()"
+.br
+.ti -1c
+.RI "int \fBmouse_getpos\fP (int *x, int *y)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int mouse_getpos (int * x, int * y)"
+Get the mouse position\&. 
+.PP
+Definition at line 54 of file functions\&.c\&.
+.SS "void ncurses_colors ()"
+Colors initialisation\&. 
+.PP
+Definition at line 28 of file functions\&.c\&.
+.SS "void ncurses_init ()"
+ncurses initialisation\&. 
+.PP
+Definition at line 9 of file functions\&.c\&.
+.SS "void ncurses_init_mouse ()"
+Mouse initialisation\&. 
+.PP
+Definition at line 43 of file functions\&.c\&.
+.SS "void ncurses_stop ()"
+Stop ncurses\&. 
+.PP
+Definition at line 21 of file functions\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Starlyze from the source code\&.

@@ -42,7 +42,7 @@ In order to create a world with different levels within it. You need to launch a
 To launch the world editor, you must run the following command:
 
 ```bash
-/bin/world_editor name_world.world
+/bin/editor name_world.world
 ```
 - name_world.world : the name of the world you want to create
 

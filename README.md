@@ -4,11 +4,9 @@
 
 <h4 align="center">STARLYZE is a project of INFO0601 and INFO0604 at the University of Reims Champagne-Ardenne</h4>
 
-<p align="center">
-![](bin/langage-c.svg)
-![](bin/ncurses.svg)
-![](bin/compiler.svg)
-</p> 
+![alt text](bin/langage-c.svg)
+![alt text](bin/ncurses.svg)
+![alt text](bin/compiler.svg)
 
 
 

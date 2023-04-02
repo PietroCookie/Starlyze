@@ -89,9 +89,34 @@ Once the client is launched, simply follow the instructions on the screen.
 - **N** : quit the game
 
 ## Documentation
+
+### - Website
 The documentation of the project is available in the ```doc/``` folder.
 
-This was generated with Doxygen, so you can view it by opening the file ``index.html``, which is located in ``doc/html/`` in your browser or the PDF file, which is located at the root of ```doc/```.
+This was generated with Doxygen, so you can view it by opening the file ``index.html``, which is located in ``doc/html/`` in your browser.
+
+### - PDF
+You can also generate the PDF via the ``doc/latex/refman.tex``.
+
+To do this, simply run the following command in the ``doc/latex/`` folder:
+
+```bash
+pdflatex refman.tex
+```
+
+### - Manual pages
+And finally, the documentation is also available via the command ``man''. 
+To do this, simply go to the followiing folder:
+ 
+```bash
+doc/man/man3/
+```
+
+And run the command : 
+
+```
+man my_function
+```
 
 ## Authors
   - **HADID Hocine** - @hocine280

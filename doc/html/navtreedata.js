@@ -35,8 +35,12 @@ var NAVTREE =
         [ "<strong>Server</strong>", "index.html#autotoc_md7", null ],
         [ "<strong>Client</strong>", "index.html#autotoc_md8", null ]
       ] ],
-      [ "Documentation", "index.html#autotoc_md9", null ],
-      [ "Authors", "index.html#autotoc_md10", null ],
+      [ "Documentation", "index.html#autotoc_md9", [
+        [ "- Website", "index.html#autotoc_md10", null ],
+        [ "- PDF", "index.html#autotoc_md11", null ],
+        [ "- Manual pages", "index.html#autotoc_md12", null ]
+      ] ],
+      [ "Authors", "index.html#autotoc_md13", null ],
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
@@ -63,8 +67,8 @@ var NAVTREEINDEX =
 [
 "address__table_8c.html",
 "game_8h.html#a9204e2038ad2134a5d54ee793249ea45",
-"paint__tools_8c.html#a69dc5205fbf76f42cf6f92d5efbc5744",
-"structplayer__infos__thread__t.html#a89a2e805f73e22a3f7be48a5ffd95d8e"
+"paint__tools_8c.html",
+"structpaint__tool__t.html#a9b1a325bd53c2f966031df4f8a59622e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"paint__tools_8c.html":[1,0,0,1,3,4],
+"paint__tools_8c.html#a1f5d97e663730acdbf4d4c27d2b60647":[1,0,0,1,3,4,2],
+"paint__tools_8c.html#a395bc81bd6c63d6332e34f250dbc8548":[1,0,0,1,3,4,0],
 "paint__tools_8c.html#a69dc5205fbf76f42cf6f92d5efbc5744":[1,0,0,1,3,4,3],
 "paint__tools_8c.html#aa5b977ef7ac00ac0bd858579c80e7d07":[1,0,0,1,3,4,1],
 "paint__tools_8c_source.html":[1,0,0,1,3,4],
@@ -246,8 +249,5 @@ var NAVTREEINDEX2 =
 "structlist__world__t.html#a93d803126f219626e133015890e6ea2a":[0,6,27,0],
 "structlist__world__t.html#ab51921ab2ba212b33a6caf4f7c3aa82b":[0,6,27,1],
 "structpaint__tool__t.html":[0,6,28],
-"structpaint__tool__t.html#a7141b330d62f0d67cf08afb6fc487d76":[0,6,28,1],
-"structpaint__tool__t.html#a9b1a325bd53c2f966031df4f8a59622e":[0,6,28,0],
-"structplayer__infos__thread__t.html":[0,6,29],
-"structplayer__infos__thread__t.html#a7a793a40560fbe6a7df025a117e93272":[0,6,29,1]
+"structpaint__tool__t.html#a7141b330d62f0d67cf08afb6fc487d76":[0,6,28,1]
 };

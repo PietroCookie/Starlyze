@@ -1,5 +1,8 @@
 var NAVTREEINDEX3 =
 {
+"structpaint__tool__t.html#a9b1a325bd53c2f966031df4f8a59622e":[0,6,28,0],
+"structplayer__infos__thread__t.html":[0,6,29],
+"structplayer__infos__thread__t.html#a7a793a40560fbe6a7df025a117e93272":[0,6,29,1],
 "structplayer__infos__thread__t.html#a89a2e805f73e22a3f7be48a5ffd95d8e":[0,6,29,0],
 "structplayer__infos__thread__t.html#ae8b9345d3e6f5d14aa38c1e8c21ce80a":[0,6,29,2],
 "structplayer__t.html":[0,6,30],

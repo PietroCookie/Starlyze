@@ -37,7 +37,7 @@ make
 ```
 ## How to use Starlyze ?
 ### **World Editor**
-In order to create a world with different levels within it. You need to launch a terminal at the root of the code/ folder.
+In order to create a world with different levels within it. You need to launch a terminal at the root of the ```code/``` folder.
 
 To launch the world editor, you must run the following command:
 
@@ -87,6 +87,11 @@ Once the client is launched, simply follow the instructions on the screen.
 - **G** : place a bomb
 - **E** : go through a door
 - **N** : quit the game
+
+## Documentation
+The documentation of the project is available in the ```doc/``` folder.
+
+This was generated with Doxygen, so you can view it by opening the file ``index.html``, which is located in ``doc/html/`` in your browser or the PDF file, which is located at the root of ```doc/```.
 
 ## Authors
   - **HADID Hocine** - @hocine280

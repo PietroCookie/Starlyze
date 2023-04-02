@@ -46,6 +46,7 @@ To launch the world editor, you must run the following command:
 ```
 - name_world.world : the name of the world you want to create
 
+For what follows, the programs should be run in the following order:
 ### **Server**
 
 To launch the server, you must run the following command:
@@ -86,8 +87,6 @@ Once the client is launched, simply follow the instructions on the screen.
 - **G** : place a bomb
 - **E** : go through a door
 - **N** : quit the game
-
-
 
 ## Authors
   - **HADID Hocine** - @hocine280
